@@ -1,4 +1,5 @@
 # 目录
 
 * [介绍](README.md)
-* [测试](day1/TEST.md)
+* 应用安装
+  * [安装mysql](soft-install/MYSQL.md)
