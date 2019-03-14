@@ -13,7 +13,6 @@
         password=
 
         [mysql]
-
         default-character-set=gb2312
     ```
 5.  以管理员身份(否则没权限)运行cmd，cd到解压目录mysql-8.0.15-winx64
