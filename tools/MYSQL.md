@@ -8,12 +8,20 @@
 3. 配置path环境变量(到bin目录)
 4. 默认解压后没有my.ini文件，故新增my.ini文件，内容如下
     ```
-        [client]
-        port=3306
-        password=
-
         [mysql]
-        default-character-set=gb2312
+        # 设置mysql客户端默认字符集
+        default-character-set=utf8
+        [mysqld]
+        #设置3306端口
+        port = 3306
+        # 设置mysql的安装目录
+        basedir=D:\\soft\\mysql-5.7.25-winx64
+        # 允许最大连接数
+        max_connections=200
+        # 服务端使用的字符集默认为8比特编码的latin1字符集
+        character-set-server=utf8
+        # 创建新表时将使用的默认存储引擎
+        default-storage-engine=INNODB
     ```
 5.  以管理员身份(否则没权限)运行cmd，cd到解压目录mysql-8.0.15-winx64
 6.  执行 **mysqld --initialize-insecure** 以初始化data文件夹

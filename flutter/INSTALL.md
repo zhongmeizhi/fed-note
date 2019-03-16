@@ -5,7 +5,7 @@
 > git clone https://github.com/flutter/flutter.git
 
 * 配置 flutter 环境变量
-> path 配置到 bin 目录下
+> 将bin目录配置到path中
 
 * 安装 Android Studio
 > https://developer.android.google.cn/studio/
