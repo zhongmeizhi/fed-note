@@ -32,5 +32,4 @@
 10. 执行 **mysql -u root -p** 输入默认密码
 11. 执行 **SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');** 修改默认root密码为空
 
-## 安装&&初始化完成
-[返回主页](/README.md)
+## [返回主页](/README.md)
