@@ -45,7 +45,6 @@
 * 将 ADB 添加到环境变量
    1. Settings -> Appearance -> system setting -> android sdk (copy sdk 路径)
    2. 添加 Sdk\platform-tools 到环境变量
-> 
 
 ## extract
 * 检验环境是否安装成功
@@ -55,4 +54,5 @@
   * 清除as缓存 File -> Invalidate Caches
   * 安卓版本太高，降级到8.1。（flutter版本 1.2.1）
 	
+> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED 打⭐支持一下呗
   ## [返回主页](/README.md)
