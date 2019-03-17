@@ -15,30 +15,24 @@
 > flutter doctor --android-licenses
 
 * 使用vsCode开发
-  ```
-    1.安装 flutter插件
-    2. 查看 -> 命令面板 -> 输入 doctor
-        -> 选择 Flutter: Run Flutter Doctor
-        -> 查看OUTPUT窗口是否有问题
-    3. 重启vsCode -> 查看 -> 命令面板 -> 输入 flutter
-        -> 选择 Flutter: New Project
-  ```
+  1. 安装 flutter插件
+  2. 查看 -> 命令面板 -> 输入 doctor
+    -> 选择 Flutter: Run Flutter Doctor
+    -> 查看OUTPUT窗口是否有问题
+  3. 重启vsCode -> 查看 -> 命令面板 -> 输入 flutter
+    -> 选择 Flutter: New Project
 
 * 使用Android Studio开发
-  ```
-  安装插件：
-    1. 打开插件首选项
-        macOS：Preferences -> Plugins
-        Windows：File -> Settings -> Plugins
-    2. 选择 Browse repositories… -> 选择 flutter 插件并点击 install
-  ```
-
-* 开启热重载
-  ```
-    1. 打开lib/main.dart文件
-    2. 将You have pushed the button this many times中pushed改成 checked
-    3. 用热重载按钮(闪电图标/绿色圆形箭头按钮)
-  ```
+  `安装插件`
+  1. 打开插件首选项
+      macOS：Preferences -> Plugins
+      Windows：File -> Settings -> Plugins
+  2. 选择 Browse repositories… -> 选择 flutter 插件并点击 install
+  
+  `开启热重载`
+  1. 打开lib/main.dart文件
+  2. 将You have pushed the button this many times中pushed改成 checked
+ 1. 用热重载按钮(闪电图标/绿色圆形箭头按钮)
 
 ## 连接Android模拟器
 * Tools -> AVD Manager -> Create Virtual Device. -> 直到finish
