@@ -14,7 +14,7 @@
 * 添加 监听
 > flutter doctor --android-licenses
 
-# 使用vsCode开发
+## 使用vsCode开发
   1. 安装 flutter插件
   2. 查看 -> 命令面板 -> 输入 doctor
     -> 选择 Flutter: Run Flutter Doctor
@@ -22,7 +22,7 @@
   3. 重启vsCode -> 查看 -> 命令面板 -> 输入 flutter
     -> 选择 Flutter: New Project
 
-# 使用Android Studio开发
+## 使用Android Studio开发
   1. 打开插件首选项
       macOS：Preferences -> Plugins
       Windows：File -> Settings -> Plugins
