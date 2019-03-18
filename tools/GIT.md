@@ -1,7 +1,8 @@
 # git 使用
 
-## 常用命令
+Git是分布式版本控制系统
 
+## 常用命令
 * 克隆
 > git clone http://xxx.git dirname
 
@@ -18,7 +19,7 @@
 > git add [ -a ]
 
 * 拉取
-> git fetch --all
+> git fetch [ --all ]
 
 > git pull origin name
 
