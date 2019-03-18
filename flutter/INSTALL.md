@@ -47,5 +47,5 @@
   * 清除as缓存 File -> Invalidate Caches
   * 安卓版本太高，降级到8.1。（flutter版本 1.2.1）
 	
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED 打⭐支持一下呗
+> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
   ## [返回主页](/README.md)

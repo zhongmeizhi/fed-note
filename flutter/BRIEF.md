@@ -9,5 +9,5 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
 * 因此具有极其优秀的跨平台性（iOS和Android的效果基本完全一致）
 * 目前已经支持了 iOS、Android、Fuchsia
 	
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED 打⭐支持一下呗
+> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
   ## [返回主页](/README.md)

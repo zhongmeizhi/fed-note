@@ -32,5 +32,5 @@
 10. 执行 **mysql -u root -p** 输入默认密码
 11. 执行 **SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');** 修改默认root密码为空
 
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED 打⭐支持一下呗
+> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
 ## [返回主页](/README.md)
