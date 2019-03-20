@@ -15,6 +15,7 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
   * 以管理员身份运行 android studio
   * 清除as缓存 File -> Invalidate Caches
   * 安卓版本太高，降级到8.1。（flutter版本 1.2.1）
-	
+
+## End
 > 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
   ## [返回主页](/README.md)

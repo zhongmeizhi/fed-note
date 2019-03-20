@@ -4,5 +4,6 @@
     1. 删除报错文件引入包
     2. `cnpm i mime@1.3.4` 主动下载1.x版本的
 
+## End
 > 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
   ## [返回主页](/README.md)
