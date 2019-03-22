@@ -5,9 +5,10 @@
   * [移动端布局方案原理解析](css/LAYOUT.md)
 * 深入理解JS
   * 基础
-    * [var/let/const的区别](VAR.md)
+    * [var/let/const的区别](javascript/base/VAR.md)
 * flutter
   * [简介](flutter/BRIEF.md)
+  * [入门&&适配](flutter/PRIMER.md)
 * dart
   * [入门](dart/PRIMER.md)
 * 工具使用
