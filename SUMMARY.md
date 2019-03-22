@@ -9,6 +9,7 @@
 * flutter
   * [简介](flutter/BRIEF.md)
   * [入门&&适配](flutter/PRIMER.md)
+  * [较折腾的Issue](flutter/ISSUE.md)
 * dart
   * [入门](dart/PRIMER.md)
 * 工具使用
