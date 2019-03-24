@@ -6,6 +6,8 @@
   * finally
 * HTTP2.0
   * 帧、多路复用
+* JS
+  * 事件机制
 * 思想
   * 函数式编程
     * 纯函数
@@ -22,7 +24,7 @@
 * Node.js
   * 中间件
 * react-native
-  * 仿：陆金所APP
+  * 仿：陆APP
 * canvas-game
   * 打砖块项目
   * 打飞机项目
