@@ -4,7 +4,7 @@ Flutter借鉴的是React思想，使用的是Widget组件
 
 本文只写`官网很难找到`或者`官网压根没有的`Fluter日常踩坑。
 
-## 静态文件引入
+### 静态文件引入
 1. 打开根目录中的`pubspec.yaml`文件
     ```
     // 配置 assets
@@ -17,7 +17,7 @@ Flutter借鉴的是React思想，使用的是Widget组件
     Image.asset('assets/images/xxx.jpg',
     ```
 
-## 屏幕适配
+### 屏幕适配
 1. 打开根目录中的`pubspec.yaml`文件
    > 添加 flutter_screenutil 插件
     ```
@@ -42,14 +42,17 @@ Flutter借鉴的是React思想，使用的是Widget组件
     width: ScreenUtil().setWidth(750)
    ```
 
-## 字体适配
+### 字体适配
 > 适配方案大致同上，略有不同
 ```
     ScreenUtil().setSp(28)
 ```
 
-## 颜色使用
+### 颜色使用
 * 自带颜色 `Colors.red`
 * 自义颜色 `Color(0xFF333333)`
    * 0xFF表示透明度16进制， 之后的333333代表RGB色值
 
+## End
+> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
+### [返回主页](/README.md)

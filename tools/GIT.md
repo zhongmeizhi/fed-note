@@ -2,7 +2,7 @@
 
 Git是分布式版本控制系统
 
-## 常用命令
+### 常用命令
 * 克隆 `git clone http://xxx.git dirname`
 
 * 查看分支 `git branch [ -a | -r ]`
@@ -45,4 +45,4 @@ Git是分布式版本控制系统
 
 ## End
 > 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
-## [返回主页](/README.md)
+### [返回主页](/README.md)
