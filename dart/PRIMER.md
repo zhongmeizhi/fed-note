@@ -14,6 +14,7 @@
 * 类TypeScript函数
 * mixins的实现`with`
 * `future`和`async await`
+* 在Dart 2中，`new` 关键字变成了可选的
 
 ### 语法
 ##### JS开发者易踩的坑
