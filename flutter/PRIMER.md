@@ -1,4 +1,4 @@
-# Flutter 入门 && 适配
+# Flutter 屏幕适配
 
 Flutter借鉴的是React思想，使用的是Widget组件
 
