@@ -4,9 +4,7 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * 理解Javascript
-  * 基础
-  * 进阶
-  * 源码解析
+  * [NPM机制]
 * 网络基础
   * [跨域](net/CO.md)
 * flutter
