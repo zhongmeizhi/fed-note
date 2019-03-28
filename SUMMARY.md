@@ -1,20 +1,21 @@
 # ZHONGMEIZHI的小书房
 
-* [介绍](README.md)
+* [目录](README.md)
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * 理解Javascript
-  * [NPM机制](javascript/NPM.md)
-* 网络基础
-  * [跨域](net/CO.md)
+  * [事件机制](javascript/Operating_Principle.md)
+* 浏览器基础
+  * [跨域](browser/CO.md)
+* node
+  * [NPM机制](node/NPM.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [屏幕适配](flutter/PRIMER.md)
   * [较折腾的Issue](flutter/ISSUE.md)
 * dart
   * [入门](dart/PRIMER.md)
-* 工具使用
-  * [mysql环境搭建](tools/MYSQL.md)
-  * [git命令](tools/GIT.md)
-* 插件/库使用
-  * [vConsole](plugins/vConsole.md)
+* 其他
+  * [mysql环境搭建](other/MYSQL.md)
+  * [git命令](other/GIT.md)
+  * [vConsole](other/vConsole.md)
