@@ -4,7 +4,7 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * 理解Javascript
-  * [事件机制](javascript/Operating_Principle.md)
+  * [运行机制](javascript/Event_Loop.md)
 * 浏览器基础
   * [跨域](browser/CO.md)
 * node
