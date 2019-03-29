@@ -33,15 +33,42 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 每次执行完一个宏任务之后，会去检查是否存在微任务；如果有，则执行微任务直至清空微任务队列，如果在微任务执行期间微任务队列加入了新的微任务，会将新的微任务加入队列尾部，之后也会被执行。
 
+根据上述总结流程为：
+
+![流程图](/img/event_loop.jpg)
+
+附（宏/微任务清单）：
+
 - 宏任务(macro)task主要有： script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)
 - 微任务(micro)task主要有： Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
 - requestAnimationFrame 既不属于宏任务, 也不属于微任务
 
-### 任务流程图
-
-![流程图](/img/event_loop.jpg)
-
 ~~目前宏任务和微任务在各浏览器执行都有差异，最后提议promise为微任务~~
+
+### 实例分析
+```
+    setTimeout(function(){
+        console.log('1');
+    });
+
+    new Promise(function(resolve){
+        console.log('2');
+        resolve();
+    }).then(function(){
+        console.log('3');
+    });
+
+    console.log('4');
+
+```
+以上案例会输出 `2 4 3 1`
+
+结果解析：
+1. JavaScript执行主线程任务：`输出 2 4`
+   - 附：Promise构造器内部是同步任务
+2. 执行微任务队列：`输入 3`
+3. 第一个宏任务结束，进入setTimeout回调：`输出 1`
+
 
 ## End
 
