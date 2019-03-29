@@ -33,6 +33,9 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 - 微任务(micro)task主要有： Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
 - requestAnimationFrame 既不属于宏任务, 也不属于微任务
 
+###任务流程图
+![流程图](/img/event_loop.jpg)
+
 ~~目前宏任务和微任务在各浏览器执行都有差异，最后提议promise为微任务~~
 
 ## End
