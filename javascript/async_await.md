@@ -1,6 +1,10 @@
-# async await特性详解
+# async await详解
 
 > `async await`本身就是`promise + generator`的语法糖。
+
+本文主要讲述以下内容
+1. async await 主要特性
+2. async awiat 实质和转换
 
 ### async await 特性
 
@@ -56,21 +60,6 @@
             console.log('async1 end');
         })
     }
-
-    // 自执行generator的语法糖
-    async function async1() {
-        console.log('async1 start');
-        
-        var awaitInstance = (function* awaitFn () {
-            yield async2();
-            yield console.log('async1 end');
-        })()
-
-        var awaitNext
-        do {
-            awaitNext = awaitInstance.next()
-        } while (!awaitNext.done)
-    }
 ```
 
 4. await后面代码会等await内部代码全部完成后再执行
@@ -103,6 +92,40 @@
     await是可以直接使用的。
 
     var x = await console.log(1)
+```
+
+### async await 实质
+
+下面使用 promise + generate 实现 async await
+```
+    // 转换目标 async1
+    // async function async1() {
+    //    console.log('async1 start');
+    //    await async2();
+    //    console.log('async1 end');
+    // }
+
+    function async1() {
+        // 将 async 转换成 *，将 awiat 转换成 yield
+        var awaitInstance = (function* () {
+            console.log('async1 start');
+            yield async2();
+            console.log('async1 end');
+        })()
+
+        // 自动执行 await 及后续代码
+        // 简单起见，不处理异常情况
+        function step() {
+            var next = awaitInstance.next();
+            Promise.resolve(next.value).then(function (val) {
+                if (!next.done) step();
+            })
+        }
+        step();
+
+        // 返回Promise
+        return Promise.resolve(undefined);
+    }
 ```
 
 ## End
