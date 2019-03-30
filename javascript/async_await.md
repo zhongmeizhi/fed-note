@@ -81,6 +81,15 @@
     // async1 start -> sleep 2s -> async1 end
 ```
 
+5. await  操作符用于等待一个Promise 对象。它只能在异步函数 async function 中使用。参考 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/await)
+```
+    附：
+    在chrome版本 73.0.3683.86（64 位）中,
+    await是可以直接使用的。
+
+    var x = await console.log(1)
+```
+
 ## End
 
 > 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
