@@ -49,12 +49,27 @@
         console.log('async1 end');
     }
 
-    // 等价于
+    // 类似于
     async function async1() {
         console.log('async1 start');
         Promise.resolve(async2()).then(() => {
             console.log('async1 end');
         })
+    }
+
+    // 自执行generator的语法糖
+    async function async1() {
+        console.log('async1 start');
+        
+        var awaitInstance = (function* awaitFn () {
+            yield async2();
+            yield console.log('async1 end');
+        })()
+
+        var awaitNext
+        do {
+            awaitNext = awaitInstance.next()
+        } while (!awaitNext.done)
     }
 ```
 

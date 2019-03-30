@@ -4,7 +4,7 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * 理解Javascript
-  * [async await](javascript/event_loop.md)
+  * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
 * 浏览器基础
   * [跨域](browser/CO.md)
