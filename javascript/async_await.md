@@ -117,6 +117,7 @@
         // 简单起见，不处理异常情况
         function step() {
             var next = awaitInstance.next();
+            // 使用Promise获取 异步/同步 方法的结果，再执行下一步
             Promise.resolve(next.value).then(function (val) {
                 if (!next.done) step();
             })
