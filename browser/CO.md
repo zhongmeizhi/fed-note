@@ -25,9 +25,12 @@ console.log(`你的密码已泄露: ${$pwd}`)
 ```
 
 ### 解决方案（主流）
+
 **1. JSONP -> get请求跨域**
+
 原理：script和img等标签没有跨域限制
-实现方案：(举例)
+
+具体实现：
 ```
   // HTML 插入标签
   <script src="127.0.0.1/x/account?cb=say" ></script>
@@ -45,7 +48,10 @@ console.log(`你的密码已泄露: ${$pwd}`)
   // 结束
 ```
 **2. iframe+form实现post请求跨域**
+
 原理：利用form表单target属性，将post请求提交给隐藏的iframe，使页面不跳转
+
+具体实现：
 ```
   var data = {
     name: 'zmz',
@@ -85,7 +91,9 @@ console.log(`你的密码已泄露: ${$pwd}`)
 ```
 
 **3. CORS 跨源资源共享**
+
 原理：新版XMLHttpRequest(ajax2.0)特性，服务器白名单
+
 服务器端设置`response.setHeader("Access-Control-Allow-xxx...`
 
 附：ajax2.0新特性
@@ -104,7 +112,9 @@ CORS分类
 
 
 **5. 代理**
+
 原理：服务器之间没有跨域限制
+
 具体实现：
 ```
   // Nginx配置
@@ -121,7 +131,9 @@ CORS分类
 ```
 
 **5. postMessage**
+
 原理：postMessage可以处理各种浏览器窗口之间的通信问题。
+
 具体实现：
 ```
   // 发送方
@@ -144,8 +156,11 @@ CORS分类
 ```
 
 **6. WebSocket**
+
 原理：新协议(socket)
-实现方案：类似postMessage
+
+具体实现：类似postMessage
+
 附：
 * socket.io框架能解决兼容性问题
 
@@ -154,7 +169,7 @@ CORS分类
 * JSONP和iframe+from兼容性很好
   * 但是错误处理和RESTful接口统一是个问题
 * CORS最简单粗暴
-  * 9102年了。微软都不维护Win7了。
+  *  和Vue兼容性类似。
 * 代理
   * 肯定会慢一丢丢咯，而且要找运维配
 * postMessage
