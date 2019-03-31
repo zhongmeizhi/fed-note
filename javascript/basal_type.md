@@ -2,23 +2,31 @@
 
 > 夯实Javascript基础。
 
-### 基础类型特性
-
 基本类型有六种： null，undefined，boolean，number，string，symbol。
 
+### 基础类型特性
+
 *  **基础类型是不变的**
+   -  (详情请看Javascript高级程序设计)
 *  typeof null === 'object'
-*  只定义未赋值的变量 === undefined
+   -  (历史遗留问题，因为000开头表示对象，而null全是0)
 *  条件判断时 `undefined` `null` `false` `NaN` `''` `0` `-0` 为 false，其他都为 true
+   -  (条件判断时会隐式转换为Boolean)
 *  JS只有浮点类型，没有整型
+   -  `1 === 1.0`
 *  NaN 也属于 number 类型，并且 NaN 不等于自身。
-*  `String` 类型是类数组
+   *  `var a = NaN; a !== a;`
+*  `String` 类型是类数组，具有`iterator`
+   *  `typeof String('x')[Symbol.iterator] === 'function'`
 
 ### 基础类型检测
 
 检测基础类型用 `typeof`
 
 ```
+  // typeof 只适合检测 基础类型
+
+  typeof new Date() // 'object'
   typeof [] // 'object'
   typeof {} // 'object'
   typeof console.log // 'function'
