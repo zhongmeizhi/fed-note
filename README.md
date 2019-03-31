@@ -4,6 +4,7 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * 理解Javascript
+  * [基础数据类型](javascript/basal_type.md)
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
 * 浏览器基础

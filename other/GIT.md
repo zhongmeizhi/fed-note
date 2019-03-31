@@ -44,5 +44,7 @@ Git是分布式版本控制系统
 * 回滚到特定版本 `git reset --hard 5dc29bebe8`
 
 ## End
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
+
+> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
+
 ### [返回主页](/README.md)

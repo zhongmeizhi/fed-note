@@ -53,6 +53,9 @@ Flutter借鉴的是React思想，使用的是Widget组件
 * 自义颜色 `Color(0xFF333333)`
    * 0xFF表示透明度16进制， 之后的333333代表RGB色值
 
+
 ## End
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
+
+> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
+
 ### [返回主页](/README.md)

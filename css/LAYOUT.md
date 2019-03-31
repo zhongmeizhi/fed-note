@@ -48,5 +48,7 @@
 ```
 
 ## End
-> 文章分享同步于： https://github.com/zhongmeizhi/gitbook-FED
-## [返回主页](/README.md)
+
+> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
+
+### [返回主页](/README.md)
