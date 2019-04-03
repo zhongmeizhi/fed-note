@@ -6,17 +6,20 @@
 1. async awiat 实质
 2. async await 主要特性
 
-### async await 实质
+### async await 实质 && 降级策略
 
-下面使用 promise + generate 实现 async await
 ```
     // 转换目标 async1
+
     // async function async1() {
     //    console.log('async1 start');
     //    await async2();
     //    console.log('async1 end');
     // }
+```
 
+下面使用 promise + generate 实现 async await
+```
     function async1() {
         // 将 async 转换成 *，将 awiat 转换成 yield
         var awaitInstance = (function* () {
@@ -38,6 +41,41 @@
 
         // 返回Promise
         return Promise.resolve(undefined);
+    }
+```
+
+将上述代码完善异常操作，得到async await的降级策略，只要AST 将 async 转换成 *，将 awiat 转换成 yield，就能实现降级。
+
+```
+    function async1(args) {
+        return myAsyncAwait(function* () {
+            console.log('async1 start');
+            yield async2();
+            console.log('async1 end');
+        });
+    }
+
+    function myAsyncAwait(genFn) {
+        return new Promise(function(resolve, reject) {
+            const gen = genFn();
+            function step(nextFn) {
+                let next;
+                try {
+                    next = nextFn();
+                } catch(e) {
+                    return reject(e);
+                }
+                if(next.done) {
+                    return resolve(next.value);
+                }
+                Promise.resolve(next.value).then(function(v) {
+                    step(function() { return gen.next(v); });
+                }, function(e) {
+                    step(function() { return gen.throw(e); });
+                });
+            }
+            step(function() { return gen.next(undefined); });
+        });
     }
 ```
 
