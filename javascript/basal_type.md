@@ -12,6 +12,19 @@
 
 - **基础类型是不变的**
   -  因此：基础类型没有splice，sort之类的直接改变变量的方法
+  -  尝试更改基础类型是无效的
+  ```
+    var num = 1;
+
+    function addTwo(num) {
+      num += 2;
+    }
+
+    addTwo(num);
+
+    // 依旧是 1
+    console.log(num); // -> 1
+  ```
   -  强行改变基础类型会报错
   ```
     // str 不能调用 Array的 sort 和 splice
