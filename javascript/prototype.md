@@ -34,7 +34,6 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
 其实这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 _proto_ 来访问。
 
 
-
 每个对象的`constructor` === 创建该对象的构造函数（constructor大部分情况是没用的）
 ```
     function A () {}
@@ -76,11 +75,52 @@ new的过程
 isPrototypeOf 和 hasOwnProperty
 
 函数的调用方法
-- 以函数的形式调用，那么this指向 window
-- 以方法的形式调用，那么this指向 调用函数的对象
-- 以call的形式调用
-- 以构造函数调用
+1. 以函数的形式调用，那么this指向 window
+2. 以方法的形式调用，那么this指向 调用函数的对象
+3. 以call的形式调用
+4. 以构造函数调用
   - 如果在构造函数中 有 return对象，那么new的实例 就是 return 的对象
   - 如果 return 的不是对象。 那么 new的实例 就是 this
 
 函数 和 类的区别
+1. 类没有变量提升
+```
+    new B();
+    class B {}
+    // Uncaught ReferenceError: B is not defined
+```
+2. 类内部启用严格模式
+```
+    class B {
+        x = 1
+    }
+    // Uncaught SyntaxError: Identifier 'B' has already been declared
+```
+3. **类的所有方法，都不可枚举**
+```
+    class A {
+        constructor() {
+            this.x = 1;
+        }
+        static say() {
+            return 'zmz';
+        }
+        print() {
+            console.log(this.x);
+        }
+    }
+    Object.keys(A); // []
+    Object.keys(A.prototype); // []
+```
+4. 类的的所有方法，没有原型对象`prototype`
+```
+    继3的例子
+    console.log(A.say.prototype); // undefined
+    console.log(new A().print.prototype); // undefined
+```
+5. 类不能直接使用，必须使用 new 调用。
+```
+    继3的例子
+    A();
+    // Uncaught TypeError: Class constructor A cannot be invoked without 'new'
+```
