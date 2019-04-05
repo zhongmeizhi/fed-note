@@ -12,7 +12,7 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     console.log(fn.prototype); // undefined
 ```
 
-为什么`Function.prototype.bind()`没有`prototype`
+为什么`Function.prototype.bind()`没有`prototype`，因为他们是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
 ```
     console.log(Object.prototype);
     // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
@@ -20,9 +20,6 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     console.log(Function.prototype);
     // ƒ () { [native code] }
 ```
-所以：`Function.prototype` 和 `Object.prototype` 是两个特殊的对象，他们由引擎来创建
-
-而：所以的函数都继承自 `Function.__prototype`，所以的对象都继承自 `Object.prototype`
 
 
 每个对象都有 `__proto__` 属性，指向了创建该对象的构造函数的原型`prototype`，通过`_proto_`将对象和原型联系起来组成原型链，得以让对象可以访问到不属于自己的属性。
