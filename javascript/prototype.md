@@ -1,5 +1,6 @@
 # 原型
 
+### prototype
 Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
 ```
     function a () {}
@@ -12,7 +13,7 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     console.log(fn.prototype); // undefined
 ```
 
-为什么`Function.prototype.bind()`没有`prototype`，因为他们是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
+为什么`Function.prototype.bind()`没有`prototype`，因为他们是两个特殊的对象，他们由引擎来创建
 ```
     console.log(Object.prototype);
     // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
@@ -23,6 +24,8 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
 
 
 每个对象都有 `__proto__` 属性，指向了创建该对象的构造函数的原型`prototype`，通过`_proto_`将对象和原型联系起来组成原型链，得以让对象可以访问到不属于自己的属性。
+
+所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
 ```
     var obj = {};
     obj.__proto__ === Object.prototype; // true
@@ -45,7 +48,7 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
 
 对于实例对象来说，都是通过 new 产生的，无论是 function A() 还是 var a = { x : 1 } , 字面量内部也是使用了 new Object()
 
-new的过程
+### new的过程
 1. 新生成了一个对象
 2. 链接到原型
 3. 绑定 this
@@ -66,61 +69,16 @@ new的过程
     }
 ```
 
+附：
 - delete 不会删除 原型的属性
     - 但是可以删除字面量属性，让原型属性暴露出来
 
 - for in 会调用原型 属性
   - 不调用不可枚举属性
+  - isPrototypeOf 和 hasOwnProperty
 
-isPrototypeOf 和 hasOwnProperty
+## End
 
-函数的调用方法
-1. 以函数的形式调用，那么this指向 window
-2. 以方法的形式调用，那么this指向 调用函数的对象
-3. 以call的形式调用
-4. 以构造函数调用
-  - 如果在构造函数中 有 return对象，那么new的实例 就是 return 的对象
-  - 如果 return 的不是对象。 那么 new的实例 就是 this
+> 持续更新中，Github信息更多哦，你的⭐是我最大的支持。[查看详情](https://github.com/zhongmeizhi/)，
 
-函数 和 类的区别
-1. 类没有变量提升
-```
-    new B();
-    class B {}
-    // Uncaught ReferenceError: B is not defined
-```
-2. 类内部启用严格模式
-```
-    class B {
-        x = 1
-    }
-    // Uncaught SyntaxError: Identifier 'B' has already been declared
-```
-3. **类的所有方法，都不可枚举**
-```
-    class A {
-        constructor() {
-            this.x = 1;
-        }
-        static say() {
-            return 'zmz';
-        }
-        print() {
-            console.log(this.x);
-        }
-    }
-    Object.keys(A); // []
-    Object.keys(A.prototype); // []
-```
-4. 类的的所有方法，没有原型对象`prototype`
-```
-    继3的例子
-    console.log(A.say.prototype); // undefined
-    console.log(new A().print.prototype); // undefined
-```
-5. 类不能直接使用，必须使用 new 调用。
-```
-    继3的例子
-    A();
-    // Uncaught TypeError: Class constructor A cannot be invoked without 'new'
-```
+### [返回主页](/README.md)
