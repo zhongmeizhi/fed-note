@@ -1,5 +1,7 @@
 # 检测对象类型
 
+# TODO
+
 ### instanceof
 
 `instanceof` 用来检测对象的类型，内部机制是通过判断对象的原型链中是不是能找到对应的的 prototype

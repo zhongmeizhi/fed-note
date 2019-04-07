@@ -5,7 +5,6 @@
   * [移动端适配](css/LAYOUT.md)
 * JS基础
   * [基础类型](javascript/basal_type.md)
-  * [检测对象类型](javascript/verify_object.md)
   * [原型prototype](javascript/prototype.md)
   * [函数&尾递归](javascript/function.md)
   * [async await](javascript/async_await.md)

@@ -2,8 +2,8 @@
 
 > `async await`本身就是`promise + generator`的语法糖。
 
-本文主要讲述以下内容
-1. async awiat 实质
+会讲述以下内容
+1. async awiat 实质 || 降级策略
 2. async await 主要特性
 
 ### async await 实质 && 降级策略

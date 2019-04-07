@@ -2,6 +2,10 @@
 
 > 夯实Javascript基础。
 
+会讲述以下内容
+1. 基础类型的特点
+2. 基础类型的转换
+
 基本类型有六种： null，undefined，boolean，number，string，symbol。
 
 基本类型的值是保存在`栈内存`中的简单数据段
@@ -15,7 +19,6 @@
   -  尝试更改基础类型是无效的
   ```
     var num = 1;
-
     function addTwo(num) {
       num += 2;
     }
@@ -69,7 +72,7 @@
 *  typeof null === 'object'
    -  (历史遗留问题，因为000开头表示对象，而null全是0)
 *  条件判断时 `undefined` `null` `false` `NaN` `''` `0` `-0` 为 false，其他都为 true
-   -  (条件判断时会隐式转换为Boolean)
+   -  条件判断时会隐式转换为Boolean()
 *  JS只有浮点类型（double），没有整型
    -  `1 === 1.0`
 *  NaN 也属于 number 类型，并且 NaN 不等于自身。
