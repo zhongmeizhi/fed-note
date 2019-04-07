@@ -26,3 +26,5 @@
       }
   }
 ```
+
+验证对象`Object.prototype.toString.call()`

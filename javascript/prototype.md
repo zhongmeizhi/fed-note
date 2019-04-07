@@ -12,7 +12,7 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     console.log(typeof fn); // function
     console.log(fn.prototype); // undefined
 
-    // 为什么 fn是函数却没有 prototype？
+    // why ? 看下文
 ```
 
 `Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建
@@ -22,10 +22,8 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
 
     console.log(Function.prototype);
     // ƒ () { [native code] }
+    
 ```
-
-
-每个对象都有 `__proto__` 属性，指向了创建该对象的构造函数的原型`prototype`，通过`_proto_`将对象和原型联系起来组成原型链，得以让对象可以访问到不属于自己的属性。
 
 所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
 ```
@@ -35,8 +33,21 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     function A () {}
     var a = new A();
     a.__proto__ === A.prototype; // true
+    A.__proto__ === Function.prototype; // true
 ```
-其实这个属性指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 _proto_ 来访问。
+
+每个对象都有 `__proto__` 属性，指向了创建该对象的构造函数的原型`prototype`，通过`_proto_`将对象和原型联系起来组成原型链，得以让对象可以访问到不属于自己的属性。
+
+其实`__proto__`不是真正的规范属性，他指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 `__proto__` 来访问。
+
+原型链的终点
+```
+    Function.__proto__ === Function.prototype;
+    Object.__proto__ === Function.prototype;
+
+    Function.prototype.__proto__ === Object.prototype;
+    Object.prototype.__proto__ === null;
+```
 
 
 每个对象的`constructor` === 创建该对象的构造函数（constructor大部分情况是没用的）
