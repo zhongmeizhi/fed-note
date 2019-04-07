@@ -11,9 +11,11 @@ Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
     var fn = Function.prototype.bind();
     console.log(typeof fn); // function
     console.log(fn.prototype); // undefined
+
+    // 为什么 fn是函数却没有 prototype？
 ```
 
-为什么`Function.prototype.bind()`没有`prototype`，因为他们是两个特殊的对象，他们由引擎来创建
+`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建
 ```
     console.log(Object.prototype);
     // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
