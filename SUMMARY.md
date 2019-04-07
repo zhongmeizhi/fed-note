@@ -3,10 +3,14 @@
 * [目录](README.md)
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
-* 理解Javascript
+* JS基础
   * [基础类型](javascript/basal_type.md)
+  * [检测对象类型](javascript/verify_object.md)
+  * [原型prototype](javascript/prototype.md)
+  * [函数&尾递归](javascript/function.md)
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
+* 理解JS
 * 浏览器基础
   * [跨域](browser/CO.md)
 * node
