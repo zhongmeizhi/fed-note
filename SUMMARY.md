@@ -15,7 +15,7 @@
 * node
   * [NPM机制](node/NPM.md)
 * 性能优化
-  * [杂谈](performance/other.md)
+  * [性能优化](performance/optimization.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [屏幕适配](flutter/PRIMER.md)
@@ -24,5 +24,6 @@
   * [入门](dart/PRIMER.md)
 * 其他
   * [mysql环境搭建](other/MYSQL.md)
+  * [事务&锁](other/data_base.md)
   * [git命令](other/GIT.md)
   * [vConsole](other/vConsole.md)
