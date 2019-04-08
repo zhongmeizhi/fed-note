@@ -14,6 +14,8 @@
   * [跨域](browser/CO.md)
 * node
   * [NPM机制](node/NPM.md)
+* 性能优化
+  * [杂谈](performance/other.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [屏幕适配](flutter/PRIMER.md)
