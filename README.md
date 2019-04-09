@@ -11,7 +11,7 @@
   * [运行机制](javascript/event_loop.md)
 * 理解JS
 * 浏览器基础
-  * [跨域](browser/CO.md)
+  * [跨域](browser/cross_origin.md)
 * node
   * [NPM机制](node/NPM.md)
 * 性能优化
