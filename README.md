@@ -5,8 +5,9 @@
   * [移动端适配](css/LAYOUT.md)
 * JS基础
   * [基础类型](javascript/basal_type.md)
-  * [原型prototype](javascript/prototype.md)
+  * [引用类型](javascript/object_type.md)
   * [函数&尾递归](javascript/function.md)
+  * [原型prototype](javascript/prototype.md)
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
 * 理解JS
