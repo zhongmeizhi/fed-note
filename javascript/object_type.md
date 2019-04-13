@@ -71,6 +71,8 @@
 
 `instanceof` 用来检测对象的类型，内部机制是通过判断对象的原型链中是不是能找到对应的的 prototype，在验证iframe时会有问题
 
+因为 Array.prototype !== window.frames[0].Array.prototype，所以不存在继承关系
+
 ```
   // 实现 instanceof
 
@@ -96,7 +98,7 @@
 
 ### Object.prototype.toString.call()
 
-万能的验证方法
+在不覆盖 toString 方法前提下，任何一个对象调用 Object 原生的 toString 方法都会返回 "[object type]"，其中 type 是对象的类型。每个类的内部都有一个 [\[Class]] 属性，这个属性中就指定了上述字符串中的 type(构造函数名)
 
 ```
   Object.prototype.toString.call('x');  // "[object String]"
@@ -124,7 +126,7 @@
 
 ### 不一定靠谱的 constructor 
 
-说不一定靠谱是因为 constructor是可写的，而且验证iframe时会有问题
+说不一定靠谱是因为 constructor是可写的，而且验证iframe时会有问题（原理同 instanceof）
 
 当然基础类型的构造器也是通过基本包装类型获取的，没有包装类型的基础类型是没有构造器的
 

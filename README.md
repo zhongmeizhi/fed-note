@@ -3,14 +3,13 @@
 * [目录](README.md)
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
-* JS基础
+* Javascript
   * [基础类型](javascript/basal_type.md)
   * [引用类型](javascript/object_type.md)
   * [函数&尾递归](javascript/function.md)
   * [原型prototype](javascript/prototype.md)
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
-* 理解JS
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
 * node
@@ -19,6 +18,7 @@
   * [性能优化](performance/optimization.md)
 * flutter
   * [简介](flutter/BRIEF.md)
+  * [实现图](flutter/IMPLEMENT.md)
   * [屏幕适配](flutter/PRIMER.md)
   * [较折腾的Issue](flutter/ISSUE.md)
 * dart
