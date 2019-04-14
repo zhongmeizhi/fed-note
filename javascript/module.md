@@ -119,8 +119,6 @@ UMD源码解析
 * 不能使用表达式和变量 等运行时加载的语法
   - 同上
 
-# TODO
-
 ### webpack打包策略
 
 > import会被编译成 require/exports （CommonJS规范）
@@ -135,13 +133,17 @@ webpack会将`require('abc.js')`打包进引用它的文件中。以对象的形
 
 **3. commonjs异步加载**
 
+webpack(require.ensure)：webpack 2.x 版本中的代码分割。
+
 在commonjs中有一个Modules/Async/A规范，里面定义了`require.ensure`语法。webpack实现了它，作用是可以在打包的时候进行代码分片，并异步加载分片后的代码。
 
 此时list.js会被打包成一个单独的chunk文件。像这样：1.d6f343b727f5923508bf.js
 
 例如：vue路由懒加载`const Foo = () => import('./Foo.vue')`
 
-通过manifest.js文件来管理bundle文件的运行和加载。这个manifest文件是最先加载的，
+**manifest**
+
+manifest文件是最先加载的，manifest是在vendor的基础上，再抽取出要经常变动的部分，通过manifest.js文件来管理bundle文件的运行和加载。(比如关于异步加载js模块部分的内容)
 
 **webpack v4.6.0+ 添加了预取和预加载的支持**
 ```
@@ -150,6 +152,3 @@ webpack会将`require('abc.js')`打包进引用它的文件中。以对象的形
   会生成 <link rel="prefetch" href="login-modal-chunk.js"> 并追加到页面头部
 ```
 
-# TODO
-
-webpack(require.ensure)：webpack 2.x 版本中的代码分割。

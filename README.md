@@ -10,6 +10,7 @@
   * [原型prototype](javascript/prototype.md)
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
+  * [模块化](javascript/module.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
 * node
