@@ -1,5 +1,14 @@
 # 引用类型
 
+会讲述以下内容
+1. 数组
+2. 对象
+3. 数组和对象的异同
+4. 提及函数
+5. instanceof及实现原理
+6. Object.prototype.toString
+7. constructor
+
 ### 数组 和 对象
 
 * 数组应该是一段线性分配的内存，就算是JS的Array其实也相当于是类数组`array-like`
@@ -52,18 +61,20 @@
 然后整理了下类数组：（类数组属性名称可转换为数字时，会映射成为索引下标）
 
 1. 字符串 是类数组
-  - 唯一的原生类数组
+    - 唯一的原生类数组
 2. arguments 是类数组
-  - arguments完全可以使用`...args`代替，这样不定参数就是真数组
-  - 在箭头函数中被移除
+    - arguments完全可以使用`...args`代替，这样不定参数就是真数组
+    - 在箭头函数中被移除
 3. DOM 是类数组
-  - DOM 类数组不可写
+    - DOM 类数组不可写
 4. 对象有`splice`和`splice`后就会变成JS的类数组
 
 
 **function**
 
 同样function继承自`Function.prototype`和`Object.prototype`
+
+具体function内容。见本人github "函数&尾递归"章节
 
 ### 引用类型的类型验证
 
