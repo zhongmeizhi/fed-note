@@ -1,4 +1,4 @@
-# ZHONGMEIZHI的小书房
+# 蘑菇碳的小书房
 
 * [目录](README.md)
 * 样式&&兼容性
@@ -11,6 +11,7 @@
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
   * [模块化](javascript/module.md)
+  * [经验包](javascript/experience.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
 * node
@@ -21,7 +22,7 @@
   * [简介](flutter/BRIEF.md)
   * [实现图](flutter/IMPLEMENT.md)
   * [屏幕适配](flutter/PRIMER.md)
-  * [较折腾的Issue](flutter/ISSUE.md)
+  * [经验包](flutter/ISSUE.md)
 * dart
   * [入门](dart/PRIMER.md)
 * 其他
