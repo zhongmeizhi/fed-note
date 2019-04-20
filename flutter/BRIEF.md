@@ -28,6 +28,7 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
 * 滚动类型Widget: `ListView`、`GridView`、`CustomScrollView`
 * 功能类型Widget: `WillPopScope`、`InheritedWidget`、`ThemeData`
 * 事件类型Widget: `Listener`、`GestureDetector`、`NotificationListener`
+* 还有：控制器
 
 ### 其他
 * 动画
@@ -44,9 +45,5 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
 * 请求
   * 例如：dio库
 
-
-## End
-
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
 
 ### [返回主页](/README.md)

@@ -1,6 +1,7 @@
 # 移动端布局方案汇总&&原理解析
 
-## 阿里flexible布局 - 版本1.x
+### 阿里flexible布局 - 版本1.x
+
 > 该布局于 2017年8月9日被2.0版本取代
 
 实现原理 `假设（UI稿750px宽）`
@@ -10,16 +11,16 @@
 * 利用 `px2rem插件` 转换为 ->  实际rem
 
 
-***
-## 阿里flexible布局 - 版本2.x
+### 阿里flexible布局 - 版本2.x
+
 > flexible 2.x： https://github.com/amfe/lib-flexible
 
 实现原理
 * 利用viewport的理想视口，删除1.x版本的scale缩放
 * 其他依旧和1.x版本一样
 
-***
-## 网易布局
+### 网易布局
+
 > 个人很喜欢的布局方案
 
 实现原理 `假设（UI稿750px宽）`
@@ -31,8 +32,9 @@
   * `1px/750px ≈ 0.1333333%`
   * 按照低版本逻辑：`font-size = 0.1333333% * 100 = 13.33333vw`
 
-***
-## webpack插件postcss-px-to-viewport
+
+### webpack插件postcss-px-to-viewport
+
 > 顾名思义，将px转换为vw、vh、vmin、vmax
 
 ```
@@ -47,8 +49,15 @@
 }
 ```
 
-## End
+### 最后
 
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
+当然，如果不要求特别精确
+
+* flex
+* px
+* vw
+* 百分比
+
+都是可以的啊
 
 ### [返回主页](/README.md)

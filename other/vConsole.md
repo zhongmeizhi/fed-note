@@ -6,8 +6,6 @@
 > https://github.com/Tencent/vConsole
 * 下载后 实例化就能使用
 
-## End
-
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
+## TODO 源码解析
 
 ### [返回主页](/README.md)

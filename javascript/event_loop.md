@@ -76,9 +76,5 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 3. 第一个宏任务结束，进入setTimeout回调：`输出 1`
 
 
-## End
-
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
 
 ### [返回主页](/README.md)
-

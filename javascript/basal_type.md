@@ -133,8 +133,4 @@
 - 如果是 + 运算，如果不是所有字面量都是`number`，那么会转换为字符串(`toString`)进行拼接
 
 
-## End
-
-> 持续更新中，Github信息更多哦，你的⭐是我最大的支持。[查看详情](https://github.com/zhongmeizhi/)，
-
 ### [返回主页](/README.md)

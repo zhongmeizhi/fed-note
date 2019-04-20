@@ -213,8 +213,4 @@ ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O
     // Uncaught SyntaxError: Identifier 'B' has already been declared
 ```
 
-## My Github
-
-> 持续更新中，Github信息更多哦，你的⭐是我最大的支持。[查看详情](https://github.com/zhongmeizhi/)，
-
 ### [返回主页](/README.md)

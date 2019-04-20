@@ -91,8 +91,5 @@
 * 如果：body中并没有使用PageView或TabBarView
 * 那么 wantKeepAlive 将无效
 
-## End
-
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
 
 ### [返回主页](/README.md)

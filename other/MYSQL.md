@@ -32,8 +32,4 @@
 10. 执行 **mysql -u root -p** 输入默认密码
 11. 执行 **SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');** 修改默认root密码为空
 
-## End
-
-> 持续更新中 [来Github 点颗⭐吧](https://github.com/zhongmeizhi/Interview-Knowledge-FED)
-
 ### [返回主页](/README.md)

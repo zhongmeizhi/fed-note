@@ -152,3 +152,4 @@ manifest文件是最先加载的，manifest是在vendor的基础上，再抽取�
   会生成 <link rel="prefetch" href="login-modal-chunk.js"> 并追加到页面头部
 ```
 
+### [返回主页](/README.md)

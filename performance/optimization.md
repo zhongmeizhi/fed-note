@@ -57,8 +57,4 @@
 ### H5预渲染（prerender）
 * HTTPS页面 不可用 -.-!
 
-## My Github
-
-> 持续更新中，Github信息更多哦，你的⭐是我最大的支持。[查看详情](https://github.com/zhongmeizhi/)，
-
 ### [返回主页](/README.md)
