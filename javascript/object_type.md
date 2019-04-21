@@ -9,6 +9,39 @@
 6. Object.prototype.toString
 7. constructor
 
+### new和字面量
+
+对象使用new和字面量定义在使用是没有区别。
+
+网传定义会有性能差别，下面来做个测试。
+
+new Function() 和 function 字面量的比较
+```
+  var num = 1000; // 1千次
+
+  console.time('test1');
+  for (var i = 0; i< num; i++) {
+    var x = function(){};
+  }
+  console.timeEnd('test1');
+
+  console.time('test2');
+  for (var i = 0; i< num; i++) {
+    var x = new Function();
+  }
+  console.timeEnd('test2');
+  
+  // test1: 0.369140625ms
+  // test2: 47.99609375ms
+```
+new Function的性能消耗的非常大的。
+  * 因为new Function会有语法解析的的过程
+  
+Array和Object的字面量，并没有性能差别（10W次定义时间均在10ms左右）
+  * 测试浏览器为Chrome 73
+  * 测试原因：过往经典书籍提倡 {}代替new Object
+
+
 ### 数组 和 对象
 
 * 数组应该是一段线性分配的内存，就算是JS的Array其实也相当于是类数组`array-like`
@@ -69,14 +102,13 @@
     - DOM 类数组不可写
 4. 对象有`splice`和`splice`后就会变成JS的类数组
 
-
 **function**
 
 同样function继承自`Function.prototype`和`Object.prototype`
 
 具体function内容。见本人github "函数&尾递归"章节
 
-### 引用类型的类型验证
+### 引用类型的验证
 
 ### instanceof
 

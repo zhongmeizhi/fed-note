@@ -4,8 +4,8 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
 * Javascript
-  * [基础类型](javascript/basal_type.md)
-  * [引用类型](javascript/object_type.md)
+  * [基础](javascript/basal_type.md)
+  * [引用](javascript/object_type.md)
   * [函数&尾递归](javascript/function.md)
   * [原型prototype](javascript/prototype.md)
   * [async await](javascript/async_await.md)

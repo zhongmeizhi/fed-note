@@ -93,6 +93,8 @@
   typeof console.log // 'function'
 ```
 
+也可以使用`Object.prototype.toString.call`来检测基础类型的`[[class]]`
+
 ### 基础类型转换
 
 基本类型转换时，首先会调用 `valueOf`，然后调用 `toString`。并且这两个方法可以重写。
