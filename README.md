@@ -31,4 +31,5 @@
   * [事务&锁](other/data_base.md)
   * [git命令](other/GIT.md)
   * [github hosts](other/GITHUB.md)
+  * [JVM](other/JVM.md)
   * [vConsole](other/vConsole.md)
