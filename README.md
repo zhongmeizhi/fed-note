@@ -14,14 +14,15 @@
   * [经验包](javascript/experience.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
+  * [JS垃圾回收机制](browser/garbage_collection.md)
 * node
   * [NPM机制](node/NPM.md)
 * 性能优化
   * [性能优化](performance/optimization.md)
 * flutter
   * [简介](flutter/BRIEF.md)
+  * [入门](flutter/PRIMER.md)
   * [实现图](flutter/IMPLEMENT.md)
-  * [屏幕适配](flutter/PRIMER.md)
   * [经验包](flutter/ISSUE.md)
 * dart
   * [入门](dart/PRIMER.md)
@@ -29,4 +30,5 @@
   * [mysql环境搭建](other/MYSQL.md)
   * [事务&锁](other/data_base.md)
   * [git命令](other/GIT.md)
+  * [github hosts](other/GITHUB.md)
   * [vConsole](other/vConsole.md)
