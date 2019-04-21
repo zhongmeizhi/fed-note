@@ -11,6 +11,7 @@
   * [async await](javascript/async_await.md)
   * [运行机制](javascript/event_loop.md)
   * [模块化](javascript/module.md)
+  * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
