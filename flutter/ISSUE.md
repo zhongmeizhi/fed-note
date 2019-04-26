@@ -1,4 +1,44 @@
-# Flutter 经验之谈
+# Flutter 使用经验
+
+### 更改 Flutter 桌面项目名
+
+* Android 是在 AndroidManifest.xml 中修改
+  * flutter_ui\android\app\src\main\AndroidManifest.xml
+  * 修改 `android:label="蘑菇碳"`
+* iOS 则是在 Info.plist 中修改的
+  * flutter_ui\ios\Runner\Info.plist
+  * 修改`<key>CFBundleName</key>`下面的`<string>蘑菇碳<string>`
+
+### 更改 Flutter 桌面项目图片
+
+* Android 在 flutter_ui\android\app\src\main\res 下各种规格图片
+* ios 在 flutter_ui\ios\Runner\Assets.xcassets\AppIcon.appiconset 下配置
+
+### Hero 使用
+
+1. Hero 一个页面相同Tag的Hero只能有1个
+2. Hero需要 tag 配对
+3. Hero会从start到end的Route中"飞"哦.
+
+.
+
+### IndexedStack
+
+* `IndexedStack` 显示第index个child，其它child在页面上是不可见的
+* 虽然其他child不可见,但是: 在初始化IndexedStack时,所有的child都会被渲染
+
+.
+
+### Container
+
+* 在容器中: `color`属性和`decoration`属性不能同时存在
+* 其中: decoration 可以设置color属性.
+
+.
+
+### BoxDecoration
+
+* borderRadius 和 shape: BoxShape.circle 同时使用 会报错
 
 .
 
@@ -10,29 +50,6 @@
 
 解决方案： 使用`限制高度的Widget`（如ConstrainedBox、SizedBox）来包裹Column
 
-.
-
-### Windows开发环境 访问localhost
-
-访问会报错：SocketException: OS Error: Connection refused
-
-> android模拟器中使用 localhost会指向模拟机本机
-
-解决方案： 在控制台运行：`adb reverse tcp:8080 tcp:8080`
-
-解决方案2： 直接访问自己的IP 如： `http://10.93.157.10:2333`
-
-.
-
-### android无法联网问题
-
-> emulator -avd 虚拟机名称 -dns-server 8.8.8.8,114.114.114.114
-
-1. 进入 C:\Users\zmz\.android\avd 查看虚拟机名称
-2. 进入 C:\Users\zmz\AppData\Local\Android\Sdk\emulator 打开控制台
-3. 运行`emulator -avd 虚拟机名称 -dns-server 8.8.8.8,114.114.114.114`
-
-.
 
 ### 状态问题
 
@@ -52,33 +69,6 @@
     class _XXXState extends State<XXXPage> {
         // 这样 widget 就指向 XXXPage 
     }
-```
-
-.
-
-### Unhandled Exception: MissingPluginException(No implementation found for method
-
-> 没有插件包
-
-解决方案：
-```
-    flutter clean
-    flutter packages get
-```
-
-### Unhandled exception: setState() called after dispose()
-
-> 在 Flutter 构件树被销毁后仍然执行了 setState 方法改变页面状态。
-
-解决方案：
-```
-    // mounted 为 false 时未挂载当前页面
-    if (!mounted) {
-        return;
-    }
-    setState(() {
-        // 做一些事情
-    });
 ```
 
 .

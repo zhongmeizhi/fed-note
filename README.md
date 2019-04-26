@@ -23,8 +23,10 @@
 * flutter
   * [简介](flutter/BRIEF.md)
   * [入门](flutter/PRIMER.md)
+  * [环境问题汇总](flutter/SCENES.md)
+  * [异常汇总](flutter/EXCEPTION.md)
+  * [开发经验](flutter/ISSUE.md)
   * [实现图](flutter/IMPLEMENT.md)
-  * [经验包](flutter/ISSUE.md)
 * dart
   * [入门](dart/PRIMER.md)
 * 其他
