@@ -143,7 +143,19 @@ webpack(require.ensure)：webpack 2.x 版本中的代码分割。
 
 **manifest**
 
-manifest文件是最先加载的，manifest是在vendor的基础上，再抽取出要经常变动的部分，通过manifest.js文件来管理bundle文件的运行和加载。(比如关于异步加载js模块部分的内容)
+manifest文件是最先加载的，manifest是在vendor的基础上，再抽取出要经常变动的部分，**通过manifest.js文件来管理bundle文件**的运行和加载。(比如关于异步加载js模块部分的内容)
+
+**webpack v2.4+ 命名chunk文件**
+
+可以将多个ChunkName相同的chunk打包到同一个文件中
+
+```
+  const Foo = () => import(/* webpackChunkName: "group-foo" */ './Foo.vue')
+  const Bar = () => import(/* webpackChunkName: "group-foo" */ './Bar.vue')
+  const Baz = () => import(/* webpackChunkName: "group-foo" */ './Baz.vue')
+```
+
+会被webpack降级成`require.ensure([], () => r(require('./Foo.vue')), 'group-foo')`
 
 **webpack v4.6.0+ 添加了预取和预加载的支持**
 ```
