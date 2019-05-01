@@ -13,6 +13,8 @@
   * [模块化](javascript/module.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
+* Vue源码解析
+  * [Vue概览](vue/base.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
