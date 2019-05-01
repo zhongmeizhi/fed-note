@@ -9,7 +9,7 @@
 附：
 * (在React 16- 版本前当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树)
 
-Vue 实现思路：
+Vue 运行：
 * 使用依赖收集实现双向绑定
 * render不存在的时候会去编译template
 * template编译会被解析成对象形式的树结构（抽象语法树（abstract syntax tree或者缩写为AST））
