@@ -16,6 +16,9 @@
   * [经验包](javascript/experience.md)
 * Vue源码解析
   * [Vue概览](vue/base.md)
+  * [实现双向绑定](vue/proxy.md)
+  * [异步更新和$nextTick](vue/next_tick.md)
+  * [diff算法](vue/diff.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)

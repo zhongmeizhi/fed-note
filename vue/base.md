@@ -9,15 +9,22 @@
 附：
 * (在React 16- 版本前当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树)
 
+双向绑定实现原理图：
+![vue双向绑定](/img/vue_proxy.png)
+
 Vue 运行：
 * 使用依赖收集实现双向绑定
 * render不存在的时候会去编译template
 * template编译会被解析成对象形式的树结构（抽象语法树（abstract syntax tree或者缩写为AST））
 * AST会经过generate得到render函数，render的返回值是VNode，也就是虚拟DOM
-* 虚拟Dom的在更新时会经过patch。patch的核心时diff算法（通过同层的树节点进行比较），会涉及sameVnode的概念
+* 虚拟Dom的在更新时会经过 setter -> Dep -> Watcher -> update -> patch。
+* patch的核心时diff算法（通过同层的树节点进行比较），会涉及sameVnode的概念
 
 Vue 主要模块：
 * 四个事件（$on，$once，$off，$emit）实现方式类似EventBus
 * 生命周期（创建，挂载，更新，销毁）
 * nextTick （有多种降级策略）
 * keep-alive 和 instance（基于VNode节点），还有activated与deactivated
+
+
+### [返回主页](/README.md)
