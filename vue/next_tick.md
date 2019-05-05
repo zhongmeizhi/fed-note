@@ -2,7 +2,7 @@
 
 > Vue的$nextTick的实现主要利用了JS的EventLoop
 
-### Vue为什么要由$nextTick?
+### Vue为什么要由$nextTick ？
 * Vue的Dom更新操作是**异步更新**，调用`queueWatcher`函数
 * queueWatcher中，Watch对象并不是立即更新视图，而是`queue.push(watcher)`(被push进了一个队列queue)
 
@@ -79,5 +79,33 @@ $nextTick方法内部有timerFunc函数
 * 如果新建一个 task 来做数据更新，那么渲染就会进行两次。
 * 并且setTimeout的间隔时间比较久
 
+### 为什么要异步更新 ？
+
+和节流、防抖差不多吧。如果没有异步更新操作，那么连续的改动都会直接操作DOM更新视图，这是非常消耗性能的。
+
+而且`queueWatcher`中有`watcher.id`防重复
+```
+export function queueWatcher (watcher: Watcher) {
+  const id = watcher.id
+  // 检验id是否存在，已经存在则直接跳过
+  if (has[id] == null) {
+    has[id] = true
+    if (!flushing) {
+      // 如果没有flush，直接push到队列中
+      queue.push(watcher)
+    } else {
+      let i = queue.length - 1
+      while (i >= 0 && queue[i].id > watcher.id) {
+        i--
+      }
+      queue.splice(Math.max(i, index) + 1, 0, watcher)
+    }
+    if (!waiting) {
+      waiting = true
+      nextTick(flushSchedulerQueue)
+    }
+  }
+}
+```
 
 ### [返回主页](/README.md)
