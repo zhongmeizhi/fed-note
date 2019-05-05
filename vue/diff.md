@@ -36,7 +36,7 @@ function sameVnode (a, b) {
 * 新节点没有子节点，老节点有子节点  -> 清空老节点的子节点
 * 新老节点都有子节点：调用updateChildren方法
 
-updateChildren方法源码如下：（遍历过程中这几个变量都向中间靠拢）
+`updateChildren`方法源码如下：（遍历过程中这几个变量都向中间靠拢）
 ```
 while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
   if...
@@ -47,6 +47,7 @@ while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
     --newEndIdx
 }
 ```
+updateChildren同样有sameVnode这么一说，可以理解为每一个组件都已经自动获得了 shouldComponentUpdate。
 
 
 ### [返回主页](/README.md)

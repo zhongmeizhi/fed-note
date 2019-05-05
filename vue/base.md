@@ -13,7 +13,7 @@
 ![vue双向绑定](/img/vue_proxy.png)
 
 Vue 运行：
-* 使用依赖收集实现双向绑定
+* 在创建时（beforeCreate之后created之前）使用依赖收集实现双向绑定
 * render不存在的时候会去编译template
 * template编译会被解析成对象形式的树结构（抽象语法树（abstract syntax tree或者缩写为AST））
 * AST会经过generate得到render函数，render的返回值是VNode，也就是虚拟DOM

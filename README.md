@@ -35,6 +35,7 @@
   * [异常汇总](flutter/EXCEPTION.md)
   * [开发经验](flutter/ISSUE.md)
   * [实现图](flutter/IMPLEMENT.md)
+  * [Flutter实战](https://github.com/zhongmeizhi/fultter-example-app)
 * dart
   * [入门](dart/PRIMER.md)
 * 其他

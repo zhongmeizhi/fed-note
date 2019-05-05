@@ -4,7 +4,7 @@ Vue中Keep-alive是一个组件：
 * 在create中创建cache对象
 * 在destroyed时销毁cache
 
-缓存的是Vnode的componentInstance（组件实例）
+缓存的是Vnode的componentInstance（组件实例），而且在创建之初会`getFirstComponentChild(this.$slots.default)`
 ```
   if (this.cache[key]) {
       vnode.componentInstance = this.cache[key].componentInstance
