@@ -21,6 +21,9 @@
   * [diff算法](vue/diff.md)
   * [keep-alive](vue/keep_alive.md)
   * [Vuex源码实现](vue/vuex.md)
+* jQuery的码解析
+  * [Sizzle引擎](jQuery/sizzle.md)
+  * [deferred对象](jQuery/deferred.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
