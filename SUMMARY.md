@@ -22,6 +22,7 @@
   * [keep-alive](vue/keep_alive.md)
   * [Vuex源码实现](vue/vuex.md)
 * jQuery的码解析
+  * [ready](jQuery/ready.md)
   * [Sizzle引擎](jQuery/sizzle.md)
   * [deferred对象](jQuery/deferred.md)
 * 浏览器基础
