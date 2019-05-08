@@ -3,6 +3,7 @@
 * [目录](README.md)
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
+  * [经验包](css/EXPERIENCE.md)
 * Javascript
   * [基础](javascript/basal_type.md)
   * [引用](javascript/object_type.md)
@@ -13,6 +14,17 @@
   * [模块化](javascript/module.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
+* Vue源码解析
+  * [Vue概览](vue/base.md)
+  * [实现双向绑定](vue/proxy.md)
+  * [异步更新和$nextTick](vue/next_tick.md)
+  * [diff算法](vue/diff.md)
+  * [keep-alive](vue/keep_alive.md)
+  * [Vuex源码实现](vue/vuex.md)
+* jQuery的码解析
+  * [ready](jQuery/ready.md)
+  * [Sizzle引擎](jQuery/sizzle.md)
+  * [deferred对象](jQuery/deferred.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
@@ -28,6 +40,7 @@
   * [异常汇总](flutter/EXCEPTION.md)
   * [开发经验](flutter/ISSUE.md)
   * [实现图](flutter/IMPLEMENT.md)
+  * [Flutter实战](https://github.com/zhongmeizhi/fultter-example-app)
 * dart
   * [入门](dart/PRIMER.md)
 * 其他
