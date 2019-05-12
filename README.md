@@ -4,16 +4,19 @@
 * 样式&&兼容性
   * [移动端适配](css/LAYOUT.md)
   * [经验包](css/EXPERIENCE.md)
-* Javascript
-  * [基础](javascript/basal_type.md)
-  * [引用](javascript/object_type.md)
+* JS基础
+  * [基础类型](javascript/basal_type.md)
+  * [引用类型](javascript/object_type.md)
   * [函数&尾递归](javascript/function.md)
   * [原型prototype](javascript/prototype.md)
-  * [async await](javascript/async_await.md)
-  * [运行机制](javascript/event_loop.md)
   * [模块化](javascript/module.md)
+  * [运行机制](javascript/event_loop.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
+* JS进阶
+  * [防抖](sse/debounce.md)
+  * [节流](sse/throttle.md)
+  * [async await](javascript/async_await.md)
 * Vue源码解析
   * [Vue概览](vue/base.md)
   * [实现双向绑定](vue/proxy.md)
@@ -44,9 +47,9 @@
   * [入门](dart/PRIMER.md)
 * 其他
   * [mysql环境搭建](other/MYSQL.md)
-  * [事务&锁](other/data_base.md)
   * [git命令](other/GIT.md)
   * [github hosts](other/GITHUB.md)
+  * [事务&锁](other/data_base.md)
   * [JVM](other/JVM.md)
   * [vConsole](other/vConsole.md)
 * 大神github博客地址
