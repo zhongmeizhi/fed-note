@@ -37,7 +37,8 @@
   * [性能优化](performance/optimization.md)
 * flutter
   * [简介](flutter/BRIEF.md)
-  * [入门](flutter/PRIMER.md)
+  * [适配](flutter/PRIMER.md)
+  * [国际化](flutter/LOCAL.md)
   * [环境问题汇总](flutter/SCENES.md)
   * [异常汇总](flutter/EXCEPTION.md)
   * [开发经验](flutter/ISSUE.md)
