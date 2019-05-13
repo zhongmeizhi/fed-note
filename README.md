@@ -10,6 +10,7 @@
   * [函数&尾递归](javascript/function.md)
   * [原型prototype](javascript/prototype.md)
   * [模块化](javascript/module.md)
+  * [模块化](javascript/request_frame.md)
   * [运行机制](javascript/event_loop.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
