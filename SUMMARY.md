@@ -9,15 +9,20 @@
   * [引用类型](javascript/object_type.md)
   * [函数&尾递归](javascript/function.md)
   * [原型prototype](javascript/prototype.md)
-  * [模块化](javascript/module.md)
-  * [模块化](javascript/request_frame.md)
-  * [运行机制](javascript/event_loop.md)
+  * [requestAnimationFrame](javascript/request_frame.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
 * JS进阶
   * [防抖](sse/debounce.md)
   * [节流](sse/throttle.md)
-  * [async await](javascript/async_await.md)
+  * [状态管理](sse/state_manage.md)
+  * [async await](sse/async_await.md)
+  * [模块化](sse/module.md)
+  * [运行机制](sse/event_loop.md)
+  * [性能优化](sse/optimization.md)
+* 浏览器基础
+  * [跨域](browser/cross_origin.md)
+  * [JS垃圾回收机制](browser/garbage_collection.md)
 * Vue源码解析
   * [Vue概览](vue/base.md)
   * [实现双向绑定](vue/proxy.md)
@@ -29,13 +34,8 @@
   * [ready](jQuery/ready.md)
   * [Sizzle引擎](jQuery/sizzle.md)
   * [deferred对象](jQuery/deferred.md)
-* 浏览器基础
-  * [跨域](browser/cross_origin.md)
-  * [JS垃圾回收机制](browser/garbage_collection.md)
 * node
   * [NPM机制](node/NPM.md)
-* 性能优化
-  * [性能优化](performance/optimization.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [适配](flutter/PRIMER.md)
