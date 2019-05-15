@@ -1,7 +1,11 @@
 # flutter
 
 ### Flutter 简介
-Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。Flutter既不使用 WebView，也不使用操作系统的原生控件（使用自己的Skia引擎来绘 制 widget）。
+
+> Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。
+
+Flutter既不使用 WebView，也不使用操作系统的原生控件（使用自己的Skia引擎来绘 制 widget）。
+* 自绘UI+原生
 * Flutter借鉴的是React思想，页面使用Widget搭建
   * Widget就相当于一个UI库
 * 使用的编程语言为 Dart2，一个强类型的语音
@@ -14,11 +18,7 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
 * 目前已经支持了 iOS、Android、Fuchsia
 
 ### 环境搭建
-环境搭建过程请访问flutter官网，附：笔者在安装的时候额外遇到的坑。
-* 在android中能使用模拟器，却在flutter中不能使用模拟器
-  * 以管理员身份运行 android studio
-  * 清除as缓存 File -> Invalidate Caches
-  * 安卓版本太高，降级到8.1。（flutter版本 1.2.1）
+[https://flutter.dev/](https://flutter.dev/)
 
 ### Widget介绍
 * 基础类型Widget: `Text`、`Button`、`Image`、`Input`等
@@ -42,8 +42,23 @@ Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质�
   * 命名路由：
     1. MaterialApp 处注册 routes 
     2. Navigator.pushNamed(context, "new_page");
+  * 动画路由
+    ```
+      Navigator.push(context, PageRouteBuilder(
+        pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+          return FadeTransition(
+            opacity: animation,
+            child: HeroAnimationRouteB(imageName: "images/IMG_0696.jpg"),
+          );
+        })
+      )
+    ```
+   
 * 请求
-  * 例如：dio库
+  ```
+    import 'dart:convert';
+    import 'dart:io';
+  ```
 
 
 ### [返回主页](/README.md)

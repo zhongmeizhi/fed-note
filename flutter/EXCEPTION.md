@@ -30,7 +30,9 @@
 
 ### Scaffold.of() called with a context that does not contain a Scaffold
 
-开始的时候 onpress写法：`Scaffold.of(context).showSnackBar(SnackBar(content: Text('data'),));`
+> 找不到context（上下文）
+
+将onpress写法：`Scaffold.of(context).showSnackBar(SnackBar(content: Text('data'),));`
 
 改成：
 ```
@@ -43,9 +45,4 @@
 
 .
 
-### There are multiple heroes that share the same tag ...
-
-> 一个page 不能有多个 相同tag的Hero
-
-删除掉多余的Hero就OK了
 

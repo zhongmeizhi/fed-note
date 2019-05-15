@@ -32,19 +32,6 @@
 
 .
 
-### Container
-
-* 在容器中: `color`属性和`decoration`属性不能同时存在
-* 其中: decoration 可以设置color属性.
-
-.
-
-### BoxDecoration
-
-* borderRadius 和 shape: BoxShape.circle 同时使用 会报错
-
-.
-
 ### ListView与Column的冲突问题
 
 跟列有关的 Colum、Flex、Expanded 扩展Widget都会Error
