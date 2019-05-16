@@ -4,18 +4,18 @@
 
 > Flutter是Google的移动UI框架，可以快速在iOS和Android上构建高质量的原生用户界面。
 
-Flutter既不使用 WebView，也不使用操作系统的原生控件（使用自己的Skia引擎来绘 制 widget）。
-* 自绘UI+原生
+Flutter使用自绘UI+原生实现（使用自己的Skia引擎来绘 制 widget）。
 * Flutter借鉴的是React思想，页面使用Widget搭建
   * Widget就相当于一个UI库
-* 使用的编程语言为 Dart2，一个强类型的语音
-* 所以：使用Futter就好像 JS/Dart + React/Fultter + AntD/Widget
  
 ### 优势：
 * 对外提供了完全不依赖系统平台的 Widget 的能力
 * 只通过自绘图形的方式工作（Skia），而 Android 自带 Skia
 * 因此具有极其优秀的跨平台性（iOS和Android的效果基本完全一致）
 * 目前已经支持了 iOS、Android、Fuchsia
+* Dart支持JIT和AOT
+* 支持热重载
+* 应用程序速度快。
 
 ### 环境搭建
 [https://flutter.dev/](https://flutter.dev/)

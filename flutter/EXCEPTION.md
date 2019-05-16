@@ -1,5 +1,14 @@
 # 异常汇总
 
+### Debug
+
+> import 'dart:developer';
+
+首先你得使用调试模式开启Flutter
+* 使用`debugger([when: bool])`开启Debug
+* 如果你使用的是`VS Code`那么点行数字的左边空隙就可以Debugger了
+
+.
 
 ### Unhandled Exception: MissingPluginException(No implementation found for method
 

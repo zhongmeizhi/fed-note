@@ -38,6 +38,7 @@
   * [NPM机制](node/NPM.md)
 * dart
   * [入门](dart/PRIMER.md)
+  * [运行机制](dart/event_loop.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [适配](flutter/PRIMER.md)

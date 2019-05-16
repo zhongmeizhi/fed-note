@@ -36,6 +36,9 @@
   * [deferred对象](jQuery/deferred.md)
 * node
   * [NPM机制](node/NPM.md)
+* dart
+  * [入门](dart/PRIMER.md)
+  * [运行机制](dart/event_loop.md)
 * flutter
   * [简介](flutter/BRIEF.md)
   * [适配](flutter/PRIMER.md)
@@ -45,8 +48,6 @@
   * [开发经验](flutter/ISSUE.md)
   * [实现图](flutter/IMPLEMENT.md)
   * [Flutter实战](https://github.com/zhongmeizhi/fultter-example-app)
-* dart
-  * [入门](dart/PRIMER.md)
 * 其他
   * [mysql环境搭建](other/MYSQL.md)
   * [git命令](other/GIT.md)
