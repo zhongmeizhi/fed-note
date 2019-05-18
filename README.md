@@ -36,6 +36,13 @@
   * [deferred对象](jQuery/deferred.md)
 * node
   * [NPM机制](node/NPM.md)
+* Java
+  * [JVM](java/JVM.md)
+  * [Maven](java/maven.md)
+  * [mysql环境搭建](java/MYSQL.md)
+  * [事务&锁](java/data_base.md)
+* Spring Boot
+  * [入门](spring-boot/init.md)
 * dart
   * [入门](dart/PRIMER.md)
   * [运行机制](dart/event_loop.md)
@@ -49,11 +56,8 @@
   * [实现图](flutter/IMPLEMENT.md)
   * [Flutter实战](https://github.com/zhongmeizhi/fultter-example-app)
 * 其他
-  * [mysql环境搭建](other/MYSQL.md)
   * [git命令](other/GIT.md)
   * [github hosts](other/GITHUB.md)
-  * [事务&锁](other/data_base.md)
-  * [JVM](other/JVM.md)
   * [vConsole](other/vConsole.md)
 * 大神github博客地址
   * [张云龙](https://github.com/fouber/blog)
