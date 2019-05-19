@@ -43,6 +43,7 @@
   * [事务&锁](java/data_base.md)
 * Spring Boot
   * [Spring Boot（一）入门篇](spring-boot/init.md)
+  * [Spring Boot（二）注解](spring-boot/decoration.md)
 * dart
   * [入门](dart/PRIMER.md)
   * [运行机制](dart/event_loop.md)
