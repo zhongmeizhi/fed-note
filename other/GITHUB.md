@@ -1,4 +1,6 @@
-# 解决GitHub不能访问的问题
+# GitHub的Host和Key
+
+### 解决GitHub不能访问的问题
 
 **1. 修改Host**
 
@@ -18,5 +20,12 @@
 **2. 刷新DNS**
 
 > 控制台输入 ipconfig/flushdns
+
+### Git Key获取
+
+1. 在git bash中运行`ssh-keygen -t rsa -C "git user"`
+2. 此时会在`C:\Users\jack\.ssh`文件夹内生成`id_rsa.pub`和`id_rsa`
+3. 复制`id_rsa.pub`的内容（就是key）
+4. 放置于github -> setting -> SSH keys中（title随意）
 
 ### [返回主页](/README.md)

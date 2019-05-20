@@ -32,4 +32,18 @@
 10. 执行 **mysql -u root -p** 输入默认密码
 11. 执行 **SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');** 修改默认root密码为空
 
+### Java连接Mysql异常
+
+> This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. 
+
+将旧版本jdbc.propertiesd的`com.mysql.dbc.Driver`改成`com.mysql.cj.jdbc.Driver`
+
+> The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver
+
+需要配置服务器或JDBC驱动程序的时区
+
+解决：
+* 进入数据库，运行`set Global time_zone='+8:00'`
+
+
 ### [返回主页](/README.md)
