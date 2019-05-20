@@ -32,3 +32,22 @@ p标签是无法包裹块状标签的（不注意如果产生BUG）
     <div>yyy</div>
   </p>
 ```
+
+### canvas有锯齿
+
+canvas具有外部画布宽高，还有内部画布宽高（canvas基础）。如果内外的宽高不匹配就会产生锯齿。
+
+解决:
+···
+  let canvas = document.getElementById('canvas'),
+  //  获取外部画布的宽高
+  width = canvas.offsetWidth,
+  height = canvas.offsetHeight,
+
+  context = canvas.getContext('2d')
+
+  //  设置内部宽高
+  canvas.width = width;
+  canvas.height = height;
+···
+

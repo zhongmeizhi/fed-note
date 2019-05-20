@@ -20,6 +20,8 @@
   * [模块化](sse/module.md)
   * [运行机制](sse/event_loop.md)
   * [性能优化](sse/optimization.md)
+* 前端工具集
+  * [webpack环境检测](fed-tools/define_plugin.md)
 * 浏览器基础
   * [跨域](browser/cross_origin.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
