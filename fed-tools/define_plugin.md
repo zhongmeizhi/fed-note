@@ -12,8 +12,10 @@
 
 ```
     new webpack.DefinePlugin({
+
         // 当然，在运行node服务器的时候就应该按环境来配置文件
-        // 下边模拟的测试环境运行配置
+        // 下面模拟的测试环境运行配置
+
         'process.env':JSON.stringify('dev'),
         WP_CONF: JSON.stringify('dev'),
     }),
@@ -41,11 +43,10 @@
     }
 ```
 
-### 优化
+### 清除不可达代码
 
-当使用了`DefinePlugin`插件后，打包后的代码会有很多冗余。
+当使用了`DefinePlugin`插件后，打包后的代码会有很多冗余。可以通过`UglifyJsPlugin`**清除不可达代码**。
 
-可以通过`UglifyJsPlugin`**清除不可达代码**。
 ```
     [
         new UglifyJsPlugin({

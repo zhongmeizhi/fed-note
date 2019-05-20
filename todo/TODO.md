@@ -1,7 +1,6 @@
 # TODO List
 
 * MY_PROMISE
-  * new
   * class
   * finally
 * HTTP2.0

@@ -73,4 +73,3 @@
   * [安安小姐姐](https://github.com/sisterAn/blog)
   * [Java](https://github.com/Snailclimb/JavaGuide)
   * [渗透攻击](https://github.com/Micropoor/Micro8)
-  * [性能优化](sse/optimization.md)
