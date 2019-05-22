@@ -12,18 +12,20 @@
   * [requestAnimationFrame](javascript/request_frame.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
-* JS进阶
+* 前端进阶
   * [防抖](sse/debounce.md)
   * [节流](sse/throttle.md)
+  * [性能优化](sse/optimization.md)
   * [状态管理](sse/state_manage.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)
-  * [运行机制](sse/event_loop.md)
-  * [性能优化](sse/optimization.md)
-* 前端工具集
-  * [webpack环境检测](fed-tools/define_plugin.md)
-* 浏览器基础
-  * [跨域](browser/cross_origin.md)
+  * [函数式编程](sse/function_program.md)
+  * [webpack热加载原理](fed-tools/define_plugin.md)
+  * [webpack环境检测与优化](fed-tools/define_plugin.md)
+  <!-- * [Reactive Extensions](rxjs/rxjs.md) -->
+  * [JS运行机制](sse/event_loop.md)
+  * [跨域机制](browser/cross_origin.md)
+  * [NPM机制](node/NPM.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
 * Vue源码解析
   * [Vue概览](vue/base.md)
@@ -36,22 +38,18 @@
   * [ready函数实现](jQuery/ready.md)
   * [Sizzle引擎解析](jQuery/sizzle.md)
   * [deferred对象](jQuery/deferred.md)
-* node
-  * [NPM机制](node/NPM.md)
 * Java
   * [JVM](java/JVM.md)
   * [Maven](java/maven.md)
   * [mysql环境搭建](java/MYSQL.md)
   * [事务&锁](java/data_base.md)
-* Spring Boot
   * [Spring Boot（一）入门篇](spring-boot/init.md)
-  * [Spring Boot（二）注解](spring-boot/decoration.md)
-* dart
-  * [入门](dart/PRIMER.md)
-  * [运行机制](dart/event_loop.md)
+  <!-- * [Spring Boot（二）注解](spring-boot/decoration.md) -->
 * flutter
-  * [简介](flutter/BRIEF.md)
-  * [适配](flutter/PRIMER.md)
+  * [dart入门](dart/PRIMER.md)
+  * [dart运行机制](dart/event_loop.md)
+  * [flutter简介](flutter/BRIEF.md)
+  * [App适配](flutter/PRIMER.md)
   * [国际化](flutter/LOCAL.md)
   * [环境问题汇总](flutter/SCENES.md)
   * [异常汇总](flutter/EXCEPTION.md)
@@ -63,13 +61,18 @@
   * [GitHub的Host和Key](other/GITHUB.md)
   * [vConsole](other/vConsole.md)
 * 大神github博客地址
-  * [张云龙](https://github.com/fouber/blog)
-  * [司徒正美](https://github.com/RubyLouvre/mobileHack)
   * [阮一峰](https://github.com/ruanyf)
+  * [司徒正美](https://github.com/RubyLouvre/mobileHack)
+  * [张云龙](https://github.com/fouber/blog)
   * [冴羽](https://github.com/mqyqingfeng/Blog)
   * [木易杨](https://github.com/yygmind)
   * [微前端](https://github.com/phodal/microfrontends)
-  * [周报](https://github.com/Tnfe/TNFE-Weekly)
+  * [前端周报](https://github.com/Tnfe/TNFE-Weekly)
   * [安安小姐姐](https://github.com/sisterAn/blog)
+  * [CSS灵感](https://github.com/chokcoco/CSS-Inspiration)
+  * [移动端各种坑解决](https://github.com/RubyLouvre/mobileHack)
+  * [Vue源码解析](https://github.com/answershuto/learnVue)
+  * [博客大全](https://github.com/libin1991/libin_Blog)
+  * [机器学习](https://github.com/apachecn/AiLearning)
   * [Java](https://github.com/Snailclimb/JavaGuide)
   * [渗透攻击](https://github.com/Micropoor/Micro8)
