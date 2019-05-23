@@ -47,4 +47,29 @@ _withCommit (fn) {
 
 action是异步的，使用的是Promise。 - -没啥好说的。
 
+
+### Vuex和Vue的冲突
+
+见官网：[Vuex表单处理](https://vuex.vuejs.org/zh/guide/forms.html)
+
+当在严格模式中使用 Vuex 时（修改state），在属于 Vuex 的 state 上使用 v-model 会比较棘手：
+
+由于v-model修改是在Vue中修改的，但是在Vuex的`store._vm.$watch(...)`所监听中，`this._committing`并不是`_committing`
+
+```
+  <input v-model="obj.message">
+
+  // 解决方案
+  <input :value="message" @input="updateMessage">
+  
+  methods: {
+    updateMessage (e) {
+      this.$store.commit('updateMessage', e.target.value)
+    }
+  }
+```
+
+
+
+
 ### [返回主页](/README.md)

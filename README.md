@@ -75,4 +75,5 @@
   * [博客大全](https://github.com/libin1991/libin_Blog)
   * [机器学习](https://github.com/apachecn/AiLearning)
   * [Java](https://github.com/Snailclimb/JavaGuide)
+  * [tython](https://github.com/jackfrued/Python-100-Days)
   * [渗透攻击](https://github.com/Micropoor/Micro8)
