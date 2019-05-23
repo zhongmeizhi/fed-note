@@ -59,12 +59,26 @@ action是异步的，使用的是Promise。 - -没啥好说的。
 ```
   <input v-model="obj.message">
 
-  // 解决方案
+  // 解决方案 一
   <input :value="message" @input="updateMessage">
   
   methods: {
     updateMessage (e) {
       this.$store.commit('updateMessage', e.target.value)
+    }
+  }
+
+  // 解决方案 二
+  <input v-model="message">
+
+  computed: {
+    message: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
     }
   }
 ```
