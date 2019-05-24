@@ -18,7 +18,7 @@
 
 1. Hero 一个页面相同Tag的Hero只能有1个
 2. Hero需要 tag 配对
-3. Hero会从start到end的Route中"飞"哦.
+4. Hero会从start到end的**Route**间"飞"哦.
 
 注意点：
 * Hero不能包裹Button（会报错：`widgets require a Material widget ancestor.`）

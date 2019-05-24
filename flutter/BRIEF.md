@@ -22,12 +22,12 @@ Flutter使用自绘UI+原生实现（使用自己的Skia引擎来绘 制 widget�
 
 ### Widget介绍
 * 基础类型Widget: `Text`、`Button`、`Image`、`Input`等
-* 布局类型Widget: `Row`、`Column`、`Flex`、`Stack`、`Warp`、`Expanded`
-* 修饰类型Widget: `Padding`、`SizedBox`、`DecoratedBox`
-* 容器类型Widget: `Scaffold`、`ConstrainedBox`
-* 滚动类型Widget: `ListView`、`GridView`、`CustomScrollView`
-* 功能类型Widget: `WillPopScope`、`InheritedWidget`、`ThemeData`
-* 事件类型Widget: `Listener`、`GestureDetector`、`NotificationListener`
+* 布局类型Widget: `Row`、`Column`、`Flex`、`Stack`、`Warp`等
+* 修饰类型Widget: `Padding`、`SizedBox`、`DecoratedBox`等
+* 容器类型Widget: `Scaffold`、`ConstrainedBox`等
+* 滚动类型Widget: `ListView`、`GridView`、`CustomScrollView`等
+* 功能类型Widget: `WillPopScope`、`InheritedWidget`、`ThemeData`等
+* 事件类型Widget: `Listener`、`GestureDetector`、`NotificationListener`等
 * 还有：控制器
 
 ### 其他
