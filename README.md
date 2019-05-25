@@ -23,6 +23,7 @@
   * [函数式编程](sse/function_program.md)
   * [webpack热加载原理](fed-tools/define_plugin.md)
   * [webpack环境检测与优化](fed-tools/define_plugin.md)
+  * [webpack性能优化](fed-tools/define_plugin.md)
   <!-- * [Reactive Extensions](rxjs/rxjs.md) -->
   * [JS运行机制](sse/event_loop.md)
   * [跨域机制](browser/cross_origin.md)
