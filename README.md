@@ -23,11 +23,11 @@
   * [函数式编程](sse/function_program.md)
   * [webpack热加载原理](fed-tools/define_plugin.md)
   * [webpack环境检测与优化](fed-tools/define_plugin.md)
-  * [webpack性能优化](fed-tools/define_plugin.md)
+  * [webpack性能优化](fed-tools/webpack_optimization.md)
   <!-- * [Reactive Extensions](rxjs/rxjs.md) -->
-  * [JS运行机制](sse/event_loop.md)
   * [跨域机制](browser/cross_origin.md)
   * [NPM机制](node/NPM.md)
+  * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
 * Vue源码解析
   * [Vue概览](vue/base.md)
