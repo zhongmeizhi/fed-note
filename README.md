@@ -13,6 +13,7 @@
   * [函数（三）节流](javascript/throttle.md)
   * [函数（四）原型](javascript/prototype.md)
   * [requestAnimationFrame](javascript/request_frame.md)
+  * [hybrid开发](javascript/hybrid.md)
   * [辟谣](javascript/rumor.md)
   * [经验包](javascript/experience.md)
 * 前端进阶
