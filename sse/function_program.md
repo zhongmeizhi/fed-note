@@ -17,10 +17,22 @@
 * 可测性--给这些函数添加单元测试是否让我纠结？
 * 易推理性--我写的代码是否非结构化严重并难以推理？
 
-函数式编程是编写可读代码的最有效工具之一，函数式编程的目的是使用函数来抽象作用在数据之上的控制流和操作，从而在系统中消除副作用并减少对状态的改变。
+函数式编程就像砌砖块，就像这样
 
-函数式编程极力回避状态的改变，因为不稳定的状态会带来不确定性，而不确定性则会导致程序的失败。
+```
+    // 命令式 变成 声明式
 
+    var compose = function(f,g) {
+        return function(x) {
+            return f(g(x));
+        };
+    };
+
+    var initials = compose(join('. '), map(compose(toUpperCase, head)), split(' '));
+
+    initials("hunter stockton thompson");
+    // 'H. S. T'
+```
 
 ### 函数式编程的特性之一：纯函数
 
