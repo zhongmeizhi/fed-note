@@ -5,6 +5,7 @@
 * 纯函数
 * 高阶函数
 * 柯里化
+* 可缓存的纯函数
 * 函数式编程的缺点
 
 ### 什么是函数式编程
@@ -16,54 +17,28 @@
 * 可测性--给这些函数添加单元测试是否让我纠结？
 * 易推理性--我写的代码是否非结构化严重并难以推理？
 
-函数式编程是编写可读代码的最有效工具之一，函数式编程的目的是使用函数来抽象作用在数据之上的控制流和操作，从而在系统中消除副作用并减少对状态的改变。
-
-函数式编程极力回避状态的改变，因为不稳定的状态会带来不确定性，而不确定性则会导致程序的失败。
+函数式编程就像砌砖块，就像这样
 
 ```
-    // 命令式代码
+    // 命令式 变成 声明式
 
-    function showStudent(id) {
-        // 这里假如是同步查询
-        var student = db.get(id)
-        if(student !== null) {
-            // 读取外部的 elementId
-            document.querySelector(`${elementId}`).innerHTML = `${student.id},${student.name},${student.lastname}`
-        } else {
-            throw new Error('not found')
-        }
-    }
+    var compose = function(f,g) {
+        return function(x) {
+            return f(g(x));
+        };
+    };
 
-    showStudent('666')
+    var initials = compose(join('. '), map(compose(toUpperCase, head)), split(' '));
 
-    // 函数式代码
-
-    // 通过 find 函数找到学生
-    var find = curry(function(db, id) {
-        var obj = db.get(id)
-        if(obj === null) {
-            throw new Error('not fount')
-        }
-
-        return obj
-    })
-
-    // 将学生对象 format
-    var csv = (student) => `${student.id},${student.name},${student.lastname}`
-
-    // 在屏幕上显示
-    var append = curry(function(elementId, info) {
-        document.querySelector(elementId).innerHTML = info
-    })
-
-    var showStudent = compose(append('#student-info'), csv, find(db))
-
-    showStudent('666')
+    initials("hunter stockton thompson");
+    // 'H. S. T'
 ```
 
 ### 函数式编程的特性之一：纯函数
 
 纯粹的函数式编程中：只有常量没有变量。因此，任意一个函数**只要输入是确定的，输出就是确定的**，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的。
+
+纯函数是完全自给自足的，它需要的所有东西都能轻易获得。
 
 ```
     // 纯函数: 只要输入是确定的，输出就是确定的
@@ -87,6 +62,40 @@
     function changeFlag() {
         flag = true;
     }
+
+    // 纯函数是完全自给自足的，它需要的所有东西都能轻易获得。
+
+    // 不纯的
+    var signUp = function(attrs) {
+        var user = saveUser(attrs);
+        welcomeUser(user);
+    };
+
+    var saveUser = function(attrs) {
+        var user = Db.save(attrs);
+        ...
+    };
+
+    var welcomeUser = function(user) {
+        Email(user, ...);
+        ...
+    };
+
+    // 纯的
+    var signUp = function(Db, Email, attrs) {
+        return function() {
+            var user = saveUser(Db, attrs);
+            welcomeUser(Email, user);
+        };
+    };
+
+    var saveUser = function(Db, attrs) {
+        ...
+    };
+
+    var welcomeUser = function(Email, user) {
+        ...
+    };
 ```
 
 
@@ -129,6 +138,29 @@ JavaScript的函数其实都指向某个变量。既然变量可以指向函数�
 ```
 
 柯里化的好处：延迟参数传递，参数复用，当然`bind`函数就算通过柯里化实现的。
+
+### 可缓存的纯函数
+
+```
+    // 不处理异常情况的简洁版本
+    var memoize = function(f) {
+        var cache = {};
+
+        return function() {
+            var arg_str = JSON.stringify(arguments);
+            cache[arg_str] = cache[arg_str] || f.apply(f, arguments);
+            return cache[arg_str];
+        };
+    };
+
+    // 使用
+    var squareNumber  = memoize(function(x){ return x*x; });
+
+    squareNumber(4);
+    //=> 16
+
+    squareNumber(4); // 从缓存中读取输入值为 4 的结果
+```
 
 
 ### 函数式编程的缺点
