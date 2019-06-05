@@ -30,3 +30,66 @@
 3. 运行`emulator -avd 虚拟机名称 -dns-server 8.8.8.8,114.114.114.114`
 
 .
+
+### Flutter Resolving dependencies... 卡住的问题
+
+> 感谢伟大的中国长城防火墙
+
+解决方案：
+
+配置用户环境变量，使用中国的Flutter镜像包：
+```
+  PUB_HOSTED_URL ==> https://pub.flutter-io.cn
+
+  FLUTTER_STORAGE_BASE_URL ==> https://storage.flutter-io.cn
+```
+
+修改android/build.gradle默认的配置：
+```
+    buildscript {
+        repositories {
+            // maven 阿里镜像地址
+            maven{ url 'https://maven.aliyun.com/repository/google'}
+            maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+            maven{ url 'https://maven.aliyun.com/repository/public'}
+            maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+            google()
+            jcenter()
+        }
+
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.2.1'
+        }
+    }
+
+    allprojects {
+        repositories {
+            // maven 阿里镜像地址
+            maven{ url 'https://maven.aliyun.com/repository/google'}
+            maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+            maven{ url 'https://maven.aliyun.com/repository/public'}
+            maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+            google()
+            jcenter()
+        }
+    }
+```
+
+修改flutter\packages\flutter_tools\gradle\flutter.gradle配置
+```
+    buildscript {
+        repositories {
+            // maven 阿里镜像地址
+            maven{ url 'https://maven.aliyun.com/repository/google'}
+            maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+            maven{ url 'https://maven.aliyun.com/repository/public'}
+            maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+            google()
+            jcenter()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.2.1'
+        }
+    }
+```
+
