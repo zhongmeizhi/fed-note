@@ -7,6 +7,10 @@
 Flutter使用自绘UI+原生实现（使用自己的Skia引擎来绘 制 widget）。
 * Flutter借鉴的是React思想，页面使用Widget搭建
   * Widget就相当于一个UI库
+
+Flutter中有四⼤线程，Platform Task Runner 、UI Task Runner、GPU Task Runner 和 IO Task Runner。运行机制和JS类似。
+
+对于 Flutter ⽽⾔，整个屏幕都是⼀块画布，我们通过各种 Offset 和 Rect 确定了位置，然后通过 PaintingContext 的 Canvas 绘制上去，⽬标是整个屏幕区域，整个屏幕就是⼀帧，每次改变都是重新绘制。
  
 ### 优势：
 * 对外提供了完全不依赖系统平台的 Widget 的能力
@@ -20,15 +24,24 @@ Flutter使用自绘UI+原生实现（使用自己的Skia引擎来绘 制 widget�
 ### 环境搭建
 [https://flutter.dev/](https://flutter.dev/)
 
-### Widget介绍
-* 基础类型Widget: `Text`、`Button`、`Image`、`Input`等
-* 布局类型Widget: `Row`、`Column`、`Flex`、`Stack`、`Warp`等
-* 修饰类型Widget: `Padding`、`SizedBox`、`DecoratedBox`等
-* 容器类型Widget: `Scaffold`、`ConstrainedBox`等
-* 滚动类型Widget: `ListView`、`GridView`、`CustomScrollView`等
-* 功能类型Widget: `WillPopScope`、`InheritedWidget`、`ThemeData`等
-* 事件类型Widget: `Listener`、`GestureDetector`、`NotificationListener`等
-* 还有：控制器
+### Widget
+
+在 Flutter 中，⼀切的显示都是 Widget 。Widget 是通过 state 跨帧实现管理数据状态的，（类似于React）
+
+渲染经历了从 Widget 到 Element 再到 RenderObject 的过程。
+
+Widget 分为 有状态（`StatefulWidget`）和 ⽆状态（`StatelessWidget`）两种，在 Flutter 中每个⻚⾯都是⼀帧，⽆状态就是保持在那⼀帧，⽽有状态的 Widget 当数据更新时，其实是绘制了新的 Widget，只是 State 实现了跨帧的数据同步保存。
+
+State 中主要的生命周期：
+* `initState` ：初始化，理论上只有初始化⼀次，第⼆篇中会说特殊情况下。
+* `didChangeDependencies`：在 initState 之后调⽤，此时可以获取其他 State 。
+* `dispose` ：销毁，只会调⽤⼀次。*
+
+在Flutter中，要主动改变⼦控件的状态，还可以使⽤ `GlobalKey` 。
+
+
+具体每个Widget的使用方式和展现：[Flutter-UI](https://github.com/zhongmeizhi/flutter-UI)
+
 
 ### 其他
 * 动画
