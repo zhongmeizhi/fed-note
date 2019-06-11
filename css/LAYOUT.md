@@ -58,6 +58,40 @@
 * vw
 * 百分比
 
+### 附：现成方案
+
+```
+    var initDocumentFontSize = function initDocumentFontSize() {
+        var resetFontSize = function resetFontSize() {
+            var bodyWidth = document.body.clientWidth;
+            // UI 稿宽度 目前是 375px
+            var UI_Layout_Width = 375;
+            // 以100作为基数，方便计算
+            var Base_Font_Size = 100;
+            // 设置最宽屏幕宽度
+            var Max_Layout_Width = 768;
+            // 注意在最上级的section || div标签上要设置maxwidth: 768px; margin: 0 auto;
+            // 得到fontSize
+            var fontSize =
+                bodyWidth <= Max_Layout_Width
+                    ? (Base_Font_Size * bodyWidth) / UI_Layout_Width
+                    : (Base_Font_Size * Max_Layout_Width) / UI_Layout_Width;
+            // 如果要设置最大
+            // 设置html字体大小
+            document.documentElement.style.fontSize = fontSize + "px";
+            // 重写body的font-size，避免未设置字体大小时，字体继承过于夸张
+            document.body.style.fontSize = "12px";
+        };
+        resetFontSize();
+        // 各种场景初始化字体
+        window.addEventListener("load", resetFontSize, false);
+        window.addEventListener("orientationchange", resetFontSize, false);
+        window.addEventListener("resize", resetFontSize, false);
+    };
+
+    initDocumentFontSize();
+```
+
 都是可以的啊
 
 ### [返回主页](/README.md)
