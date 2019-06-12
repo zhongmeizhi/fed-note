@@ -58,7 +58,7 @@
 * vw
 * 百分比
 
-### 附：现成方案
+### 附：自用方案
 
 ```
     var initDocumentFontSize = function initDocumentFontSize() {
@@ -83,9 +83,11 @@
             document.body.style.fontSize = "12px";
         };
         resetFontSize();
-        // 各种场景初始化字体
+        // load 窗口加载完成触发
         window.addEventListener("load", resetFontSize, false);
+        // orientationchange 设备的纵横方向改变时触发。
         window.addEventListener("orientationchange", resetFontSize, false);
+        // resize 窗口大小改变时触发
         window.addEventListener("resize", resetFontSize, false);
     };
 
