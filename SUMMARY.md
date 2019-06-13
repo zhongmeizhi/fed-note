@@ -40,13 +40,6 @@
   * [JQuery解析（一）ready函数实现](jQuery/ready.md)
   * [JQuery解析（二）Sizzle引擎解析](jQuery/sizzle.md)
   * [JQuery解析（三）deferred对象](jQuery/deferred.md)
-* Java
-  * [JVM](java/JVM.md)
-  * [Maven](java/maven.md)
-  * [mysql环境搭建](java/MYSQL.md)
-  * [事务&锁](java/data_base.md)
-  * [Spring Boot（一）入门篇](spring-boot/init.md)
-  <!-- * [Spring Boot（二）注解](spring-boot/decoration.md) -->
 * flutter
   * [dart（一）入门](dart/PRIMER.md)
   * [dart（二）运行机制](dart/event_loop.md)
@@ -59,6 +52,13 @@
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter 实现原理](flutter/IMPLEMENT.md)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
+* Java
+  * [JVM](java/JVM.md)
+  * [Maven](java/maven.md)
+  * [mysql环境搭建](java/MYSQL.md)
+  * [事务&锁](java/data_base.md)
+  * [Spring Boot（一）入门篇](spring-boot/init.md)
+  <!-- * [Spring Boot（二）注解](spring-boot/decoration.md) -->
 * 其他
   * [git命令](other/GIT.md)
   * [GitHub的Host和Key](other/GITHUB.md)
