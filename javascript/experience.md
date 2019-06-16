@@ -1,5 +1,22 @@
 # 经验之谈
 
+### 名词解释
+
+* OOP：面向对象编程（Object Oriented Programming
+  * Oriented = 导向的
+* RP：响应式编程（Reactive Programming）
+  * reactive = 反应的
+* FP：函数式编程（Functional Programming）
+* 
+* AOT: 运行前编译（Ahead Of Time）
+* JIT：运行时编译（Just-in-time）
+* 
+* BOM：浏览器对象模型（Browser Object Model）
+  * BOM的最核心对象是window对象
+* DOM：文档对象模型（Document Object Model）
+  * DOM的最根本对象是document（window.document）
+
+
 ### JS中 new Date 的兼容性BUG
 
 > 在不同的浏览器上：不支持中横线这种时间，得改为斜杠
