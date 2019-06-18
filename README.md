@@ -13,6 +13,7 @@
   * [函数（三）节流](javascript/throttle.md)
   * [函数（四）原型](javascript/prototype.md)
   * [requestAnimationFrame](javascript/request_frame.md)
+  * [迭代器](javascript/iterator.md)
   * [hybrid开发](javascript/hybrid.md)
   * [经验包](javascript/experience.md)
 * 前端进阶
@@ -29,13 +30,13 @@
   * [NPM机制](node/NPM.md)
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
-* 源码解析
-  * [Vue源码（一）概览](vue/base.md)
-  * [Vue源码（二）实现双向绑定](vue/proxy.md)
-  * [Vue源码（三）异步更新和$nextTick](vue/next_tick.md)
-  * [Vue源码（四）diff算法](vue/diff.md)
-  * [Vue源码（五）keep-alive](vue/keep_alive.md)
-  * [Vue源码（六）Vuex实现](vue/vuex.md)
+* 框架解析
+  * [Vue 2.x源码（一）概览](vue/base.md)
+  * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
+  * [Vue 2.x源码（三）异步更新和$nextTick](vue/next_tick.md)
+  * [Vue 2.x源码（四）diff算法](vue/diff.md)
+  * [Vue 2.x源码（五）keep-alive](vue/keep_alive.md)
+  * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
   * [JQuery解析（一）ready函数实现](jQuery/ready.md)
   * [JQuery解析（二）Sizzle引擎解析](jQuery/sizzle.md)
   * [JQuery解析（三）deferred对象](jQuery/deferred.md)
