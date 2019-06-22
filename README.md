@@ -24,12 +24,15 @@
   * [webpack（一）热加载原理](fed-tools/hot_loader.md)
   * [webpack（二）环境检测与优化](fed-tools/define_plugin.md)
   * [webpack（三）性能优化](fed-tools/webpack_optimization.md)
-  * [函数式编程](sse/function_program.md)
-  <!-- * [Reactive Extensions](rxjs/rxjs.md) -->
   * [跨域机制](browser/cross_origin.md)
   * [NPM机制](node/NPM.md)
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
+* Reactive Extensions && Functional Programming
+  * [函数式编程 简介](sse/function_program.md)
+  * [RXJS (一) 简介](rxjs/rxjs.md)
+  * [RXJS (二) Observable](rxjs/Observable.md)
+  * [RXJS (二) Operators](rxjs/Operators.md)
 * 框架解析
   * [Vue 2.x源码（一）概览](vue/base.md)
   * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
