@@ -30,9 +30,9 @@
   * [JS垃圾回收机制](browser/garbage_collection.md)
 * Reactive Extensions && Functional Programming
   * [函数式编程 简介](sse/function_program.md)
-  * [RXJS (一) 简介](rxjs/rxjs.md)
-  * [RXJS (二) Observable](rxjs/Observable.md)
-  * [RXJS (二) Operators](rxjs/Operators.md)
+  * [RXJS（一）简介](rxjs/rxjs.md)
+  * [RXJS（二）Observable](rxjs/Observable.md)
+  * [RXJS（二）Operators](rxjs/Operators.md)
 * 框架解析
   * [Vue 2.x源码（一）概览](vue/base.md)
   * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
@@ -61,7 +61,7 @@
   * [mysql环境搭建](java/MYSQL.md)
   * [事务&锁](java/data_base.md)
   * [Spring Boot（一）入门篇](spring-boot/init.md)
-  <!-- * [Spring Boot（二）注解](spring-boot/decoration.md) -->
+  <!-- * [Spring Boot（二）注解](spring-boot/decoration.md）-->
 * 其他
   * [git命令](other/GIT.md)
   * [GitHub的Host和Key](other/GITHUB.md)
