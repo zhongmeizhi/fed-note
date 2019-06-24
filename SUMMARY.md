@@ -28,11 +28,11 @@
   * [NPM机制](node/NPM.md)
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
-* Reactive Extensions && Functional Programming
+* RXJS学习
   * [函数式编程 简介](sse/function_program.md)
-  * [RXJS（一）简介](rxjs/rxjs.md)
-  * [RXJS（二）Observable](rxjs/Observable.md)
-  * [RXJS（二）Operators](rxjs/Operators.md)
+  * [RXJS学习（一）简介](rxjs/rxjs.md)
+  * [RXJS学习（二）Observable](rxjs/Observable.md)
+  * [RXJS学习（三）Operators](rxjs/Operators.md)
 * 框架解析
   * [Vue 2.x源码（一）概览](vue/base.md)
   * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)

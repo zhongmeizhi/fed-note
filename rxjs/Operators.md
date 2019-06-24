@@ -1,66 +1,48 @@
-# RXJS 之 Operators
+# RXJS 之 Operators 学习
 
 > Operators
 
-要在pipe中使用.
+所有的Operators来自`rxjs/operators`，**要在pipe中使用.**
 
-### take、first、skip
+### 取值
 
-take: 取第 N 个值.然后结束
-first: 无参时 = take(1), 有函数参数时, 类似于find()
-skip: 跳过前 N 个值
+* take: 取第 N 个值.然后结束
+* first: 无参时 = take(1), 有函数参数时, 类似于find()
+* skip: 跳过前 N 个值
+* takeLast：和take相反，取最后几个
+* last：和first相反
 
-```
-  interval(1000).pipe(
-    skip(3),
-    take(4),
-    first(val => {
-      console.log('first', val);
-      if (val == 6) {
-        return true
-      }
-      return false
-    })
-  )
-  .subscribe(console.log);
-  // 3秒后依次输出： 3 4 5 6
-```
+### takeUntil
 
-### takeLast、last
+takeUntil：取值，直到...为止
 
-takeLast：和take相反，取最后几个
-last：和first相反
+在某件事情发生时，让一个 observable 直送出 完成(complete)讯息
 
 ```
-  of(2, 3, 4, 5)
+  let stopInteval = fromEvent(document, 'click');  
+
+  interval(1000)
   .pipe(
-    takeLast(2),
-    last()
+    takeUntil(stopInteval)
   )
-  .subscribe(console.log)
+  .subscribe({
+      next: (value) => { console.log(value); },
+      error: (err) => { console.log('Error: ' + err); },
+      complete: () => { console.log('complete'); }
+  });
 ```
 
-### concat （目前在RXJS模块，不属于Operators）
+### startWith
 
-为了方便，把concat放这个模块讲述
-
-和原生JS数组的concat方法类似，`concat`可以把多个`observable`实例合并成一个
-
-（concat 和 concatAll 都要等待前一个 observable 完成(complete)，才会继续下一个）
+startWith：在 observable 最前面塞入要发送的元素
 
 ```
-  let source = of(0, 1);
-  let source2 = interval(1000).pipe(
-      skip(2),
-      take(2),
-    );
-  let source3 = from([4, 5]);
-  let example = concat(source, source2, source3)
+  interval(1000).pipe(startWith('一', '二')).subscribe(console.log)
 
-  example.subscribe(console.log)
+  // 一 二 1 2 3
 ```
 
-### concatAll
+### 扁平列阵
 
 concatAll: 将二维阵列的子列阵摊平成一维阵列.
 
@@ -83,21 +65,77 @@ concatAll: 将二维阵列的子列阵摊平成一维阵列.
   // 订阅了二维列阵
 ```
 
+### scan
 
-### takeUntil
+scan: 相当于原生的 reduce，在使用时能保存状态
 
-takeUntil在某件事情发生时，让一个 observable 直送出 完成(complete)讯息
+
+### 延迟
+
+* delay： 延迟 N 毫秒后发送元素
+* delayWhen：在delay的基础上可以定义每个元素的延迟方式
 
 ```
-  let stopInteval = fromEvent(document, 'click');  
+  from([1, 2, 3, 4, 5]).pipe(
+    delayWhen(e => {
+      return interval(e * 1000)
+    }),
+  ).subscribe(console.log)
+```
 
-  interval(1000)
+### 防抖
+
+* debounce：根据是否传入新值防抖
+* debounceTime：根据时间防抖
+
+```
+  fromEvent(document, 'click')
+  .pipe(debounceTime(300))
+  .subscribe(x => console.log(x));
+```
+
+### 节流
+
+* throttle: 参考防抖
+* throttleTime: 参考防抖
+
+### 剔重
+
+distinct([keySelector])： 剔重
+distinctUntilChanged([keySelector])：剔重，直到改变为止
+
+### 缓存
+
+缓存observable的元素，触发时输出缓存数组
+
+* buffer(ob)， 在接受到ob参数前。先将observer的数据缓存起来
+* bufferTime(时间毫秒数)，根据缓存队列的时间是否到达来触发observable
+* bufferCount(num)，根据缓存队列的数量是否到达来触发observable
+  * 如果是2个参数： bufferSize: number, startBufferEvery
+
+```
+  const clicks = fromEvent(document, 'click');
+  const buffered = clicks.pipe(bufferCount(2));
+  buffered.subscribe(x => console.log(x));
+```
+
+### 捕获
+
+catchError(fn)：捕获错误的回调
+
+### withLatestFrom
+
+withLatestFrom： 主从关系，等待observable发送事件
+
+```
+  const itv = interval(1000);
+  
+  fromEvent(document, 'click')
   .pipe(
-    takeUntil(stopInteval)
+    withLatestFrom(itv)
   )
-  .subscribe({
-      next: (value) => { console.log(value); },
-      error: (err) => { console.log('Error: ' + err); },
-      complete: () => { console.log('complete'); }
-  });
+  .subscribe(x => console.log(x));
+
+  // interval一直在执行
+  // 等点击一次，就输出一次
 ```
