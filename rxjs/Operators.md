@@ -121,7 +121,9 @@ distinctUntilChanged([keySelector])：剔重，直到改变为止
 
 ### 捕获
 
-catchError(fn)：捕获错误的回调
+* catchError(fn)：捕获错误的回调
+  * 就算copy的API文档也会报错：`Maximum call stack size exceeded`
+* retry(num)：重试num次
 
 ### withLatestFrom
 
