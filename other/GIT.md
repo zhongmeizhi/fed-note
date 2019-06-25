@@ -44,8 +44,13 @@ fork代码到本地 `fork remote add https://xxx.git`
   3. `git merge upstream/master`
   4. `git push`
 
-回撤 `git revert HEAD`
+回撤提交 `git revert HEAD`
 
-回滚到特定版本 `git reset --hard 5dc29bebe8`
+回滚到特定版本 
+* `git reset --hard 5dc29bebe8`
+  * 有多个选项[soft、mixed、hard]
+  * hard = mixed + revert
+* 回滚完成后只是在本地reset，需要覆盖远程节点
+* `git push --force` 强制push
 
 ### [返回主页](/README.md)

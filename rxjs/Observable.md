@@ -1,8 +1,10 @@
-# RXJS 之 Observable 学习
+# RXJS学习 之 Observable
 
 > Observable 是RXJS的核心
 
 Observable顾名思义:可观察的,用来给Observer订阅.
+
+Observable必须要被订阅后才会进行运算
 
 最简单的例子: (一般不这么用)
 ```

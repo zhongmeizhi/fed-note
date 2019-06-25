@@ -1,4 +1,4 @@
-# RXJS 简介
+# RXJS学习 之 简介
 
 > RXJS = Reactive Extensions Of Javascript（Javascript的响应式扩展）
 

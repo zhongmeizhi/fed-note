@@ -1,4 +1,4 @@
-# RXJS 之 Operators 学习
+# RXJS学习 之 Operators
 
 > Operators
 
@@ -64,7 +64,8 @@ takeUntil：取值，直到...为止
 
 ### 仿原生方法
 
-* scan: 相当于原生的 reduce，在使用时能保存状态
+* reduce：相当于原生的 reduce
+* scan: 类似于 reduce，但每次取值都会推送结果
 * map: 相当于原生的 map
 * filter： 相当于 filter
 
