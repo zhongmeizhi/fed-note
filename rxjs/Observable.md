@@ -52,6 +52,7 @@ Observable顾名思义:可观察的,用来给Observer订阅.
   )
 ```
 
+
 ### 与时间有关的
 
 `interval` 和 `timer`
@@ -71,6 +72,7 @@ Observable顾名思义:可观察的,用来给Observer订阅.
 
   // 除了unsubscribe,也可以使用operators的takeUntil来完成操作
 ```
+
 
 ### 合并Observer对象
 
@@ -110,6 +112,7 @@ Observable顾名思义:可观察的,用来给Observer订阅.
   mergeExample.subscribe(console.log)
 ```
 
+
 ### 合并元素
 
 zip：取每个 observable 相对位的元素
@@ -146,4 +149,9 @@ combineLatest： 组合最后一个元素，不匹配空的最后项。
   // [2, 3, 'b']
   // [2, 4, 'b']
 ```
+
+### 其他
+
+* race(a, b, c) 竞速，类似于Promise.race()
+* range(num1, num2) 取范围num1-num2的值。
 

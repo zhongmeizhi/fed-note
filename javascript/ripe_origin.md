@@ -10,3 +10,4 @@ offset
 
 cssText
 
+e.target.matches
