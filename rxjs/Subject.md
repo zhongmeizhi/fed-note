@@ -56,15 +56,11 @@ Subject就像EventEmitters。
 ```
     var subject = new BehaviorSubject(0); // 0 为起始值
     var observerA = {
-        next: value => console.log('A next: ' + value),
-        error: error => console.log('A error: ' + error),
-        complete: () => console.log('A complete!')
+        ...
     }
 
     var observerB = {
-        next: value => console.log('B next: ' + value),
-        error: error => console.log('B error: ' + error),
-        complete: () => console.log('B complete!')
+        ...
     }
 
     subject.subscribe(observerA);
@@ -88,3 +84,12 @@ Subject就像EventEmitters。
 ### AsyncSubject
 
 使用方法同上，AsyncSubject() 只返回最后一个值。类似于`last()`操作符
+
+
+### 特有的 Operators
+
+* multicast：用来挂载 subject，返回具有connect方法的observable
+  * connect() 后才会真的用 subject 订阅
+* refCount：可以建立一个只要有订阅就会自动 connect 的 observable
+* publish = `multicast(new Rx.Subject())`
+* share = `publish + refCount`

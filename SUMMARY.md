@@ -18,7 +18,6 @@
   * [经验包](javascript/experience.md)
 * 前端进阶
   * [性能优化](sse/optimization.md)
-  * [状态管理](sse/state_manage.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)
   * [webpack（一）热加载原理](fed-tools/hot_loader.md)
@@ -29,6 +28,7 @@
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
 * RXJS学习
+  * [状态管理](sse/state_manage.md)
   * [函数式编程 简介](sse/function_program.md)
   * [RXJS学习（一）简介](rxjs/rxjs.md)
   * [RXJS学习（二）Observable](rxjs/Observable.md)
