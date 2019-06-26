@@ -33,6 +33,7 @@
   * [RXJS学习（一）简介](rxjs/rxjs.md)
   * [RXJS学习（二）Observable](rxjs/Observable.md)
   * [RXJS学习（三）Operators](rxjs/Operators.md)
+  * [RXJS学习（四）Subject](rxjs/Subject.md)
 * 框架解析
   * [Vue 2.x源码（一）概览](vue/base.md)
   * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
@@ -54,6 +55,7 @@
   * [Flutter 异常汇总](flutter/EXCEPTION.md)
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter 实现原理](flutter/IMPLEMENT.md)
+  * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java
   * [JVM](java/JVM.md)

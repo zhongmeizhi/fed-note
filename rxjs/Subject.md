@@ -86,7 +86,7 @@ Subject就像EventEmitters。
 使用方法同上，AsyncSubject() 只返回最后一个值。类似于`last()`操作符
 
 
-### 特有的 Operators
+### Observable转换Subject
 
 * multicast：用来挂载 subject，返回具有connect方法的observable
   * connect() 后才会真的用 subject 订阅
