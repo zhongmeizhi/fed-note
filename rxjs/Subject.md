@@ -2,13 +2,18 @@
 
 > Subject是一种特殊类型的Observable，它允许将值多播到许多观察者。
 
-和多个Observable订阅不同点：
+Subject继承自Observable：`declare class Subject<T> extends Observable<T> implements SubscriptionLike`
 
-多个Observable订阅，每个Observable都是独立的。而Subject是统一的
- 
-Subject就像EventEmitters。
+Subject和多个Observable订阅不同点：
+* 多个Observable订阅，每个Observable都是独立的
+* Subject 的状态是统一的
 
-模拟实现`Subject`
+
+### Subject 实现
+
+Subject实现起来就像EventEmitters。
+
+`Subject`自己实现了`next、error、complete、subscribe、unsubscribe`其他方法都是继承自`Observable`的
 ```
     var subject = {
         observers: [],

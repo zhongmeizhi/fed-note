@@ -5,7 +5,7 @@
 这三个其实并不冲突，甚至可以放到一起用。
 
 * redux for global state：作为全局状态管理
-* rxjs for redux-middleware：rxjs 管理所有输入的 input -&gt; redux action 的调度过程
+* rxjs for redux-middleware：rxjs 管理所有输入的 input -> redux action 的调度过程
 * mobx for component-state：作为组件局部状态管理器来用。
 
 
