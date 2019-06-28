@@ -53,9 +53,7 @@
   * [Flutter 国际化](flutter/LOCAL.md)
   * [Flutter 局部路由实现](flutter/navigator.md)
   * [Flutter 环境问题汇总](flutter/SCENES.md)
-  * [Flutter 异常汇总](flutter/EXCEPTION.md)
   * [Flutter 开发细节](flutter/ISSUE.md)
-  * [Flutter 实现原理](flutter/IMPLEMENT.md)
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java

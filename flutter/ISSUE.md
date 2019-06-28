@@ -40,15 +40,6 @@
 
 解决方案： 使用`限制高度的Widget`（如ConstrainedBox、SizedBox）来包裹Column
 
-
-### 状态问题
-
-通过请求获取数据，使用for循环List.add()动态拼接返回items。在setSate时items不会重新渲染
-
-> 原因 TODO： 可能是State的问题
-
-解决方案：items拼接过程单独挪到class外部。那么就能重新渲染了
-
 .
 
 ### 在State内使用widget元素

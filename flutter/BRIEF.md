@@ -43,35 +43,15 @@ State 中主要的生命周期：
 具体每个Widget的使用方式和展现：[Flutter-UI](https://github.com/zhongmeizhi/flutter-UI)
 
 
-### 其他
-* 动画
-  * AnimationController
-  * Tween
-  * addListener
-  * AnimatedWidget
-* 路由
-  * 自定义路由
-    * MaterialPageRoute(builder: )
-  * 命名路由：
-    1. MaterialApp 处注册 routes 
-    2. Navigator.pushNamed(context, "new_page");
-  * 动画路由
-    ```
-      Navigator.push(context, PageRouteBuilder(
-        pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
-          return FadeTransition(
-            opacity: animation,
-            child: HeroAnimationRouteB(imageName: "images/IMG_0696.jpg"),
-          );
-        })
-      )
-    ```
-   
-* 请求
-  ```
-    import 'dart:convert';
-    import 'dart:io';
-  ```
+# Flutter 实现原理
 
+渲染
+![渲染](/img/flutter_render.png)
+
+状态
+![状态](/img/flutter_state.png)
+
+GPU
+![GPU](/img/flutter_GPU.png)
 
 ### [返回主页](/README.md)
