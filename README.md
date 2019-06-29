@@ -52,7 +52,7 @@
   * [JQuery解析（二）Sizzle引擎解析](jQuery/sizzle.md)
   * [JQuery解析（三）deferred对象](jQuery/deferred.md)
   
-### flutter篇
+### Flutter基础篇
   * [dart（一）入门](dart/PRIMER.md)
   * [dart（二）运行机制](dart/event_loop.md)
   * [flutter 简介](flutter/BRIEF.md)
@@ -65,6 +65,8 @@
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
   <!-- * [Flutter Bloc模式]() -->
 
+<!-- ### Flutter进阶篇
+  * [Flutter 更新策略](flutter/update_state.md) -->
 
 ### Java篇
   * [JVM](java/JVM.md)

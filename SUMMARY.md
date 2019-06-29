@@ -45,7 +45,7 @@
   * [JQuery解析（一）ready函数实现](jQuery/ready.md)
   * [JQuery解析（二）Sizzle引擎解析](jQuery/sizzle.md)
   * [JQuery解析（三）deferred对象](jQuery/deferred.md)
-* flutter
+* Flutter基础
   * [dart（一）入门](dart/PRIMER.md)
   * [dart（二）运行机制](dart/event_loop.md)
   * [flutter 简介](flutter/BRIEF.md)
@@ -56,6 +56,8 @@
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
+<!-- * Flutter进阶
+  * [Flutter 更新策略](flutter/update_state.md) -->
 * Java
   * [JVM](java/JVM.md)
   * [Maven](java/maven.md)
