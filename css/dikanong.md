@@ -7,15 +7,6 @@
 在子元素中设置2个div，后一个div 300%宽度
 
 
-
-### 灰底
-
-background-blend-mode: multiply
-background-color: #F6F6F6
-
-https://css-tricks.com/basics-css-blend-modes/
-
-
 ###  float产生乱序问题
 
 <div class="box">
