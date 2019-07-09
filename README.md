@@ -15,6 +15,7 @@
   * [requestAnimationFrame](javascript/request_frame.md)
   * [迭代器](javascript/iterator.md)
   * [hybrid开发](javascript/hybrid.md)
+  * [HEX转RGB-判断是否淡色系](javascript/hex2rgb.md)
   * [经验包](javascript/experience.md)
 
 
