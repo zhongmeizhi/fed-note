@@ -53,4 +53,9 @@ fork代码到本地 `fork remote add https://xxx.git`
 * 回滚完成后只是在本地reset，需要覆盖远程节点
 * `git push --force` 强制push
 
+修补commit（用于代码提交错分支的情况）
+* 生成最近的4次（^数量）commit的patch `git format-patch HEAD^^^^`
+* 检查patch：如果没有任何输出，则说明无冲突`git apply --check 某提交.patch`
+* 将名字为 "某提交.patch" 的patch打上`git am 某提交.patch`
+
 ### [返回主页](/README.md)

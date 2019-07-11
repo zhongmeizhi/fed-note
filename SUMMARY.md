@@ -18,6 +18,7 @@
   * [HEX转RGB-判断是否淡色系](javascript/hex2rgb.md)
   * [经验包](javascript/experience.md)
 * 前端进阶
+  * [移动端调试](sse/console.md)
   * [性能优化](sse/optimization.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)
@@ -69,7 +70,6 @@
 * 其他
   * [git命令](other/GIT.md)
   * [GitHub的Host和Key](other/GITHUB.md)
-  * [vConsole](other/vConsole.md)
 * 大神github博客地址
   * [阮一峰](https://github.com/ruanyf)
   * [司徒正美](https://github.com/RubyLouvre/mobileHack)

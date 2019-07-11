@@ -20,6 +20,7 @@
 
 
 ### 前端进阶篇
+  * [移动端调试](sse/console.md)
   * [性能优化](sse/optimization.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)
@@ -80,7 +81,6 @@
 ### 其他
   * [git命令](other/GIT.md)
   * [GitHub的Host和Key](other/GITHUB.md)
-  * [vConsole](other/vConsole.md)
 
 
 ### github博客分享
