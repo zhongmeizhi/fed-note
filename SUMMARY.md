@@ -6,7 +6,7 @@
   * [移动端-像素适配](css/LAYOUT.md)
   * [IphoneX适配](css/safe_area.md)
   * [经验包](css/EXPERIENCE.md)
-* JS基础
+* 前端基础
   * [基础类型](javascript/basal_type.md)
   * [引用类型](javascript/object_type.md)
   * [函数（一）函数&尾递归](javascript/function.md)
@@ -16,10 +16,10 @@
   * [requestAnimationFrame](javascript/request_frame.md)
   * [迭代器](javascript/iterator.md)
   * [hybrid开发](javascript/hybrid.md)
+  * [移动端调试](sse/console.md)
   * [HEX转RGB-判断是否淡色系](javascript/hex2rgb.md)
   * [经验包](javascript/experience.md)
 * 前端进阶
-  * [移动端调试](sse/console.md)
   * [性能优化](sse/optimization.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)

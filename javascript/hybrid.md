@@ -6,30 +6,28 @@ Hybrid从开发层面实现“一次开发，多处运行”的机制（开发�
 
 Hybrid从业务开发上讲，没有版本问题，有BUG能及时修复
 
+与Native交互：
+* URL Schema
+  * JSBridge
+* Native注入Javascript
 
-### 交互
+### URL Schema
 
-与Native交互有两种交互：
-1. URL Schema
-2. JavaScriptCore
+URL Schema交互其实是WebView的URL拦截。拦截某些特定的URL.startWith('xxx')
 
 比如携程H5页面要去到酒店Native某一个页面可以这样：
 
 ```
-    //=>schema://forward?t=1446297653344&param=%7B%22topage%22%3A%22hotel%2Fdetail%20%20%22%2C%22type%22%3A%22h2n%22%2C%22id%22%3A20151031%7D
+    // schema://forward?t=1446297653344&param=%7B%22topage%22%3A%22hotel%2Fdetail%20%20%22%2C%22type%22%3A%22h2n%22%2C%22id%22%3A20151031%7D
     
-    requestHybrid({
-        tagname: 'forward',
-        param: {
-            //要去到的页面
-            topage: 'hotel/detail',
-            //跳转方式，H5跳Native
-            type: 'native',
-            //其它参数
-            id: 20151031
-        }
-    });
+    // 其实就是拦截了 schema://forward 开头的URL
 ```
+
+### JSBridge
+
+JSBridge 其实是是URL Schema的升级版：
+
+H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Native调用H5的JSBridge对象传递回调（执行Javascript方法）。
 
 比如调用Native相机+人脸识别，并获取人脸识别结果
 
@@ -45,6 +43,8 @@ Hybrid从业务开发上讲，没有版本问题，有BUG能及时修复
                     reject('fail')
                 }
             }
+
+            // 使用JSBridge
             Bridge.liveness(JSON.stringify({ "callBack": "livenessComplete" }))
 
         })
@@ -56,21 +56,16 @@ Hybrid从业务开发上讲，没有版本问题，有BUG能及时修复
 ![/img/JsBridge.png](/img/JsBridge.png)
 
 
-### 调试
-
-Hybrid可以直接在浏览器中调试。如果要和Native交互，手机端推荐使用鹅厂的 vConsole （有webpack插件）
-
-### 获取App版本，平台类型
+### 通过UA获取数据
 
 ```
     // 首先，需要Native端自定义 user-agent
+    // 附：UA是无法通过JS直接修改的
 
     // 获取 UA
     let UA = navigator.userAgent;
 
     // 如果如果已经设置了对应的 UA，那么可以在 UA 中直接获取
-
-    // 获取客户端版本 , 获取平台类型
 	["uversion", "udevice"].forEach(function (item) {
 		var reg = item + "\\/([^\\s]*)";
 		var res = UA.match(new RegExp(reg));
@@ -78,7 +73,7 @@ Hybrid可以直接在浏览器中调试。如果要和Native交互，手机端�
 	});
 ```
 
-判断访问终端
+### JS 判断访问终端
 ```
     var browser={
         versions: function(){
@@ -106,7 +101,7 @@ Hybrid可以直接在浏览器中调试。如果要和Native交互，手机端�
 
 ### End
 
-最后，非尝试项目。还是用Fultter吧
+最后。还是学习Fultter吧
 
 本人的Fultter项目
 * [fultter-example-app](https://github.com/zhongmeizhi/fultter-example-app)
