@@ -19,9 +19,33 @@
 
 ![图片](/img/security.png)
 
-如何防御：
+如何预防：
 * **阻止第三方网站请求接口**（比如校验 Referer）
 * 设置cookie为HttpOnly
 * 验证码
+
+### 点击劫持
+
+
+攻击者将需要攻击的网站通过 iframe 嵌套的方式嵌入自己的网页中，并将 iframe 设置为透明，在页面中透出一个按钮诱导用户点击。
+
+如何预防：
+* 通过`nginx`配置[X-Frame-Options](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/X-Frame-Options)的响应头
+* 通过JS处理
+  ```
+    if (self == top) {
+        var myPage = document.getElementById('myPage')
+        document.body.removeChild(myPage)
+    } else {
+        top.location = self.location
+    }
+  ```
+
+### 其他
+
+* SQL注入，比如：账号输入`admin' --`（--在SQL中表示注释）
+* OS命令注入攻击，比如NodeJS中执行Shell操作的命令，
+
+`- -!`同样的道理，通过转义和正则替换可以解决。
 
 ### [返回主页](/README.md)
