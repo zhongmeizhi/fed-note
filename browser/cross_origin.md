@@ -7,21 +7,25 @@
 4. 罗列各种方法优缺点
 
 ### 什么是跨域
+
 由于浏览器厂商对安全性的考虑，提出了`浏览器的同源策略`做为解决方案。它是一个用于隔离潜在恶意文件的重要安全机制。同源即`协议`、`域名`、`端口`三者一致。不同源即跨域。
 
 ##### 如果没有同源策略会怎么样？
-比如：当你访问了 饼夕夕的网站
-```
-// HTML
-// 饼夕夕.com 内嵌 拼多多.com
-<iframe name="pinduoduo" src="www.pinduoduo.com"></iframe>
 
-// JS
-// 由于没有同源策略的限制，钓鱼网站可以直接拿到别的网站的Dom
-// 所以 饼夕夕.com 可以在 拼多多.com 输入账号密码处埋点
-const $iframe = window.frames['pinduoduo'];
-const $pwd = $iframe.document.getElementById('password');
-console.log(`你的密码已泄露: ${$pwd}`)
+比如：当你访问了 饼夕夕的网站
+
+```
+  // HTML
+  // 饼夕夕.com 内嵌 拼多多.com
+  <iframe name="pinduoduo" src="www.pinduoduo.com"></iframe>
+
+  // JS
+  // 由于没有同源策略的限制，钓鱼网站可以直接拿到别的网站的Dom
+  // 所以 饼夕夕.com 可以在 拼多多.com 输入账号密码处埋点
+
+  const $iframe = window.frames['pinduoduo'];
+  const $pwd = $iframe.document.getElementById('password');
+  console.log(`你的密码已泄露: ${$pwd}`)
 ```
 
 ### 解决方案（主流）
@@ -47,6 +51,7 @@ console.log(`你的密码已泄露: ${$pwd}`)
 
   // 结束
 ```
+
 **2. iframe+form实现post请求跨域**
 
 原理：利用form表单target属性，将post请求提交给隐藏的iframe，使页面不跳转
