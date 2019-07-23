@@ -58,6 +58,7 @@
   * [Flutter 渲染策略](flutter/render.md)
   * [Flutter WebView](flutter/webview.md)
   * [Flutter 局部路由实现](flutter/navigator.md)
+  * [Flutter 状态更新](flutter/state_update.md)
   * [Flutter 环境问题汇总](flutter/SCENES.md)
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)

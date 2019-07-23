@@ -38,6 +38,4 @@ BloC即（Business Logic Component），是一种利用reactive programming方�
 ### RxDart
 
 Observable：Stream 的加强版
-Subjects： StreamController
-
-
+Subjects： 类似StreamController
