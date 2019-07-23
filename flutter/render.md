@@ -48,3 +48,5 @@ Key的功能和名字一致。
 2. 或者将不能使用获取context的方法使用widget单独build
 3. 使用`GlobalKey<ScaffoldState>()`，通过key来调用
 
+
+因为每个build的context不一样，所以每个不同的页面数据无法共享。（InheritedWidget 等除外）

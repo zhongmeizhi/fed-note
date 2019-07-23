@@ -21,17 +21,6 @@
 因为是异步渲染，所以需要新的生命周期钩子：getSnapshotBeforeUpdate
   * `getSnapshotBeforeUpdate()`在最新的渲染输出提交给DOM前将会立即调用。
 
-库
-* mobx for component-state：作为组件局部状态管理器来用。
-* redux for global state：作为全局状态管理
-* rxjs for redux-middleware：rxjs 管理所有输入的 input -&gt; redux action 的调度过程
+### React 切片机制
 
-思路：
-1. 当 UI 变化很复杂时，用 component 归一化处理；
-2. 当 state 变化很复杂时，用 action/state 归一化处理；
-3. 当 data-input 很复杂时，用 rxjs/observable 归一化处理；
-
-
-immutable ？ 现在没怎么听说了。
-
-xjs更像是一个事件处理库，处理事件的lodash
+fiber

@@ -32,7 +32,7 @@
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
 * RXJS学习
-  * [状态管理](sse/state_manage.md)
+  * [redux、mobx、rxjs取舍](sse/state_manage.md)
   * [函数式编程 简介](sse/function_program.md)
   * [RXJS学习（一）简介](rxjs/rxjs.md)
   * [RXJS学习（二）Observable](rxjs/Observable.md)

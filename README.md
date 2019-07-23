@@ -36,7 +36,7 @@
 
 
 ### RXJS学习篇
-  * [状态管理](sse/state_manage.md)
+  * [redux、mobx、rxjs取舍](sse/state_manage.md)
   * [函数式编程 简介](sse/function_program.md)
   * [RXJS学习（一）简介](rxjs/rxjs.md)
   * [RXJS学习（二）Observable](rxjs/Observable.md)
