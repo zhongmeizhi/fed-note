@@ -16,6 +16,33 @@
 * DOM：文档对象模型（Document Object Model）
   * DOM的最根本对象是document（window.document）
 
+### 关于 IOS 键盘弹出问题
+
+> IOS键盘弹出后，是覆盖式的。安卓是上推式的。
+
+```
+    const ua = navigator.userAgent;
+
+    const isAndroid = ua.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    const isiOS = !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+    // 监听键盘收起及弹出状态
+    document.body.addEventListener('focusout', () => {
+        if (isiOS) {
+            setTimeout(() => {
+            document.body.scrollTop = document.body.scrollHeight
+            }, 100)
+        }
+    })
+
+    document.body.addEventListener('focusin', () => {
+        if (isiOS) {
+            setTimeout(() => {
+            document.body.scrollTop = document.body.scrollHeight
+            }, 100)
+        }
+    })
+```
 
 ### JS中 new Date 的兼容性BUG
 

@@ -63,8 +63,6 @@
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
-<!-- * Flutter进阶
-  * [Flutter 更新策略](flutter/update_state.md) -->
 * Java
   * [JVM](java/JVM.md)
   * [Maven](java/maven.md)

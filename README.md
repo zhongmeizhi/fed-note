@@ -72,9 +72,6 @@
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
   <!-- * [Flutter Bloc模式]() -->
 
-<!-- ### Flutter进阶篇
-  * [Flutter 更新策略](flutter/update_state.md) -->
-
 ### Java篇
   * [JVM](java/JVM.md)
   * [Maven](java/maven.md)
