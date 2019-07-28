@@ -119,6 +119,8 @@ UMD源码解析
 * 不能使用表达式和变量 等运行时加载的语法
   - 同上
 
+虽然，import加载的是引用，但是该引用是只读的（类似const）
+
 ### webpack打包策略
 
 > import会被编译成 require/exports （CommonJS规范）
