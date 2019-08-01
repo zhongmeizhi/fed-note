@@ -36,6 +36,7 @@ fork代码到本地 `fork remote add https://xxx.git`
 删除分支
 * 删除本地分支 `git branch -d name`
 * 删除远程分支 `git push origin --delete name`
+* 删除本地可见但远程已经删除的分支 `git remote prune origin`
 
 
 同步fork代码
