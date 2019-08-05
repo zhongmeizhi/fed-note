@@ -6,6 +6,9 @@
   * [移动端-像素适配](css/LAYOUT.md)
   * [IphoneX适配](css/safe_area.md)
   * [经验包](css/EXPERIENCE.md)
+* 计算机基础
+  * [HTTPS 加密机制](base/https.md)
+  * [跨域机制](browser/cross_origin.md)
 * 前端基础
   * [基础类型](javascript/basal_type.md)
   * [引用类型](javascript/object_type.md)
@@ -26,7 +29,6 @@
   * [webpack（一）热加载原理](fed-tools/hot_loader.md)
   * [webpack（二）环境检测与优化](fed-tools/define_plugin.md)
   * [webpack（三）性能优化](fed-tools/webpack_optimization.md)
-  * [跨域机制](browser/cross_origin.md)
   * [前端安全性](browser/security_code.md)
   * [NPM机制](node/NPM.md)
   * [JS运行机制](sse/event_loop.md)
