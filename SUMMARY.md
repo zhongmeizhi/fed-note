@@ -9,6 +9,7 @@
 * 计算机基础
   * [HTTPS 加密机制](base/https.md)
   * [跨域机制](browser/cross_origin.md)
+  * [页面加载过程](base/page_load.md)
 * 前端基础
   * [基础类型](javascript/basal_type.md)
   * [引用类型](javascript/object_type.md)
