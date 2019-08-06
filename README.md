@@ -22,6 +22,7 @@
   * [迭代器](javascript/iterator.md)
   * [hybrid开发](javascript/hybrid.md)
   * [移动端调试](sse/console.md)
+  * [埋点设计](javascript/event-point.md)
   * [HEX转RGB-判断是否淡色系](javascript/hex2rgb.md)
   * [经验包](javascript/experience.md)
 
