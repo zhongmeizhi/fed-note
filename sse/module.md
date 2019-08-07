@@ -143,9 +143,9 @@ webpack(require.ensure)：webpack 2.x 版本中的代码分割。
 
 例如：vue路由懒加载`const Foo = () => import('./Foo.vue')`
 
-**manifest**
+**manifest.js**
 
-manifest文件是最先加载的，manifest是在vendor的基础上，再抽取出要经常变动的部分，**通过manifest.js文件来管理bundle文件**的运行和加载。(比如关于异步加载js模块部分的内容)
+manifest.js 文件是最先加载的，是在vendor的基础上，再抽取出要经常变动的部分，**通过manifest.js文件来管理bundle文件**的运行和加载。(比如关于异步加载js模块部分的内容)，所以manifest像是webpack 用以`查找chunk真实路径`所使用的一份关系表
 
 **webpack v2.4+ 命名chunk文件**
 
