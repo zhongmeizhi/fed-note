@@ -2,7 +2,7 @@
 
 > patch的核心是diff算法
 
-diff算法是通过同层的树节点进行比较而非对树进行逐层搜索遍历，时间复杂度为O(n)
+diff算法是通过`同层的树节点比较`而非对树进行逐层搜索遍历，时间复杂度为O(n)
 
 diff算法主要为2种：
 1. 值得比较(sameVnode)
@@ -41,13 +41,13 @@ function sameVnode (a, b) {
 while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
   if...
     ++oldStartIdx
-    ++oldStartIdx
+    ++newStartIdx
   if...
     --oldEndIdx
     --newEndIdx
 }
 ```
-updateChildren同样有sameVnode这么一说，可以理解为每一个组件都已经自动获得了 shouldComponentUpdate。
+Vue会逐级递归对children件进行diff，单每个组件的diff是独立的
 
 
 ### [返回主页](/README.md)
