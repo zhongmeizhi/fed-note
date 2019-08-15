@@ -58,9 +58,6 @@
   * [Vue 2.x源码（四）diff算法](vue/diff.md)
   * [Vue 2.x源码（五）keep-alive](vue/keep_alive.md)
   * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
-  * [JQuery解析（一）ready函数实现](jQuery/ready.md)
-  * [JQuery解析（二）Sizzle引擎解析](jQuery/sizzle.md)
-  * [JQuery解析（三）deferred对象](jQuery/deferred.md)
   
 ### Flutter基础篇
   * [dart（一）入门](dart/PRIMER.md)
