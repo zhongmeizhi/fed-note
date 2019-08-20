@@ -1,0 +1,1521 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Vue 2.x源码（一）概览 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="proxy.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    样式&&兼容性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../css/less.html">
+            
+                <a href="../css/less.html">
+            
+                    
+                    less入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../css/LAYOUT.html">
+            
+                <a href="../css/LAYOUT.html">
+            
+                    
+                    移动端-像素适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../css/safe_area.html">
+            
+                <a href="../css/safe_area.html">
+            
+                    
+                    IphoneX适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../css/css_test.html">
+            
+                <a href="../css/css_test.html">
+            
+                    
+                    CSS渐进增强
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../css/EXPERIENCE.html">
+            
+                <a href="../css/EXPERIENCE.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    计算机基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../base/https.html">
+            
+                <a href="../base/https.html">
+            
+                    
+                    HTTPS 加密机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../browser/cross_origin.html">
+            
+                <a href="../browser/cross_origin.html">
+            
+                    
+                    跨域机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../base/page_load.html">
+            
+                <a href="../base/page_load.html">
+            
+                    
+                    页面加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../javascript/basal_type.html">
+            
+                <a href="../javascript/basal_type.html">
+            
+                    
+                    基础类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../javascript/object_type.html">
+            
+                <a href="../javascript/object_type.html">
+            
+                    
+                    引用类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../javascript/function.html">
+            
+                <a href="../javascript/function.html">
+            
+                    
+                    函数（一）函数&尾递归
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../javascript/debounce.html">
+            
+                <a href="../javascript/debounce.html">
+            
+                    
+                    函数（二）防抖
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../javascript/throttle.html">
+            
+                <a href="../javascript/throttle.html">
+            
+                    
+                    函数（三）节流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../javascript/prototype.html">
+            
+                <a href="../javascript/prototype.html">
+            
+                    
+                    函数（四）原型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../javascript/request_frame.html">
+            
+                <a href="../javascript/request_frame.html">
+            
+                    
+                    requestAnimationFrame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../javascript/iterator.html">
+            
+                <a href="../javascript/iterator.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../javascript/hybrid.html">
+            
+                <a href="../javascript/hybrid.html">
+            
+                    
+                    hybrid开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../sse/console.html">
+            
+                <a href="../sse/console.html">
+            
+                    
+                    移动端调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../javascript/event-point.html">
+            
+                <a href="../javascript/event-point.html">
+            
+                    
+                    埋点设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="../javascript/hex2rgb.html">
+            
+                <a href="../javascript/hex2rgb.html">
+            
+                    
+                    HEX转RGB-判断是否淡色系
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.13" data-path="../javascript/experience.html">
+            
+                <a href="../javascript/experience.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    前端进阶
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../sse/optimization.html">
+            
+                <a href="../sse/optimization.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../sse/async_await.html">
+            
+                <a href="../sse/async_await.html">
+            
+                    
+                    async await
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../sse/module.html">
+            
+                <a href="../sse/module.html">
+            
+                    
+                    模块化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../fed-tools/hot_loader.html">
+            
+                <a href="../fed-tools/hot_loader.html">
+            
+                    
+                    webpack（一）热加载原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../fed-tools/define_plugin.html">
+            
+                <a href="../fed-tools/define_plugin.html">
+            
+                    
+                    webpack（二）环境检测与优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../fed-tools/webpack_optimization.html">
+            
+                <a href="../fed-tools/webpack_optimization.html">
+            
+                    
+                    webpack（三）性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../browser/security_code.html">
+            
+                <a href="../browser/security_code.html">
+            
+                    
+                    前端安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../node/NPM.html">
+            
+                <a href="../node/NPM.html">
+            
+                    
+                    NPM机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../sse/event_loop.html">
+            
+                <a href="../sse/event_loop.html">
+            
+                    
+                    JS运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../browser/garbage_collection.html">
+            
+                <a href="../browser/garbage_collection.html">
+            
+                    
+                    JS垃圾回收机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    RXJS学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../sse/state_manage.html">
+            
+                <a href="../sse/state_manage.html">
+            
+                    
+                    redux、mobx、rxjs取舍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../sse/function_program.html">
+            
+                <a href="../sse/function_program.html">
+            
+                    
+                    函数式编程 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../rxjs/rxjs.html">
+            
+                <a href="../rxjs/rxjs.html">
+            
+                    
+                    RXJS学习（一）简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../rxjs/Observable.html">
+            
+                <a href="../rxjs/Observable.html">
+            
+                    
+                    RXJS学习（二）Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../rxjs/Operators.html">
+            
+                <a href="../rxjs/Operators.html">
+            
+                    
+                    RXJS学习（三）Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../rxjs/Subject.html">
+            
+                <a href="../rxjs/Subject.html">
+            
+                    
+                    RXJS学习（四）Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../rxjs/Scheduler.html">
+            
+                <a href="../rxjs/Scheduler.html">
+            
+                    
+                    RXJS学习（五）Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    框架解析
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.7.1" data-path="base.html">
+            
+                <a href="base.html">
+            
+                    
+                    Vue 2.x源码（一）概览
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="proxy.html">
+            
+                <a href="proxy.html">
+            
+                    
+                    Vue 2.x源码（二）实现双向绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="next_tick.html">
+            
+                <a href="next_tick.html">
+            
+                    
+                    Vue 2.x源码（三）异步更新和$nextTick
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="diff.html">
+            
+                <a href="diff.html">
+            
+                    
+                    Vue 2.x源码（四）diff算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="keep_alive.html">
+            
+                <a href="keep_alive.html">
+            
+                    
+                    Vue 2.x源码（五）keep-alive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="vuex.html">
+            
+                <a href="vuex.html">
+            
+                    
+                    Vue 2.x源码（六）Vuex实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Flutter基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../dart/PRIMER.html">
+            
+                <a href="../dart/PRIMER.html">
+            
+                    
+                    dart（一）入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../dart/event_loop.html">
+            
+                <a href="../dart/event_loop.html">
+            
+                    
+                    dart（二）运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../flutter/BRIEF.html">
+            
+                <a href="../flutter/BRIEF.html">
+            
+                    
+                    flutter 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../flutter/PRIMER.html">
+            
+                <a href="../flutter/PRIMER.html">
+            
+                    
+                    Flutter 屏幕适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../flutter/LOCAL.html">
+            
+                <a href="../flutter/LOCAL.html">
+            
+                    
+                    Flutter 国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../flutter/render.html">
+            
+                <a href="../flutter/render.html">
+            
+                    
+                    Flutter 渲染策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../flutter/webview.html">
+            
+                <a href="../flutter/webview.html">
+            
+                    
+                    Flutter WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../flutter/navigator.html">
+            
+                <a href="../flutter/navigator.html">
+            
+                    
+                    Flutter 局部路由实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../flutter/state_update.html">
+            
+                <a href="../flutter/state_update.html">
+            
+                    
+                    Flutter 状态更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../flutter/SCENES.html">
+            
+                <a href="../flutter/SCENES.html">
+            
+                    
+                    Flutter 环境问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../flutter/ISSUE.html">
+            
+                <a href="../flutter/ISSUE.html">
+            
+                    
+                    Flutter 开发细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/flutter-UI">
+            
+                    
+                    Flutter API使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/fultter-example-app">
+            
+                    
+                    Flutter 项目实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../java/JVM.html">
+            
+                <a href="../java/JVM.html">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../java/maven.html">
+            
+                <a href="../java/maven.html">
+            
+                    
+                    Maven
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../java/MYSQL.html">
+            
+                <a href="../java/MYSQL.html">
+            
+                    
+                    mysql环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../java/data_base.html">
+            
+                <a href="../java/data_base.html">
+            
+                    
+                    事务&锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../spring-boot/init.html">
+            
+                <a href="../spring-boot/init.html">
+            
+                    
+                    Spring Boot（一）入门篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    其他
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../other/GIT.html">
+            
+                <a href="../other/GIT.html">
+            
+                    
+                    git命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../other/GITHUB.html">
+            
+                <a href="../other/GITHUB.html">
+            
+                    
+                    GitHub的Host和Key
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    大神github博客地址
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://github.com/ruanyf">
+            
+                    
+                    阮一峰
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    司徒正美
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" >
+            
+                <a target="_blank" href="https://github.com/fouber/blog">
+            
+                    
+                    张云龙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" >
+            
+                <a target="_blank" href="https://github.com/mqyqingfeng/Blog">
+            
+                    
+                    冴羽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" >
+            
+                <a target="_blank" href="https://github.com/yygmind">
+            
+                    
+                    木易杨
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" >
+            
+                <a target="_blank" href="https://github.com/phodal/microfrontends">
+            
+                    
+                    微前端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" >
+            
+                <a target="_blank" href="https://github.com/Tnfe/TNFE-Weekly">
+            
+                    
+                    前端周报
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" >
+            
+                <a target="_blank" href="https://github.com/sisterAn/blog">
+            
+                    
+                    安安小姐姐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" >
+            
+                <a target="_blank" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.10" >
+            
+                <a target="_blank" href="https://github.com/chokcoco/CSS-Inspiration">
+            
+                    
+                    CSS灵感
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.11" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    移动端各种坑解决
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.12" >
+            
+                <a target="_blank" href="https://github.com/lessfish/underscore-analysis">
+            
+                    
+                    underscore1.8.3解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.13" >
+            
+                <a target="_blank" href="https://github.com/answershuto/learnVue">
+            
+                    
+                    Vue源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.14" >
+            
+                <a target="_blank" href="https://github.com/libin1991/libin_Blog">
+            
+                    
+                    博客大全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.15" >
+            
+                <a target="_blank" href="https://github.com/horanly/Front-end-tutorial">
+            
+                    
+                    大杂烩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.16" >
+            
+                <a target="_blank" href="https://github.com/apachecn/AiLearning">
+            
+                    
+                    机器学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.17" >
+            
+                <a target="_blank" href="https://github.com/Snailclimb/JavaGuide">
+            
+                    
+                    Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.18" >
+            
+                <a target="_blank" href="https://github.com/jackfrued/Python-100-Days">
+            
+                    
+                    tython
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.19" >
+            
+                <a target="_blank" href="https://github.com/Micropoor/Micro8">
+            
+                    
+                    渗透攻击
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Vue 2.x源码（一）概览</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="vue-&#x6982;&#x89C8;">Vue &#x6982;&#x89C8;</h1>
+<blockquote>
+<p>Vue (&#x8BFB;&#x97F3; /vju&#x2D0;/&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; view)&#x662F;&#x4E00;&#x5957;&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x7528;&#x6237;&#x754C;&#x9762;&#x7684;&#x6E10;&#x8FDB;&#x5F0F;&#x6846;&#x67B6;&#x3002;</p>
+</blockquote>
+<p>&#x6E10;&#x8FDB;&#x5F0F;&#xFF1A;&#x53EF;&#x4EE5;&#x5728;&#x5DF2;&#x6709;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#x90E8;&#x5206;&#x9875;&#x9762;&#x5148;&#x4F7F;&#x7528;Vue&#xFF0C;&#x5148;&#x53EA;&#x4F7F;&#x7528;Vue&#x7684;&#x90E8;&#x5206;&#x529F;&#x80FD;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6162;&#x6162;&#x6269;&#x5C55;Vue&#x7684;&#x5168;&#x5BB6;&#x6876;</p>
+<p>&#x5728; Vue &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x7EC4;&#x4EF6;&#x7684;&#x4F9D;&#x8D56;&#x662F;&#x5728;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#x4E2D;&#x81EA;&#x52A8;&#x8FFD;&#x8E2A;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x7CFB;&#x7EDF;&#x80FD;&#x7CBE;&#x786E;&#x77E5;&#x6653;&#x54EA;&#x4E2A;&#x7EC4;&#x4EF6;&#x786E;&#x5B9E;&#x9700;&#x8981;&#x88AB;&#x91CD;&#x6E32;&#x67D3;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x5DF2;&#x7ECF;&#x81EA;&#x52A8;&#x83B7;&#x5F97;&#x4E86; shouldComponentUpdate&#x3002;</p>
+<p>&#x9644;&#xFF1A;</p>
+<ul>
+<li>(&#x5728;React 16- &#x7248;&#x672C;&#x524D;&#x5F53;&#x67D0;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x4EE5;&#x8BE5;&#x7EC4;&#x4EF6;&#x4E3A;&#x6839;&#xFF0C;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x6574;&#x4E2A;&#x7EC4;&#x4EF6;&#x5B50;&#x6811;)</li>
+</ul>
+<p>&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x56FE;&#xFF1A;
+<img src="../img/vue_proxy.png" alt="vue&#x53CC;&#x5411;&#x7ED1;&#x5B9A;"></p>
+<p>Vue &#x8FD0;&#x884C;&#xFF1A;</p>
+<ul>
+<li>&#x5728;&#x521B;&#x5EFA;&#x65F6;&#xFF08;beforeCreate&#x4E4B;&#x540E;created&#x4E4B;&#x524D;&#xFF09;&#x4F7F;&#x7528;&#x4F9D;&#x8D56;&#x6536;&#x96C6;&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</li>
+<li>render&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x53BB;&#x7F16;&#x8BD1;template</li>
+<li>template&#x7F16;&#x8BD1;&#x4F1A;&#x88AB;&#x89E3;&#x6790;&#x6210;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#x7684;&#x6811;&#x7ED3;&#x6784;&#xFF08;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;&#xFF08;abstract syntax tree&#x6216;&#x8005;&#x7F29;&#x5199;&#x4E3A;AST&#xFF09;&#xFF09;</li>
+<li>AST&#x4F1A;&#x7ECF;&#x8FC7;generate&#x5F97;&#x5230;render&#x51FD;&#x6570;&#xFF0C;render&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;VNode&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x865A;&#x62DF;DOM</li>
+<li>&#x865A;&#x62DF;Dom&#x7684;&#x5728;&#x66F4;&#x65B0;&#x65F6;&#x4F1A;&#x7ECF;&#x8FC7; setter -&gt; Dep -&gt; Watcher -&gt; update -&gt; patch&#x3002;</li>
+<li>patch&#x7684;&#x6838;&#x5FC3;&#x65F6;diff&#x7B97;&#x6CD5;&#xFF08;&#x901A;&#x8FC7;&#x540C;&#x5C42;&#x7684;&#x6811;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF09;&#xFF0C;&#x4F1A;&#x6D89;&#x53CA;sameVnode&#x7684;&#x6982;&#x5FF5;</li>
+</ul>
+<p>Vue &#x4E3B;&#x8981;&#x6A21;&#x5757;&#xFF1A;</p>
+<ul>
+<li>&#x56DB;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF08;$on&#xFF0C;$once&#xFF0C;$off&#xFF0C;$emit&#xFF09;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x7C7B;&#x4F3C;EventBus</li>
+<li>&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x521B;&#x5EFA;&#xFF0C;&#x6302;&#x8F7D;&#xFF0C;&#x66F4;&#x65B0;&#xFF0C;&#x9500;&#x6BC1;&#xFF09;</li>
+<li>nextTick &#xFF08;&#x6709;&#x591A;&#x79CD;&#x964D;&#x7EA7;&#x7B56;&#x7565;&#xFF09;</li>
+<li>keep-alive &#x548C; instance&#xFF08;&#x57FA;&#x4E8E;VNode&#x8282;&#x70B9;&#xFF09;&#xFF0C;&#x8FD8;&#x6709;activated&#x4E0E;deactivated</li>
+</ul>
+<h3 id="&#x8FD4;&#x56DE;&#x4E3B;&#x9875;"><a href="../">&#x8FD4;&#x56DE;&#x4E3B;&#x9875;</a></h3>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="proxy.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Vue 2.x源码（二）实现双向绑定">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Vue 2.x源码（一）概览","level":"1.7.1","depth":2,"next":{"title":"Vue 2.x源码（二）实现双向绑定","level":"1.7.2","depth":2,"path":"vue/proxy.md","ref":"vue/proxy.md","articles":[]},"previous":{"title":"框架解析","level":"1.7","depth":1,"ref":"","articles":[{"title":"Vue 2.x源码（一）概览","level":"1.7.1","depth":2,"path":"vue/base.md","ref":"vue/base.md","articles":[]},{"title":"Vue 2.x源码（二）实现双向绑定","level":"1.7.2","depth":2,"path":"vue/proxy.md","ref":"vue/proxy.md","articles":[]},{"title":"Vue 2.x源码（三）异步更新和$nextTick","level":"1.7.3","depth":2,"path":"vue/next_tick.md","ref":"vue/next_tick.md","articles":[]},{"title":"Vue 2.x源码（四）diff算法","level":"1.7.4","depth":2,"path":"vue/diff.md","ref":"vue/diff.md","articles":[]},{"title":"Vue 2.x源码（五）keep-alive","level":"1.7.5","depth":2,"path":"vue/keep_alive.md","ref":"vue/keep_alive.md","articles":[]},{"title":"Vue 2.x源码（六）Vuex实现","level":"1.7.6","depth":2,"path":"vue/vuex.md","ref":"vue/vuex.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"vue/base.md","mtime":"2019-05-05T12:47:10.414Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-20T14:08:20.416Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

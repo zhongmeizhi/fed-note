@@ -1,0 +1,34 @@
+# TODO List
+
+* MY_PROMISE
+  * class
+  * finally
+* HTTP2.0
+  * 帧、多路复用
+* 思想
+  * 函数式编程
+    * 纯函数
+  * 面向对象编程
+* vue-2016
+  * 重构
+    * tap
+    * 编程思想
+    * 命名规范
+* AST
+  * babylon
+* Node.js
+  * 中间件
+* Electron
+  * 开发一款计算器
+* react-native
+  * 仿：陆APP
+* canvas-game
+  * 打砖块项目
+  * 打飞机项目
+  * 宠物小精灵项目
+* uni-app
+  * 仿：猫眼小程序
+* java
+  * 后台
+* 算法
+  * 没谱
