@@ -15,7 +15,8 @@
   * BOM的最核心对象是window对象
 * DOM：文档对象模型（Document Object Model）
   * DOM的最根本对象是document（window.document）
-
+* 静态作用域
+  * 变量的作用域在写代码的时候就确定过了
 ### 关于 IOS 键盘弹出问题
 
 > IOS键盘弹出后，是覆盖式的。安卓是上推式的。
