@@ -1,5 +1,7 @@
 ### Dart-类 :/
 
+参考：Dart官网
+
 ##### 构造函数 :)
 
 构造函数名字可以为 `ClassName` 或者 `ClassName.identifier`
@@ -116,12 +118,21 @@
 
 ##### 重定向构造函数 :o
 
-# TODO
+一个重定向构造函数是没有代码的，在构造函数声明后，使用` : `调用其他构造函数。
 
-`- -.` 休息
+```
+  class Point {
+    num x;
+    num y;
 
+    Point(this.x, this.y);
 
-##### 编译时常量 :|
+    // 重定向
+    Point.alongXAxis(num x) : this(x, 0);
+  }
+```
+
+##### 编译时常量 :(
 
 两个一样的编译时常量其实是 同一个对象：
 
@@ -132,3 +143,119 @@
   assert(identical(a, b)); // They are the same instance!
 ```
 
+##### 常量构造函数 :|
+
+如果你的类提供一个状态不变的对象，你可以把这些对象 定义为编译时常量。要实现这个功能，需要定义一个 `const` 构造函数， 并且声明所有类的变量为 `final`。
+
+```
+  class ImmutablePoint {
+    final num x;
+    final num y;
+    const ImmutablePoint(this.x, this.y);
+    static final ImmutablePoint origin =
+        const ImmutablePoint(0, 0);
+  }
+```
+
+##### 工厂方法构造函数 :)
+
+如果一个构造函数并不总是返回一个新的对象，则使用 `factory` 来定义 这个构造函数。(**工厂构造函数无法访问 this。**)
+
+下面代码演示工厂构造函数 如何从缓存中返回对象。
+
+```
+  class Logger {
+    final String name;
+    bool mute = false;
+
+    // 缓存池
+    static final Map<String, Logger> _cache =
+        <String, Logger>{};
+
+    // 工厂函数
+    factory Logger(String name) {
+      if (_cache.containsKey(name)) {
+        return _cache[name];
+      } else {
+        final logger = new Logger._internal(name);
+        _cache[name] = logger;
+        return logger;
+      }
+    }
+    
+    Logger._internal(this.name);
+
+    void log(String msg) {
+      if (!mute) {
+        print(msg);
+      }
+    }
+  }
+```
+
+##### 抽象类 :|
+
+抽象类：一个**不能被实例化**的类，使用 `abstract` 修饰符定义。（在Flutter中用的挺多的。）
+
+# TODO
+
+
+##### 函数 :|
+
+类中可以定义函数，函数大部分用法和JS类似
+
+可以通过实行 getter 和 setter 来创建新的属性
+
+```
+  class Rectangle {
+    num left;
+    num top;
+    num width;
+    num height;
+
+    Rectangle(this.left, this.top, this.width, this.height);
+
+    num get right             => left + width;
+        set right(num value)  => left = value - width;
+    num get bottom            => top + height;
+        set bottom(num value) => top = value - height;
+  }
+```
+
+抽象函数，（抽象函数是只定义函数接口但是没有实现的函数，由子类来 实现该函数），抽象类和非抽象类都可以定义抽象函数。
+
+```
+  abstract class Doer {
+    
+    // 抽象函数
+    void doSomething(); 
+  }
+
+  class EffectiveDoer extends Doer {
+
+    // 重写
+    void doSomething() {
+      // some...
+    }
+  }
+```
+
+可以通过`operator`来复写操作符
+
+```
+  class Vector {
+    final int x;
+    final int y;
+    const Vector(this.x, this.y);
+
+    // 重写 +
+    Vector operator +(Vector v) {
+      return new Vector(x + v.x, y + v.y);
+    }
+
+    // 重写 -
+    Vector operator -(Vector v) {
+      return new Vector(x - v.x, y - v.y);
+    }
+  }
+```
