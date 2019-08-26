@@ -258,6 +258,8 @@ Dart的继承使用 `extends` 定义子类， `supper` 引用 超类。子类可
 
 ### Mixins
 
+# TODO
+
 ```
   class A extends B with C, D {
     // ...
@@ -286,7 +288,7 @@ Dart的继承使用 `extends` 定义子类， `supper` 引用 超类。子类可
   }
 ```
 
-抽象函数：没有函数体的函数，自雷，抽象类和非抽象类都可以定义抽象函数。
+抽象函数：没有函数体的函数，抽象类和非抽象类都可以定义抽象函数。
 
 ```
   abstract class Doer {
