@@ -256,12 +256,28 @@ Dart的继承使用 `extends` 定义子类， `supper` 引用 超类。子类可
   }
 ```
 
-### Mixins
+### mixin
 
-# TODO
+mixin：提供了一种多继承机制，使用和class类似，只不过没有构造方法。
+
+通过`on`关键字可以限定mixin允许被哪些类使用，除非希望mixin可以像普通类一样使用，否则使用`mixin`关键字而不是`class`。
+
+在mixin中，后`with`的函数会覆盖前面的函数。
 
 ```
-  class A extends B with C, D {
+  mixin Dog on Animal{
+    bool isDog = true;
+
+    void eat() {
+      // ...
+    }
+  }
+
+  mixin Cat {
+    // ...
+  }
+
+  class A extends Animal with Dog, Cat {
     // ...
   }
 ```
@@ -270,7 +286,7 @@ Dart的继承使用 `extends` 定义子类， `supper` 引用 超类。子类可
 
 类中可以定义函数，函数大部分用法和JS类似
 
-可以通过实行 getter 和 setter 来创建新的属性
+可以通过实行 `getter` 和 `setter` 来创建新的属性
 
 ```
   class Rectangle {
@@ -326,6 +342,15 @@ Dart的继承使用 `extends` 定义子类， `supper` 引用 超类。子类可
   }
 ```
 
-### End
+### 静态变量/函数 :)
+
+使用 static 关键字来实现类级别的 静态变量和函数。
+
+不同点
+* 可以不用new，直接执行。`Point.distanceBetween(a, b)`
+* 静态变量在第一次使用的时候才被初始化。
+* 静态函数不再类实例上执行，(所以无法访问 `this`)
+
+### End :(
 
 结束啦

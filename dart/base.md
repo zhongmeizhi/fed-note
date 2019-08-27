@@ -171,6 +171,8 @@ Dart的Function类似JS的函数。
     }
   ```
 
+在Class章再叙述函数在Class中定义时的特性。
+
 ### 操作符 :o
 
 |操作符|解释|举例|
@@ -191,6 +193,27 @@ Dart的Function类似JS的函数。
     ..onClick.listen((e) => window.alert('Confirmed!'));
 ```
 
-### End
+### 枚举 :|
+
+枚举：用来表现一个固定 数目的常量。
+
+```
+  enum Color {
+    red,
+    green,
+    blue
+  }
+
+  // 枚举的使用
+  Color aColor = Color.blue;
+
+  // 获取全部枚举值
+  List<Color> colors = Color.values;
+
+  // 每个枚举都有对应的 index
+  print(Color.red.index == 0);
+```
+
+### End :(
 
 基础篇结束，下一篇：Dart-类(Class)
