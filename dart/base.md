@@ -4,22 +4,6 @@
 
 ### 开始 :/
 
-* Dart是强类型语音。
-* 静态作用域、
-  * 大括号里面定义的变量就 只能在大括号里面访问
-
-final 变量只能赋值一次
-
-
-实例变量可以为 final 但是不能是 const 。
-
-```
-  // const 赋值后的变量也是不可被修改的
-
-  List constantList = const [1, 2, 3];
-  // constantList[1] = 1; // Uncommenting this causes an error.
-```
-
 > Dart中，所有的变量都是对象(包括基础类型)。默认为`null`。
 
 ### 数字 num :)
@@ -90,7 +74,7 @@ List的用法和JS类似，但是`.forEach(fn)`和`.map(fn)`的参数只有value
 
 ### Map :|
 
-Map的用法和JS类似
+Map的用法和JS类似，当然也能 `new Map()`，可以直接通过`length`获取长度
 
 ```
   Map gifts = {
@@ -105,9 +89,7 @@ Map的用法和JS类似
   
   // 赋值
   nobleGases[2] = 'helium';
-```
 
-```
   // Map可以获取长度
   print(gifts.length == 2);
 ```
