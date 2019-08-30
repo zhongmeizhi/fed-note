@@ -23,24 +23,6 @@
 注意点：
 * Hero不能包裹Button（会报错：`widgets require a Material widget ancestor.`）
 
-.
-
-### IndexedStack
-
-* `IndexedStack` 显示第index个child，其它child在页面上是不可见的
-* 虽然其他child不可见,但是: 在初始化IndexedStack时,所有的child都会被渲染
-
-.
-
-### ListView与Column的冲突问题
-
-跟列有关的 Colum、Flex、Expanded 扩展Widget都会Error
-
-> `会铺满整屏幕的Widget`与`屏幕能扩展滚动的ListView` 放在ListView中很容易报错
-
-解决方案： 使用`限制高度的Widget`（如ConstrainedBox、SizedBox）来包裹Column
-
-.
 
 ### 在State内使用widget元素
 
@@ -52,8 +34,6 @@
     }
 ```
 
-.
-
 ### PageView 状态保存
 
 > 解决：with AutomaticKeepAliveClientMixin 然后重写 wantKeepAlive = true
@@ -61,6 +41,41 @@
 注意事项：
 * 如果：body中并没有使用PageView或TabBarView
 * 那么 wantKeepAlive 将无效
+
+### 国际化
+
+> 在默认情况下,Flutter只支持英文，本文讲解一下Flutter国际化的一些用法
+
+解决步骤：
+1. 在pubspec.yaml文件中添加依赖`flutter_localizations`
+    ```
+        dependencies:
+            flutter_localizations:
+                sdk: flutter
+    ```
+2. 运行`flutter packages get`
+3. 在MaterialApp中设置本地化代理
+    ```
+    MaterialApp(
+        localizationsDelegates:  [ // 本地化代理
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+            const Locale('en', 'US'), // 美国英语
+            const Locale('zh', 'CN'), // 中文简体
+            //其它Locales
+        ],
+    )
+    ```
+4. 在指定Widget处使用
+    ```
+        // 如
+        showDatePicker(
+            locale: Locale('zh', 'CN'),
+        )
+    ```
+
 
 
 ### [返回主页](/README.md)

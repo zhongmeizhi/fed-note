@@ -2,21 +2,15 @@
 
 ### 名词解释
 
-* OOP：面向对象编程（Object Oriented Programming
-  * Oriented = 导向的
-* RP：响应式编程（Reactive Programming）
-  * reactive = 反应的
+* OOP：面向对象编程（Object Oriented Programming）（Oriented = 导向的）
+* RP：响应式编程（Reactive Programming）（reactive = 响应的）
 * FP：函数式编程（Functional Programming）
-* 
 * AOT: 运行前编译（Ahead Of Time）
 * JIT：运行时编译（Just-in-time）
-* 
-* BOM：浏览器对象模型（Browser Object Model）
-  * BOM的最核心对象是window对象
-* DOM：文档对象模型（Document Object Model）
-  * DOM的最根本对象是document（window.document）
-* 静态作用域
-  * 变量的作用域在写代码的时候就确定过了
+* BOM：浏览器对象模型（Browser Object Model）（BOM的最核心对象是window对象）
+* DOM：文档对象模型（Document Object Model）DOM的最根本对象是 window.document
+* 静态作用域 -> 变量的作用域在写代码的时候就确定过了
+
 ### 关于 IOS 键盘弹出问题
 
 > IOS键盘弹出后，是覆盖式的。安卓是上推式的。
@@ -98,18 +92,13 @@
     export default echarts
 
     // 在需要的地方引入 abc.js 文件
+
+    // 如果要利用 webpack的 externals
+    // externals要用 import 后面的地址
+    // 'echarts/lib/echarts',
+    // 'echarts/lib/chart/line',
+    // 'echarts/lib/component/tooltip',
 ```
-
-### 跨域带token不通过问题
-
-> 帮朋友解决BUG，想想应该比较常见
-
-BUG描述：跨域请求，正常请求通过，在需要token请求的时候返回options请求返回302。没有后续请求
-
-问题解决： （不懂跨域的童鞋可以看，[跨域](browser/cross_origin.md) 章节）
-* 可能是后台根据token拦截掉了options的请求，导致预检查没有通过。
-* 后台放行就好了。
-
 
 ### 关于POST请求的body体
 
