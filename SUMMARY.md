@@ -52,8 +52,10 @@
   * [Vue 2.x源码（五）keep-alive](vue/keep_alive.md)
   * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
 * Flutter基础
-  * [dart（一）入门](dart/PRIMER.md)
-  * [dart（二）运行机制](dart/event_loop.md)
+  * [dart（一）概述](dart/PRIMER.md)
+  * [dart（二）基础操作](dart/base.md)
+  * [dart（三）类](dart/class.md)
+  * [dart（X）运行机制](dart/event_loop.md)
   * [flutter 简介](flutter/BRIEF.md)
   * [Flutter 屏幕适配](flutter/PRIMER.md)
   * [Flutter 国际化](flutter/LOCAL.md)
