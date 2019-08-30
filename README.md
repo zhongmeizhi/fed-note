@@ -2,8 +2,7 @@
 
 ### CSS 篇
   * [less入门](css/less.md)
-  * [移动端-像素适配](css/LAYOUT.md)
-  * [IphoneX适配](css/safe_area.md)
+  * [移动端-适配](css/mobile.md)
   * [CSS渐进增强](css/css_test.md)
   * [经验包](css/EXPERIENCE.md)
 
