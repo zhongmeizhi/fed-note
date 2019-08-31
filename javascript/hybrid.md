@@ -58,20 +58,10 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 
 ### 通过UA获取数据
 
-```
-    // 首先，需要Native端自定义 user-agent
-    // 附：UA是无法通过JS直接修改的
+首先，需要APp端自定义 user-agent （navigator.userAgent）
 
-    // 获取 UA
-    let UA = navigator.userAgent;
+附：UA是无法通过JS直接修改的
 
-    // 如果如果已经设置了对应的 UA，那么可以在 UA 中直接获取
-	["uversion", "udevice"].forEach(function (item) {
-		var reg = item + "\\/([^\\s]*)";
-		var res = UA.match(new RegExp(reg));
-		APPINFO[item] = (res && res[1].toLowerCase()) || false;
-	});
-```
 
 ### JS 判断访问终端
 ```
@@ -97,7 +87,19 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
         language:(navigator.browserLanguage || navigator.language).toLowerCase()
     }
 ```
+### 移动端调试
 
+可以使用腾讯开源的`vConsole`进行调试（兼容到安卓 4.4）
+* [下载 vConsole](https://github.com/Tencent/vConsole)，实例化就能使用
+* 或：使用webpack插件`vconsole-webpack-plugin`（兼容到安卓5）
+
+其他调试方式
+* 如果有真机，可以使用 `fiddler` 进行真机调试
+* 如果没有真机，可以使用 `xCode` 或 `Android Studio`的虚拟机进行调试
+* **无论是虚拟机还是真机，都可以使用Chrome自带的inspect打开调试模式调试。**
+* 当然也可以使用[spy-debugger](https://github.com/wuchangming/spy-debugger)
+
+inspect打开方式：Chrome输入链接 [chrome://inspect/#devices](chrome://inspect/#devices)
 
 ### End
 

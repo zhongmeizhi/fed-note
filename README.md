@@ -1,17 +1,27 @@
-# 蘑菇碳的小书房
+# 《蘑菇碳的小书房》 持续更新中
 
-### CSS 篇
+### 序言
+
+从2019年3月份开始写读书笔记。主要是为了记录自己的学习轨迹和备忘，同时分享下技术心得。希望每年回顾上一年收获的时候，不会因为虚度光阴而悔恨。
+
+电子书快速阅读地址：
+
+[https://zhongmeizhi.github.io/FED-note/](https://zhongmeizhi.github.io/FED-note/)
+
+
+### 目录
+
+* [目录](README.md)
+* 样式&&兼容性
   * [less入门](css/less.md)
   * [移动端-适配](css/mobile.md)
   * [CSS渐进增强](css/css_test.md)
   * [经验包](css/EXPERIENCE.md)
-
-### 计算机基础
-  * [HTTPS加密机制](base/https.md)
+* 计算机基础
+  * [HTTPS 加密机制](base/https.md)
   * [跨域机制](browser/cross_origin.md)
   * [页面加载过程](base/page_load.md)
-
-### 前端基础篇
+* 前端基础
   * [基础类型](javascript/basal_type.md)
   * [引用类型](javascript/object_type.md)
   * [函数（一）函数&尾递归](javascript/function.md)
@@ -20,13 +30,10 @@
   * [requestAnimationFrame](javascript/request_frame.md)
   * [迭代器](javascript/iterator.md)
   * [hybrid开发](javascript/hybrid.md)
-  * [移动端调试](sse/console.md)
   * [埋点设计](javascript/event-point.md)
   * [HEX转RGB-判断是否淡色系](javascript/hex2rgb.md)
   * [经验包](javascript/experience.md)
-
-
-### 前端进阶篇
+* 前端进阶
   * [性能优化](sse/optimization.md)
   * [async await](sse/async_await.md)
   * [模块化](sse/module.md)
@@ -37,12 +44,9 @@
   * [NPM机制](node/NPM.md)
   * [JS运行机制](sse/event_loop.md)
   * [JS垃圾回收机制](browser/garbage_collection.md)
-
-### Node学习篇
+* Node学习篇
   * [用Koa2撸一个API Mock](https://github.com/zhongmeizhi/z-mock)
-
-
-### RXJS学习篇
+* RXJS学习
   * [redux、mobx、rxjs取舍](sse/state_manage.md)
   * [函数式编程 简介](sse/function_program.md)
   * [RXJS学习（一）简介](rxjs/rxjs.md)
@@ -50,21 +54,19 @@
   * [RXJS学习（三）Operators](rxjs/Operators.md)
   * [RXJS学习（四）Subject](rxjs/Subject.md)
   * [RXJS学习（五）Scheduler](rxjs/Scheduler.md)
-
-
-### 框架解析篇
+* 框架解析
   * [Vue 2.x源码（一）概览](vue/base.md)
   * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
   * [Vue 2.x源码（三）异步更新和$nextTick](vue/next_tick.md)
   * [Vue 2.x源码（四）diff算法](vue/diff.md)
   * [Vue 2.x源码（五）keep-alive](vue/keep_alive.md)
   * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
-  
-### Flutter基础篇
+* Dart篇
   * [dart（一）概述](dart/PRIMER.md)
   * [dart（二）基础操作](dart/base.md)
   * [dart（三）类](dart/class.md)
   * [dart（X）运行机制](dart/event_loop.md)
+* Flutter基础
   * [flutter 简介](flutter/BRIEF.md)
   * [Flutter 屏幕适配](flutter/PRIMER.md)
   * [Flutter 渲染策略](flutter/render.md)
@@ -74,22 +76,17 @@
   * [Flutter 开发细节](flutter/ISSUE.md)
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
-  <!-- * [Flutter Bloc模式]() -->
-
-### Java篇
+* Java
   * [JVM](java/JVM.md)
   * [Maven](java/maven.md)
   * [mysql环境搭建](java/MYSQL.md)
   * [事务&锁](java/data_base.md)
   * [Spring Boot（一）入门篇](spring-boot/init.md)
   <!-- * [Spring Boot（二）注解](spring-boot/decoration.md）-->
-
-### 其他
+* 其他
   * [git命令](other/GIT.md)
   * [GitHub的Host和Key](other/GITHUB.md)
-
-
-### github博客分享
+* 大神github博客地址
   * [阮一峰](https://github.com/ruanyf)
   * [司徒正美](https://github.com/RubyLouvre/mobileHack)
   * [张云龙](https://github.com/fouber/blog)

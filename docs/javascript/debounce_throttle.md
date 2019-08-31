@@ -1,8 +1,78 @@
-# 节流
+# 防抖&节流
 
-> 节流是将函数多次调用变成每隔一段时间执行（比如在onresize时调用的函数）。
+节流（throttle）：是将函数多次调用变成每隔一段时间执行（比如在onresize时调用的函数）。
+
+防抖（debounce）：用来解决一些函数多次调用的问题（例如：一个实时搜索功能），需要加以限制。
+
+### 延迟执行的防抖函数
+
+只在最后一次触发时，执行目标函数。
+```
+const debounce = (func, wait = 500) => {
+  let timer = 0
+  return function(...args) {
+
+    // 如果500ms再次触发，那么就将定时器重置
+
+    if (timer) clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, wait)
+  }
+}
+```
+
+如果是发送请求的按钮。那么应该使用立即执行的防抖函数
+
+### lodash带有立即执行选项的防抖函数：
+
+```
+function debounce (func, wait = 500, immediate = true) {
+  let timer, context, args
+
+  // 延迟执行函数
+  const later = () => setTimeout(() => {
+    // 内存清理
+    timer = null
+
+    if (!immediate) {
+      // 后执行防抖
+      // 使用到之前缓存的参数和上下文
+      func.apply(context, args)
+
+      // 清理内存
+      context = args = null
+    }
+  }, wait)
+
+  // 这里返回的函数是每次实际调用的函数
+  return function(...params) {
+    if (!timer) {
+      // 如果没有setTimeout，就创建一个
+      timer = later()
+
+      if (immediate) {
+        // 立即执行的防抖函数
+        func.apply(this, params)
+      } else {
+        // 后执行的防抖函数
+        // 缓存参数和调用上下文
+        context = this
+        args = params
+      }
+      
+    } else {
+      // 如果有setTimeout，那么重新计时
+      clearTimeout(timer)
+      timer = later()
+    }
+  }
+}
+```
 
 ### 节流函数
+
 
 比较缓存时间和当前时间是否在时间间隔外
 
