@@ -4,9 +4,17 @@
 
 从2019年3月份开始写读书笔记。主要是为了记录自己的学习轨迹和备忘，同时分享下技术心得。希望每年回顾上一年收获的时候，不会因为虚度光阴而悔恨。
 
-电子书快速阅读地址：
+### 电子书快速阅读地址：
 
 [https://zhongmeizhi.github.io/FED-note/](https://zhongmeizhi.github.io/FED-note/)
+
+*** 
+
+<div align=center>
+  
+  ![meihong](img/meihong.jpg)
+
+</div>
 
 
 ### 目录
