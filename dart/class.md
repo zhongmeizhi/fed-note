@@ -351,6 +351,32 @@ mixin：提供了一种多继承机制，使用和class类似，只不过没有�
 * 静态变量在第一次使用的时候才被初始化。
 * 静态函数不再类实例上执行，(所以无法访问 `this`)
 
+### call()
+
+如果 Dart 类实现了 `call()` 函数则 可以当做方法来调用。
+
+```
+  class ClassFunction {
+  call(String a, String b, String c) => '$a $b $c!';
+}
+
+main() {
+  var cf = new ClassFunction();
+    var out = cf("wangxiaojian","is","talent");
+    print('$out');
+    print(cf.runtimeType);
+    print(out.runtimeType);
+    print(cf is Function);
+  }
+  
+  // 运行结果：
+  // wangxiaojian is talent!
+  // ClassFunction
+  // String
+  // false
+```
+
+
 ### End :(
 
 结束啦

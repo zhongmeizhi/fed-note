@@ -52,8 +52,9 @@
   * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
 * Dart篇
   * [dart（一）概述](dart/PRIMER.md)
-  * [dart（二）基础操作](dart/base.md)
+  * [dart（二）基本操作](dart/base.md)
   * [dart（三）类](dart/class.md)
+  * [dart（四）稍微抽象点](dart/again.md)
   * [dart（X）运行机制](dart/event_loop.md)
 * Flutter基础
   * [flutter 简介](flutter/BRIEF.md)
