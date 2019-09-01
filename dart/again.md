@@ -85,7 +85,7 @@ Dart 有一些语言特性来支持 异步编程。 最常见的特性是 `async
 简单地说，`Future`将返回一个值，而`Stream`将返回多次值。所以`Steam`使用`await for`
 
 
-Future
+Future，基本上等于JS的Promise
 ```
   checkVersion() async {
     var version = await lookUpVersion();
@@ -97,7 +97,17 @@ Future
   }
 ```
 
-Stream
+当然，Future有类似于 Promise.all([])的方法，
+```
+  //等待所有 Future 执行完成
+
+  Future.wait([deleteDone, copyDone, checksumDone])
+    .then((List values) {
+      print('Done with all the long steps');
+    });
+```
+
+Stream。`await for`会在数据返回完毕后结束，所以别在无尽的数据流（比如DOM事件）中使用`await for`
 
 ```
   initData async {
@@ -135,3 +145,5 @@ Stream
     print('do something');
   }
 ```
+
+不过，Flutter似乎**不支持**`反射`。

@@ -12,6 +12,14 @@ int(整数) 和 double(浮点数) 都是 num 的子类。定义了 `abs()`、 `c
 
 更多操作参考`dart:math`库,
 
+```
+  // math库有很多功能
+
+  var random = new math.Random();
+  random.nextDouble(); // 返回 0.0 到 1.0: [0, 1) 之间的数
+  random.nextInt(10);  // 返回 0 到 9. 之间的数
+```
+
 ### 字符串 String :*
 
 字符串拼接推荐使用： `'${x}嘿嘿嘿'`
