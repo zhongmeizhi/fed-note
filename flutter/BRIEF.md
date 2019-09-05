@@ -30,6 +30,15 @@ Flutter中有四⼤线程，Platform Task Runner 、UI Task Runner、GPU Task Ru
 
 渲染经历了从 Widget 到 Element 再到 RenderObject 的过程。
 
+Flutter 中的根Widget 是`RenderObjectToWidgetAdapter`,根 Widget 的 child 就是我们在void runApp(Widget app)中传入的自定义 Widget。
+
+<div align=center>
+
+![widget](/img/widget.png)
+
+</div>
+
+
 Widget 分为 有状态（`StatefulWidget`）和 ⽆状态（`StatelessWidget`）两种，在 Flutter 中每个⻚⾯都是⼀帧，⽆状态就是保持在那⼀帧，⽽有状态的 Widget 当数据更新时，其实是绘制了新的 Widget，只是 State 实现了跨帧的数据同步保存。
 
 State 中主要的生命周期：
