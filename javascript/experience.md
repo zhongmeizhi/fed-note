@@ -75,6 +75,26 @@
     }
 ```
 
+### 处理精确度问题
+
+> JS的精确度。。。
+
+* 0.1 + 0.2 => 0.30000000000000004
+* 0.105.toFixed(2) = 0.1 // not 0.11
+
+解决方案：(参考 [number-precision](https://github.com/nefe/number-precision))
+```
+    // 1. 获得小数点后位数 * 10
+    // 2. *对应10 转换成整数 / 对应10
+
+    function add(num1, num2) {
+        const num1Digits = (num1.toString().split('.')[1] || '').length;
+        const num2Digits = (num2.toString().split('.')[1] || '').length;
+        const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
+        return (num1 * baseNum + num2 * baseNum) / baseNum;
+    }
+```
+
 ### echarts 按需引入
 
 ```

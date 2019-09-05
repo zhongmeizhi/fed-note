@@ -1,5 +1,92 @@
 # React 基础
 
+## JSX
+
+## 生命周期
+
+## setState
+
+## 受控 & 不受控
+
+## Css Module
+
+> CSS Modules 会转换 `class` 和 `id` 相关的样式。
+
+#### 默认局部样式 && 全局样式
+```
+  .normal {
+    color: green;
+  }
+
+  /* 以上与下面等价 */
+  :local(.normal) {
+    color: green; 
+  }
+
+  /* 定义全局样式 */
+  :global(.btn) {
+    color: red;
+  }
+
+  /* 定义多个全局样式 */
+  :global {
+    .link {
+      color: green;
+    }
+    .box {
+      color: yellow;
+    }
+  }
+```
+
+#### composes 组合样式
+```
+  /* components/Button.css */
+  .base { /* 所有通用的样式 */ }
+
+  .normal {
+    composes: base;
+    /* normal 其它样式 */
+  }
+
+  .disabled {
+    composes: base;
+    /* disabled 其它样式 */
+  }
+```
+
+```
+  <button class=${styles.normal}>Submit</button>
+
+  // 编译成
+  <button class="button--base-daf62 button--normal-abc53">Submit</button>
+```
+
+#### CSS Modules 结合 React 实践
+
+```
+  import classNames from 'classnames';
+  import styles from './dialog.css';
+
+  export default class Dialog extends React.Component {
+    render() {
+
+      // 用 classnames 库来操作 class 名
+      const cx = classNames({
+        [styles.confirm]: !this.state.disabled,
+        [styles.disabledConfirm]: this.state.disabled
+      });
+
+      return <div className={styles.root}>
+        <a className={cx}>Confirm</a>
+        ...
+      </div>
+    }
+  }
+```
+
+`- -!` 还能使用 `react-css-modules` 通过高阶函数的形式来避免重复输入 `styles.**`。
+
 # TODO
 
 * (在React 16- 版本前当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树)
