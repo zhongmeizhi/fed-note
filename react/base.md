@@ -101,7 +101,29 @@ setState：异步 & 同步 & 回调
 
 ## 个性化配置
 
-基本上都是修改在 react-script 的 config
+可以修改`react-scripts\config`，但是其他人怎么办呢？
+
+所以啊，可以使用 [react-app-rewired](https://github.com/timarney/react-app-rewired) 来解决
+
+比如：设置`alias`
+1. 安装 react-app-rewired
+2. 配置启动项 `"start": "react-app-rewired start"`
+3. 添加`config-overrides.js`文件
+4. 添加代码
+  ```
+    const path = require('path');
+
+    function resolve(dir) {
+        return path.join(__dirname, '.', dir)
+    }
+    
+    module.exports = function override(config, env) {
+        config.resolve.alias = {
+            '@': resolve('src')
+        }
+        return config;
+    }
+  ```
 
 ## 代理
 
