@@ -2,11 +2,23 @@
 
 ## JSX
 
+只支持表达式
+
 ## 生命周期
+
+update、mount。
+
+v16版本新属性
 
 ## setState
 
+setState：异步 & 同步 & 回调
+
 ## 受控 & 不受控
+
+受控：通过 onchange 和value来控制
+
+不受控：通过ref来获取
 
 ## Css Module
 
@@ -86,6 +98,33 @@
 ```
 
 `- -!` 还能使用 `react-css-modules` 通过高阶函数的形式来避免重复输入 `styles.**`。
+
+## 个性化配置
+
+基本上都是修改在 react-script 的 config
+
+## 代理
+
+`http-proxy-middleware`插件
+
+```
+  const proxy = require('http-proxy-middleware');
+
+  module.exports = function (app) {
+      app.use(
+          proxy(
+              '/xyz',
+              {
+                  target: 'http://www.zmz.com/xyz',
+                  changeOrigin: true,
+                  pathRewrite: {
+                      '^/xyz': '/'   //重写接口
+                  }
+              }
+          )
+      );
+  }
+```
 
 # TODO
 
