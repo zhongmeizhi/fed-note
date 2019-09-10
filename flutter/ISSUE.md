@@ -26,5 +26,21 @@
 
 当然`:)`如果通过编辑器/.bat来配置就更完美了。
 
+## Android 打包后不能访问网络问题
+
+> 需要配置：使用权限申请
+
+分别在`android/src/profile/AndroidManifest.xml`和`android/src/main/AndroidManifest.xml`添加配置
+
+```
+    // <manifest>
+        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    // </manifest>
+```
+然后就能访问网络了
+
 
 ### [返回主页](/README.md)
