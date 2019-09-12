@@ -20,6 +20,24 @@ setState：异步 & 同步 & 回调
 
 不受控：通过ref来获取
 
+## Router
+
+> `create-react-app`默认使用`react-router-dom`
+
+* `BrowserRouter`需要服务器支持，否则会出现`404`，
+* `HashRouter`比较随意（虽然不太好看）
+
+```
+  import { HashRouter as Router, Route } from "react-router-dom";
+
+  <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/exception" component={Exception} />
+      <Route path="/trade-record" component={TradeRecord} />
+      <Route path="/trade-interval" component={TradeInterval} />
+  </Router>
+```
+
 ## Css Module
 
 > CSS Modules 会转换 `class` 和 `id` 相关的样式。
@@ -124,6 +142,12 @@ setState：异步 & 同步 & 回调
         return config;
     }
   ```
+
+
+更改打包后静态文件路径
+
+在`package.json`文件添加 `"homepage": "/路径"`
+
 
 ## 代理
 
