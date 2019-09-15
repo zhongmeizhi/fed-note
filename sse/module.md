@@ -1,6 +1,8 @@
 # 模块化
 
-模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等。将一个复杂的系统分解为多个模块以方便编码。
+> 模块化是目前前端最流行的分治手段。
+
+模块化主要是用来抽离公共代码，隔离作用域，避免变量冲突等。将一个复杂的系统分解为多个模块以方便编码和多人协作。
 
 会讲述以下内容
 1. CommonJS
@@ -9,6 +11,7 @@
 4. UMD 及 源码解析
 5. ES6 Module
 6. webpack打包策略
+7. css模块化
 
 ### CommonJS
 
@@ -20,7 +23,7 @@ CommonJS API是以在浏览器环境之外构建 JS 生态系统为目标而产�
 
 .js件会以文本格式的JavaScript脚本文件解析，.json文件会以JSON格式的文本文件解析，.node文件会以编译后的二进制文件解析。
 
-### AMD
+### AMD -> Asynchronous Module Definition
 
 > 异步加载（对象）
 
@@ -82,9 +85,9 @@ CMD核心实现
   }
 ```
 
-### UMD
+### UMD -> Universal Module Definition
 
-> 兼容AMD，CommonJS 模块化语法。
+> 通用模块定义规范，兼容AMD，CommonJS 模块化语法。
 
 UMD源码解析
 ```
@@ -165,5 +168,92 @@ manifest.js 文件是最先加载的，是在vendor的基础上，再抽取出�
   
   会生成 <link rel="prefetch" href="login-modal-chunk.js"> 并追加到页面头部
 ```
+
+还有一个很小巧的模块化规工具：`rollup`， 相对 `webpack` 处理后文件更小，几乎没什么多余代码，但不具备 webpack 的一些强大的功能，如热更新，代码分割，公共依赖提取等。
+
+所以，一个不错的选择是，应用使用 webpack，类库使用 rollup。
+
+
+### css模块化 -> css modules
+
+> 虽然SASS、LESS等预处理器实现了CSS的文件拆分，但没有解决选择器的全局污染问题;
+
+`CSS Modules`原理：使用JS 来管理样式模块，它能够**最大化地结合CSS生态和JS模块化能力**，通过在每个`class`名后带一个`hash`值的方式解决全局命名冲突的问题。
+
+```
+  <button class=${styles.normal}>Submit</button>
+
+  // 编译成
+  <button class="button--base-daf62 button--normal-abc53">Submit</button>
+```
+
+默认为局部样式，可通过`:global`定义全局样式
+
+```
+  .normal {
+    color: green;
+  }
+
+  /* 以上与下面等价 */
+  :local(.normal) {
+    color: green; 
+  }
+
+  /* 定义全局样式 */
+  :global(.btn) {
+    color: red;
+  }
+
+  /* 定义多个全局样式 */
+  :global {
+    .link {
+      color: green;
+    }
+    .box {
+      color: yellow;
+    }
+  }
+```
+
+同时支持通过`composes`组合样式
+```
+  /* components/Button.css */
+  .base { /* 所有通用的样式 */ }
+
+  .normal {
+    composes: base;
+    /* normal 其它样式 */
+  }
+
+  .disabled {
+    composes: base;
+    /* disabled 其它样式 */
+  }
+```
+
+##### CSS Modules 结合 React 实践
+
+```
+  import classNames from 'classnames';
+  import styles from './dialog.css';
+
+  export default class Dialog extends React.Component {
+    render() {
+
+      // 用 classnames 库来操作 class 名
+      const cx = classNames({
+        [styles.confirm]: !this.state.disabled,
+        [styles.disabledConfirm]: this.state.disabled
+      });
+
+      return <div className={styles.root}>
+        <a className={cx}>Confirm</a>
+        ...
+      </div>
+    }
+  }
+```
+
+`- -!` 还能使用 `react-css-modules` 通过高阶函数的形式来避免重复输入 `styles.**`。
 
 ### [返回主页](/README.md)
