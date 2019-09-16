@@ -57,7 +57,6 @@
 * Node学习篇
   * [用Koa2撸一个API Mock](https://github.com/zhongmeizhi/z-mock)
 * RXJS学习
-  * [redux、mobx、rxjs取舍](sse/state_manage.md)
   * [函数式编程 简介](sse/function_program.md)
   * [RXJS学习（一）简介](rxjs/rxjs.md)
   * [RXJS学习（二）Observable](rxjs/Observable.md)
@@ -67,12 +66,7 @@
 <!-- * React学习
   * 组件 -->
 * 框架解析
-  * [Vue 2.x源码（一）概览](vue/base.md)
-  * [Vue 2.x源码（二）实现双向绑定](vue/proxy.md)
-  * [Vue 2.x源码（三）异步更新和$nextTick](vue/next_tick.md)
-  * [Vue 2.x源码（四）diff算法](vue/diff.md)
-  * [Vue 2.x源码（五）keep-alive](vue/keep_alive.md)
-  * [Vue 2.x源码（六）Vuex实现](vue/vuex.md)
+  * [Vue 2.x 源码解析](resource-analysis/vue2.md)
 * Dart篇
   * [dart（一）概述](dart/PRIMER.md)
   * [dart（二）基本操作](dart/base.md)
