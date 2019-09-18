@@ -40,13 +40,14 @@ setState：异步 & 同步 & 回调
 
 ## redux
 
+redux是通过发布订阅者模式实现的：
+
 单向数据流
 1. 调用store.dispatch(action)提交`action`。
 2. 中间件 处理
 3. redux store调用传入的`reducer`函数。把当前的state和action传进去。
 4. 根 reducer 应该把多个子 reducer 输出合并成一个单一的 `state` 树。
 5. Redux store 保存了根 reducer 返回的完整 state 树。
-
 
 容器组件就是使用 `store.subscribe() `从 `Redux state` 树中读取部分数据，并通过 `props` 来把这些数据提供给要渲染的组件。你可以手工来开发容器组件，但建议使用 React Redux 库的 `connect()` 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。
 

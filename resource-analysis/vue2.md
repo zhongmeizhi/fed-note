@@ -429,8 +429,6 @@ _withCommit (fn) {
 }
 ```
 
-### action
-
 action是异步的，使用的是Promise。 - -没啥好说的。
 
 

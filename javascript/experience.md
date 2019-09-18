@@ -95,6 +95,21 @@
     }
 ```
 
+### input type="file" 相机和相册问题
+
+2个属性的坑：`accept="image/*"` 和 `capture="camera"`
+
+关于`capture="camera"` 一般情况下：
+* `Android`系统：input`加上capture="camera"`，可以调用相机+相册
+  * android可以同时使用2个属性
+* `ios`系统：input`去掉capture属性`，可以调用相机 +相册
+  * 如果加上`capture="camera"` 只调相机
+
+关于`accept="image/*"`
+* 如果限制图片枚举不够，会出现Android无法调用相册的情况。
+* 推荐用`accept="image/*"`
+
+
 ### echarts 按需引入
 
 ```
