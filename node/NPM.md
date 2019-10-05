@@ -101,8 +101,53 @@ node_modules
 最后一步是生成或更新版本描述文件，npm install 过程完成。
 
 
-### [返回主页](/README.md)
-
 参考
 * [阮一峰的个人博客](http://www.ruanyifeng.com/blog/2016/01/npm-install.html)
 * [npm实现原理](https://www.zhihu.com/question/66629910)
+
+
+### 版本控制
+
+在package.json文件中
+```
+  "x": "1.0.1", // 安装 指定版本（1.0.1）
+  "x": "~1.0.1", // 安装 1.0.X 中最新的版本
+  "x": "^1.0.1", // 安装 1.X.X 中最新的版本
+```
+
+默认的npm版本使用`^x.x.x`。如果包版本不向下兼容，再次安装时出现版本BUG。
+
+不过：`npm 5.x`版本后默认会添加`package-lock.json`文件，类似于 `yarn`的`yarn.lock`。在安装时`.lock`文件会先被读取，这样能实现每处都使用相同版本的 packages，
+
+
+### NPM 插件
+
+运行`npm init`生成`package.json`
+
+`package.json`将作为插件的配置文件
+* "name": 表示插件的名称
+* "private": 必须为 true
+* "main": 作为插件的入口文件
+
+
+* 如果，那么webpack的alias在插件中会不能使用
+* 根目录下的 `.npmignore`文件的中可设置在npm发布时的忽略项。
+* 如果，那么webpack的alias在插件中会不能使用
+* 可以通过使用 `npm-link`来联调插件
+
+
+### NPM私有库
+* 使用`verdaccio`搭建服务 `npm install –global verdaccio`
+* 然后就运行`verdaccio`再设置账户和密码
+* 然后就可以cd到需要作为插件的目录`npm publish`
+* 私有库可链接 `cnpm` 镜像
+
+### NPM 和 yarn
+
+yarn产生的原因：
+1. 解决NPM的包管理问题（`yarn.lock`），npm 5.0后也有了.lock文件
+2. 解决npm install 安装速度过慢的问题（同步执行所有任务）
+
+npm 5.0 的改进
+1. 包管理方面：npm也会自动生成`package-lock.json`文件
+2. 速度方面：产生了`symlink`，项目的包可以通过`symlink`链接到全局文件包中。
