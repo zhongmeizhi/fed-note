@@ -1,5 +1,12 @@
 # 《蘑菇碳的小书房》 持续更新中
 
+
+<div align=center>
+  
+![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/blog-@zmz-blue.svg?style=flat) ![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/FED-note-pink.svg?style=flat) ![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/star-33-blue.svg?style=social&logo=github)
+
+</div>
+
 ## 序言
 
 从2019年3月份开始写读书笔记。主要是为了记录自己的学习轨迹和备忘，同时分享下技术心得。希望每年回顾上一年收获的时候，不会因为虚度光阴而悔恨。
