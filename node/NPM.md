@@ -148,6 +148,20 @@ yarn产生的原因：
 1. 解决NPM的包管理问题（`yarn.lock`），npm 5.0后也有了.lock文件
 2. 解决npm install 安装速度过慢的问题（同步执行所有任务）
 
-npm 5.0 的改进
+npm 5.x 的改进
 1. 包管理方面：npm也会自动生成`package-lock.json`文件
-2. 速度方面：产生了`symlink`，项目的包可以通过`symlink`链接到全局文件包中。
+2. 5.2.x版本后：产生了`symlink`（符号链接），项目的包可以通过`npm link`链接到全局文件包中。
+
+npm link的使用：
+```
+  // cd 到需要使用的目录
+  
+  // 运行
+  npm link ../app1
+  
+  // app1 表示package.json的name
+
+  // 然后 对app1的更改都会映射到该目录的 node_modules/app1 中
+```
+
+npm link在调试npm插件的时候非常好用，可以避免每次都`publish`插件
