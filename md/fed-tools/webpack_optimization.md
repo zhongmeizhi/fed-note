@@ -14,6 +14,7 @@
   * webpack外部扩展(externals)
   * 条件匹配 test & include & exclude
 
+
 ### DllPlugin + DllReferencePlugin
 
 为了极大减少构建时间，进行分离打包。
@@ -44,6 +45,7 @@ webpack.app.config.js
   })
 ```
 
+
 ### CommonsChunkPlugin
 
 通过将公共模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用。这个带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。
@@ -72,6 +74,7 @@ webpack.app.config.js
   <script src="app.js" charset="utf-8"></script>
 ```
 
+
 ### UglifyJSPlugin
 
 基本上脚手架都包含了该插件,该插件会分析JS代码语法树，理解代码的含义，从而做到去掉无效代码、去掉日志输入代码、缩短变量名等优化。
@@ -94,6 +97,7 @@ webpack.app.config.js
       })
   ]
 ```
+
 
 ### ExtractTextPlugin + PurifyCSSPlugin
 
@@ -131,11 +135,79 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
   };
 ```
 
+
 ### DefinePlugin
 
-在[webpack环境检测与优化](/md/fed-tools/define_plugin.md)篇以阐述
+> DefinePlugin能够自动检测环境变化，效率高效。
+
+在前端开发中，在不同的应用环境中，需要不同的配置。如：开发环境的API Mocker、测试流程中的数据伪造、打印调试信息。
+
+如果使用人工处理这些配置信息，不仅麻烦，而且容易出错。
+
+##### 使用`DefinePlugin`配置的全局常量
+
+注意，因为这个插件直接执行文本替换，给定的值必须包含字符串本身内的实际引号。通常，有两种方式来达到这个效果，使用 `' "production" '`, 或者使用 `JSON.stringify('production')`。
+
+```
+    new webpack.DefinePlugin({
+
+        // 当然，在运行node服务器的时候就应该按环境来配置文件
+        // 下面模拟的测试环境运行配置
+
+        'process.env':JSON.stringify('dev'),
+        WP_CONF: JSON.stringify('dev'),
+    }),
+```
+
+##### 测试`DefinePlugin`
+
+编写
+
+```
+    if (WP_CONF === 'dev') {
+        console.log('This is dev');
+    } else {
+        console.log('This is prod');
+    }
+```
+
+打包后`WP_CONF === 'dev'`会编译为`false`
+
+```
+    if (false) {
+        console.log('This is dev');
+    } else {
+        console.log('This is prod');
+    }
+```
+
+
+##### 清除不可达代码
+
+当使用了`DefinePlugin`插件后，打包后的代码会有很多冗余。可以通过`UglifyJsPlugin`**清除不可达代码**。
+
+```
+    [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+            compress: {
+                warnings: false, // 去除warning警告
+                dead_code: true, // 去除不可达代码
+            },
+            warnings: false
+            }
+        })
+    ]
+```
+
+最后的打包打包代码会变成`console.log('This is prod')`
+
+
+附Uglify文档：https://github.com/mishoo/UglifyJS2
 
 使用DefinePlugin区分环境 + UglifyJsPlugin清除不可达代码，以减轻打包代码体积
+
+
 
 ### HappyPack
 
@@ -169,6 +241,7 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
     },
   ]
 ```
+
 
 ### ParallelUglifyPlugin
 
@@ -206,6 +279,7 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
   };
 ```
 
+
 ### BundleAnalyzerPlugin
 
 webpack打包结果分析插件
@@ -219,6 +293,7 @@ webpack打包结果分析插件
     ]
   }
 ```
+
 
 ### 外部扩展(externals)
 
@@ -237,6 +312,7 @@ externals 配置选项提供了「从输出的 bundle 中排除依赖」的方�
     echarts: 'echarts',
   }
 ```
+
 
 ### test & include & exclude
 

@@ -9,6 +9,8 @@
 单例模式的应用场景
 * popup
 * toast
+* loading
+* alert
 * EventBus
 * ScreenUnit 
 
