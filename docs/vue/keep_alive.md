@@ -43,4 +43,4 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
 
 触发顺序：created-> mounted-> activated
 
-### [返回主页](/README.md)
+

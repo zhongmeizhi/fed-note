@@ -75,6 +75,41 @@
     }
 ```
 
+### 处理精确度问题
+
+> JS的精确度。。。
+
+* 0.1 + 0.2 => 0.30000000000000004
+* 0.105.toFixed(2) = 0.1 // not 0.11
+
+解决方案：(参考 [number-precision](https://github.com/nefe/number-precision))
+```
+    // 1. 获得小数点后位数 * 10
+    // 2. *对应10 转换成整数 / 对应10
+
+    function add(num1, num2) {
+        const num1Digits = (num1.toString().split('.')[1] || '').length;
+        const num2Digits = (num2.toString().split('.')[1] || '').length;
+        const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
+        return (num1 * baseNum + num2 * baseNum) / baseNum;
+    }
+```
+
+### input type="file" 相机和相册问题
+
+2个属性的坑：`accept="image/*"` 和 `capture="camera"`
+
+关于`capture="camera"` 一般情况下：
+* `Android`系统：input`加上capture="camera"`，可以调用相机+相册
+  * android可以同时使用2个属性
+* `ios`系统：input`去掉capture属性`，可以调用相机 +相册
+  * 如果加上`capture="camera"` 只调相机
+
+关于`accept="image/*"`
+* 如果限制图片枚举不够，会出现Android无法调用相册的情况。
+* 推荐用`accept="image/*"`
+
+
 ### echarts 按需引入
 
 ```
@@ -111,5 +146,6 @@
 * raw   -> （未加工的）可以上传任何格式的文本
 * binary    -> 相当于`Content-Type:application/octet-stream`
   * 上传文件（只能上传一个）
+
 
 

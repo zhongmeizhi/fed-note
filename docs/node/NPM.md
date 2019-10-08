@@ -101,7 +101,7 @@ node_modules
 最后一步是生成或更新版本描述文件，npm install 过程完成。
 
 
-### [返回主页](/README.md)
+
 
 参考
 * [阮一峰的个人博客](http://www.ruanyifeng.com/blog/2016/01/npm-install.html)

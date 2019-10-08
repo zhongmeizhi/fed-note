@@ -50,4 +50,3 @@ while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
 Vue会逐级递归对children件进行diff，单每个组件的diff是独立的
 
 
-### [返回主页](/README.md)

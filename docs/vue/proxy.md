@@ -151,4 +151,3 @@
   * 同时使用`const arrayMethods = Object.create(arrayProto)`确保不污染原生数组方法
 
 
-### [返回主页](/README.md)

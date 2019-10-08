@@ -6,7 +6,7 @@
 1. 热更新图
 2. 热更新步骤讲解
 
-![热更新](/img/hot_loader.jpg)
+![热更新](/md/img/hot_loader.jpg)
 
 ### 第一步：webpack 对文件系统进行 watch 打包到内存中
 
@@ -171,4 +171,4 @@ hotDownloadUpdateChunk 是通过 jsonp 请求最新的模块代码，然后将�
 文章转载于：[饿了么前端](https://zhuanlan.zhihu.com/p/30669007)
 
 
-### [返回主页](/README.md)
+

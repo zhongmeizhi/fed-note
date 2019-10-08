@@ -10,7 +10,7 @@
 * (在React 16- 版本前当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树)
 
 双向绑定实现原理图：
-![vue双向绑定](/img/vue_proxy.png)
+![vue双向绑定](/md/img/vue_proxy.png)
 
 Vue 运行：
 * 在创建时（beforeCreate之后created之前）使用依赖收集实现双向绑定
@@ -27,4 +27,3 @@ Vue 主要模块：
 * keep-alive 和 instance（基于VNode节点），还有activated与deactivated
 
 
-### [返回主页](/README.md)
