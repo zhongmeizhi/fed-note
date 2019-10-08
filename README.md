@@ -21,7 +21,7 @@
 
 <div align=center>
   
-  ![meihong](img/meihong.jpg)
+  ![meihong](md/img/meihong.jpg)
 
 </div>
 
@@ -105,8 +105,6 @@
   * [司徒正美](https://github.com/RubyLouvre/mobileHack)
   * [张云龙](https://github.com/fouber/blog)
   * [冴羽](https://github.com/mqyqingfeng/Blog)
-  * [木易杨](https://github.com/yygmind)
-  * [微前端](https://github.com/phodal/microfrontends)
   * [前端周报](https://github.com/Tnfe/TNFE-Weekly)
   * [安安小姐姐](https://github.com/sisterAn/blog)
   * [函数式编程](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html)
