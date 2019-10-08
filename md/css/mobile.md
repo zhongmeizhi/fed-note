@@ -1,8 +1,41 @@
 # 移动端适配
 
+首先是名词介绍：
+* 像素：Pixel，就是
+* 物理像素：也就是设备像素
+* 逻辑像素：（css像素）单位为 `px`
+* 设备像素比：`devicePixelRatio`，（在高倍屏会出现1px变大的问题）。
+* css单位`em`：相对于当前对象内文本的字体尺寸
+* css单位`rem`： 即root em，root指的是根（html标签）
+
+### 1px问题
+
+京东商城解决方案：伪元素 + `scale`
+```
+  .div::after {
+    content: "";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+  }
+```
+
+那么淘宝商城呢？`border-left: 1px solid #dfdfdf;`，因为阿里大大已经表示不支持石器时代的浏览器了。
+
+其他较好解决方案：渐变的还不错。
+
+
 ## 一、像素适配
 
-### 阿里flexible布局 - 版本1.x
+##### 阿里flexible布局 - 版本1.x
 
 > 该布局于 2017年8月9日被2.0版本取代
 
@@ -13,7 +46,7 @@
 * 利用 `px2rem插件` 转换为 ->  实际rem
 
 
-### 阿里flexible布局 - 版本2.x
+##### 阿里flexible布局 - 版本2.x
 
 > flexible 2.x： https://github.com/amfe/lib-flexible
 
@@ -21,7 +54,7 @@
 * 利用viewport的理想视口，删除1.x版本的scale缩放
 * 其他依旧和1.x版本一样
 
-### 网易布局
+##### 网易布局
 
 > 个人很喜欢的布局方案
 
@@ -35,7 +68,7 @@
   * 按照低版本逻辑：`font-size = 0.1333333% * 100 = 13.33333vw`
 
 
-### webpack插件postcss-px-to-viewport
+##### webpack插件postcss-px-to-viewport
 
 > 顾名思义，将px转换为vw、vh、vmin、vmax
 
@@ -51,16 +84,7 @@
 }
 ```
 
-### Other
-
-当然，如果不要求特别精确
-
-* flex
-* px
-* vw
-* 百分比
-
-### 附：自用方案
+##### 附：自用方案
 
 ```
     var initDocumentFontSize = function initDocumentFontSize() {
