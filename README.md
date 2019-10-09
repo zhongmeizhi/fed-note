@@ -4,10 +4,15 @@
 <div align=center>
 
 ![meihong](md/img/meihong.jpg)
-  
+
+</div>
+
+<div align=center>
+
 [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/blog-@zmz-blue.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/FED-note-pink.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/star-33-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/fork-5-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note)
 
 </div>
+  
 
 ## 序言
 
@@ -65,8 +70,6 @@
   * [RXJS学习（三）Operators](md/rxjs/Operators.md)
   * [RXJS学习（四）Subject](md/rxjs/Subject.md)
   * [RXJS学习（五）Scheduler](md/rxjs/Scheduler.md)
-<!-- * React学习
-  * 组件 -->
 * 框架解析
   * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
 * Dart篇

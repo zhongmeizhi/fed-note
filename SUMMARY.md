@@ -41,8 +41,6 @@
   * [RXJS学习（三）Operators](md/rxjs/Operators.md)
   * [RXJS学习（四）Subject](md/rxjs/Subject.md)
   * [RXJS学习（五）Scheduler](md/rxjs/Scheduler.md)
-<!-- * React学习
-  * 组件 -->
 * 框架解析
   * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
 * Dart篇
