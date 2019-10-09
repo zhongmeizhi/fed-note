@@ -1,15 +1,15 @@
 # 《蘑菇碳的小书房》 持续更新中
 
 
-<div align=center>
+<div align="center">
 
-![meihong](md/img/meihong.jpg)
+  ![meihong](md/img/meihong.jpg)
 
 </div>
 
-<div align=center>
+<div align="center">
 
-[![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/blog-@zmz-blue.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/FED-note-pink.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/star-33-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/fork-5-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note)
+  [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/blog-@zmz-blue.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/FED-note-pink.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/star-33-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/fork-5-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note)
 
 </div>
   
