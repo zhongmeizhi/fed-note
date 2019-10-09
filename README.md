@@ -2,6 +2,8 @@
 
 
 <div align=center>
+
+![meihong](md/img/meihong.jpg)
   
 [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/blog-@zmz-blue.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/FED-note-pink.svg?style=flat)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/star-33-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note) [![https://zhongmeizhi.github.io/FED-note/](https://img.shields.io/badge/fork-5-blue.svg?style=social&logo=github)](https://github.com/zhongmeizhi/fed-note)
 
@@ -18,12 +20,6 @@
 [https://zhongmeizhi.github.io/FED-note/](https://zhongmeizhi.github.io/FED-note/)
 
 *** 
-
-<div align=center>
-  
-  ![meihong](md/img/meihong.jpg)
-
-</div>
 
 
 ## 目录
