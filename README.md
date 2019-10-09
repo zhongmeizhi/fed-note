@@ -28,6 +28,7 @@
 * 样式&&兼容性
   * [less入门](md/css/less.md)
   * [移动端-适配](md/css/mobile.md)
+  * [自适应布局方式](md/css/layout.md)
   * [CSS渐进增强](md/css/css_test.md)
   * [经验包](md/css/EXPERIENCE.md)
 * 计算机基础
