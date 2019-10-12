@@ -39,6 +39,23 @@
     })
 ```
 
+### IOS键盘 在 WebView中BUG 2
+
+在IOS中系统键盘弹出后，webview会弹到上边不回来了。（这个要看Native端，反正我用Flutter没问题，但是在公司某App的Hybrid开发中遇到了）
+
+导致的BUG：webview内部touch等事件的位置不正确
+
+解决方案：
+```
+    // @ts-ignore 元素blur的时候，回到可视区，使用了事件捕获,
+    document.addEventListener(
+        'blur', 
+        // () => (IS_IOS && document.activeElement.scrollIntoViewIfNeeded(true)),
+        () => IS_IOS && window.scrollBy({left: 0,top: 1}),
+        true
+    );
+```
+
 ### JS中 new Date 的兼容性BUG
 
 > 在不同的浏览器上：不支持中横线这种时间，得改为斜杠
