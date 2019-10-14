@@ -164,5 +164,21 @@
 * binary    -> 相当于`Content-Type:application/octet-stream`
   * 上传文件（只能上传一个）
 
+### 一个Vue插件BUG
 
+遇到的问题：
+
+做Vue插件在开发环境用`npm link`调试的时候报错：`[Vue warn]: $attrs is readonly`，但是我并没有在任何地方有`$attrs`或`$listeners`明确使用
+
+分析原因：
+
+在`debugger`时能够发现：在代码中使用了两个不同的vue包（vue.esm.js）。更准确地说：某个Vue包的`lifecycle.js`中的`updateChildComponent`函数在启动时将`isUpdatingChildComponent`标志设置为true
+
+```
+    !isUpdatingChildComponent && warn("$attrs is readonly.", vm, isUpdatingChildComponent);
+```
+
+为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件的版本？
+
+还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方
 
