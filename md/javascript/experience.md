@@ -164,6 +164,7 @@
 * binary    -> 相当于`Content-Type:application/octet-stream`
   * 上传文件（只能上传一个）
 
+
 ### 一个Vue插件BUG
 
 遇到的问题：
@@ -178,7 +179,7 @@
     !isUpdatingChildComponent && warn("$attrs is readonly.", vm, isUpdatingChildComponent);
 ```
 
-为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件的版本？
+为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件Vue的版本？
 
-还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方
+还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方，可能是webpack中alias导致的。
 
