@@ -40,8 +40,7 @@
   * [跨域机制](md/browser/cross_origin.md)
   * [页面加载过程](md/base/page_load.md)
 * 前端基础
-  * [基础类型](md/javascript/basal_type.md)
-  * [引用类型](md/javascript/object_type.md)
+  * [JS数据类型](md/javascript/js_type.md)
   * [函数（一）函数&尾递归](md/javascript/function.md)
   * [函数（二）防抖&节流](md/javascript/debounce_throttle.md)
   * [函数（三）原型](md/javascript/prototype.md)
