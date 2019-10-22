@@ -48,7 +48,7 @@
 3. 以call的形式调用
    - call比apply快很多
     ```
-        // 以下测试为 chrome v73
+        // 性能测试：以下测试环境为 chrome v73
         // 测试结果为 call 比 apply快大约 10倍
         // 原因在与.apply在运行前要对作为参数的数组进行一系列检验和深拷贝，.call则没有这些步骤
         // 具体可以参考ECMA 5.1 标准：
@@ -73,18 +73,23 @@
         
         // apply: 69.355224609375ms
         // call: 8.7431640625ms
+
         // apply: 57.72119140625ms
         // call: 4.146728515625ms
+
         // apply: 50.552001953125ms
         // call: 4.12890625ms
+
         // apply: 50.242919921875ms
         // call: 4.720947265625ms
+
         // apply: 49.669921875ms
         // call: 4.054931640625ms
     ```
 4. 以构造函数调用
-  - 如果在构造函数中 有 return对象，那么new的实例 就是 return 的对象
+  - **new的实例是 构造函数中return的对象 || this**
     ```
+        // 构造函数中有 return对象 的情况
         function A() {
             return {
                 a : 1
@@ -97,10 +102,10 @@
         var a = new A();
         // a = {a: 1}
         // a.say === undefined
-    ```
-  - 如果 return 的不是对象。 那么 new的实例 就是 this
-    ```
+
+        // 构造函数中 没有return对象 的情况
         function A() {
+            // 可以手动 return this
         }
         A.prototype.say = function () {
             console.log(this, 'xx')
@@ -113,19 +118,21 @@
 
 ### 箭头函数
 
-箭头函数`()=>{}`，关于简洁或省略部分不写。
-
 注意点：
-* 箭头函数的的this，就是定义时所在的对象，**且不可改变**
+* 箭头函数的的this，就是定义时所在的对象，**且不可改变**（call、apply、bind 都不能改变箭头函数内部 this 的指向）
   ```
     let obj = {
         x () {
             let y = () => {
                 console.log(this === obj);
             }
-
+            
             y();    // true
+
+            // call、apply、bind 都不能改变箭头函数内部 this 的指向
             y.call(window); // true
+			y.apply(window); // true
+			y.bind(window)(); // true
         }
     }
   ```
@@ -137,7 +144,7 @@
 
 // 该段大部分剪辑自阮一峰老师的博客
 
-尾递归就是：函数最后`单纯return函数`
+尾递归就是：函数最后`单纯return函数`，尾递归来说，由于只存在一个调用记录，所以永远不会发生"栈溢出"错误。
 
 ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O(1)的调用记录
 
@@ -165,7 +172,7 @@ ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O
     Fibonacci2(10000) // Infinity
 ```
 
-蹦床函数，解决递归栈溢出问题，将函数变成循环
+蹦床函数（协程），解决递归栈溢出问题，将函数变成循环
 ```
     function trampoline(f) {
         while (f && f instanceof Function) {
@@ -185,13 +192,15 @@ ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O
         return function accumulator() {
             accumulated.push(arguments);
             // 除了第一次执行，其他的执行都是为了传参
-            if (!active) {
-            // 在第一次进入进入递归优化时激活，关闭后续进入
+            if (!active) { // 很重要，如果不使用 active关闭后续进入， sum函数超过会溢出
+                // 在第一次进入进入递归优化时激活，关闭后续进入
                 active = true;
                 // 有参数就执行
                 while (accumulated.length) {
                     // 调用f，顺便清除参数
                     value = f.apply(this, accumulated.shift());
+                    // 由于while中又调用 f，f调用sum，然后sum在执行时给accumulated塞了一个参数
+                    // 所以 while循环会在sum返回结果前一种执行，直到递归完成
                 }
                 active = false;
                 return value;
@@ -232,7 +241,7 @@ ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O
 
 ### 函数 和 类的区别
 
-1. 类没有变量提升
+1. 类没有变量提升，
 ```
     new B();
     class B {}
