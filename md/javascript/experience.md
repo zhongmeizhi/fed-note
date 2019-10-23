@@ -9,7 +9,8 @@
 * JIT：运行时编译（Just-in-time）
 * BOM：浏览器对象模型（Browser Object Model）（BOM的最核心对象是window对象）
 * DOM：文档对象模型（Document Object Model）DOM的最根本对象是 window.document
-* 静态作用域 -> 变量的作用域在写代码的时候就确定过了
+* 静态作用域： 变量的作用域在写代码的时候就确定过了（JS和Dart都是静态作用域）
+* 堆栈：基本数据类型的变量存储在栈中，引用数据类型的变量存储在堆中，引用类型数据的地址也存在栈中
 
 ### 关于 IOS 键盘弹出问题
 

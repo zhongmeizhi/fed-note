@@ -58,12 +58,13 @@
     // -> 销毁这个实例
 
     var str = 'abc';
+    
     var _str = new String(str);
     var len = _str.length;
     _str = null;
+
     console.log(len);
   ```
-
 
 ### 其他基础类型特性
 

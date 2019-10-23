@@ -84,6 +84,8 @@
 1. async 一定会返回 promise
 2. async、 await、Promise.resolve() 都是（同步任务）
 3. 而await 后续代码都会被推到 microtask 中。等await执行完成后触发。
+    * 完成可能是：代码全部完成执行通过 || 或者最终被`.catch`（其实也是算都执行执行）
+    * 如果有未被捕获的异常，就不会进入await下一步（毕竟await的下一步也类似于推到了then中）
 ```
     console.log(1);
 
@@ -109,7 +111,7 @@
     // 打印 1 2 3 6 4 5
 ```
 
-4. 可以用await接收async的结果。然后赋值给变量
+1. 可以用await接收async的结果。然后赋值给变量
 ```
     async function fn() {
         return Promise.resolve('xxxx');
