@@ -8,7 +8,10 @@
 * 导出成 html 需要 `npm run build && next export`
 
 
-### 遇到的问题
+## 遇到的问题
+
+
+### css-loader 和 webpack版本冲突问题
 
 > Invalid options object. CSS Loader has been initialised using an options object that does not match the API schema. - options has an unknown property 'minimize'. 
 
@@ -63,6 +66,19 @@
     })
 ```
 
+### antd-mobile 中less不能加载问题
+
+> Inline JavaScript is not enabled. Is it set in your options?
+
+antd-mobile包中的inputitem的less样式其中使用了带参mixin。那么**使用了mixin在less-loader中需要配置`javascriptEnabled: true`**
+
+参考：[github issue](https://github.com/zeit/next-plugins/issues/454)
+
+解决方案： `withLess`中添加属性` lessLoaderOptions: {javascriptEnabled: true}, `
+
+
+### next-less 和 cssmodules 冲突
+
 > Module not found: Can't resolve 'css-loader/locals'
 
 原因： `zeit/next-less`在预渲染 bundle 中 使用 css-loader/locals 而不是 style-loader!css-loader 。它不会嵌入 CSS，但只导出标识符映射(identifier map)。
@@ -70,6 +86,14 @@
 但是呢：下载也下载不了
 * 然鹅把`next-less`的`cssModules: true,`删掉或者改成false就不会报错了。
 * 然鹅，`zeit/next-less`又该怎么用`cssModules`?
+
+ps：就刚好用的`9.0.7`版本有这个问题，会有这个问题，
+
+参考： [github issue](https://github.com/zeit/next-plugins/issues/392)
+
+解决方案：升级或者降级 `next.js` 的版本
+
+### 解决代理问题
 
 > 解决代理问题
 
