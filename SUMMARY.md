@@ -15,11 +15,10 @@
   * [函数（一）函数&尾递归](md/javascript/function.md)
   * [函数（二）防抖&节流](md/javascript/debounce_throttle.md)
   * [函数（三）原型](md/javascript/prototype.md)
-  * [requestAnimationFrame](md/javascript/request_frame.md)
   * [迭代器](md/javascript/iterator.md)
   * [hybrid开发](md/javascript/hybrid.md)
   * [埋点设计](md/javascript/event-point.md)
-  * [HEX转RGB-判断是否淡色系](md/javascript/hex2rgb.md)
+  * [关于动画](md/javascript/animation.md)
   * [经验包](md/javascript/experience.md)
 * 前端进阶
   * [性能优化](md/sse/optimization.md)

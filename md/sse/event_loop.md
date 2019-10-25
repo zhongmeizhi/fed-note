@@ -49,7 +49,7 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 - 宏任务(macro)task主要有： script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)
 - 微任务(micro)task主要有： Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
-- requestAnimationFrame 既不属于宏任务, 也不属于微任务
+- `requestAnimationFrame` 既不属于宏任务, 也不属于微任务
 
 ~~目前宏任务和微任务在各浏览器执行都有差异，最后提议promise为微任务~~
 

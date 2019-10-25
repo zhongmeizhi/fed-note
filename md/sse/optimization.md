@@ -51,8 +51,9 @@
 * async 优先
 * async 是无序的，只要下载完毕就会立即执行。
   * PC淘宝网，head中的script 都是 async
-* defer 是有序的，代码的执行按在html中的先后顺序，`script.js` 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。
+* defer 是有序的，`script.js` 的执行要在所有元素解析完成之后，`DOMContentLoaded` 事件触发之前完成。
   * Mobile淘宝网，在body中script 同时有 async 和 defer
+  * `DOMContentLoaded` 表示 `dom` 加载并解析完成
 
 ### H5预渲染（prerender）
 * HTTPS页面 不可用 -.-!
