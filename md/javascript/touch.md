@@ -50,5 +50,3 @@ touch的事件有，event.targetTouchs，数组，目标dom的触摸数。
 	在严格模式还会报错
 
 
-45
-
