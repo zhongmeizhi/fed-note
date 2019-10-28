@@ -295,10 +295,10 @@ diff算法主要为2种：
 2. 不值得比较
 
 判断两个VNode节点是否是同一个节点(`sameVnode`)，需要满足以下条件
-* key相同
-* tag（当前节点的标签名）相同
+* `key`相同
+* `tagName `相同
 * isComment（是否为注释节点）相同
-* 是否data
+* 是否 data
 * 当标签是`<input>`的时候，type必须相同
 
 源码如下：
@@ -474,3 +474,71 @@ action是异步的，使用的是Promise。 - -没啥好说的。
 2. 调用computed对象的getter方法
 3. 触发 对应$data 的getter方法
 4. 将对应`$data`的 观察者push到 computed对象的 `Watcher` 中
+
+### Vue.use 插件安装
+
+```
+  // 首先会校验`installedPlugins`数组中是否已经含有对应组件
+  const installedPlugins = this._installedPlugins || (this._installedPlugins = [])
+
+  // 防止重复安装
+  if (installedPlugins.indexOf(plugin) > -1) {
+    return this
+  }
+  
+  const args = toArray(arguments, 1)
+
+  // 插入Vue
+  args.unshift(this)
+
+  // 插件包含 install方法
+  if (typeof plugin.install === 'function') {
+    plugin.install.apply(plugin, args)
+  // 插件是函数
+  } else if (typeof plugin === 'function') {
+    plugin.apply(null, args)
+  }
+
+  // 缓存，用以检测是否重复安装
+  installedPlugins.push(plugin)
+
+  return this
+```
+
+## VueRouter 实现
+
+> VueRouter 实际上是一个 Vue的插件，通过`Vue.use(VueRouter)`来调用`VueRouter`的`install`方法
+
+最重要的实现：
+1. 通过`Vue.mixin`在`beforeCreate`中初始化router
+2. 全局注册2个组件：`router-link`和`router-view`
+```
+  // 通过 Vue.mixin 在 beforeCreate 中注入
+  Vue.mixin({
+    beforeCreate() {
+      // 判断组件是否存在 router 对象，该对象只在根组件上有
+      if (isDef(this.$options.router)) {
+        // 根路由设置为自己
+        this._routerRoot = this
+        this._router = this.$options.router
+
+        // 初始化路由
+        this._router.init(this)
+        // 很重要，为 _route 属性实现双向绑定
+        // 触发组件渲染
+        Vue.util.defineReactive(this, '_route', this._router.history.current)
+      } else {
+        // 用于 router-view 层级判断
+        this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
+      }
+      registerInstance(this, this)
+    },
+    destroyed() {
+      registerInstance(this)
+    }
+  })
+
+  // 全局注册组件 router-link 和 router-view
+  Vue.component('RouterView', View)
+  Vue.component('RouterLink', Link)
+```
