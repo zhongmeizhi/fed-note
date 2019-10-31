@@ -200,6 +200,10 @@ Commit 阶段
 
 因为是异步渲染，所以需要新的生命周期钩子：getSnapshotBeforeUpdate -> 在最新的渲染输出提交给DOM前将会立即调用。
 
+React 实现调度主要靠两块内容：
+* 计算任务的 expriationTime
+* 实现 `requestIdleCallback` 的 polyfill 版本
+
 
 ### React Hooks
 

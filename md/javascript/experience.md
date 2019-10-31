@@ -40,7 +40,7 @@
     })
 ```
 
-### IOS键盘 在 WebView中BUG 2
+### IOS键盘弹出问题 2 （在WebView中BUG）
 
 在IOS中系统键盘弹出后，webview会弹到上边不回来了。（这个要看Native端，反正我用Flutter没问题，但是在公司某App的Hybrid开发中遇到了）
 
@@ -57,7 +57,7 @@
     );
 ```
 
-### JS中 new Date 的兼容性BUG
+### Hybrid中 new Date 的兼容性BUG
 
 > 在不同的浏览器上：不支持中横线这种时间，得改为斜杠
 
@@ -68,7 +68,7 @@
 
 ```
 
-### dialog和body同时有滚动条的情况
+### 解决IOS中 dialog和body同时有滚动条时dialog能滚动body的情况
 
 > 会出现 dialog滚动到尽头时body滚动的情况 的BUG
 
@@ -126,6 +126,15 @@
 关于`accept="image/*"`
 * 如果限制图片枚举不够，会出现Android无法调用相册的情况。
 * 推荐用`accept="image/*"`
+
+
+### input 问题2， IOS中placeholder在input上部
+
+解决方案：
+1. chrome浏览器展示 DOM 的隐藏项
+2. 步骤：chrome -> `setting` -> `preferences` -> `Elements` -> 勾选 `Show user agent shadow DOM`
+3. 检查 placeholder 的DOM元素和 input的DOM元素高度，
+4. 设置 placeholder 的 `line-light` 使用顶部和 input顶部一致
 
 
 ### echarts 按需引入
