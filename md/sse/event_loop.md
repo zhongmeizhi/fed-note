@@ -55,29 +55,48 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 ### 实例分析
 ```
-    setTimeout(function(){
-        console.log('1');
-    });
+    console.log(1)
 
-    new Promise(function(resolve){
-        console.log('2');
-        resolve();
-    }).then(function(){
-        console.log('3');
-    });
+    Promise.resolve(2).then(console.log)
 
-	requestAnimationFrame(() => {
-        console.log('4')
+    requestIdleCallback(() => {
+        console.log(3);
+        Promise.resolve(4).then(console.log)
     })
 
-    console.log('5');
+    setTimeout(() => {
+        console.log(6)
+        Promise.resolve(7).then(console.log)
+    }, 0)
+
+    requestAnimationFrame(() => {
+        console.log(8)
+        Promise.resolve(9).then(console.log)
+    })
+
+    new Promise(reslove => reslove(5)).then(console.log)
+
+    console.log(10)
 ```
-以上案例会输出 `5 2 3` -> `4 1`
+以上案例会输出 `1 10 2 5` -> undefined -> `8 9 3 4 6 7`
 
 结果解析：
-1. JavaScript执行主线程任务：`输出 2 4`
+1. JavaScript执行主线程任务：`打印 1 10`
    - 附：Promise构造器内部是同步任务
-2. 执行微任务队列：`输入 3`
-3. `requestAnimationFrame`（会在宏任务执行前执行）：`输出 4`
-4. 第一次任务队列结束，进入setTimeout回调：`输出 1`
+2. 执行微任务队列：`打印 2 5`
+3. 宏任务和微任务都执行完成：`打印 undefined`
+4. 执行`requestAnimationFrame` ，`打印 8`
+5. 执行`requestAnimationFrame`的微任务，`打印  9`
+6. 浏览器空闲，调用`requestIdleCallback`，`打印 3`
+7. 执行`requestIdleCallback`的微任务，`打印 4`
+8. 一帧结束：
+9. 下一帧开始：执行`settimeout`，`打印 6`
+10. 执行`settimeout`的微任务，`打印 7`
 
+### 结论
+
+1. 宏任务
+2. 微任务
+4. requestAnimationFrame
+5. requestIdleCallback
+6. 下一帧
