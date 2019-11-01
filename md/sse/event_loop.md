@@ -74,11 +74,20 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
         Promise.resolve(9).then(console.log)
     })
 
+    var intersectionObserver = new IntersectionObserver(function(entries) {
+     	if (entries[0].intersectionRatio <= 0) return;
+      	console.log('LoadedNewItems');
+      	Promise.resolve('doSomething').then(console.log)
+    });
+    // 开始监听
+    intersectionObserver.observe(document.querySelector('div'));
+
     new Promise(reslove => reslove(5)).then(console.log)
 
     console.log(10)
 ```
-以上案例会输出 `1 10 2 5` -> undefined -> `8 9 3 4 6 7`
+以上案例会打印 `1 10 2 5` -> undefined -> `8 9 LoadedNewItems doSomething 6 7 3 4`
+如果没有 `intersectionObserver` 会打印  `1 10 2 5` -> undefined -> `8 9 3 4 6 7`
 
 结果解析：
 1. JavaScript执行主线程任务：`打印 1 10`
@@ -87,16 +96,21 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 3. 宏任务和微任务都执行完成：`打印 undefined`
 4. 执行`requestAnimationFrame` ，`打印 8`
 5. 执行`requestAnimationFrame`的微任务，`打印  9`
-6. 浏览器空闲，调用`requestIdleCallback`，`打印 3`
-7. 执行`requestIdleCallback`的微任务，`打印 4`
-8. 一帧结束：
-9. 下一帧开始：执行`settimeout`，`打印 6`
-10. 执行`settimeout`的微任务，`打印 7`
+6. 执行`IntersectionObserver`，`打印 LoadedNewItems`
+7. 执行`IntersectionObserver`的微任务，`打印 doSomething`
+8. **更新界面**
+9. 如果浏览器空闲，调用`requestIdleCallback`，`打印 3`
+    * 如果`requestIdleCallback`被调用，那么会继续执行微任务，`打印 4`
+10. 一帧结束：
+11. 下一帧开始：执行`settimeout`，`打印 6`
+12. 执行`settimeout`的微任务，`打印 7`
 
 ### 结论
 
 1. 宏任务
 2. 微任务
 4. requestAnimationFrame
-5. requestIdleCallback
-6. 下一帧
+5. IntersectionObserver
+6. 更新界面
+7. requestIdleCallback
+8. 下一帧
