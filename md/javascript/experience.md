@@ -224,4 +224,17 @@
     }; 
 ```
 
+### npm插件 babel没有作用的问题。
+
+> `.babelrc`是用于本地项目文件的转换（不包括node_modules），而`babel.config.js`绑定（node_modules）
+
+解决方案：一
+* **Babel 7.x** 的新功能，Babel具有“根”目录的概念，该目录默认为当前工作目录。对于项目范围的配置，Babel将在此根目录中自动搜索 `babel.config.js`
+
+[参考 issue](https://github.com/babel/babel/issues/8672?tdsourcetag=s_pcqq_aiomsg)
+
+[参考 stackoverflow](https://stackoverflow.com/questions/54788809/babel-7-dont-compile-class-es6-which-in-node-modules/54933703?tdsourcetag=s_pcqq_aiomsg)
+
+解决方案：二（最常见）
+* 直接在 npm插件中进行打包，然后`main`指向对应文件（不能用webpack追加hash）
 
