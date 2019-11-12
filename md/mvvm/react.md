@@ -4,6 +4,8 @@
 
 只支持表达式
 
+JSX 代码会被 Babel 编译为 `React.createElement` (所以jsx文件必须要引入React，不管React是否有显式使用)
+
 ## 生命周期
 
 生命周期主要是：挂载、销毁、更新
