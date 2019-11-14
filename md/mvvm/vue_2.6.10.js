@@ -614,6 +614,7 @@
     var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
   
     /* istanbul ignore next */
+    // [native code] 表示原生自带的方法，在function.toString()的字符串中有
     function isNative (Ctor) {
       return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
     }
@@ -621,7 +622,12 @@
     var hasSymbol =
       typeof Symbol !== 'undefined' && isNative(Symbol) &&
       typeof Reflect !== 'undefined' && isNative(Reflect.ownKeys);
-  
+    
+
+    /* 
+      如果有原生 Set就用原生Set，否则自己写一个
+      但是自己 尤大大写的Set，不支持 new Set([2,3,4,5,6])直接传入constructor的功能
+    */
     var _Set;
     /* istanbul ignore if */ // $flow-disable-line
     if (typeof Set !== 'undefined' && isNative(Set)) {
@@ -678,7 +684,8 @@
           ));
         }
       };
-  
+      
+      // 打印提示用的。
       formatComponentName = function (vm, includeFile) {
         if (vm.$root === vm) {
           return '<Root>'
@@ -700,7 +707,8 @@
           (file && includeFile !== false ? (" at " + file) : '')
         )
       };
-  
+      
+      // 重复一遍， 字符串哦
       var repeat = function (str, n) {
         var res = '';
         while (n) {
@@ -711,6 +719,8 @@
         return res
       };
   
+      // 打印提示用的
+      // 错误提示会一直 从下往上递归（vm = vm.$parent;）
       generateComponentTrace = function (vm) {
         if (vm._isVue && vm.$parent) {
           var tree = [];
@@ -742,16 +752,21 @@
     }
   
     /*  */
-  
+    
+    // 定义一个变量 通过 uid++ 来 保证id的唯一性
     var uid = 0;
   
     /**
      * A dep is an observable that can have multiple
      * directives subscribing to it.
+     * 
+     * Dep 是双向绑定中最重要的模块之一
+     * Dep用来存放 被观察的对象
+     * 可以存放多个
      */
     var Dep = function Dep () {
-      this.id = uid++;
-      this.subs = [];
+      this.id = uid++; // 唯一ID
+      this.subs = []; // 通过 new 使每个$data内的元素的 subs都是独立的
     };
   
     Dep.prototype.addSub = function addSub (sub) {
@@ -759,24 +774,30 @@
     };
   
     Dep.prototype.removeSub = function removeSub (sub) {
+      // 上面定义的 remove 方法，在数组中剔除对应的item
       remove(this.subs, sub);
     };
   
     Dep.prototype.depend = function depend () {
-      if (Dep.target) {
+      if (Dep.target) { // .target 是在初次绑定的时候加上去的
         Dep.target.addDep(this);
       }
     };
   
     Dep.prototype.notify = function notify () {
       // stabilize the subscriber list first
+      // 浅拷贝
       var subs = this.subs.slice();
       if (!config.async) {
         // subs aren't sorted in scheduler if not running async
         // we need to sort them now to make sure they fire in correct
         // order
+        // 
+        // 将 subs 中的数据进行排序
         subs.sort(function (a, b) { return a.id - b.id; });
       }
+
+      // 将所有的加入观察的对象更新
       for (var i = 0, l = subs.length; i < l; i++) {
         subs[i].update();
       }
@@ -799,7 +820,7 @@
     }
   
     /*  */
-  
+    // 虚拟 DOM
     var VNode = function VNode (
       tag,
       data,
@@ -834,7 +855,8 @@
       this.asyncMeta = undefined;
       this.isAsyncPlaceholder = false;
     };
-  
+    
+    // 
     var prototypeAccessors = { child: { configurable: true } };
   
     // DEPRECATED: alias for componentInstance for backwards compat.
@@ -844,7 +866,8 @@
     };
   
     Object.defineProperties( VNode.prototype, prototypeAccessors );
-  
+    
+    // 创建空的 虚拟Dom
     var createEmptyVNode = function (text) {
       if ( text === void 0 ) text = '';
   
@@ -853,7 +876,8 @@
       node.isComment = true;
       return node
     };
-  
+    
+    //  - -。 就是创建一个 文本的 虚拟dom
     function createTextVNode (val) {
       return new VNode(undefined, undefined, undefined, String(val))
     }
@@ -862,6 +886,12 @@
     // used for static nodes and slot nodes because they may be reused across
     // multiple renders, cloning them avoids errors when DOM manipulations rely
     // on their elm reference.
+    /* 
+      优化的浅层克隆
+      针对静态节点和插槽节点
+      因为它们可以在多个渲染中重复使用
+      克隆它们可以避免在DOM操作依赖于它们的elm参考时出错。
+    */
     function cloneVNode (vnode) {
       var cloned = new VNode(
         vnode.tag,
@@ -894,8 +924,15 @@
      */
   
     var arrayProto = Array.prototype;
+    // 创建一个对象， 该对象以数组的原型为原型
     var arrayMethods = Object.create(arrayProto);
-  
+    
+    // 重点
+    /* 
+      由于Vue使用的数据劫持方法 Object.defineProperty 的缺陷
+      它并不能监听到数组的变动
+      所以需要 hack 一下
+    */
     var methodsToPatch = [
       'push',
       'pop',
@@ -909,13 +946,31 @@
     /**
      * Intercept mutating methods and emit events
      */
+    /*  
+      hack array的监听
+     */
+
     methodsToPatch.forEach(function (method) {
       // cache original method
+      // 获取到原生的 数组方法
       var original = arrayProto[method];
+
+      /* 
+        // 重要
+
+        使 arrayMethods 获得了一个包含原生数组的方法
+        同时还获得了调用 观察者对象的 更新能力
+
+        
+        后续在 Observer 中判断 是否 Array
+        如果是 Array 就会 调用 protoAugment<有__proto__情况> || copyAugment<无__proto__情况>
+        替换被监听的数组的 __proto__ 替换为 arrayMethods
+      */
       def(arrayMethods, method, function mutator () {
         var args = [], len = arguments.length;
         while ( len-- ) args[ len ] = arguments[ len ];
-  
+        
+        // 执行真正的方法
         var result = original.apply(this, args);
         var ob = this.__ob__;
         var inserted;

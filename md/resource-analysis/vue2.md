@@ -382,7 +382,112 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
 
 触发顺序：created-> mounted-> activated
 
+## 对Array的hack实现
 
+1. 实现了个包含需要hack的数组方法的对象
+2. 在`Observer`时将该hack方法覆盖需要劫持的Array的原型
+
+```
+  var arrayProto = Array.prototype;
+
+  // 创建一个对象， 该对象以数组的原型为原型
+  var arrayMethods = Object.create(arrayProto);
+
+  // 实现的hack 方法
+  var methodsToPatch = [
+    'push',
+    'pop',
+    'shift',
+    'unshift',
+    'splice',
+    'sort',
+    'reverse'
+  ];
+
+  methodsToPatch.forEach(function (method) {
+    // cache original method
+
+    // 获取到原生的 数组方法
+    var original = arrayProto[method];
+    /* 
+      使 arrayMethods 获得了一个包含原生数组的方法
+      同时还获得了调用 观察者对象的 更新能力
+
+      
+      后续在 Observer 中判断 是否 Array
+      如果是 Array 就会 调用 protoAugment<有__proto__情况> || copyAugment<无__proto__情况>
+      替换被监听的数组的 __proto__ 替换为 arrayMethods
+    */
+    def(arrayMethods, method, function mutator () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+      
+      // 执行真正的方法
+      var result = original.apply(this, args);
+      var ob = this.__ob__;
+      var inserted;
+      switch (method) {
+        case 'push':
+        case 'unshift':
+          inserted = args;
+          break
+        case 'splice':
+          inserted = args.slice(2);
+          break
+      }
+      if (inserted) { ob.observeArray(inserted); }
+      // notify change
+      ob.dep.notify();
+      return result
+    });
+  });
+
+  //... 省略
+
+  var Observer = function Observer (value) {
+    this.value = value;
+    this.dep = new Dep();
+    this.vmCount = 0;
+    def(value, '__ob__', this);
+
+    // 对 Array进行 hack
+    if (Array.isArray(value)) {
+      if (hasProto) {
+        protoAugment(value, arrayMethods);
+      } else {
+        copyAugment(value, arrayMethods, arrayKeys);
+      }
+      this.observeArray(value);
+    } else {
+      this.walk(value);
+    }
+  };
+
+  //... 省略
+
+  // 有__proto__时 挂载__proto__
+  function protoAugment (target, src) {
+    /* eslint-disable no-proto */
+    target.__proto__ = src;
+    /* eslint-enable no-proto */
+  }
+
+  /**
+    * Augment a target Object or Array by defining
+    * hidden properties.
+    
+    没有__proto__时
+    给对象每个属性都配一个对应方法
+
+    */
+  /* istanbul ignore next */
+  function copyAugment (target, src, keys) {
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i];
+      def(target, key, src[key]);
+    }
+  }
+```
 
 ## Vuex源码实现
 
