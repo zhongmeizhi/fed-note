@@ -4,7 +4,9 @@
  * Released under the MIT License.
  */
 (function (global, factory) {
-    // umd 实现
+    /* 
+      umd 的一种实现方式
+    */
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
     typeof define === 'function' && define.amd ? define(factory) :
 
@@ -12,9 +14,17 @@
     (global = global || self, global.Vue = factory());
   }(this, function () { 'use strict';
   
-    /*  */
+    /*
+      ==============
 
-    // 冻结一个空对象 TODO 用来干嘛？
+      从这里到 770行 都一些基础方法封装
+      从这里到 770行 都一些基础方法封装
+      从这里到 770行 都一些基础方法封装
+
+      ==============
+    */
+
+    // 冻结一个空对象。。。
     var emptyObject = Object.freeze({});
 
     // 是否 未定义
@@ -306,6 +316,7 @@
     /**
      * Generate a string containing static keys from compiler modules.
      */
+    // 将对象数组的 .staticKeys 全部用,拼接成字符串， x,y,z
     function genStaticKeys (modules) {
       return modules.reduce(function (keys, m) {
         return keys.concat(m.staticKeys || [])
@@ -316,7 +327,7 @@
      * Check if two values are loosely equal - that is,
      * if they are plain objects, do they have the same shape?
      * 
-     * looseEqual 判断每个值是否相等
+     * looseEqual 判断对象 每个属性的值是否相等
      */
     function looseEqual (a, b) {
       if (a === b) { return true }
@@ -563,6 +574,8 @@
     var hasProto = '__proto__' in {};
   
     // Browser environment sniffing
+    
+    // 一些基础的浏览器啊什么的操作
     var inBrowser = typeof window !== 'undefined';
     var inWeex = typeof WXEnvironment !== 'undefined' && !!WXEnvironment.platform;
     var weexPlatform = inWeex && WXEnvironment.platform.toLowerCase();
@@ -666,7 +679,8 @@
       var classify = function (str) { return str
         .replace(classifyRE, function (c) { return c.toUpperCase(); })
         .replace(/[-_]/g, ''); };
-  
+      
+      // 就是警告提示而已啦
       warn = function (msg, vm) {
         var trace = vm ? generateComponentTrace(vm) : '';
   
@@ -676,7 +690,8 @@
           console.error(("[Vue warn]: " + msg + trace));
         }
       };
-  
+      
+      // 就是警告提示而已啦
       tip = function (msg, vm) {
         if (hasConsole && (!config.silent)) {
           console.warn("[Vue tip]: " + msg + (
@@ -686,6 +701,7 @@
       };
       
       // 打印提示用的。
+      // 暂：忽略不看
       formatComponentName = function (vm, includeFile) {
         if (vm.$root === vm) {
           return '<Root>'
@@ -721,6 +737,7 @@
   
       // 打印提示用的
       // 错误提示会一直 从下往上递归（vm = vm.$parent;）
+      // 暂：忽略不看
       generateComponentTrace = function (vm) {
         if (vm._isVue && vm.$parent) {
           var tree = [];
@@ -750,8 +767,16 @@
         }
       };
     }
-  
-    /*  */
+    
+    /* 
+      ==============
+
+      正文部分
+      正文部分
+      正文部分
+
+      ==============
+    */
     
     // 定义一个变量 通过 uid++ 来 保证id的唯一性
     var uid = 0;
@@ -761,29 +786,45 @@
      * directives subscribing to it.
      * 
      * Dep 是双向绑定中最重要的模块之一
-     * Dep用来存放 被观察的对象
+     * Dep用来存放 Watcher.prototype 订阅者
      * 可以存放多个
      */
     var Dep = function Dep () {
       this.id = uid++; // 唯一ID
       this.subs = []; // 通过 new 使每个$data内的元素的 subs都是独立的
     };
-  
+    
+    /* 
+      Watcher.prototype.addDep 中 被调用 dep.addSub(this);
+    */
     Dep.prototype.addSub = function addSub (sub) {
       this.subs.push(sub);
     };
-  
+    
+    // 将subs中的item剔除
     Dep.prototype.removeSub = function removeSub (sub) {
       // 上面定义的 remove 方法，在数组中剔除对应的item
       remove(this.subs, sub);
     };
-  
+    
+    /* 
+      添加 addDep 方法
+      .target 是在初次绑定的时候加上去的
+
+      主要是执行 Watcher.prototype.addDep
+        -> 执行 Dep.prototype.addSub
+        -> Watcher.prototype push 到 dep.subs中
+    */
     Dep.prototype.depend = function depend () {
-      if (Dep.target) { // .target 是在初次绑定的时候加上去的
+      if (Dep.target) { 
+        // 相当于执行 Watcher.prototype.addDep
         Dep.target.addDep(this);
       }
     };
-  
+    
+    /* 
+      重点：更新操作
+    */
     Dep.prototype.notify = function notify () {
       // stabilize the subscriber list first
       // 浅拷贝
@@ -796,8 +837,31 @@
         // 将 subs 中的数据进行排序
         subs.sort(function (a, b) { return a.id - b.id; });
       }
+      /* 
+        调用 Watcher.prototype.update
+        
+        this.lazy 不执行操作
+        同步： 执行 Watcher.prototype.run
+        否则： 执行 queueWatcher
 
-      // 将所有的加入观察的对象更新
+        queueWatcher
+            先执行：queue.push(watcher);
+            然后：
+              非异步：flushSchedulerQueue
+                  会for循环queue 执行然后 执行 watcher.run();
+                      run: 主要是执行 this.cb.call(this.vm, value, oldValue);
+                  内部会执行：resetSchedulerState 将 flushing 和 waiting 设为 false <其实就是重置>
+              否则：nextTick(flushSchedulerQueue)
+              <推入微任务 || 下一队列> 执行flushSchedulerQueue
+              
+
+            主要 if 判断
+              flushing
+                    false：会执行 queue.push(watcher);
+                    true：执行 queue.splice(i + 1, 0, watcher);
+              waiting为false：时会将waiting设置为 true，
+                    然后会执行 flushSchedulerQueue || nextTick
+      */
       for (var i = 0, l = subs.length; i < l; i++) {
         subs[i].update();
       }
@@ -808,12 +872,25 @@
     // can be evaluated at a time.
     Dep.target = null;
     var targetStack = [];
-  
+    
+    /* 
+      在 Watcher.prototype.get 和 callHook、handleError、getData 中被调用
+
+      主要是 Watcher.prototype.get 调用，
+      Dep.target = Watcher.prototype
+      然后 value = this.getter.call(vm, vm); 触发双向绑定的get绑定
+      <get中需要 target>
+    */
     function pushTarget (target) {
       targetStack.push(target);
       Dep.target = target;
     }
-  
+    
+    /* 
+      同样在上面的4个方法中被调用。
+
+      调用了 pushTarget 执行一些操作， 然后调用 popTarget
+    */
     function popTarget () {
       targetStack.pop();
       Dep.target = targetStack[targetStack.length - 1];
@@ -887,10 +964,11 @@
     // multiple renders, cloning them avoids errors when DOM manipulations rely
     // on their elm reference.
     /* 
-      优化的浅层克隆
-      针对静态节点和插槽节点
-      因为它们可以在多个渲染中重复使用
-      克隆它们可以避免在DOM操作依赖于它们的elm参考时出错。
+      浅层克隆Dom
+
+      针对静态节点和插槽节点<因为它们可以在多个渲染中重复使用>
+
+      避免在DOM操作依赖于它们的elm参考时出错。
     */
     function cloneVNode (vnode) {
       var cloned = new VNode(
@@ -959,10 +1037,10 @@
         // 重要
 
         使 arrayMethods 获得了一个包含原生数组的方法
-        同时还获得了调用 观察者对象的 更新能力
+        同时还获得了调用 监听器对象的 更新能力
 
         
-        后续在 Observer 中判断 是否 Array
+        后续在 监听器类<Observer> 中判断 是否 Array
         如果是 Array 就会 调用 protoAugment<有__proto__情况> || copyAugment<无__proto__情况>
         替换被监听的数组的 __proto__ 替换为 arrayMethods
       */
@@ -1010,6 +1088,12 @@
      * object's property keys into getter/setters that
      * collect dependencies and dispatch updates.
      */
+
+    /* 
+      一个监听器对象类 Observer汉译：监听器
+
+      可以new 一个监听器对象的实例
+    */
     var Observer = function Observer (value) {
       this.value = value;
       this.dep = new Dep();
@@ -1021,8 +1105,11 @@
         } else {
           copyAugment(value, arrayMethods, arrayKeys);
         }
+
+        // 数组的每一项都添加 observe
         this.observeArray(value);
       } else {
+        // 为对象的所有属性都 进行数据劫持
         this.walk(value);
       }
     };
@@ -1032,9 +1119,12 @@
      * getter/setters. This method should only be called when
      * value type is Object.
      */
+    // 劫持对象的所有属性
     Observer.prototype.walk = function walk (obj) {
       var keys = Object.keys(obj);
       for (var i = 0; i < keys.length; i++) {
+
+        // 具体的数据劫持方法
         defineReactive$$1(obj, keys[i]);
       }
     };
@@ -1042,6 +1132,7 @@
     /**
      * Observe a list of Array items.
      */
+    // 劫持数组的每一项
     Observer.prototype.observeArray = function observeArray (items) {
       for (var i = 0, l = items.length; i < l; i++) {
         observe(items[i]);
@@ -1054,6 +1145,11 @@
      * Augment a target Object or Array by intercepting
      * the prototype chain using __proto__
      */
+    
+    /*
+      如果有 __proto__ 那么将原型赋给 __proto__ 
+      这个方法给数组进行hack时用的
+    */
     function protoAugment (target, src) {
       /* eslint-disable no-proto */
       target.__proto__ = src;
@@ -1065,6 +1161,10 @@
      * hidden properties.
      */
     /* istanbul ignore next */
+    /*
+      如果 不存在 __proto__ 那么将原型属性分别赋值给对象的属性
+      这个方法给数组进行hack时用的
+    */
     function copyAugment (target, src, keys) {
       for (var i = 0, l = keys.length; i < l; i++) {
         var key = keys[i];
@@ -1077,31 +1177,68 @@
      * returns the new observer if successfully observed,
      * or the existing observer if the value already has one.
      */
+
+    /* 
+      实际上就是返回了一个监听器的实例
+      
+      如果有实例：返回 __ob__
+      如果没实例：返回 new Observer(value);
+    */
     function observe (value, asRootData) {
+      
+      //  只适用于 虚拟dom 和 对象
       if (!isObject(value) || value instanceof VNode) {
         return
       }
+      
       var ob;
+
+      /* 
+        在 Observer类 在实例化的时候 会给自己添加一个 __ob__
+
+        __ob__ 在 def是定义为 不可枚举的
+      */
+
       if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
+
+        // 将已经实现数据劫持的值 赋值给ob
         ob = value.__ob__;
+
       } else if (
         shouldObserve &&
-        !isServerRendering() &&
+        !isServerRendering() && // 服务器渲染？
         (Array.isArray(value) || isPlainObject(value)) &&
         Object.isExtensible(value) &&
         !value._isVue
       ) {
+        
+        //  实例化Observer 将已经实现数据劫持的值 赋值给ob
         ob = new Observer(value);
       }
+
+      /* 
+        在 initState 和 initData 时会将 asRootData 设置为 true
+
+        然后就会让 vmCount++
+      */
       if (asRootData && ob) {
+        /* 
+          ob.vmCount 来源于 new Observer(value)
+          初始值为 0
+
+          vmCount 用在 set方法、del方法 中
+          用处似乎就是 - -. 打印warn
+        */
         ob.vmCount++;
       }
+
       return ob
     }
   
     /**
      * Define a reactive property on an Object.
      */
+    // 具体的数据劫持方法
     function defineReactive$$1 (
       obj,
       key,
@@ -1109,9 +1246,18 @@
       customSetter,
       shallow
     ) {
+
+      // 存储
       var dep = new Dep();
-  
+      
+      
       var property = Object.getOwnPropertyDescriptor(obj, key);
+
+      /* 
+        如果不能枚举就 return
+
+        其中 def函数 第四个参数不填就会被return
+       */
       if (property && property.configurable === false) {
         return
       }
@@ -1119,21 +1265,39 @@
       // cater for pre-defined getter/setters
       var getter = property && property.get;
       var setter = property && property.set;
+
+      // 没有get方法 || 有set方法， 而且参数只有2个
+      // 将 当前的 val 赋值为 obj[key]
+      // ??
       if ((!getter || setter) && arguments.length === 2) {
         val = obj[key];
       }
-  
+      
+      // val监听器的实例
       var childOb = !shallow && observe(val);
+
+
       Object.defineProperty(obj, key, {
         enumerable: true,
         configurable: true,
         get: function reactiveGetter () {
+
+          // 有get 方法就调用get方法，否则返回val
           var value = getter ? getter.call(obj) : val;
-          if (Dep.target) {
+
+          // 默认的 Dep.target 为 null
+          if (Dep.target) { 
+            /* 
+              重要
+              将 Watcher.prototype push 到 dep.subs中
+            */
             dep.depend();
             if (childOb) {
               childOb.dep.depend();
               if (Array.isArray(value)) {
+                /* 
+                  将数组中的各项值都 执行：将 Watcher.prototype push 到 dep.subs中
+                */
                 dependArray(value);
               }
             }
@@ -1141,23 +1305,51 @@
           return value
         },
         set: function reactiveSetter (newVal) {
+
+          // 有set方法就调用set方法， 否则返回val
           var value = getter ? getter.call(obj) : val;
           /* eslint-disable no-self-compare */
+
+          /* 
+            新的相等 || 新旧都不相等
+            那么就 没必要执行set方法  
+          */
           if (newVal === value || (newVal !== newVal && value !== value)) {
             return
           }
           /* eslint-enable no-self-compare */
+          /* 
+            第四个参数，主要用在需要打印
+            比如：warn("$listeners is readonly.", vm)
+          */
           if (customSetter) {
             customSetter();
           }
+
           // #7981: for accessor properties without setter
           if (getter && !setter) { return }
+
           if (setter) {
+            /* 
+              set 值咯
+            */
             setter.call(obj, newVal);
           } else {
+            // - - 没有set方法
             val = newVal;
           }
+
           childOb = !shallow && observe(newVal);
+
+          /* 
+            set 完成就执行 更新操作
+
+            会执行 Watcher.prototype.update
+
+            最终执行 queueWatcher
+              ->  queue.push(watcher); 首先会push到 更新队列中
+              -> 然后 nextTick(flushSchedulerQueue); 微任务或者下一帧执行更新操作
+          */
           dep.notify();
         }
       });
@@ -4386,6 +4578,9 @@
   
       // do not cache length because more watchers might be pushed
       // as we run existing watchers
+      
+
+      // 遍历 queue
       for (index = 0; index < queue.length; index++) {
         watcher = queue[index];
         if (watcher.before) {
@@ -4393,6 +4588,8 @@
         }
         id = watcher.id;
         has[id] = null;
+
+        // 然后执行 
         watcher.run();
         // in dev build, check and stop circular updates.
         if (has[id] != null) {
@@ -4555,6 +4752,12 @@
     /**
      * Evaluate the getter, and re-collect dependencies.
      */
+
+    /* 
+      Dep.target = Watcher.prototype
+      然后 value = this.getter.call(vm, vm); 触发双向绑定的get绑定
+      <get中需要 target>
+    */
     Watcher.prototype.get = function get () {
       pushTarget(this);
       var value;
@@ -4582,12 +4785,17 @@
     /**
      * Add a dependency to this directive.
      */
+
+    /* 
+        将自己 push 到 dep.subs中
+     */
     Watcher.prototype.addDep = function addDep (dep) {
       var id = dep.id;
       if (!this.newDepIds.has(id)) {
         this.newDepIds.add(id);
         this.newDeps.push(dep);
         if (!this.depIds.has(id)) {
+          // 相当于 dep.subs.push(this)
           dep.addSub(this);
         }
       }
@@ -4618,6 +4826,29 @@
      * Subscriber interface.
      * Will be called when a dependency changes.
      */
+    /* 
+      this.lazy 不执行操作
+        同步： 执行 Watcher.prototype.run
+        否则： 执行 queueWatcher
+
+        queueWatcher
+            先执行：queue.push(watcher);
+            然后：
+              非异步：flushSchedulerQueue
+                  会for循环queue 执行然后 执行 watcher.run();
+                      run: 主要是执行 this.cb.call(this.vm, value, oldValue);
+                  内部会执行：resetSchedulerState 将 flushing 和 waiting 设为 false <其实就是重置>
+              否则：nextTick(flushSchedulerQueue)
+              <推入微任务 || 下一队列> 执行flushSchedulerQueue
+              
+
+            主要 if 判断
+              flushing
+                    false：会执行 queue.push(watcher);
+                    true：执行 queue.splice(i + 1, 0, watcher);
+              waiting为false：时会将waiting设置为 true，
+                    然后会执行 flushSchedulerQueue || nextTick
+    */
     Watcher.prototype.update = function update () {
       /* istanbul ignore else */
       if (this.lazy) {
@@ -4633,6 +4864,12 @@
      * Scheduler job interface.
      * Will be called by the scheduler.
      */
+
+    /* 
+
+      主要是执行 this.cb.call(this.vm, value, oldValue);
+
+    */
     Watcher.prototype.run = function run () {
       if (this.active) {
         var value = this.get();
