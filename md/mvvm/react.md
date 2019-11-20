@@ -61,6 +61,24 @@ setState：是异步的，并且多次调用会合并为一次，（类似于 `O
   this.setState((prevState) => ({ count: prevState.count + 1 }))
 ```
 
+## Component 和 PureComponent
+
+`PureComponent` 和 `Component` 的区别：
+* 当props或者state改变时：`PureComponent` 默认在 `shouldComponentUpdate` 中使用浅比较来判断是否需要重新渲染，
+* 当props或者state改变时：`Component`的组件会重新渲染。
+
+PureComponent的缺点：一些深层数据的改变可能会产生`shouldComponentUpdate`为false，导致不能更新
+
+## 方法的不同绑定方式区别
+
+```
+  <CommentItem onClick={() => this.clickHandler(id)} />
+
+  // 综合上面的 Component 和 PureComponent 每当 父组件 render更新时，都会触发子组件获取到新的 onClick的 props，导致子组件重新渲染
+  // 解决方式：父组件之间传 this.clickHandler ，然后子组件调用 this.props.clickHandler(this.props.id)
+```
+
+
 ## 受控 & 不受控
 
 受控：通过 onchange 和value来控制
@@ -83,6 +101,13 @@ setState：是异步的，并且多次调用会合并为一次，（类似于 `O
       <Route path="/trade-record" component={TradeRecord} />
       <Route path="/trade-interval" component={TradeInterval} />
   </Router>
+```
+
+## refs
+
+```
+  正确的 ref使用
+    ref={(ele) => this.xxRef = ele};
 ```
 
 ## redux

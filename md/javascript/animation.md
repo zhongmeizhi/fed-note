@@ -53,6 +53,13 @@ if (!Date.now)
 }());
 ```
 
+### onTransitionEnd
+
+做动画怎么能没有 `onTransitionEnd` 呢？
+
+监听：css样式 `transition` 结束后触发
+
+
 ### 屏幕滚动
 
 `window.scrollTo(0, 100)`
