@@ -1,11 +1,5 @@
 # React 基础
 
-## JSX
-
-只支持表达式
-
-JSX 代码会被 Babel 编译为 `React.createElement` (所以jsx文件必须要引入React，不管React是否有显式使用)
-
 ## 生命周期
 
 生命周期主要是：挂载、销毁、更新
@@ -13,36 +7,82 @@ JSX 代码会被 Babel 编译为 `React.createElement` (所以jsx文件必须要
   // 用于初始化 state
   constructor() {}
 
-  // 用于替换 `componentWillReceiveProps` ，该函数会在初始化和 `update` 时被调用
-  // 因为该函数是静态函数，所以取不到 `this`
-  // 如果需要对比 `prevProps` 需要单独在 `state` 中维护
-  static getDerivedStateFromProps(nextProps, prevState) {}
-
-  // 判断是否需要更新组件，多用于组件性能优化
-  shouldComponentUpdate(nextProps, nextState) {}
-
   // 组件挂载后调用
   // 可以在该函数中进行请求或者订阅
   componentDidMount() {}
 
-  // 用于获得最新的 DOM 数据
-  getSnapshotBeforeUpdate() {}
-
-  // 组件即将销毁
-  // 可以在此处移除订阅，定时器等等
-  componentWillUnmount() {}
-
   // 组件销毁后调用
   componentDidUnMount() {}
+
+  // 判断是否需要更新组件，多用于组件性能优化
+  shouldComponentUpdate(nextProps, nextState) {}
 
   // 组件更新后调用
   componentDidUpdate() {}
 
   // 渲染组件函数
   render() {}
+
+  /*
+    新增组件
+  */
+
+  // 用于替换 `componentWillReceiveProps` 
+  // 因为该函数是静态函数，所以取不到 `this`
+  // 如果需要对比 `prevProps` 需要单独在 `state` 中维护
+  // 该函数会在初始化和 `update` 时被调用
+  static getDerivedStateFromProps(nextProps, prevState) {} 
+
+  // 用来替换 componentWillUpdate
+  // 用于获得最新的 DOM 数据
+  getSnapshotBeforeUpdate() 
+
+
+  /*
+    16版本 已取消的组件
+  */
+  ~~ componentWillReceiveProps ~~
+  ~~ componentWillUnmount ~~
+  ~~ componentWillUpdate ~~
 ```
 
-## setState
+**异步渲染**分两个阶段：`reconciliation`（可以打断） 和 `commit`（不能暂停，会一直更新界面直到完成）
+
+Reconciliation 阶段（可译：调和）
+* shouldComponentUpdate
+* ~~componentWillMount~~
+* ~~componentWillReceiveProps~~
+* ~~componentWillUpdate~~
+
+Commit 阶段
+* componentDidMount
+* componentDidUpdate
+* ~~componentWillUnmount~~
+
+因为 `reconciliation` 阶段是可以被打断的，所以执行的生命周期函数**可能会出现调用多次**的情况，从而引起 Bug。所以对于 reconciliation 阶段调用的几个函数，除了 shouldComponentUpdate 以外，其他都应该避免去使用。所以在 V16 中删除了shouldComponentUpdate 以外的生命周期，并且引入了新的 生命周期钩子 来解决这个问题。
+
+
+##### getDerivedStateFromProps
+
+`getDerivedStateFromProps` 用于替换 `componentWillReceiveProps` ，该函数会在**初始化**和**update**时被调用。（虚拟dom之后，实际dom挂载之前）
+
+组件实例化后和接受新属性时将会调用getDerivedStateFromProps。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。
+
+注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。
+
+调用this.setState() 通常不会触发 getDerivedStateFromProps()。
+
+
+##### getSnapshotBeforeUpdate
+
+由于异步渲染，在“渲染”时期（如componentWillUpdate和render）和“提交”时期（如componentDidUpdate）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，从componentWillUpdate中读出的scrollHeight值将是滞后的。
+
+`getSnapshotBeforeUpdate` 用于替换 `componentWillUpdate` ，该函数会在最新的渲染输出提交给DOM前调用（update 后 DOM 更新前），用于读取最新的 DOM 数据。
+
+返回值作为 `componentDidUpdate` 的第三个参数使用
+
+
+### setState
 
 setState：是异步的，并且多次调用会合并为一次，（类似于 `Object.assign({}, obj, obj)`）
 
@@ -61,7 +101,7 @@ setState：是异步的，并且多次调用会合并为一次，（类似于 `O
   this.setState((prevState) => ({ count: prevState.count + 1 }))
 ```
 
-## Component 和 PureComponent
+### Component 和 PureComponent
 
 `PureComponent` 和 `Component` 的区别：
 * 当props或者state改变时：`PureComponent` 默认在 `shouldComponentUpdate` 中使用浅比较来判断是否需要重新渲染，
@@ -69,7 +109,7 @@ setState：是异步的，并且多次调用会合并为一次，（类似于 `O
 
 PureComponent的缺点：一些深层数据的改变可能会产生`shouldComponentUpdate`为false，导致不能更新
 
-## 方法的不同绑定方式区别
+方法的不同绑定方式区别
 
 ```
   <CommentItem onClick={() => this.clickHandler(id)} />
@@ -79,13 +119,33 @@ PureComponent的缺点：一些深层数据的改变可能会产生`shouldCompon
 ```
 
 
-## 受控 & 不受控
+### React 切片机制 fiber
+
+时间切片实际上是将任务分成不同的优先级，计算任务的运行时间，从而将任务分隔为，能暂停的方法在16ms以内
+
+React 实现调度主要靠两块内容：
+* 计算任务的 expriationTime
+* 实现 `requestIdleCallback` 的 polyfill 版本
+
+### JSX
+
+只支持表达式
+
+JSX 代码会被 Babel 编译为 `React.createElement` (所以jsx文件必须要引入React，不管React是否有显式使用)
+
+
+### 受控 & 不受控
 
 受控：通过 onchange 和value来控制
 
 不受控：通过ref来获取
 
-## Router
+```
+  // 正确的 ref使用
+    ref={(ele) => this.xxRef = ele};
+```
+
+### Router
 
 > `create-react-app`默认使用`react-router-dom`
 
@@ -103,14 +163,7 @@ PureComponent的缺点：一些深层数据的改变可能会产生`shouldCompon
   </Router>
 ```
 
-## refs
-
-```
-  正确的 ref使用
-    ref={(ele) => this.xxRef = ele};
-```
-
-## redux
+### redux
 
 redux是通过发布订阅者模式实现的：
 
@@ -134,7 +187,7 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
 
 所以啊，可以使用 [react-app-rewired](https://github.com/timarney/react-app-rewired) 来解决
 
-比如：设置`alias`
+### 设置别名 alias
 1. 安装 react-app-rewired
 2. 配置启动项 `"start": "react-app-rewired start"`
 3. 添加`config-overrides.js`文件
@@ -155,14 +208,12 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
   ```
 
 
-更改打包后静态文件路径
+### 更改打包后静态文件路径
 
 在`package.json`文件添加 `"homepage": "/路径"`
 
 
-## 代理
-
-`http-proxy-middleware`插件
+### 代理：`http-proxy-middleware`插件
 
 ```
   const proxy = require('http-proxy-middleware');
@@ -182,55 +233,6 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
       );
   }
 ```
-
-渲染改为 -> 异步渲染
-
-在React 16- 版本前当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树
-
-
-
-
-### React 切片机制 fiber
-
-异步渲染分两个阶段：`reconciliation`（可以打断） 和 `commit`（不能暂停，会一直更新界面直到完成）
-
-Reconciliation 阶段
-* componentWillMount \\ x
-* componentWillReceiveProps \\ x
-* shouldComponentUpdate
-* componentWillUpdate \\ x
-
-Commit 阶段
-* componentDidMount
-* componentDidUpdate
-* componentWillUnmount
-
-
-##### getDerivedStateFromProps
-
-因为 reconciliation 阶段是可以被打断的，所以执行的生命周期函数**可能会出现调用多次**的情况，从而引起 Bug。所以对于 reconciliation 阶段调用的几个函数，除了 shouldComponentUpdate 以外，其他都应该避免去使用，并且 V16 中也引入了新的 生命周期钩子 来解决这个问题。
-
-`getDerivedStateFromProps` 用于替换 `componentWillReceiveProps` ，该函数会在**初始化**和**update**时被调用
-
-组件实例化后和接受新属性时将会调用getDerivedStateFromProps。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。
-
-注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。
-
-调用this.setState() 通常不会触发 getDerivedStateFromProps()。
-
-
-##### getSnapshotBeforeUpdate
-
-由于异步渲染，在“渲染”时期（如componentWillUpdate和render）和“提交”时期（如componentDidUpdate）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，从componentWillUpdate中读出的scrollHeight值将是滞后的。
-
-`getSnapshotBeforeUpdate` 用于替换 `componentWillUpdate` ，该函数会在最新的渲染输出提交给DOM前调用（update 后 DOM 更新前），用于读取最新的 DOM 数据。
-
-因为是异步渲染，所以需要新的生命周期钩子：getSnapshotBeforeUpdate -> 在最新的渲染输出提交给DOM前将会立即调用。
-
-React 实现调度主要靠两块内容：
-* 计算任务的 expriationTime
-* 实现 `requestIdleCallback` 的 polyfill 版本
-
 
 ### React Hooks
 
