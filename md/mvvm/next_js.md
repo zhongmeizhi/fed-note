@@ -10,61 +10,75 @@
 
 ## 遇到的问题
 
+### 和 ant-mobile 一起使用
+
+ant-mobild 按需加载问题：（presets/plugins 不允许添加到`.babelrc`中，然而可以配置next/babel预设，）
+```
+    {
+        "presets": [
+            "next/babel"
+        ],
+        "plugins": [
+            ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
+        ]
+    }
+```
+
 
 ### css-loader 和 webpack版本冲突问题
 
 > Invalid options object. CSS Loader has been initialised using an options object that does not match the API schema. - options has an unknown property 'minimize'. 
 
 原因：在使用`zeit/next-less`时：webpack 4版本 css-loader有冲突，因为`minimize`属性在webpack4中被移除了
-  * [解决方法](https://github.com/zeit/next-plugins/issues/541)
+  * [解决方法](https://github.com/zeit/next-plugins/issues/541)  一
+        ```
+            // next.config.js
+            const withLess = require('@zeit/next-less')
 
-```
-    // next.config.js
-    const withLess = require('@zeit/next-less')
-
-    // 解决webpack和css-loader冲突问题
-    function HACK_removeMinimizeOptionFromCssLoaders(config) {
-        console.warn(
-            'HACK: Removing `minimize` option from `css-loader` entries in Webpack config',
-        );
-        config.module.rules.forEach(rule => {
-            if (Array.isArray(rule.use)) {
-            rule.use.forEach(u => {
-                if (u.loader === 'css-loader' && u.options) {
-                    delete u.options.minimize;
-                }
-            });
+            // 解决webpack和css-loader冲突问题
+            function HACK_removeMinimizeOptionFromCssLoaders(config) {
+                console.warn(
+                    'HACK: Removing `minimize` option from `css-loader` entries in Webpack config',
+                );
+                config.module.rules.forEach(rule => {
+                    if (Array.isArray(rule.use)) {
+                    rule.use.forEach(u => {
+                        if (u.loader === 'css-loader' && u.options) {
+                            delete u.options.minimize;
+                        }
+                    });
+                    }
+                });
             }
-        });
-    }
-        
-    const env = process.env.NODE_ENV;
+                
+            const env = process.env.NODE_ENV;
 
-    // 使用 less
-    module.exports = withLess({
-    cssModules: false, // 不使用cssModules
-    // CDN等静态文件地址路径
-    assetPrefix:  env === 'development' ? '/' : '/abc',
-    // 导出html配置
-    exportPathMap: async function (defaultPathMap) {
-        return {
-            '/index.html': { page: '/' },
-            '/xxx/index.html': { page: '/xxx' },
-            '/yyy/index.html': { page: '/yyy' },
-            '/zzz/index.html': { page: '/zzz' },
-        }
-    },
-    webpack(config, options) {
+            // 使用 less
+            module.exports = withLess({
+            cssModules: false, // 不使用cssModules
+            // CDN等静态文件地址路径
+            assetPrefix:  env === 'development' ? '/' : '/abc',
+            // 导出html配置
+            exportPathMap: async function (defaultPathMap) {
+                return {
+                    '/index.html': { page: '/' },
+                    '/xxx/index.html': { page: '/xxx' },
+                    '/yyy/index.html': { page: '/yyy' },
+                    '/zzz/index.html': { page: '/zzz' },
+                }
+            },
+            webpack(config, options) {
 
-        HACK_removeMinimizeOptionFromCssLoaders(config);
-        
-        // 修改出口文件路径
-        config.output.publicPath = env === 'development' ? '/' : '/abc';
+                HACK_removeMinimizeOptionFromCssLoaders(config);
+                
+                // 修改出口文件路径
+                config.output.publicPath = env === 'development' ? '/' : '/abc';
 
-        return config
-    }
-    })
-```
+                return config
+            }
+            })
+        ```
+  * 解决方案[二]：11月22日补充，目前 next.js 已经修复该问题
 
 ### antd-mobile 中less不能加载问题
 
@@ -91,7 +105,7 @@ ps：就刚好用的`9.0.7`版本有这个问题，会有这个问题，
 
 参考： [github issue](https://github.com/zeit/next-plugins/issues/392)
 
-解决方案：升级或者降级 `next.js` 的版本
+解决方案：**升级或者降级 `next.js` 的版本**
 
 
 ### 解决代理问题
