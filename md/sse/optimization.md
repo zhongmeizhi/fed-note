@@ -1,5 +1,13 @@
 # 性能优化
 
+### 开启 ETag + Gzip
+
+最重要的优化：使用 `oss` + `ETag` + `Gzip`
+
+推荐插件：`gulp-oss-sync`， oss 自带 ETag + Gzip
+
+ngnix 也有 Gzip的功能
+
 ### 请求优化
 
 1. 减少请求数
