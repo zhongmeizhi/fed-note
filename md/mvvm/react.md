@@ -234,6 +234,91 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
   }
 ```
 
-### React Hooks
+### React Hook
 
-Hooks
+> `Hook` 可以在不编写 `class` 的情况下使用 `state` 以及其他的 React 特性。
+
+使用 Hook 的目的
+1. 解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题。
+2. 功能的复用
+
+注意点：
+1. **Hook 在 class 内部是不起作用的。但可以用它取代 class**
+2. **只在最顶层使用 Hook。不要在循环，条件或嵌套函数中调用 Hook**
+3. **只在 React 函数中调用 Hook**
+4. **Hook 的调用顺序在每次渲染中都是相同的**
+   * 由于是顺序调用，如果Hook不放在顶层，比如放在if中，会导致顺序后面的hook被提前调用
+
+##### 状态相关：useState
+
+懒惰的 state：useState传入一个函数，然后返回初始化的值。类似于cached
+```
+  const [state, setState] = useState(() => {
+    const initialState = someExpensiveComputation(props);
+    return initialState;
+  });
+
+```
+
+##### 副作用相关：useEffect
+
+> 数据获取、设置订阅以及手动更改组件的 DOM 都属于副作用
+
+* `useEffect`默认：第一次渲染之后和每次更新之后都会执行
+  * 每次运行 effect 的同时，DOM 都已经更新完毕
+* `effect`可以在一个组件中声明多个，将按照声明的顺序依次调用组件中的每一个 `effect`
+* `useEffect`也可看做 `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`的组合
+  * 而class中副作用操作放到 `componentDidMount` 和 `componentDidUpdate` 函数中
+* 可选**清除机制**：如果在 `useEffect` 返回函数，`React` 将会在执行清除操作时调用该函数
+* 可选**跳过effect**：`useEffect`的第二个参数可以传数组
+  * 在组件重新渲染的时候会比较数组中的每个值是否和以前相等，（相等就会跳过）
+  * 该参数对 清除机制 同样有效
+  * 如果第二个参数为 空数组[]，那么该`effect`只会执行一次
+* 不能在 `useEffect` 中做有副作用的事情
+* 
+
+##### 自定义 Hook
+
+定义：自定义的hook 其实就是以命名以 use开头的 function，里面正常使用 hook，然后返回state。
+
+使用：使用和正常的function一致。
+
+注意：**两个相同的Hook状态是不共享的**
+
+其他Hook方法
+* useContext：接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。
+  * 当前的 context 值由上层组件中距离当前组件最近的 `<MyContext.Provider>` 的 value prop 决定
+  * 当组件上层最近的 `<MyContext.Provider>` 更新时，该 Hook 会触发重渲染
+* useReducer：useState 的替代方案，用在逻辑较为复杂且多个子值的情况，类型于`redux`
+* 
+
+
+## 在React中使用 Typescript
+
+### 在 `Ts/Tsx` 文件中引入 `js` 文件/库
+
+需要在`.d.ts` 的声明文件中，然后用`三斜线指令引入`
+
+以`create-react-app`为例：在`react-app-env.d.ts`文件中添加需要引入的 `.js`文件位置
+
+```
+    /// <reference types="react-scripts" />
+    /// <reference path="./utils/throttle.js" />
+```
+
+或引入 `.d.ts` 文件
+
+例如：
+```
+    // jquery.d.ts 文件
+    declare let $: (selector: string) => any;
+
+    // main.ts 文件
+    /// <reference path="./jquery.d.ts" />
+
+    $('body').html('hello world');
+```
+
+三斜线指令中需要注意的是 path 类型和 types 类型的区别：
+* `types` 类型声明的是对 `node_modules/@types` 文件夹下的类型的依赖，不包含路径信息
+* `path` 类型声明的是对本地文件的依赖，包含路径信息
