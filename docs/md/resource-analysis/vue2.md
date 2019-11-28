@@ -295,10 +295,10 @@ diff算法主要为2种：
 2. 不值得比较
 
 判断两个VNode节点是否是同一个节点(`sameVnode`)，需要满足以下条件
-* key相同
-* tag（当前节点的标签名）相同
+* `key`相同
+* `tagName `相同
 * isComment（是否为注释节点）相同
-* 是否data
+* 是否 data
 * 当标签是`<input>`的时候，type必须相同
 
 源码如下：
@@ -382,7 +382,112 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
 
 触发顺序：created-> mounted-> activated
 
+## 对Array的hack实现
 
+1. 实现了个包含需要hack的数组方法的对象
+2. 在`Observer`时将该hack方法覆盖需要劫持的Array的原型
+
+```
+  var arrayProto = Array.prototype;
+
+  // 创建一个对象， 该对象以数组的原型为原型
+  var arrayMethods = Object.create(arrayProto);
+
+  // 实现的hack 方法
+  var methodsToPatch = [
+    'push',
+    'pop',
+    'shift',
+    'unshift',
+    'splice',
+    'sort',
+    'reverse'
+  ];
+
+  methodsToPatch.forEach(function (method) {
+    // cache original method
+
+    // 获取到原生的 数组方法
+    var original = arrayProto[method];
+    /* 
+      使 arrayMethods 获得了一个包含原生数组的方法
+      同时还获得了调用 观察者对象的 更新能力
+
+      
+      后续在 观察者类<Observer> 中判断 是否 Array
+      如果是 Array 就会 调用 protoAugment<有__proto__情况> || copyAugment<无__proto__情况>
+      替换被监听的数组的 __proto__ 替换为 arrayMethods
+    */
+    def(arrayMethods, method, function mutator () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+      
+      // 执行真正的方法
+      var result = original.apply(this, args);
+      var ob = this.__ob__;
+      var inserted;
+      switch (method) {
+        case 'push':
+        case 'unshift':
+          inserted = args;
+          break
+        case 'splice':
+          inserted = args.slice(2);
+          break
+      }
+      if (inserted) { ob.observeArray(inserted); }
+      // notify change
+      ob.dep.notify();
+      return result
+    });
+  });
+
+  //... 省略
+
+  var Observer = function Observer (value) {
+    this.value = value;
+    this.dep = new Dep();
+    this.vmCount = 0;
+    def(value, '__ob__', this);
+
+    // 对 Array进行 hack
+    if (Array.isArray(value)) {
+      if (hasProto) {
+        protoAugment(value, arrayMethods);
+      } else {
+        copyAugment(value, arrayMethods, arrayKeys);
+      }
+      this.observeArray(value);
+    } else {
+      this.walk(value);
+    }
+  };
+
+  //... 省略
+
+  // 有__proto__时 挂载__proto__
+  function protoAugment (target, src) {
+    /* eslint-disable no-proto */
+    target.__proto__ = src;
+    /* eslint-enable no-proto */
+  }
+
+  /**
+    * Augment a target Object or Array by defining
+    * hidden properties.
+    
+    没有__proto__时
+    给对象每个属性都配一个对应方法
+
+    */
+  /* istanbul ignore next */
+  function copyAugment (target, src, keys) {
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i];
+      def(target, key, src[key]);
+    }
+  }
+```
 
 ## Vuex源码实现
 
@@ -474,3 +579,71 @@ action是异步的，使用的是Promise。 - -没啥好说的。
 2. 调用computed对象的getter方法
 3. 触发 对应$data 的getter方法
 4. 将对应`$data`的 观察者push到 computed对象的 `Watcher` 中
+
+### Vue.use 插件安装
+
+```
+  // 首先会校验`installedPlugins`数组中是否已经含有对应组件
+  const installedPlugins = this._installedPlugins || (this._installedPlugins = [])
+
+  // 防止重复安装
+  if (installedPlugins.indexOf(plugin) > -1) {
+    return this
+  }
+  
+  const args = toArray(arguments, 1)
+
+  // 插入Vue
+  args.unshift(this)
+
+  // 插件包含 install方法
+  if (typeof plugin.install === 'function') {
+    plugin.install.apply(plugin, args)
+  // 插件是函数
+  } else if (typeof plugin === 'function') {
+    plugin.apply(null, args)
+  }
+
+  // 缓存，用以检测是否重复安装
+  installedPlugins.push(plugin)
+
+  return this
+```
+
+## VueRouter 实现
+
+> VueRouter 实际上是一个 Vue的插件，通过`Vue.use(VueRouter)`来调用`VueRouter`的`install`方法
+
+最重要的实现：
+1. 通过`Vue.mixin`在`beforeCreate`中初始化router
+2. 全局注册2个组件：`router-link`和`router-view`
+```
+  // 通过 Vue.mixin 在 beforeCreate 中注入
+  Vue.mixin({
+    beforeCreate() {
+      // 判断组件是否存在 router 对象，该对象只在根组件上有
+      if (isDef(this.$options.router)) {
+        // 根路由设置为自己
+        this._routerRoot = this
+        this._router = this.$options.router
+
+        // 初始化路由
+        this._router.init(this)
+        // 很重要，为 _route 属性实现双向绑定
+        // 触发组件渲染
+        Vue.util.defineReactive(this, '_route', this._router.history.current)
+      } else {
+        // 用于 router-view 层级判断
+        this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
+      }
+      registerInstance(this, this)
+    },
+    destroyed() {
+      registerInstance(this)
+    }
+  })
+
+  // 全局注册组件 router-link 和 router-view
+  Vue.component('RouterView', View)
+  Vue.component('RouterLink', Link)
+```

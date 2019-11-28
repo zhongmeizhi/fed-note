@@ -37,9 +37,9 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 根据规范：每个任务都有一个任务源(task source)，源自同一个任务源的 task 必须放到同一个任务队列，从不同源来的则被添加到不同队列，所以有了宏任务(macro)task和微任务(micro)task。
 
-浏览器为了能够使得JS内部(macro)task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个(macro)task 执行开始前，对页面进行重新渲染，
+浏览器为了能够使得JS内部(macro)task与DOM任务能够有序的执行，会在**一个task执行结束后，在下一个(macro)task 执行开始前，对页面进行重新渲染**，
 
-每次执行完一个宏任务之后，会去检查是否存在微任务；如果有，则执行微任务直至清空微任务队列，如果在微任务执行期间微任务队列加入了新的微任务，会将新的微任务加入队列尾部，之后也会被执行。
+**每次执行完一个宏任务之后，会去检查是否存在微任务**；如果有，则执行微任务直至**清空微任务队列**（如果在微任务执行期间微任务队列加入了新的微任务，会将新的微任务加入队列尾部，之后也会被执行）。
 
 根据上述总结流程为：
 
@@ -49,34 +49,68 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 - 宏任务(macro)task主要有： script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)
 - 微任务(micro)task主要有： Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
-- requestAnimationFrame 既不属于宏任务, 也不属于微任务
+- `requestAnimationFrame` 既不属于宏任务, 也不属于微任务
 
 ~~目前宏任务和微任务在各浏览器执行都有差异，最后提议promise为微任务~~
 
 ### 实例分析
 ```
-    setTimeout(function(){
-        console.log('1');
+    console.log(1)
+
+    Promise.resolve(2).then(console.log)
+
+    requestIdleCallback(() => {
+        console.log(3);
+        Promise.resolve(4).then(console.log)
+    })
+
+    setTimeout(() => {
+        console.log(6)
+        Promise.resolve(7).then(console.log)
+    }, 0)
+
+    requestAnimationFrame(() => {
+        console.log(8)
+        Promise.resolve(9).then(console.log)
+    })
+
+    var intersectionObserver = new IntersectionObserver(function(entries) {
+     	if (entries[0].intersectionRatio <= 0) return;
+      	console.log('LoadedNewItems');
+      	Promise.resolve('doSomething').then(console.log)
     });
+    // 开始监听
+    intersectionObserver.observe(document.querySelector('div'));
 
-    new Promise(function(resolve){
-        console.log('2');
-        resolve();
-    }).then(function(){
-        console.log('3');
-    });
+    new Promise(reslove => reslove(5)).then(console.log)
 
-    console.log('4');
-
+    console.log(10)
 ```
-以上案例会输出 `2 4 3 1`
+以上案例会打印 `1 10 2 5` -> undefined -> `8 9 LoadedNewItems doSomething 6 7 3 4`
+如果没有 `intersectionObserver` 会打印  `1 10 2 5` -> undefined -> `8 9 3 4 6 7`
 
 结果解析：
-1. JavaScript执行主线程任务：`输出 2 4`
+1. JavaScript执行主线程任务：`打印 1 10`
    - 附：Promise构造器内部是同步任务
-2. 执行微任务队列：`输入 3`
-3. 第一个宏任务结束，进入setTimeout回调：`输出 1`
+2. 执行微任务队列：`打印 2 5`
+3. 宏任务和微任务都执行完成：`打印 undefined`
+4. 执行`requestAnimationFrame` ，`打印 8`
+5. 执行`requestAnimationFrame`的微任务，`打印  9`
+6. 执行`IntersectionObserver`，`打印 LoadedNewItems`
+7. 执行`IntersectionObserver`的微任务，`打印 doSomething`
+8. **更新界面**
+9. 如果浏览器空闲，调用`requestIdleCallback`，`打印 3`
+    * 如果`requestIdleCallback`被调用，那么会继续执行微任务，`打印 4`
+10. 一帧结束：
+11. 下一帧开始：执行`settimeout`，`打印 6`
+12. 执行`settimeout`的微任务，`打印 7`
 
+### 结论
 
-
-
+1. 宏任务
+2. 微任务
+4. requestAnimationFrame
+5. IntersectionObserver
+6. 更新界面
+7. requestIdleCallback
+8. 下一帧

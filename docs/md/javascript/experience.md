@@ -9,7 +9,8 @@
 * JIT：运行时编译（Just-in-time）
 * BOM：浏览器对象模型（Browser Object Model）（BOM的最核心对象是window对象）
 * DOM：文档对象模型（Document Object Model）DOM的最根本对象是 window.document
-* 静态作用域 -> 变量的作用域在写代码的时候就确定过了
+* 静态作用域： 变量的作用域在写代码的时候就确定过了（JS和Dart都是静态作用域）
+* 堆栈：基本数据类型的变量存储在栈中，引用数据类型的变量存储在堆中，引用类型数据的地址也存在栈中
 
 ### 关于 IOS 键盘弹出问题
 
@@ -39,7 +40,24 @@
     })
 ```
 
-### JS中 new Date 的兼容性BUG
+### IOS键盘弹出问题 2 （在WebView中BUG）
+
+在IOS中系统键盘弹出后，webview会弹到上边不回来了。（这个要看Native端，反正我用Flutter没问题，但是在公司某App的Hybrid开发中遇到了）
+
+导致的BUG：webview内部touch等事件的位置不正确
+
+解决方案：
+```
+    // @ts-ignore 元素blur的时候，回到可视区，使用了事件捕获,
+    document.addEventListener(
+        'blur', 
+        // () => (IS_IOS && document.activeElement.scrollIntoViewIfNeeded(true)),
+        () => IS_IOS && window.scrollBy({left: 0,top: 1}),
+        true
+    );
+```
+
+### Hybrid中 new Date 的兼容性BUG
 
 > 在不同的浏览器上：不支持中横线这种时间，得改为斜杠
 
@@ -50,7 +68,7 @@
 
 ```
 
-### dialog和body同时有滚动条的情况
+### 解决IOS中 dialog和body同时有滚动条时dialog能滚动body的情况
 
 > 会出现 dialog滚动到尽头时body滚动的情况 的BUG
 
@@ -110,6 +128,15 @@
 * 推荐用`accept="image/*"`
 
 
+### input 问题2， IOS中placeholder在input上部
+
+解决方案：
+1. chrome浏览器展示 DOM 的隐藏项
+2. 步骤：chrome -> `setting` -> `preferences` -> `Elements` -> 勾选 `Show user agent shadow DOM`
+3. 检查 placeholder 的DOM元素和 input的DOM元素高度，
+4. 设置 placeholder 的 `line-light` 使用顶部和 input顶部一致
+
+
 ### echarts 按需引入
 
 ```
@@ -148,4 +175,66 @@
   * 上传文件（只能上传一个）
 
 
+### 一个Vue插件BUG
+
+遇到的问题：
+
+做Vue插件在开发环境用`npm link`调试的时候报错：`[Vue warn]: $attrs is readonly`，但是我并没有在任何地方有`$attrs`或`$listeners`明确使用
+
+分析原因：
+
+在`debugger`时能够发现：在代码中使用了两个不同的vue包（vue.esm.js）。更准确地说：某个Vue包的`lifecycle.js`中的`updateChildComponent`函数在启动时将`isUpdatingChildComponent`标志设置为true
+
+```
+    !isUpdatingChildComponent && warn("$attrs is readonly.", vm, isUpdatingChildComponent);
+```
+
+为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件Vue的版本？
+
+还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方，可能是webpack中alias导致的。
+
+
+### HEX 转换 RGB， 判断是否淡色系
+
+> 通过检测 RGB 是否均大于某个值(比如 239), 大于该值则颜色为淡色
+
+转换代码
+```
+    function transformRGB(x){  
+        var sColor = x.toLowerCase();  
+        if(sColor && reg.test(sColor)){  
+            if(sColor.length === 4){  
+                var sColorNew = "#";  
+                for(var i=1; i<4; i+=1){  
+                    sColorNew += sColor.slice(i,i+1).concat(sColor.slice(i,i+1));     
+                }  
+                sColor = sColorNew;  
+            }  
+            //处理六位的颜色值
+            var sColorChange = [];  
+            for(var i=1; i<7; i+=2){  
+                sColorChange.push(parseInt("0x"+sColor.slice(i,i+2)));    
+            }  
+            //转换为rgb，此时不用传递参数
+             return "rgb(" + sColorChange.join(",") + ")";
+
+        }else{  
+            return sColor;    
+        }  
+    }; 
+```
+
+### npm插件 babel没有作用的问题。
+
+> `.babelrc`是用于本地项目文件的转换（不包括node_modules），而`babel.config.js`绑定（node_modules）
+
+解决方案：一
+* **Babel 7.x** 的新功能，Babel具有“根”目录的概念，该目录默认为当前工作目录。对于项目范围的配置，Babel将在此根目录中自动搜索 `babel.config.js`
+
+[参考 issue](https://github.com/babel/babel/issues/8672?tdsourcetag=s_pcqq_aiomsg)
+
+[参考 stackoverflow](https://stackoverflow.com/questions/54788809/babel-7-dont-compile-class-es6-which-in-node-modules/54933703?tdsourcetag=s_pcqq_aiomsg)
+
+解决方案：二（最常见）
+* 直接在 npm插件中进行打包，然后`main`指向对应文件（不能用webpack追加hash）
 

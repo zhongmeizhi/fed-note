@@ -2,6 +2,7 @@
 
 > 自己mark一下
 
+
 ## 更改 Flutter 桌面项目名
 
 * Android 是在 AndroidManifest.xml 中修改
@@ -11,10 +12,18 @@
   * flutter_ui\ios\Runner\Info.plist
   * 修改`<key>CFBundleName</key>`下面的`<string>蘑菇碳<string>`
 
+
 ## 更改 Flutter 桌面项目图片
 
 * Android 在 flutter_ui\android\app\src\main\res 下各种规格图片
 * ios 在 flutter_ui\ios\Runner\Assets.xcassets\AppIcon.appiconset 下配置
+
+
+## 版本升级
+
+Flutter的版本升级通过`flutter_downloader`（包下载） + `permission_handler`（权限管理） + `path_provider`（下载路径管理）协助完成
+
+PS: flutter_downloader 插件有毒，推使用 1.1.9版本。后面的版本有各种BUG（虽然功能也多了点）
 
 
 ## 配置不同的运行环境
@@ -25,6 +34,7 @@
 * 打包：`flutter build apk -t lib/main_prod.dart` （ios同理）
 
 当然`:)`如果通过编辑器/.bat来配置就更完美了。
+
 
 ## Android 打包后不能访问网络问题
 
