@@ -2514,8 +2514,9 @@
       }
     }
   
-    /*  */
-  
+    /* 
+    
+    */
     function mergeVNodeHook (def, hookKey, hook) {
       if (def instanceof VNode) {
         def = def.data.hook || (def.data.hook = {});
@@ -3390,6 +3391,10 @@
     /*  */
   
     // inline hooks to be invoked on component VNodes during patch
+
+    /* 
+      组件挂载的过程
+    */
     var componentVNodeHooks = {
       init: function init (vnode, hydrating) {
         if (
@@ -3428,6 +3433,10 @@
           componentInstance._isMounted = true;
           callHook(componentInstance, 'mounted');
         }
+
+        /* 
+          keepAlive 的组件 行 2个新的生命周期
+        */
         if (vnode.data.keepAlive) {
           if (context._isMounted) {
             // vue-router#1212
@@ -3455,7 +3464,10 @@
     };
   
     var hooksToMerge = Object.keys(componentVNodeHooks);
-  
+    
+    /* 
+
+    */
     function createComponent (
       Ctor,
       data,
@@ -3554,7 +3566,11 @@
   
       return vnode
     }
-  
+    
+
+    /* 
+      installComponentHooks 中被调用
+    */
     function createComponentInstanceForVnode (
       vnode, // we know it's MountedComponentVNode but flow doesn't
       parent // activeInstance in lifecycle state
@@ -3572,7 +3588,10 @@
       }
       return new vnode.componentOptions.Ctor(options)
     }
-  
+    
+    /* 
+      安装组件 钩子
+    */
     function installComponentHooks (data) {
       var hooks = data.hook || (data.hook = {});
       for (var i = 0; i < hooksToMerge.length; i++) {
@@ -3642,7 +3661,12 @@
       }
       return _createElement(context, tag, data, children, normalizationType)
     }
-  
+    
+
+    /* 
+      创建元素
+      顺便捞了一遍 data.is 也就是 <component :is=>
+    */
     function _createElement (
       context,
       tag,
@@ -3691,9 +3715,19 @@
         children = simpleNormalizeChildren(children);
       }
       var vnode, ns;
+
+      /* 
+        <component :is
+        如果is是字符串 => new VNode 或者 createComponent
+        或者组件 => createComponent
+
+        然后获取 到 vnode
+      */
       if (typeof tag === 'string') {
         var Ctor;
         ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
+        
+        // isReservedTag => return isHTMLTag(tag) || isSVG(tag)
         if (config.isReservedTag(tag)) {
           // platform built-in elements
           vnode = new VNode(
@@ -3701,7 +3735,11 @@
             undefined, undefined, context
           );
         } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
-          // component
+
+          /* 
+            component 组件
+            resolveAsset(context.$options, 'components', tag)
+          */
           vnode = createComponent(Ctor, data, context, children, tag);
         } else {
           // unknown or unlisted namespaced elements
@@ -3796,7 +3834,11 @@
     function renderMixin (Vue) {
       // install runtime convenience helpers
       installRenderHelpers(Vue.prototype);
-  
+      
+
+      /* 
+        为 Vue 注册 this.$nextTick 方法
+      */
       Vue.prototype.$nextTick = function (fn) {
         return nextTick(fn, this)
       };
@@ -4182,12 +4224,21 @@
         activeInstance = prevActiveInstance;
       }
     }
-  
+    
+    /* 
+      在 initMixin 中开始调用
+      初始化生命周期
+      在这里添加了 $destroy 和 $forceUpdate 方法
+    */
     function initLifecycle (vm) {
       var options = vm.$options;
   
       // locate first non-abstract parent
       var parent = options.parent;
+      
+      /* 
+        有 options.abstract 的组件为 keep-alive translate
+      */
       if (parent && !options.abstract) {
         while (parent.$options.abstract && parent.$parent) {
           parent = parent.$parent;
@@ -4240,14 +4291,20 @@
         // updated hook is called by the scheduler to ensure that children are
         // updated in a parent's updated hook.
       };
-  
+      
+      /* 
+        为vue实例上添加 this.$forceUpdate 方法
+      */
       Vue.prototype.$forceUpdate = function () {
         var vm = this;
         if (vm._watcher) {
           vm._watcher.update();
         }
       };
-  
+      
+      /* 
+        为vue实例上添加 this.$destroy 方法
+       */
       Vue.prototype.$destroy = function () {
         var vm = this;
         if (vm._isBeingDestroyed) {
@@ -4257,6 +4314,10 @@
         vm._isBeingDestroyed = true;
         // remove self from parent
         var parent = vm.$parent;
+
+        /* 
+          不会移除 keep-alive translate 组件
+        */
         if (parent && !parent._isBeingDestroyed && !vm.$options.abstract) {
           remove(parent.$children, vm);
         }
@@ -4291,7 +4352,12 @@
         }
       };
     }
-  
+    
+    /* 
+      组件挂载
+      从 beforeMount 到 mounted 的过程
+      
+    */
     function mountComponent (
       vm,
       el,
@@ -4322,6 +4388,10 @@
   
       var updateComponent;
       /* istanbul ignore if */
+      /* 
+        performance = false 
+        可以忽略
+      */
       if (config.performance && mark) {
         updateComponent = function () {
           var name = vm._name;
@@ -4340,6 +4410,10 @@
           measure(("vue " + name + " patch"), startTag, endTag);
         };
       } else {
+
+        /* 
+          挂载直接调用的 是 update render
+        */
         updateComponent = function () {
           vm._update(vm._render(), hydrating);
         };
@@ -4348,6 +4422,10 @@
       // we set this to vm._watcher inside the watcher's constructor
       // since the watcher's initial patch may call $forceUpdate (e.g. inside child
       // component's mounted hook), which relies on vm._watcher being already defined
+
+      /* 
+        监听更新
+      */
       new Watcher(vm, updateComponent, noop, {
         before: function before () {
           if (vm._isMounted && !vm._isDestroyed) {
@@ -4359,6 +4437,10 @@
   
       // manually mounted instance, call mounted on self
       // mounted is called for render-created child components in its inserted hook
+
+      /* 
+        挂载完成
+      */
       if (vm.$vnode == null) {
         vm._isMounted = true;
         callHook(vm, 'mounted');
@@ -4953,18 +5035,42 @@
       };
       Object.defineProperty(target, key, sharedPropertyDefinition);
     }
-  
+    
+
+    /* 
+      初始化数据了。 
+    
+    */
     function initState (vm) {
       vm._watchers = [];
       var opts = vm.$options;
+      /* 
+        先初始化 父类传的 Props
+       */
       if (opts.props) { initProps(vm, opts.props); }
+
+      /* 
+        初始化方法
+      */
       if (opts.methods) { initMethods(vm, opts.methods); }
+
+      /* 
+        先有了 Props然后 添加 Data
+      */
       if (opts.data) {
         initData(vm);
       } else {
         observe(vm._data = {}, true /* asRootData */);
       }
+
+      /* 
+        先注册 计算属性
+      */
       if (opts.computed) { initComputed(vm, opts.computed); }
+
+      /* 
+        然后才开始注册 监听属性
+      */
       if (opts.watch && opts.watch !== nativeWatch) {
         initWatch(vm, opts.watch);
       }
@@ -5074,7 +5180,11 @@
     }
   
     var computedWatcherOptions = { lazy: true };
-  
+    
+
+    /* 
+      完成计算属性
+    */
     function initComputed (vm, computed) {
       // $flow-disable-line
       var watchers = vm._computedWatchers = Object.create(null);
@@ -5115,7 +5225,11 @@
         }
       }
     }
-  
+    
+
+    /* 
+      真正的计算属性方法
+    */
     function defineComputed (
       target,
       key,
@@ -5278,8 +5392,16 @@
     /*  */
   
     var uid$3 = 0;
-  
+    
+
+    /* 
+      Vue 初始化方法 一
+     */
     function initMixin (Vue) {
+
+      /*
+        给 Vue实例 一个 _init 方法
+      */
       Vue.prototype._init = function (options) {
         var vm = this;
         // a uid
@@ -5296,6 +5418,12 @@
         // a flag to avoid this being observed
         vm._isVue = true;
         // merge options
+
+        /* 
+          在initRender -> createElement -> _createElement -> createComponent
+          -> installComponentHooks 时 调用 componentVNodeHooks 然后调用
+          -> createComponentInstanceForVnode 方法后才有 _isComponent
+        */
         if (options && options._isComponent) {
           // optimize internal component instantiation
           // since dynamic options merging is pretty slow, and none of the
@@ -5314,6 +5442,10 @@
         }
         // expose real self
         vm._self = vm;
+
+        /* 
+          初始化各种事件到 生命周期 Created 完成
+        */
         initLifecycle(vm);
         initEvents(vm);
         initRender(vm);
@@ -5354,7 +5486,10 @@
         opts.staticRenderFns = options.staticRenderFns;
       }
     }
-  
+    
+    /* 
+      
+    */
     function resolveConstructorOptions (Ctor) {
       var options = Ctor.options;
       if (Ctor.super) {
@@ -5391,15 +5526,25 @@
       }
       return modified
     }
-  
+    
+
+    /* 
+      // 起点
+      定义 Vue 的地方。
+    */
     function Vue (options) {
       if (!(this instanceof Vue)
       ) {
         warn('Vue is a constructor and should be called with the `new` keyword');
       }
+
+      // 在实例对象中有 _init方法
       this._init(options);
     }
-  
+    
+    /* 
+      调用初始化方法
+    */
     initMixin(Vue);
     stateMixin(Vue);
     eventsMixin(Vue);
@@ -5529,13 +5674,16 @@
       }
     }
   
-    /*  */
-  
+    /* 
+      开始挂载 <component> 的地方
+    */
     function initAssetRegisters (Vue) {
       /**
        * Create asset registration methods.
        */
       ASSET_TYPES.forEach(function (type) {
+
+        // 
         Vue[type] = function (
           id,
           definition
@@ -5545,6 +5693,9 @@
           } else {
             /* istanbul ignore if */
             if (type === 'component') {
+              /* 
+                打印警告的方法
+               */
               validateComponentName(id);
             }
             if (type === 'component' && isPlainObject(definition)) {
@@ -5695,8 +5846,11 @@
       KeepAlive: KeepAlive
     };
   
-    /*  */
-  
+    /* 
+      在初始化 全局API 的时候才
+      initAssetRegisters
+      也就是 component 和 directive
+    */
     function initGlobalAPI (Vue) {
       // config
       var configDef = {};
@@ -5746,7 +5900,11 @@
       initExtend(Vue);
       initAssetRegisters(Vue);
     }
-  
+    
+
+    /* 
+      在所以的什么周期完成之后，才会执行
+    */
     initGlobalAPI(Vue);
   
     Object.defineProperty(Vue.prototype, '$isServer', {
@@ -6219,7 +6377,10 @@
       }
   
       var creatingElmInVPre = 0;
-  
+      
+      /* 
+        这里也会创建组件
+       */
       function createElm (
         vnode,
         insertedVnodeQueue,
@@ -6286,10 +6447,16 @@
           insert(parentElm, vnode.elm, refElm);
         }
       }
-  
+      
+      /* 
+        创建组件
+      */
       function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
         var i = vnode.data;
         if (isDef(i)) {
+          /* 
+            一个 keepalive 的组件
+          */
           var isReactivated = isDef(vnode.componentInstance) && i.keepAlive;
           if (isDef(i = i.hook) && isDef(i = i.init)) {
             i(vnode, false /* hydrating */);
@@ -6300,6 +6467,10 @@
           // in that case we can just return the element and be done.
           if (isDef(vnode.componentInstance)) {
             initComponent(vnode, insertedVnodeQueue);
+
+            /* 
+              将组件插入到上下文中
+            */
             insert(parentElm, vnode.elm, refElm);
             if (isTrue(isReactivated)) {
               reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm);
@@ -6348,7 +6519,11 @@
         // a reactivated keep-alive component doesn't insert itself
         insert(parentElm, vnode.elm, refElm);
       }
-  
+      
+
+      /* 
+        一个插入组件的方法
+      */
       function insert (parent, elm, ref$$1) {
         if (isDef(parent)) {
           if (isDef(ref$$1)) {
@@ -6480,7 +6655,11 @@
           removeNode(vnode.elm);
         }
       }
-  
+      
+
+      /* 
+        更新组件的操作
+       */
       function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly) {
         var oldStartIdx = 0;
         var newStartIdx = 0;
@@ -7421,6 +7600,10 @@
     // doesn't get processed by processAttrs.
     // By default it does NOT remove it from the map (attrsMap) because the map is
     // needed during codegen.
+    
+    /* 
+      解析 HTML 获取对应的属性，v-if 等
+    */
     function getAndRemoveAttr (
       el,
       name,
