@@ -68,11 +68,11 @@
 
 ```
 
-### 解决IOS中 dialog和body同时有滚动条时dialog能滚动body的情况
+### 解决IOS中 子元素滚动传播到父元素的情况
 
 > 会出现 dialog滚动到尽头时body滚动的情况 的BUG
 
-解决方案：
+解决方案 一：
 ```
     var mo = function (e) { e.preventDefault() }
 
@@ -90,6 +90,13 @@
         document.body.style.overflow = '';
         // 恢复原生下拉刷新
         document.removeEventListener('touchmove', mo, false);
+    }
+```
+
+更好的解决方案
+```
+    .box {
+        overscroll-behavior: contain; // 阻止滚动传播
     }
 ```
 

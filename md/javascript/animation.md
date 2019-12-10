@@ -55,16 +55,16 @@ if (!Date.now)
 
 ### onTransitionEnd
 
-做动画怎么能没有 `onTransitionEnd` 呢？
+做动画怎么能没有 `onTransitionEnd` 呢？目前兼容性还可以，vue的动画就是通过这个做的。
 
 监听：css样式 `transition` 结束后触发
 
 
 ### 屏幕滚动
 
-`window.scrollTo(0, 100)`
-`document.body.scrollTop = 100`
-`window.scrollBy(0, 100)`:相对滚动
+1. `window.scrollTo(0, 100)`
+2. `document.body.scrollTop = 100`
+3. `window.scrollBy(0, 100)`:相对滚动
 
 让元素显示在视窗
 
@@ -86,10 +86,18 @@ if (!Date.now)
     document.querySelector(".a").scrollIntoView({block: ["start" | "center" | "end"]});
 ```
 
-添加平滑效果：
+添加平滑动画效果：
 ```
     // scrollTo scrollBy scrollIntoView 
     scrollTo({
         behavior: "smooth"
     })
+```
+
+### 解决 IOS 自定义滚动条滚动不顺畅情况
+
+```
+    .box {
+        -webkit-overflow-scrolling: touch;
+    }
 ```

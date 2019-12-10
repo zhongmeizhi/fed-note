@@ -66,3 +66,29 @@ ngnix 也有 Gzip的功能
 ### H5预渲染（prerender）
 * HTTPS页面 不可用 -.-!
 
+
+### 网页性能查看
+
+推荐：
+1. Chrome -> 下载`Lighthouse`插件
+2. 通过控制台的 `Audits` 使用 `Lighthouse`
+3. 得到性能报告
+
+
+
+### 千/万条列表更新方法
+
+参考 [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)
+
+源码分析：
+1. 根据 `props item-size` 计算滚动高度
+2. 通过 `transform: translate` + `touchMove` 只做虚拟滚动
+3. 通过计算 `startIndex` 和 `endIndex` 计算 `translate` 的值
+
+总结：
+* 该库的滚动实现利用 减少DOM的使用，通过计算来只做一个虚拟滚动
+* 但是该库太过于依赖 props传的 `item-size` 或 `sizeField` 计算高度
+
+构思：
+*  如果要实现一个动态高度的虚拟滚动，是否可以通过前后添加预期DOM来计算即将渲染的DOM的高度，从而摆脱`props`的依赖？
+
