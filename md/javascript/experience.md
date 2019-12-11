@@ -93,12 +93,15 @@
     }
 ```
 
-更好的解决方案
+解决方案 二:
 ```
     .box {
         overscroll-behavior: contain; // 阻止滚动传播
     }
 ```
+ps: overscroll-behavior 的兼容性并没有太好
+
+参考 [can i use](https://www.caniuse.com/#search=overscroll-behavior)
 
 ### 处理精确度问题
 

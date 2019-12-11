@@ -51,6 +51,7 @@
   * [经验包](md/javascript/experience.md)
 * 前端进阶
   * [性能优化](md/sse/optimization.md)
+  * [设计模式](md/sse/design_model.md)
   * [async await](md/sse/async_await.md)
   * [模块化](md/sse/module.md)
   * [webpack（一）热加载原理](md/fed-tools/hot_loader.md)

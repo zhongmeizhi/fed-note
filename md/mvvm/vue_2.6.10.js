@@ -786,7 +786,7 @@
      * directives subscribing to it.
      * 
      * Dep 是双向绑定中最重要的模块之一
-     * Dep用来存放 Watcher.prototype 订阅者
+     * Dep用来存放 Watcher.prototype 被观察者实例
      * 可以存放多个
      */
     var Dep = function Dep () {
