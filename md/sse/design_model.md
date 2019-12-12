@@ -198,4 +198,53 @@
 
 ### 中介者模式
 
+> 中介：撮合多个卖家 和 多个买家
+
+```
+    class Saler {
+        constructor(name, cost) {
+            this.name = name;
+            this.cost = cost;
+        }
+            
+        send() {
+            console.log(`${cost}元出售${name}`)
+        }
+    }
+    
+    class Agency {
+        constructor() {
+            this.cargos = []
+        }
+        
+        register(saler) {
+            this.cargos.push(saler);
+        }
+        
+        query(name) {
+            const matchCargos = this.cargos.filter(cargo => cargo && cargo.name === name);
+            if (matchCargos.length) {
+                console.log(`查询到正在出售的商品:${JSON.stringify(matchCargos)}`)
+            } else {
+                console.log(`没有${name}在出售`);
+            }
+        }
+    }
+    
+    let agency = new Agency();
+    
+    agency.query('cart');
+    
+    const cartA = new Saler('cart', '100');
+    const cartB = new Saler('cart', '300');
+    const house = new Saler('house', '500');
+
+    agency.register(cartA);
+    agency.register(cartB);
+    agency.register(house);
+    
+    agency.query('cart');
+    agency.query('house');
+    agency.query('ABC');
+```
 
