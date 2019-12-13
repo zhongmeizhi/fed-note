@@ -9,65 +9,55 @@
 6. 如何暴露被覆盖的原型属性
 
 ### prototype
-Javascript的继承是原型`prototype`继承，函数都有`prototype`属性
-```
-    function a () {}
-    console.log(typeof a.prototype); // object
-```
-但是`Function.prototype.bind()`没有`prototype`
-```
-    var fn = Function.prototype.bind();
-    console.log(typeof fn); // function
-    console.log(fn.prototype); // undefined
 
-    // why ? 看下文
-```
+对象都有 `__proto__` 函数都有 `prototype`,
 
-`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建
-```
-    console.log(Object.prototype);
-    // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
-
-    console.log(Function.prototype);
-    // ƒ () { [native code] }
-    
-```
-
-所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
-```
-    var obj = {};
-    obj.__proto__ === Object.prototype; // true
-
-    function A () {}
-    var a = new A();
-    a.__proto__ === A.prototype; // true
-    A.__proto__ === Function.prototype; // true
-```
-
-每个对象都有 `__proto__` 属性，指向了创建该对象的构造函数的原型`prototype`，通过`_proto_`将对象和原型联系起来组成原型链，得以让对象可以访问到不属于自己的属性。
+每个实例对象的 `__proto__` 指向它的构造函数的 **原型对象(prototype)**。该原型对象也有一个自己的原型对象(`__proto__`) ，层层向上直到一个对象的原型对象为 `null`。`null` 没有原型，并作为这个原型链中的最后一个环节。
 
 其实`__proto__`不是真正的规范属性，他指向了 [[prototype]]，但是 [[prototype]] 是内部属性，我们并不能访问到，所以使用 `__proto__` 来访问。
 
-原型链的终点
-```
-    Function.__proto__ === Function.prototype;
-    Object.__proto__ === Function.prototype;
 
-    Function.prototype.__proto__ === Object.prototype;
-    Object.prototype.__proto__ === null;
-```
-
+`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
 
 每个对象的`constructor` === 创建该对象的构造函数（constructor大部分情况是没用的）
-```
-    function A () {}
-    a = new A();
 
-    a.constructor === A; // true
-    a.constructor === a.__proto__.constructor; // true
-```
 
 对于实例对象来说，都是通过 new 产生的，无论是 function A() 还是 var a = { x : 1 } , 字面量内部也是使用了 new Object()
+
+```
+    class Parent {
+    }
+    
+    class Son extends Parent{
+    }
+    
+    function log(val) {
+        console.log(val);
+    }
+    
+    const son = new Son();
+    const parent = new Parent();
+    
+    log('---原型链---')
+    log(son.constructor === Son)
+    log(son.__proto__ === son.constructor.prototype)
+    log(son.__proto__ === Son.prototype)
+    
+    //
+    log(Son.prototype.__proto__ === Parent.prototype)
+    log(Parent.prototype.__proto__ === Object.prototype)
+    log(Object.prototype.__proto__ === null)
+
+    // 
+    log(Son.constructor === Function)
+    log(Son.__proto__ === Parent)
+    
+    log(Parent.constructor === Function)
+    log(Parent.__proto__ === Object.__proto__)
+```
+
+![prototype](/md/img/prototype.png)
+
 
 ### new的过程
 1. 新生成了一个对象
