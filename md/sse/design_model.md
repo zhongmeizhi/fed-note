@@ -1,5 +1,7 @@
 # JS 设计模式
 
+面向对象思想：封装、继承、多态
+
 ### 1. 构造器模式
 
 > 无非就是继承来实现的啦 - -!
@@ -247,4 +249,60 @@
     agency.query('house');
     agency.query('ABC');
 ```
+
+### 命令模式
+
+> 为方法的调用进行解耦
+
+```
+    const command = {
+        buy(name, cost) {
+            console.log(`购买${name}消费了${cost}元`)
+        },
+        sale(name, cost) {
+            console.log(`出售了${name}赚得${cost}元`)
+        },
+        say(name, cost) {
+            console.log(`这里${cost}元可以买到${name}`)
+        },
+        execute(fnName) {
+            const fn= this[fnName];
+            (typeof fn === 'function') && fn.apply(this, [].slice.call(arguments, 1))
+        }
+    }
+    
+    command.execute('buy', 'VIP', '200');
+    command.execute('sale', '节操', '998');
+    command.execute('say', 'VIP', '123');
+```
+
+### 策略模式
+
+> 策略模式最大的好处是：减少if-else的使用，同时增加代码可读性
+
+简单的年终奖计算。（策略模式放在必填项/规则验证会很便捷）
+```
+    // 策略模式
+    const bonus = {
+        A: function(base) {
+            return base * 4;
+        },
+        B: function(base) {
+            return base * 3;
+        },
+        C: function(base) {
+            return base * 2;
+        },
+        D: function(base) {
+            return base;
+        }
+    }
+
+    const level = "B";
+    const base = "1008611";
+    const yearBouns = bonus[level](base);
+    console.log(yearBouns)
+```
+
+### 工厂模式
 
