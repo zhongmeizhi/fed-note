@@ -1,19 +1,31 @@
-# 原型
+# 原型/原型链 && 静态属性/方法
 
 ### prototype 和 __proto__
 
-对象都有 `__proto__` 函数都有 `prototype`,
+对象都有 `__proto__` 函数都有 `prototype`, 而且而子类的`__proto__`等于父类的`prototype` 即： `son.__proto__ === Son.prototype`
 
 每个实例对象的 `__proto__` 指向它的构造函数的 **原型对象(prototype)**。该原型对象也有一个自己的原型对象(`__proto__`) ，层层向上直到一个对象的原型对象为 `null`。`null` 没有原型，并作为这个原型链中的最后一个环节。
 
 
+`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
+
 PS：`__proto__`不是真正的规范属性，他指向了 `[[prototype]]`，但是 `[[prototype]]` 是内部属性，我们并不能访问到，所以使用 `__proto__` 来访问。
+
 
 
 ### 属性的查找过程
 
+属性查找会在原型链上一层一层的寻找属性
 
-`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
+查找顺序：
+1. son
+2. `son.__proto__`
+3. `son.__proto__.__proto__`
+4. 直到`son.__proto__.__proto__........ === null` 为止
+
+如图
+
+![prototype](/md/img/prototype.png)
 
 举例：
 ```
@@ -64,9 +76,44 @@ PS：`__proto__`不是真正的规范属性，他指向了 `[[prototype]]`，但
     a.__proto__.__proto__.__proto__...
 ```
 
-![prototype](/md/img/prototype.png)
-
 [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain)
+
+### 静态属性/方法
+
+> 静态属性/方法：就是不需要实例化类，就能直接调用的 属性/方法。
+
+综合上面`Parent`和`Son`的例子
+
+不管是 `son`、`Son`还是`Parent`，它们都是对象，所以都可以直接赋值，也能在`__proto__`上赋值
+
+所以静态属性/方式直接赋值就可以了
+
+```
+    Parent.x = 1
+    Parent.__proto__.x =2
+
+    console.log(Parent.x)  // 1
+    console.log(Parent.__proto__.x) // 2
+```
+
+如果使用 ES6的 `Class` 定义一个类
+
+```
+    class A {
+        constructor() {
+            this.x = 1;
+        }
+        static say() {
+            console.log('zmz');
+        }
+        print() {
+            console.log(this.x);
+        }
+    }
+
+    A.say()
+```
+
 
 ### new的过程
 1. 新生成了一个对象
