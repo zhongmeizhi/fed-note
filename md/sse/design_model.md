@@ -51,6 +51,8 @@
 
 > 单例：就是限制一个类只能有一个实例化对象
 
+使用场景案例：“警告/确认/提示弹窗”（只能存在一个的情况）
+
 最简单的单例：：闭包 + Flag 来实现
 ```
     const mySingleton = (function () {
@@ -96,7 +98,9 @@
 
 > 由观察者和观察者组成。通过观察者调用被观察者的实例。
 
-观察者模式是：观察者对象和被观察者对象 之间的订阅和触发事件
+观察者模式：观察者对象和被观察者对象 之间的订阅和触发事件
+
+使用场景案例：“Vue 双向绑定实现”
 
 简单的观察者模式: （仿 `Vue` 实现）
 ```
@@ -172,6 +176,7 @@
 * 发布者发布信息到调度中心
 * 调度中心和订阅者直接完成订阅和触发事件事件
 
+使用场景案例：“DOM 的 addEventListener 事件”
 
 一个简单的发布/订阅者模式实现：（仿 `EventBus` 实现）
 ```
@@ -280,6 +285,7 @@
 
 > 策略模式最大的好处是：减少if-else的使用，同时增加代码可读性
 
+
 简单的年终奖计算。（策略模式放在必填项/规则验证会很便捷）
 ```
     // 策略模式
@@ -375,10 +381,7 @@
         }
         
         setPart(name, Part) {
-            if (!this.cart[name]) {
-                this.cart[name] = Part;
-            }
-            return this.cart[name];
+            this.cart[name] = Part;
         }
     }
     
@@ -394,4 +397,22 @@
     oil.warn();
 ```
 
+### 修饰器模式
+
+> 修饰：不改变原有对象，在其基础上进行拓展
+
+基本上每天都在用的设计模式...
+
+简单的修饰模式实现：
+```
+    const after = function(fn, afterFn) {
+        return function() {
+            fn.apply(this, arguments)
+            afterFn.apply(this, arguments)
+        }
+    }
+
+    const myAfter = after(after(fn1, fn2), fn3)
+    myAfter()
+```
 
