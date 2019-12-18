@@ -40,7 +40,6 @@
   * [跨域机制](md/browser/cross_origin.md)
   * [页面加载过程](md/base/page_load.md)
 * 前端基础
-  * [JS数据类型](md/javascript/js_type.md)
   * [函数（一）函数&尾递归](md/javascript/function.md)
   * [函数（二）防抖&节流](md/javascript/debounce_throttle.md)
   * [函数（三）原型](md/javascript/prototype.md)
@@ -60,6 +59,8 @@
   * [NPM机制](node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)
+* 前端-复习回顾 2.0版
+  * [v2 JS数据类型篇](/md/review/js_type.md)
 * RXJS学习
   * [RXJS学习（一）函数式编程](md/sse/function_program.md)
   * [RXJS学习（二）Observable](md/rxjs/Observable.md)

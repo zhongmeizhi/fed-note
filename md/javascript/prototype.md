@@ -1,17 +1,33 @@
 # 原型/原型链 && 静态属性/方法
 
-### prototype 和 __proto__
+###  __proto__ 和 prototype
 
-对象都有 `__proto__` 函数都有 `prototype`, 而且而子类的`__proto__`等于父类的`prototype` 即： `son.__proto__ === Son.prototype`
+对象都有 `__proto__`， 它是一个访问器属性，指向了我们不能直接访问到的内部属性 `[[prototype]]`
 
-每个实例对象的 `__proto__` 指向它的构造函数的 **原型对象(prototype)**。该原型对象也有一个自己的原型对象(`__proto__`) ，层层向上直到一个对象的原型对象为 `null`。`null` 没有原型，并作为这个原型链中的最后一个环节。
+函数都有 `prototype`，`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.prototype`，所有的对象都继承自 `Object.prototype`
 
+每个实例对象的 `__proto__` 指向它的构造函数的 **原型对象(prototype)**（即： `son.__proto__ === Son.prototype`），该原型对象也有一个自己的原型对象(`__proto__`) ，层层向上直到一个对象的原型对象为 `null`。`null` 没有原型，并作为这个原型链中的最后一个环节。
 
-`Object.prototype`和`Function.prototype`是两个特殊的对象，他们由引擎来创建，所有函数都继承自 `Function.__prototype`，所有的对象都继承自 `Object.prototype`
+### 访问原型属性
 
-PS：`__proto__`不是真正的规范属性，他指向了 `[[prototype]]`，但是 `[[prototype]]` 是内部属性，我们并不能访问到，所以使用 `__proto__` 来访问。
+由于 `__proto__` 的性能问题和兼容性问题，不推荐使用。
 
+推荐
+* 使用 `Object.getPrototypeOf` 获取原型属性
+* 通过 `Object.setPrototypeOf` 修改原型属性
+* 通过 `Object.create()` 继承原型
 
+```
+    let arr = [1, 2, 3];
+
+    // 获取原型属性
+    Object.getPrototypeOf(arr)
+    Reflect.getPrototypeOf(arr)
+
+    // 修改原型属性
+    Object.setPrototypeOf(arr, {x: 1})
+    Reflect.setPrototypeOf(arr, {x: 1})
+```
 
 ### 属性的查找过程
 
