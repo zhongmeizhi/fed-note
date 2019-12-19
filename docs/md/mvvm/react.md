@@ -275,7 +275,7 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
   * 该参数对 清除机制 同样有效
   * 如果第二个参数为 空数组[]，那么该`effect`只会执行一次
 * 不能在 `useEffect` 中做有副作用的事情
-* 
+
 
 ##### 自定义 Hook
 
@@ -285,12 +285,17 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
 
 注意：**两个相同的Hook状态是不共享的**
 
-其他Hook方法
-* useContext：接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。
+其他Hook方法：
+* `useContext`：接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。
   * 当前的 context 值由上层组件中距离当前组件最近的 `<MyContext.Provider>` 的 value prop 决定
   * 当组件上层最近的 `<MyContext.Provider>` 更新时，该 Hook 会触发重渲染
-* useReducer：useState 的替代方案，用在逻辑较为复杂且多个子值的情况，类型于`redux`
-* 
+* `useReducer`：useState 的替代方案，用在逻辑较为复杂且多个子值的情况，类型于`redux`
+* `useCallback`：依赖项改变时更新，类似于Vue的 计算属性，（useCallback(fn, deps) 相当于 useMemo(() => fn, deps)。）
+* `useMemo`：依赖项改变时更新，在渲染阶段执行，（可以把 useMemo 作为性能优化的手段）
+* `useRef`：对于一个可变的DOM元素，无论该节点如何改变 ref 会一直对应 useRef(null)的`.current`属性
+* `useImperativeHandle`：可以将使用ref时自定义暴露给父组件
+* `useLayoutEffect`：在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新。
+* `useDebugValue`：在hook的debugger中使用
 
 
 ## 在React中使用 Typescript

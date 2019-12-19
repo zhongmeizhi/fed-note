@@ -1,0 +1,1646 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>webpack（二）性能优化 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../browser/security_code.html" />
+    
+    
+    <link rel="prev" href="hot_loader.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    样式&&兼容性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../css/less.html">
+            
+                <a href="../css/less.html">
+            
+                    
+                    less&sass使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../css/mobile.html">
+            
+                <a href="../css/mobile.html">
+            
+                    
+                    移动端-适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../css/layout.html">
+            
+                <a href="../css/layout.html">
+            
+                    
+                    PC端-布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../css/css_test.html">
+            
+                <a href="../css/css_test.html">
+            
+                    
+                    CSS渐进增强
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../css/EXPERIENCE.html">
+            
+                <a href="../css/EXPERIENCE.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    计算机基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../browser/cross_origin.html">
+            
+                <a href="../browser/cross_origin.html">
+            
+                    
+                    跨域机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../base/page_load.html">
+            
+                <a href="../base/page_load.html">
+            
+                    
+                    页面加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../javascript/js_type.html">
+            
+                <a href="../javascript/js_type.html">
+            
+                    
+                    JS数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../javascript/function.html">
+            
+                <a href="../javascript/function.html">
+            
+                    
+                    函数（一）函数&尾递归
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../javascript/debounce_throttle.html">
+            
+                <a href="../javascript/debounce_throttle.html">
+            
+                    
+                    函数（二）防抖&节流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../javascript/prototype.html">
+            
+                <a href="../javascript/prototype.html">
+            
+                    
+                    函数（三）原型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../javascript/iterator.html">
+            
+                <a href="../javascript/iterator.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../javascript/hybrid.html">
+            
+                <a href="../javascript/hybrid.html">
+            
+                    
+                    hybrid开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../javascript/event-point.html">
+            
+                <a href="../javascript/event-point.html">
+            
+                    
+                    埋点设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../javascript/animation.html">
+            
+                <a href="../javascript/animation.html">
+            
+                    
+                    关于动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../javascript/experience.html">
+            
+                <a href="../javascript/experience.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    前端进阶
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../sse/optimization.html">
+            
+                <a href="../sse/optimization.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../sse/async_await.html">
+            
+                <a href="../sse/async_await.html">
+            
+                    
+                    async await
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../sse/module.html">
+            
+                <a href="../sse/module.html">
+            
+                    
+                    模块化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="hot_loader.html">
+            
+                <a href="hot_loader.html">
+            
+                    
+                    webpack（一）热加载原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.5" data-path="webpack_optimization.html">
+            
+                <a href="webpack_optimization.html">
+            
+                    
+                    webpack（二）性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../browser/security_code.html">
+            
+                <a href="../browser/security_code.html">
+            
+                    
+                    前端安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../node/NPM.md">
+            
+                <span>
+            
+                    
+                    NPM机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../sse/event_loop.html">
+            
+                <a href="../sse/event_loop.html">
+            
+                    
+                    JS运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../browser/garbage_collection.html">
+            
+                <a href="../browser/garbage_collection.html">
+            
+                    
+                    JS垃圾回收机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    RXJS学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../sse/function_program.html">
+            
+                <a href="../sse/function_program.html">
+            
+                    
+                    RXJS学习（一）函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../rxjs/Observable.html">
+            
+                <a href="../rxjs/Observable.html">
+            
+                    
+                    RXJS学习（二）Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../rxjs/Operators.html">
+            
+                <a href="../rxjs/Operators.html">
+            
+                    
+                    RXJS学习（三）Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../rxjs/Subject.html">
+            
+                <a href="../rxjs/Subject.html">
+            
+                    
+                    RXJS学习（四）Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../rxjs/Scheduler.html">
+            
+                <a href="../rxjs/Scheduler.html">
+            
+                    
+                    RXJS学习（五）Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Vue + React 框架学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../resource-analysis/vue2.html">
+            
+                <a href="../resource-analysis/vue2.html">
+            
+                    
+                    Vue 2.x 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../mvvm/next_js.html">
+            
+                <a href="../mvvm/next_js.html">
+            
+                    
+                    next.js 体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Node学习篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/z-mock">
+            
+                    
+                    用Koa2撸一个API Mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Dart篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../dart/PRIMER.html">
+            
+                <a href="../dart/PRIMER.html">
+            
+                    
+                    dart（一）概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../dart/base.html">
+            
+                <a href="../dart/base.html">
+            
+                    
+                    dart（二）基本操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../dart/class.html">
+            
+                <a href="../dart/class.html">
+            
+                    
+                    dart（三）类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../dart/again.html">
+            
+                <a href="../dart/again.html">
+            
+                    
+                    dart（四）稍微抽象点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../dart/event_loop.html">
+            
+                <a href="../dart/event_loop.html">
+            
+                    
+                    dart（X）运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Flutter基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../flutter/BRIEF.html">
+            
+                <a href="../flutter/BRIEF.html">
+            
+                    
+                    flutter 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../flutter/PRIMER.html">
+            
+                <a href="../flutter/PRIMER.html">
+            
+                    
+                    Flutter 屏幕适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../flutter/render.html">
+            
+                <a href="../flutter/render.html">
+            
+                    
+                    Flutter 渲染策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../flutter/webview.html">
+            
+                <a href="../flutter/webview.html">
+            
+                    
+                    Flutter WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../flutter/navigator.html">
+            
+                <a href="../flutter/navigator.html">
+            
+                    
+                    Flutter 局部路由实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../flutter/SCENES.html">
+            
+                <a href="../flutter/SCENES.html">
+            
+                    
+                    Flutter 环境问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../flutter/ISSUE.html">
+            
+                <a href="../flutter/ISSUE.html">
+            
+                    
+                    Flutter 开发细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/flutter-UI">
+            
+                    
+                    Flutter API使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/fultter-example-app">
+            
+                    
+                    Flutter 项目实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../java/JVM.html">
+            
+                <a href="../java/JVM.html">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../java/maven.html">
+            
+                <a href="../java/maven.html">
+            
+                    
+                    Maven
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../java/MYSQL.html">
+            
+                <a href="../java/MYSQL.html">
+            
+                    
+                    mysql环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../java/data_base.html">
+            
+                <a href="../java/data_base.html">
+            
+                    
+                    事务&锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../spring-boot/init.html">
+            
+                <a href="../spring-boot/init.html">
+            
+                    
+                    Spring Boot（一）入门篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    其他
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../other/GIT.html">
+            
+                <a href="../other/GIT.html">
+            
+                    
+                    git命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../other/GITHUB.html">
+            
+                <a href="../other/GITHUB.html">
+            
+                    
+                    GitHub的Host和Key
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" >
+            
+                <span>
+            
+                    
+                    大神github博客地址
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" >
+            
+                <a target="_blank" href="https://github.com/ruanyf">
+            
+                    
+                    阮一峰
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    司徒正美
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" >
+            
+                <a target="_blank" href="https://github.com/fouber/blog">
+            
+                    
+                    张云龙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" >
+            
+                <a target="_blank" href="https://github.com/mqyqingfeng/Blog">
+            
+                    
+                    冴羽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" >
+            
+                <a target="_blank" href="https://github.com/yygmind">
+            
+                    
+                    木易杨
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" >
+            
+                <a target="_blank" href="https://github.com/phodal/microfrontends">
+            
+                    
+                    微前端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" >
+            
+                <a target="_blank" href="https://github.com/Tnfe/TNFE-Weekly">
+            
+                    
+                    前端周报
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.8" >
+            
+                <a target="_blank" href="https://github.com/sisterAn/blog">
+            
+                    
+                    安安小姐姐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.9" >
+            
+                <a target="_blank" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.10" >
+            
+                <a target="_blank" href="https://github.com/chokcoco/CSS-Inspiration">
+            
+                    
+                    CSS灵感
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.11" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    移动端各种坑解决
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.12" >
+            
+                <a target="_blank" href="https://github.com/lessfish/underscore-analysis">
+            
+                    
+                    underscore1.8.3解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.13" >
+            
+                <a target="_blank" href="https://github.com/answershuto/learnVue">
+            
+                    
+                    Vue源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.14" >
+            
+                <a target="_blank" href="https://github.com/libin1991/libin_Blog">
+            
+                    
+                    博客大全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.15" >
+            
+                <a target="_blank" href="https://github.com/horanly/Front-end-tutorial">
+            
+                    
+                    大杂烩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.16" >
+            
+                <a target="_blank" href="https://github.com/apachecn/AiLearning">
+            
+                    
+                    机器学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.17" >
+            
+                <a target="_blank" href="https://github.com/Snailclimb/JavaGuide">
+            
+                    
+                    Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.18" >
+            
+                <a target="_blank" href="https://github.com/jackfrued/Python-100-Days">
+            
+                    
+                    tython
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.19" >
+            
+                <a target="_blank" href="https://github.com/Micropoor/Micro8">
+            
+                    
+                    渗透攻击
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >webpack（二）性能优化</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="webpack-&#x6027;&#x80FD;&#x4F18;&#x5316;">webpack &#x6027;&#x80FD;&#x4F18;&#x5316;</h1>
+<p>&#x9648;&#x5217;&#x4EE5;&#x4E0B;&#x63D2;&#x4EF6;</p>
+<ul>
+<li>DllPlugin + DllReferencePlugin</li>
+<li>CommonsChunkPlugin</li>
+<li>UglifyJSPlugin</li>
+<li>ExtractTextPlugin + PurifyCSSPlugin</li>
+<li>DefinePlugin</li>
+<li>HappyPack</li>
+<li>ParallelUglifyPlugin</li>
+<li>BundleAnalyzerPlugin</li>
+</ul>
+<p>&#x4F1A;&#x8BB2;&#x8FF0;&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#x9879;</p>
+<ul>
+<li>webpack&#x5916;&#x90E8;&#x6269;&#x5C55;(externals)</li>
+<li>&#x6761;&#x4EF6;&#x5339;&#x914D; test &amp; include &amp; exclude</li>
+</ul>
+<h3 id="dllplugin--dllreferenceplugin">DllPlugin + DllReferencePlugin</h3>
+<p>&#x4E3A;&#x4E86;&#x6781;&#x5927;&#x51CF;&#x5C11;&#x6784;&#x5EFA;&#x65F6;&#x95F4;&#xFF0C;&#x8FDB;&#x884C;&#x5206;&#x79BB;&#x6253;&#x5305;&#x3002;</p>
+<p>DllReferencePlugin &#x548C; DLL&#x63D2;&#x4EF6;DllPlugin &#x90FD;&#x662F;&#x5728;<em>&#x53E6;&#x5916;</em>&#x7684; webpack &#x8BBE;&#x7F6E;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x3002;</p>
+<p><code>DllPlugin</code>&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x989D;&#x5916;&#x7684;&#x72EC;&#x7ACB;&#x7684; webpack &#x8BBE;&#x7F6E;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x53EA;&#x6709; dll &#x7684; bundle(dll-only-bundle)&#x3002; &#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x4F1A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x540D;&#x4E3A; manifest.json &#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x662F;&#x7528;&#x6765;&#x8BA9; <code>DLLReferencePlugin</code> &#x6620;&#x5C04;&#x5230;&#x76F8;&#x5173;&#x7684;&#x4F9D;&#x8D56;&#x4E0A;&#x53BB;&#x7684;&#x3002;</p>
+<p>webpack.vendor.config.js</p>
+<pre><code>  new webpack.DllPlugin({
+    context: __dirname,
+    name: &quot;[name]_[hash]&quot;,
+    path: path.join(__dirname, &quot;manifest.json&quot;),
+  })
+</code></pre><p>webpack.app.config.js</p>
+<pre><code>  new webpack.DllReferencePlugin({
+    context: __dirname,
+    manifest: require(&quot;./manifest.json&quot;),
+    name: &quot;./my-dll.js&quot;,
+    scope: &quot;xyz&quot;,
+    sourceType: &quot;commonjs2&quot;
+  })
+</code></pre><h3 id="commonschunkplugin">CommonsChunkPlugin</h3>
+<p>&#x901A;&#x8FC7;&#x5C06;&#x516C;&#x5171;&#x6A21;&#x5757;&#x62C6;&#x51FA;&#x6765;&#xFF0C;&#x6700;&#x7EC8;&#x5408;&#x6210;&#x7684;&#x6587;&#x4EF6;&#x80FD;&#x591F;&#x5728;&#x6700;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#xFF0C;&#x4FBF;&#x5B58;&#x5230;&#x7F13;&#x5B58;&#x4E2D;&#x4F9B;&#x540E;&#x7EED;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x4E2A;&#x5E26;&#x6765;&#x901F;&#x5EA6;&#x4E0A;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x56E0;&#x4E3A;&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#x8FC5;&#x901F;&#x5C06;&#x516C;&#x5171;&#x7684;&#x4EE3;&#x7801;&#x4ECE;&#x7F13;&#x5B58;&#x4E2D;&#x53D6;&#x51FA;&#x6765;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6BCF;&#x6B21;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x65B0;&#x9875;&#x9762;&#x65F6;&#xFF0C;&#x518D;&#x53BB;&#x52A0;&#x8F7D;&#x4E00;&#x4E2A;&#x66F4;&#x5927;&#x7684;&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x628A;&#x516C;&#x5171;&#x6587;&#x4EF6;&#x63D0;&#x53D6;&#x51FA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x7528;&#x6237;&#x8BBF;&#x95EE;&#x4E86;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x52A0;&#x8F7D;&#x4E86;&#x8FD9;&#x4E2A;&#x516C;&#x5171;&#x6587;&#x4EF6;&#xFF0C;&#x518D;&#x8BBF;&#x95EE;&#x5176;&#x4ED6;&#x4F9D;&#x8D56;&#x516C;&#x5171;&#x6587;&#x4EF6;&#x7684;&#x7F51;&#x9875;&#x65F6;&#xFF0C;&#x5C31;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6587;&#x4EF6;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7F13;&#x5B58;&#xFF0C;&#x8FD9;&#x6837;&#x516C;&#x5171;&#x6587;&#x4EF6;&#x5C31;&#x53EA;&#x7528;&#x88AB;&#x4F20;&#x8F93;&#x4E00;&#x6B21;&#x3002;</p>
+<pre><code>  entry: {
+    vendor: [&quot;jquery&quot;, &quot;other-lib&quot;], // &#x660E;&#x786E;&#x7B2C;&#x4E09;&#x65B9;&#x5E93;
+    app: &quot;./entry&quot;
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: &quot;vendor&quot;,
+      // filename: &quot;vendor.js&quot;
+      // (&#x7ED9; chunk &#x4E00;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x540D;&#x5B57;)
+
+      minChunks: Infinity,
+      // (&#x968F;&#x7740; entry chunk &#x8D8A;&#x6765;&#x8D8A;&#x591A;&#xFF0C;
+      // &#x8FD9;&#x4E2A;&#x914D;&#x7F6E;&#x4FDD;&#x8BC1;&#x6CA1;&#x5176;&#x5B83;&#x7684;&#x6A21;&#x5757;&#x4F1A;&#x6253;&#x5305;&#x8FDB; vendor chunk)
+    })
+  ]
+
+  // &#x6253;&#x5305;&#x540E;&#x7684;&#x6587;&#x4EF6;
+  &lt;script src=&quot;vendor.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;app.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+</code></pre><h3 id="uglifyjsplugin">UglifyJSPlugin</h3>
+<p>&#x57FA;&#x672C;&#x4E0A;&#x811A;&#x624B;&#x67B6;&#x90FD;&#x5305;&#x542B;&#x4E86;&#x8BE5;&#x63D2;&#x4EF6;,&#x8BE5;&#x63D2;&#x4EF6;&#x4F1A;&#x5206;&#x6790;JS&#x4EE3;&#x7801;&#x8BED;&#x6CD5;&#x6811;&#xFF0C;&#x7406;&#x89E3;&#x4EE3;&#x7801;&#x7684;&#x542B;&#x4E49;&#xFF0C;&#x4ECE;&#x800C;&#x505A;&#x5230;&#x53BB;&#x6389;&#x65E0;&#x6548;&#x4EE3;&#x7801;&#x3001;&#x53BB;&#x6389;&#x65E5;&#x5FD7;&#x8F93;&#x5165;&#x4EE3;&#x7801;&#x3001;&#x7F29;&#x77ED;&#x53D8;&#x91CF;&#x540D;&#x7B49;&#x4F18;&#x5316;&#x3002;</p>
+<pre><code>  const UglifyJSPlugin = require(&apos;webpack/lib/optimize/UglifyJsPlugin&apos;);
+  //...
+  plugins: [
+      new UglifyJSPlugin({
+          compress: {
+              warnings: false,  //&#x5220;&#x9664;&#x65E0;&#x7528;&#x4EE3;&#x7801;&#x65F6;&#x4E0D;&#x8F93;&#x51FA;&#x8B66;&#x544A;
+              drop_console: true,  //&#x5220;&#x9664;&#x6240;&#x6709;console&#x8BED;&#x53E5;&#xFF0C;&#x53EF;&#x4EE5;&#x517C;&#x5BB9;IE
+              collapse_vars: true,  //&#x5185;&#x5D4C;&#x5DF2;&#x5B9A;&#x4E49;&#x4F46;&#x53EA;&#x4F7F;&#x7528;&#x4E00;&#x6B21;&#x7684;&#x53D8;&#x91CF;
+              reduce_vars: true,  //&#x63D0;&#x53D6;&#x4F7F;&#x7528;&#x591A;&#x6B21;&#x4F46;&#x6CA1;&#x5B9A;&#x4E49;&#x7684;&#x9759;&#x6001;&#x503C;&#x5230;&#x53D8;&#x91CF;
+          },
+          output: {
+              beautify: false, //&#x6700;&#x7D27;&#x51D1;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x4E0D;&#x4FDD;&#x7559;&#x7A7A;&#x683C;&#x548C;&#x5236;&#x8868;&#x7B26;
+              comments: false, //&#x5220;&#x9664;&#x6240;&#x6709;&#x6CE8;&#x91CA;
+          }
+      })
+  ]
+</code></pre><h3 id="extracttextplugin--purifycssplugin">ExtractTextPlugin + PurifyCSSPlugin</h3>
+<p>ExtractTextPlugin &#x4ECE; bundle &#x4E2D;&#x63D0;&#x53D6;&#x6587;&#x672C;&#xFF08;CSS&#xFF09;&#x5230;&#x5355;&#x72EC;&#x7684;&#x6587;&#x4EF6;&#xFF0C;PurifyCSSPlugin&#x7EAF;&#x5316;CSS&#xFF08;&#x5176;&#x5B9E;&#x7528;&#x5904;&#x6CA1;&#x591A;&#x5927;&#xFF09;</p>
+<pre><code>  module.exports = {
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract({
+            fallback: &apos;style-loader&apos;,
+            use: [
+              {
+                loader: &apos;css-loader&apos;,
+                options: {
+                  localIdentName: &apos;purify_[hash:base64:5]&apos;,
+                  modules: true
+                }
+              }
+            ]
+          })
+        }
+      ]
+    },
+    plugins: [
+      ...,
+      new PurifyCSSPlugin({
+        purifyOptions: {
+          whitelist: [&apos;*purify*&apos;]
+        }
+      })
+    ]
+  };
+</code></pre><h3 id="defineplugin">DefinePlugin</h3>
+<blockquote>
+<p>DefinePlugin&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x68C0;&#x6D4B;&#x73AF;&#x5883;&#x53D8;&#x5316;&#xFF0C;&#x6548;&#x7387;&#x9AD8;&#x6548;&#x3002;</p>
+</blockquote>
+<p>&#x5728;&#x524D;&#x7AEF;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5E94;&#x7528;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x4E0D;&#x540C;&#x7684;&#x914D;&#x7F6E;&#x3002;&#x5982;&#xFF1A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x7684;API Mocker&#x3001;&#x6D4B;&#x8BD5;&#x6D41;&#x7A0B;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4F2A;&#x9020;&#x3001;&#x6253;&#x5370;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4EBA;&#x5DE5;&#x5904;&#x7406;&#x8FD9;&#x4E9B;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x4E0D;&#x4EC5;&#x9EBB;&#x70E6;&#xFF0C;&#x800C;&#x4E14;&#x5BB9;&#x6613;&#x51FA;&#x9519;&#x3002;</p>
+<h5 id="&#x4F7F;&#x7528;defineplugin&#x914D;&#x7F6E;&#x7684;&#x5168;&#x5C40;&#x5E38;&#x91CF;">&#x4F7F;&#x7528;<code>DefinePlugin</code>&#x914D;&#x7F6E;&#x7684;&#x5168;&#x5C40;&#x5E38;&#x91CF;</h5>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#x76F4;&#x63A5;&#x6267;&#x884C;&#x6587;&#x672C;&#x66FF;&#x6362;&#xFF0C;&#x7ED9;&#x5B9A;&#x7684;&#x503C;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x5B57;&#x7B26;&#x4E32;&#x672C;&#x8EAB;&#x5185;&#x7684;&#x5B9E;&#x9645;&#x5F15;&#x53F7;&#x3002;&#x901A;&#x5E38;&#xFF0C;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x6548;&#x679C;&#xFF0C;&#x4F7F;&#x7528; <code>&apos; &quot;production&quot; &apos;</code>, &#x6216;&#x8005;&#x4F7F;&#x7528; <code>JSON.stringify(&apos;production&apos;)</code>&#x3002;</p>
+<pre><code>    new webpack.DefinePlugin({
+
+        // &#x5F53;&#x7136;&#xFF0C;&#x5728;&#x8FD0;&#x884C;node&#x670D;&#x52A1;&#x5668;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5E94;&#x8BE5;&#x6309;&#x73AF;&#x5883;&#x6765;&#x914D;&#x7F6E;&#x6587;&#x4EF6;
+        // &#x4E0B;&#x9762;&#x6A21;&#x62DF;&#x7684;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x8FD0;&#x884C;&#x914D;&#x7F6E;
+
+        &apos;process.env&apos;:JSON.stringify(&apos;dev&apos;),
+        WP_CONF: JSON.stringify(&apos;dev&apos;),
+    }),
+</code></pre><h5 id="&#x6D4B;&#x8BD5;defineplugin">&#x6D4B;&#x8BD5;<code>DefinePlugin</code></h5>
+<p>&#x7F16;&#x5199;</p>
+<pre><code>    if (WP_CONF === &apos;dev&apos;) {
+        console.log(&apos;This is dev&apos;);
+    } else {
+        console.log(&apos;This is prod&apos;);
+    }
+</code></pre><p>&#x6253;&#x5305;&#x540E;<code>WP_CONF === &apos;dev&apos;</code>&#x4F1A;&#x7F16;&#x8BD1;&#x4E3A;<code>false</code></p>
+<pre><code>    if (false) {
+        console.log(&apos;This is dev&apos;);
+    } else {
+        console.log(&apos;This is prod&apos;);
+    }
+</code></pre><h5 id="&#x6E05;&#x9664;&#x4E0D;&#x53EF;&#x8FBE;&#x4EE3;&#x7801;">&#x6E05;&#x9664;&#x4E0D;&#x53EF;&#x8FBE;&#x4EE3;&#x7801;</h5>
+<p>&#x5F53;&#x4F7F;&#x7528;&#x4E86;<code>DefinePlugin</code>&#x63D2;&#x4EF6;&#x540E;&#xFF0C;&#x6253;&#x5305;&#x540E;&#x7684;&#x4EE3;&#x7801;&#x4F1A;&#x6709;&#x5F88;&#x591A;&#x5197;&#x4F59;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>UglifyJsPlugin</code><strong>&#x6E05;&#x9664;&#x4E0D;&#x53EF;&#x8FBE;&#x4EE3;&#x7801;</strong>&#x3002;</p>
+<pre><code>    [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+            compress: {
+                warnings: false, // &#x53BB;&#x9664;warning&#x8B66;&#x544A;
+                dead_code: true, // &#x53BB;&#x9664;&#x4E0D;&#x53EF;&#x8FBE;&#x4EE3;&#x7801;
+            },
+            warnings: false
+            }
+        })
+    ]
+</code></pre><p>&#x6700;&#x540E;&#x7684;&#x6253;&#x5305;&#x6253;&#x5305;&#x4EE3;&#x7801;&#x4F1A;&#x53D8;&#x6210;<code>console.log(&apos;This is prod&apos;)</code></p>
+<p>&#x9644;Uglify&#x6587;&#x6863;&#xFF1A;<a href="https://github.com/mishoo/UglifyJS2" target="_blank">https://github.com/mishoo/UglifyJS2</a></p>
+<p>&#x4F7F;&#x7528;DefinePlugin&#x533A;&#x5206;&#x73AF;&#x5883; + UglifyJsPlugin&#x6E05;&#x9664;&#x4E0D;&#x53EF;&#x8FBE;&#x4EE3;&#x7801;&#xFF0C;&#x4EE5;&#x51CF;&#x8F7B;&#x6253;&#x5305;&#x4EE3;&#x7801;&#x4F53;&#x79EF;</p>
+<h3 id="happypack">HappyPack</h3>
+<p><a href="https://github.com/amireh/happypack" target="_blank">HappyPack</a>&#x53EF;&#x4EE5;<strong>&#x5F00;&#x542F;&#x591A;&#x8FDB;&#x7A0B;Loader&#x8F6C;&#x6362;</strong>&#xFF0C;&#x5C06;&#x4EFB;&#x52A1;&#x5206;&#x89E3;&#x7ED9;&#x591A;&#x4E2A;&#x5B50;&#x8FDB;&#x7A0B;&#xFF0C;&#x6700;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x53D1;&#x7ED9;&#x4E3B;&#x8FDB;&#x7A0B;&#x3002;</p>
+<p>&#x4F7F;&#x7528;</p>
+<pre><code>  exports.plugins = [
+    new HappyPack({
+      id: &apos;jsx&apos;,
+      threads: 4,
+      loaders: [ &apos;babel-loader&apos; ]
+    }),
+
+    new HappyPack({
+      id: &apos;styles&apos;,
+      threads: 2,
+      loaders: [ &apos;style-loader&apos;, &apos;css-loader&apos;, &apos;less-loader&apos; ]
+    })
+  ];
+
+  exports.module.rules = [
+    {
+      test: /\.js$/,
+      use: &apos;happypack/loader?id=jsx&apos;
+    },
+
+    {
+      test: /\.less$/,
+      use: &apos;happypack/loader?id=styles&apos;
+    },
+  ]
+</code></pre><h3 id="paralleluglifyplugin">ParallelUglifyPlugin</h3>
+<p><a href="https://github.com/gdborton/webpack-parallel-uglify-plugin" target="_blank">ParallelUglifyPlugin</a>&#x53EF;&#x4EE5;<strong>&#x5F00;&#x542F;&#x591A;&#x8FDB;&#x7A0B;&#x538B;&#x7F29;JS&#x6587;&#x4EF6;</strong></p>
+<pre><code>  import ParallelUglifyPlugin from &apos;webpack-parallel-uglify-plugin&apos;;
+
+  module.exports = {
+    plugins: [
+      new ParallelUglifyPlugin({
+        // Optional regex, or array of regex to match file against. Only matching files get minified.
+        // Defaults to /.js$/, any file ending in .js.
+        test,
+        include, // Optional regex, or array of regex to include in minification. Only matching files get minified.
+        exclude, // Optional regex, or array of regex to exclude from minification. Matching files are not minified.
+        cacheDir, // Optional absolute path to use as a cache. If not provided, caching will not be used.
+        workerCount, // Optional int. Number of workers to run uglify. Defaults to num of cpus - 1 or asset count (whichever is smaller)
+        sourceMap, // Optional Boolean. This slows down the compilation. Defaults to false.
+        uglifyJS: {
+          // These pass straight through to uglify-js@3.
+          // Cannot be used with uglifyES.
+          // Defaults to {} if not neither uglifyJS or uglifyES are provided.
+          // You should use this option if you need to ensure es5 support. uglify-js will produce an error message
+          // if it comes across any es6 code that it can&apos;t parse.
+        },
+        uglifyES: {
+          // These pass straight through to uglify-es.
+          // Cannot be used with uglifyJS.
+          // uglify-es is a version of uglify that understands newer es6 syntax. You should use this option if the
+          // files that you&apos;re minifying do not need to run in older browsers/versions of node.
+        }
+      }),
+    ],
+  };
+</code></pre><h3 id="bundleanalyzerplugin">BundleAnalyzerPlugin</h3>
+<p>webpack&#x6253;&#x5305;&#x7ED3;&#x679C;&#x5206;&#x6790;&#x63D2;&#x4EF6;</p>
+<pre><code>  const BundleAnalyzerPlugin = require(&apos;webpack-bundle-analyzer&apos;).BundleAnalyzerPlugin;
+
+  module.exports = {
+    plugins: [
+      new BundleAnalyzerPlugin()
+    ]
+  }
+</code></pre><h3 id="&#x5916;&#x90E8;&#x6269;&#x5C55;externals">&#x5916;&#x90E8;&#x6269;&#x5C55;(externals)</h3>
+<p>&#x8FD9;&#x73A9;&#x610F;&#x4E0D;&#x662F;&#x63D2;&#x4EF6;&#xFF0C;&#x662F;wenpack&#x7684;&#x914D;&#x7F6E;&#x9009;&#x9879;</p>
+<p>externals &#x914D;&#x7F6E;&#x9009;&#x9879;&#x63D0;&#x4F9B;&#x4E86;&#x300C;&#x4ECE;&#x8F93;&#x51FA;&#x7684; bundle &#x4E2D;&#x6392;&#x9664;&#x4F9D;&#x8D56;&#x300D;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x76F8;&#x53CD;&#xFF0C;&#x6240;&#x521B;&#x5EFA;&#x7684; bundle &#x4F9D;&#x8D56;&#x4E8E;&#x90A3;&#x4E9B;&#x5B58;&#x5728;&#x4E8E;&#x7528;&#x6237;&#x73AF;&#x5883;(consumer&apos;s environment)&#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x3002;&#x6B64;&#x529F;&#x80FD;&#x901A;&#x5E38;&#x5BF9; library &#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x6765;&#x8BF4;&#x662F;&#x6700;&#x6709;&#x7528;&#x7684;&#xFF0C;&#x7136;&#x800C;&#x4E5F;&#x4F1A;&#x6709;&#x5404;&#x79CD;&#x5404;&#x6837;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7528;&#x5230;&#x5B83;&#x3002;</p>
+<pre><code>  entry: {
+    entry: &apos;./src/main.js&apos;,
+    vendor: [&apos;vue&apos;, &apos;vue-router&apos;, &apos;vuex&apos;]
+  },
+  externals: {
+    // &#x4ECE;&#x8F93;&#x51FA;&#x7684; bundle &#x4E2D;&#x6392;&#x9664; echarts &#x4F9D;&#x8D56;
+    echarts: &apos;echarts&apos;,
+  }
+</code></pre><h3 id="test--include--exclude">test &amp; include &amp; exclude</h3>
+<p>&#x51CF;&#x5C0F;&#x6587;&#x4EF6;&#x641C;&#x7D22;&#x8303;&#x56F4;&#xFF0C;&#x4ECE;&#x800C;&#x63D0;&#x5347;&#x901F;&#x5EA6;</p>
+<p>&#x793A;&#x4F8B;</p>
+<pre><code>  {
+    test: /\.css$/,
+    include: [
+      path.resolve(__dirname, &quot;app/styles&quot;),
+      path.resolve(__dirname, &quot;vendor/styles&quot;)
+    ]
+  }
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="hot_loader.html" class="navigation navigation-prev " aria-label="Previous page: webpack（一）热加载原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../browser/security_code.html" class="navigation navigation-next " aria-label="Next page: 前端安全性">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"webpack（二）性能优化","level":"1.5.5","depth":2,"next":{"title":"前端安全性","level":"1.5.6","depth":2,"path":"md/browser/security_code.md","ref":"md/browser/security_code.md","articles":[]},"previous":{"title":"webpack（一）热加载原理","level":"1.5.4","depth":2,"path":"md/fed-tools/hot_loader.md","ref":"md/fed-tools/hot_loader.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/fed-tools/webpack_optimization.md","mtime":"2019-10-08T08:14:16.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-28T02:34:49.813Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
