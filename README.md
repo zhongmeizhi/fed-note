@@ -40,15 +40,11 @@
   * [跨域机制](md/browser/cross_origin.md)
   * [页面加载过程](md/base/page_load.md)
 * 前端基础
-  * [函数（一）函数&尾递归](md/javascript/function.md)
-  * [函数（二）防抖&节流](md/javascript/debounce_throttle.md)
-  * [函数（三）原型](md/javascript/prototype.md)
   * [迭代器](md/javascript/iterator.md)
   * [hybrid开发](md/javascript/hybrid.md)
   * [埋点设计](md/javascript/event-point.md)
   * [关于动画](md/javascript/animation.md)
   * [经验包](md/javascript/experience.md)
-* 前端进阶
   * [性能优化](md/sse/optimization.md)
   * [设计模式](md/sse/design_model.md)
   * [async await](md/sse/async_await.md)
@@ -59,8 +55,9 @@
   * [NPM机制](node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)
-* 前端-复习回顾 2.0版
+* 前端总结 2.0版
   * [v2 JS数据类型篇](/md/review/js_type.md)
+  * [v2 JS函数篇](/md/review/js_function.md)
 * RXJS学习
   * [RXJS学习（一）函数式编程](md/sse/function_program.md)
   * [RXJS学习（二）Observable](md/rxjs/Observable.md)

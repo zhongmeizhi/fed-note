@@ -225,18 +225,20 @@ JS中除了 "假" 值以外就是 "真" 值。
 
 ### [] == ![] 结果是什么？
 
-**PS: 很多文章说解析说成是 转换为数字什么的，都是错误的！**
+类型转换都是先 `valueOf` 再 `toString`;
 
-正解：类型转换都是先 `valueOf` 再 `toString`;
+右边
+1. 由于 `!` 优先级比 `==` 高，先执行 `!` 
+2. `![]` 得到 false
+3. 进行 [相等性判断](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness)
+4. `false` 转化为数字 `0`
 
 左边
 1. 执行 `[].valueOf()` 原始值 还是 []
 2. 执行 [].toString() 得到 ''
+3. `''` 转化为数字 `0`
 
-右边
-1. `![]` 得到 false
-
-所以：`'' == false` ，答案是 `true`
+所以：`0 == 0` ，答案是 `true`
 
 
 验证：
