@@ -201,26 +201,6 @@ ps: overscroll-behavior 的兼容性并没有太好
 * binary    -> 相当于`Content-Type:application/octet-stream`
   * 上传文件（只能上传一个）
 
-
-### 一个Vue插件BUG
-
-遇到的问题：
-
-做Vue插件在开发环境用`npm link`调试的时候报错：`[Vue warn]: $attrs is readonly`，但是我并没有在任何地方有`$attrs`或`$listeners`明确使用
-
-分析原因：
-
-在`debugger`时能够发现：在代码中使用了两个不同的vue包（vue.esm.js）。更准确地说：某个Vue包的`lifecycle.js`中的`updateChildComponent`函数在启动时将`isUpdatingChildComponent`标志设置为true
-
-```
-    !isUpdatingChildComponent && warn("$attrs is readonly.", vm, isUpdatingChildComponent);
-```
-
-为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件Vue的版本？
-
-还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方，可能是webpack中alias导致的。
-
-
 ### HEX 转换 RGB， 判断是否淡色系
 
 > 通过检测 RGB 是否均大于某个值(比如 239), 大于该值则颜色为淡色
@@ -251,6 +231,26 @@ ps: overscroll-behavior 的兼容性并没有太好
     }; 
 ```
 
+### 一个Vue插件BUG
+
+遇到的问题：
+
+做Vue插件在开发环境用`npm link`调试的时候报错：`[Vue warn]: $attrs is readonly`，但是我并没有在任何地方有`$attrs`或`$listeners`明确使用
+
+分析原因：
+
+在`debugger`时能够发现：在代码中使用了两个不同的vue包（vue.esm.js）。更准确地说：某个Vue包的`lifecycle.js`中的`updateChildComponent`函数在启动时将`isUpdatingChildComponent`标志设置为true
+
+```
+    !isUpdatingChildComponent && warn("$attrs is readonly.", vm, isUpdatingChildComponent);
+```
+
+为什么会有多个Vue文件？ 可能是`vue`与`vue-tempalte-compiler`的版本不一致造成的，看看插件Vue的版本？
+
+还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方，可能是webpack中alias导致的。
+
+
+
 ### npm插件 babel没有作用的问题。
 
 > `.babelrc`是用于本地项目文件的转换（不包括node_modules），而`babel.config.js`绑定（node_modules）
@@ -265,3 +265,10 @@ ps: overscroll-behavior 的兼容性并没有太好
 解决方案：二（最常见）
 * 直接在 npm插件中进行打包，然后`main`指向对应文件（不能用webpack追加hash）
 
+
+
+### fastClick
+
+所有版本的Android Chrome浏览器，如果设置viewport meta的值有user-scalable=no，浏览器也是会马上出发点击事件。
+
+`fastClick` 通过 `stopImmediatePropagation` 来终止 后续监听函数的执行
