@@ -1,4 +1,4 @@
-# 《蘑菇碳的小书房》 持续更新中
+# 《Mokou的小书房》 持续更新中
 
 
 <div align="center">
@@ -49,8 +49,6 @@
   * [设计模式](md/sse/design_model.md)
   * [async await](md/sse/async_await.md)
   * [模块化](md/sse/module.md)
-  * [webpack（一）热加载原理](md/fed-tools/hot_loader.md)
-  * [webpack（二）性能优化](md/fed-tools/webpack_optimization.md)
   * [前端安全性](md/browser/security_code.md)
   * [NPM机制](node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
@@ -58,6 +56,7 @@
 * 前端总结 2.0版
   * [v2 JS数据类型篇](/md/review/js_type.md)
   * [v2 JS函数篇](/md/review/js_function.md)
+  * [v2 Webpack篇](/md/review/webpack.md)
 * RXJS学习
   * [RXJS学习（一）函数式编程](md/sse/function_program.md)
   * [RXJS学习（二）Observable](md/rxjs/Observable.md)
