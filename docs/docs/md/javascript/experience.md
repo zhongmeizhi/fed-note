@@ -12,6 +12,23 @@
 * 静态作用域： 变量的作用域在写代码的时候就确定过了（JS和Dart都是静态作用域）
 * 堆栈：基本数据类型的变量存储在栈中，引用数据类型的变量存储在堆中，引用类型数据的地址也存在栈中
 
+### 面向对象的特性
+
+三大基础特性
+1. 封装
+    * 把客观事物封装成抽象的类，类就是封装了属性和操作方法的逻辑实体
+2. 继承
+    * 可以让某个类型的对象获得另一个类型的对象的属性的方法
+3. 多态
+    * 一个类实例的相同方法在不同情形有不同表现形式
+
+五大基本原则
+1. 单一职责原则
+2. 开放封闭原则
+3. 替换原则
+4. 依赖原则
+5. 接口分离原则
+
 ### 关于 IOS 键盘弹出问题
 
 > IOS键盘弹出后，是覆盖式的。安卓是上推式的。
@@ -68,11 +85,11 @@
 
 ```
 
-### 解决IOS中 dialog和body同时有滚动条时dialog能滚动body的情况
+### 解决IOS中 子元素滚动传播到父元素的情况
 
 > 会出现 dialog滚动到尽头时body滚动的情况 的BUG
 
-解决方案：
+解决方案 一：
 ```
     var mo = function (e) { e.preventDefault() }
 
@@ -92,6 +109,16 @@
         document.removeEventListener('touchmove', mo, false);
     }
 ```
+
+解决方案 二:
+```
+    .box {
+        overscroll-behavior: contain; // 阻止滚动传播
+    }
+```
+ps: overscroll-behavior 的兼容性并没有太好
+
+参考 [can i use](https://www.caniuse.com/#search=overscroll-behavior)
 
 ### 处理精确度问题
 

@@ -31,32 +31,31 @@
 
 * [目录](README.md)
 * 样式&&兼容性
-  * [less&sass使用](md/css/less.md)
   * [移动端-适配](md/css/mobile.md)
   * [PC端-布局](md/css/layout.md)
   * [CSS渐进增强](md/css/css_test.md)
+  * [less & sass](md/css/less.md)
   * [经验包](md/css/EXPERIENCE.md)
 * 计算机基础
   * [跨域机制](md/browser/cross_origin.md)
   * [页面加载过程](md/base/page_load.md)
 * 前端基础
-  * [迭代器](md/javascript/iterator.md)
   * [hybrid开发](md/javascript/hybrid.md)
-  * [埋点设计](md/javascript/event-point.md)
-  * [关于动画](md/javascript/animation.md)
   * [经验包](md/javascript/experience.md)
   * [性能优化](md/sse/optimization.md)
   * [设计模式](md/sse/design_model.md)
   * [async await](md/sse/async_await.md)
   * [模块化](md/sse/module.md)
+  * [关于动画](md/javascript/animation.md)
+  * [迭代器](md/javascript/iterator.md)
   * [前端安全性](md/browser/security_code.md)
   * [NPM机制](node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)
-* 前端总结 2.0版
-  * [v2 JS数据类型篇](/md/review/js_type.md)
-  * [v2 JS函数篇](/md/review/js_function.md)
-  * [v2 Webpack篇](/md/review/webpack.md)
+* 前端总结
+  * [JS数据类型篇](/md/review/js_type.md)
+  * [JS函数篇](/md/review/js_function.md)
+  * [Webpack篇](/md/review/webpack.md)
 * RXJS学习
   * [RXJS学习（一）函数式编程](md/sse/function_program.md)
   * [RXJS学习（二）Observable](md/rxjs/Observable.md)
