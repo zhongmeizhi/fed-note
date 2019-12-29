@@ -44,7 +44,6 @@
   * [dart（二）基本操作](md/dart/base.md)
   * [dart（三）类](md/dart/class.md)
   * [dart（四）稍微抽象点](md/dart/again.md)
-  * [dart（X）运行机制](md/dart/event_loop.md)
 * Flutter基础
   * [flutter 简介](md/flutter/BRIEF.md)
   * [Flutter 屏幕适配](md/flutter/PRIMER.md)
@@ -56,10 +55,7 @@
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java
-  * [JVM](md/java/JVM.md)
-  * [Maven](md/java/maven.md)
-  * [mysql环境搭建](md/java/MYSQL.md)
-  * [事务&锁](md/java/data_base.md)
+  * [git命令](md/other/GIT.md)
   * [Spring Boot（一）入门篇](md/spring-boot/init.md)
   <!-- * [Spring Boot（二）注解](md/spring-boot/decoration.md）-->
 * 其他
