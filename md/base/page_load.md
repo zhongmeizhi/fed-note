@@ -2,7 +2,7 @@
 
 ### 大致流程
 
-1. 强缓存（**不发请求**）
+1. 强缓存（**第一步**）
 2. 域名解析（DNS查询）
 3. (SSL/TLS)握手
 4. TCP三次握手
@@ -12,7 +12,8 @@
 8. 微服务架构 -> 负载均衡
 9. 服务器处理请求 并返回响应
 10. TCP四次挥手（关闭连接，**容易忘**）
-11. DOM树 + CSS树 -> 渲染树 (边加载边解析)
+11. DOM树 + CSS树 -> 渲染树 -> 重排、重绘
+    * 边加载边解析的过程
 12. JS资源要等脚本下载完成并执行后才会继续解析HTML（此时可以使用defer和async）
     * defer是延迟执行。类似放在body后面
     * async是异步执行。下载完毕执行
@@ -134,24 +135,28 @@ HTTPS加密过程：
 > 目的：保证双方都断开连接
 
 
-### 浏览器缓存
+### 关于缓存
 
 浏览器缓存策略相关：比如Cache-Control、~~Pragma~~、ETag、Expires、Last-Modified
 
-**强缓存**是利用`Expires`或者`Cache-Control`这两个http header实现的，命中缓存会返回`200`（不请求服务器）
-* expires有服务器时间和客户端时间不一致导致失效的问题
-* Cache-Control在`HTTP 1.1`中为了解决expires的问题而诞生
-  * 单位为秒，不依赖客户端时间
-  * （优先级高于Expires）
+**强缓存**是利用`Expires`或者`Cache-Control`这两个http header实现的，命中缓存会返回`200`
+* 强缓存是不会产生 DNS 解析的，更不会发送请求（**不请求服务器**）
+* `expires` 有 **服务器时间** 和 **客户端时间** 不一致导致失效的问题
+* `Cache-Control` 在`HTTP 1.1`中为了解决expires的问题而诞生
+  * 单位为秒，**不依赖客户端时间**
+  * `Cache-Control` 优先级高于 `Expires`
 
-**协商缓存**利用`Last-Modified`或者`Etag`这两个http header实现，命中缓存会返回`304`（请求服务器）
-* Last-Modified比较前一个响应头的`Last-Modified`和新请求头的`if-modified-since`（单位秒）
+
+**协商缓存**利用`Last-Modified`或者`Etag`这两个http header实现，命中缓存会返回`304`
+* 协商缓存由服务器验证缓存的有效性（**请求服务器**）
+* Last-Modified 比较前一个响应头的`Last-Modified`和新请求头的`if-modified-since`（单位秒）
   * 根据时间来缓存
-  * 最后修改只能精确到秒级
-  * 定期生成文件内容没变化时Last-Modified改变
-* Etag在`HTTP 1.1`中出现：比较前一个响应头的`Etag`和新请求头的`If-None-Match`，
+  * 最后修改只能精确到`秒`级
+  * 定期生成文件内容没变化时 Last-Modified 改变
+* Etag在 `HTTP 1.1` 中出现：比较前一个响应头的 `Etag` 和新请求头的 `If-None-Match`，
   * 优先级高于Last-Modified
   * 基于资源的内容编码生成一串唯一的标识`字符串`来缓存
+  * `ETag` 优先级高于 `Last-Modified`
 
 
 在文件变动的时候需要清除缓存。比如：在webpack打包的时候一般会给JS、CSS、图片的文件名添加`chunkhash`。
