@@ -33,7 +33,6 @@
 * 样式&&兼容性
   * [移动端-适配](md/css/mobile.md)
   * [PC端-布局](md/css/layout.md)
-  * [CSS渐进增强](md/css/css_test.md)
   * [less & sass](md/css/less.md)
   * [经验包](md/css/EXPERIENCE.md)
 * 计算机基础
@@ -53,6 +52,7 @@
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)
 * 前端总结
+  * [CSS篇](/md/review/css_base.md)
   * [JS数据类型篇](/md/review/js_type.md)
   * [JS函数篇](/md/review/js_function.md)
   * [Webpack篇](/md/review/webpack.md)

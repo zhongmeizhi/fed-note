@@ -1,16 +1,5 @@
 # 静态页面 细节
 
-### position定位 细节
-
-position: absolute;
-* 相对于 非static的先辈元素定位
-* 如果先辈元素全是`static`，那么相对于**视口**定位
-
-position：fixed
-* 相对于视口定位
-* 如果先辈元素有`非none`的`transform`属性，那么相对于该先辈元素定位
-  * （不注意容易产生BUG）
-
 ### box-shadow细节
 
 /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色 */
@@ -48,5 +37,34 @@ canvas具有外部画布宽高，还有内部画布宽高（canvas基础）
   // 外部展示
   $ele.style.width = _width + 'px';
   $ele.style.height = _height + 'px';
+```
+
+
+### 文本省略...
+```
+    /*单行*/
+    .dot{
+        display:block /*这里设置inline-block或者block；根据使用情况来定（行内元素需要加这个，块级元素和行内块级可以不用）*/
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
+    /*多行*/
+    .dot{
+        text-overflow:ellipsis;
+        overflow:hidden;
+        display:-webkit-box;
+        -webkit-line-clamp:2; /*这个数字是设置要显示省略号的行数*/
+        -webkit-box-orient:vertical;
+    }
+```
+
+### 改变图片背景色
+
+```
+    background: url('xx');
+    background-blend-mode: multiply;
+    background-color: #F6F6F6;
 ```
 
