@@ -8,7 +8,7 @@
   * [经验包](md/css/EXPERIENCE.md)
 * 计算机基础
   * [跨域机制](md/browser/cross_origin.md)
-  * [页面加载过程](md/base/page_load.md)
+  * [页面加载过程](md/browser/page_load.md)
 * 前端基础
   * [hybrid开发](md/javascript/hybrid.md)
   * [经验包](md/javascript/experience.md)
