@@ -101,6 +101,15 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 
 inspect打开方式：Chrome输入链接 [chrome://inspect/#devices](chrome://inspect/#devices)
 
+### 禁用 IOS 长按下载图片
+
+IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
+
+禁止 IOS 长按功能
+```
+    -webkit-touch-callout:none;
+```
+
 ### End
 
 最后。还是学习Fultter吧

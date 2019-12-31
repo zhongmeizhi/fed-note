@@ -1,0 +1,418 @@
+# JS 设计模式
+
+面向对象思想：封装、继承、多态
+
+### 构造器模式
+
+> 无非就是继承来实现的啦 - -!
+
+构造器模式案例省略...
+
+思考：为什么ES5的继承要写在 `prototype` 中，而不是直接写在构造方法里？
+
+答：写在构造器中，无法做到数据共享（会造成资源浪费）
+* 所以 `prototype` 中会存放需要共享数据的方法和属性（基本上都是方法）
+* 而构造器中会存放不需要共享的属性和方法
+
+
+### 模块化模式
+
+> 模块化嘛：AMD/UMD/CommonJS/Module 都是模块化，对象、闭包也是模块化
+
+在JS中，模块化模式其实是模拟了"类"的概念。好处是有私密空间，不会造成全局污染。
+
+虽然JS没有私有属性。但**闭包能很好的实现私有属性的概念**
+
+简单的模块化模式：（闭包 - -.!）
+```
+    var module = (function () {
+        var num = 0;
+
+        return {
+            getNum: function () {
+                return num;
+            },
+            addNum: function () {
+                return num++;
+            }
+        };
+
+    })();
+
+    console.log(module)
+    
+    module.addNum()
+
+    console.log(module.getNum())
+```
+
+
+### 单例模式
+
+> 单例：就是限制一个类只能有一个实例化对象
+
+使用场景案例：“警告/确认/提示弹窗”（只能存在一个的情况）
+
+最简单的单例：：闭包 + Flag 来实现
+```
+    const mySingleton = (function () {
+        let _instance;
+
+        return function () {
+            if (!_instance) {
+                _instance = {
+                    x: 1,
+                    setX: (arg) => {
+                        _instance.x = arg;
+                    }
+                };
+            }
+            return _instance;
+        }
+        
+    })()
+
+    const instanceA = mySingleton();
+    const instanceB = mySingleton();
+
+    console.log(instanceA === instanceB);
+```
+
+封装一下：（PS: ES5的new如果有return使用return的值）
+```
+    const Singleton = (function() {
+        var _instance;
+        return function(obj) {
+            return _instance || (_instance = obj);
+        }
+    })();
+
+    var a = new Singleton({x: 1});
+    var b = new Singleton({y: 2});
+
+    console.log(a === b);
+```
+
+
+### 观察者模式
+
+> 由观察者和观察者组成。通过观察者调用被观察者的实例。
+
+观察者模式：观察者对象和被观察者对象 之间的订阅和触发事件
+
+使用场景案例：“Vue 双向绑定实现”
+
+简单的观察者模式: （仿 `Vue` 实现）
+```
+    // 观察者
+    class Dep {
+        constructor() {
+            this.subs = []
+        }
+        
+        addSub(sub) {
+            this.subs.push(sub)
+        }
+        
+        depend() {
+            if (Dep.target) { 
+                Dep.target.addDep(this);
+            }
+        }
+        
+        notify() {
+            this.subs.forEach(sub => sub.update())
+        }
+    }
+    
+    // 被观察者
+    class Watcher {
+        constructor(vm, expOrFn) {
+            this.vm = vm;
+            this.getter = expOrFn;
+            this.value;
+        }
+
+        get() {
+            Dep.target = this;
+            
+            var vm = this.vm;
+            var value = this.getter.call(vm, vm);
+            return value;
+        }
+
+        evaluate() {
+            this.value = this.get();
+        }
+
+        addDep(dep) {
+            dep.addSub(this);
+        }
+        
+        update() {
+            console.log('更新, value:', this.value)
+        }
+    }
+    
+    // 观察者实例
+    var dep = new Dep();
+    
+    //  被观察者实例
+    var watcher = new Watcher({x: 1}, (val) => val);
+    watcher.evaluate();
+    
+    // 观察者监听被观察对象
+    dep.depend()
+    
+    dep.notify()
+```
+
+
+### 发布/订阅者模式
+
+> 由订阅者 Subscriber 和发布者 Publisher 组成。
+
+发布/订阅者模式：是观察者模式的变体，比观察者模式多了一个调度中心
+* 发布者发布信息到调度中心
+* 调度中心和订阅者直接完成订阅和触发事件事件
+
+使用场景案例：“DOM 的 addEventListener 事件”
+
+一个简单的发布/订阅者模式实现：（仿 `EventBus` 实现）
+```
+    // EventTarget 就是一个调度中心
+
+    class EventTarget {
+        constructor() {
+            this.dep = {}
+        }
+        
+        on(key, fn) {
+            this.dep[key] = fn;
+        }
+        
+        emit(key) {
+            typeof this.dep[key] === 'function' ? this.dep[key]() : ''
+        }
+    }
+    
+    let eventTarget = new EventTarget()
+    
+    eventTarget.on('click', function() {console.log(1)})
+    eventTarget.emit('click')
+```
+
+
+### 中介者模式
+
+> 中介：撮合多个卖家 和 多个买家
+
+```
+    class Saler {
+        constructor(name, cost) {
+            this.name = name;
+            this.cost = cost;
+        }
+            
+        send() {
+            console.log(`${cost}元出售${name}`)
+        }
+    }
+    
+    class Agency {
+        constructor() {
+            this.cargos = []
+        }
+        
+        register(saler) {
+            this.cargos.push(saler);
+        }
+        
+        query(name) {
+            const matchCargos = this.cargos.filter(cargo => cargo && cargo.name === name);
+            if (matchCargos.length) {
+                console.log(`查询到正在出售的商品:${JSON.stringify(matchCargos)}`)
+            } else {
+                console.log(`没有${name}在出售`);
+            }
+        }
+    }
+    
+    let agency = new Agency();
+    
+    agency.query('cart');
+    
+    const cartA = new Saler('cart', '100');
+    const cartB = new Saler('cart', '300');
+    const house = new Saler('house', '500');
+
+    agency.register(cartA);
+    agency.register(cartB);
+    agency.register(house);
+    
+    agency.query('cart');
+    agency.query('house');
+    agency.query('ABC');
+```
+
+### 命令模式
+
+> 为方法的调用进行解耦
+
+```
+    const command = {
+        buy(name, cost) {
+            console.log(`购买${name}消费了${cost}元`)
+        },
+        sale(name, cost) {
+            console.log(`出售了${name}赚得${cost}元`)
+        },
+        say(name, cost) {
+            console.log(`这里${cost}元可以买到${name}`)
+        },
+        execute(fnName) {
+            const fn= this[fnName];
+            (typeof fn === 'function') && fn.apply(this, [].slice.call(arguments, 1))
+        }
+    }
+    
+    command.execute('buy', 'VIP', '200');
+    command.execute('sale', '节操', '998');
+    command.execute('say', 'VIP', '123');
+```
+
+### 策略模式
+
+> 策略模式最大的好处是：减少if-else的使用，同时增加代码可读性
+
+
+简单的年终奖计算。（策略模式放在必填项/规则验证会很便捷）
+```
+    // 策略模式
+    const bonus = {
+        A: function(base) {
+            return base * 4;
+        },
+        B: function(base) {
+            return base * 3;
+        },
+        C: function(base) {
+            return base * 2;
+        },
+        D: function(base) {
+            return base;
+        }
+    }
+
+    const level = "B";
+    const base = "1008611";
+    const yearBouns = bonus[level](base);
+    console.log(yearBouns)
+```
+
+### 工厂模式
+
+> 一个工厂(类) 能生产各种零件(实例)
+
+##### 简单的工厂模式
+
+通过一个类获取不同类的实例
+
+```
+    class Cat {}
+    class Dog {}
+    class Pig {}
+    
+    function Factory(type, args) {
+        switch (type){
+            case 'cat':
+                return new Cat(args);
+                break;
+            case 'dog':
+                return new Dog(args);
+                break;
+            default:
+                return new Pig(args);
+                break;
+        }
+    }
+    
+    const cat = new Factory('cat', {name: 'cat'});
+    const dog = new Factory('dog', {name: 'dog'});
+    const pig = new Factory('pig', {name: 'pig'});
+    
+    console.log(cat, dog, pig)
+```
+
+
+##### 抽象工厂模式
+
+通过继承抽象的类（含有未实现的方法）、结合简单工厂模式，生成抽象工厂
+
+抽象工厂的好处：通用方法写在工厂函数中，不需要重复实现，不同个性化代码在子类中实现
+
+实现：省略...
+
+
+##### 复杂工厂模式
+
+允许工厂产生的不同零件一起工作：
+
+```
+    class Wheel {
+        turn() {
+            console.log('轮子开始转动啦');
+        }
+    }
+    
+    class Oil {
+        warn() {
+            console.log('汽油不足')
+        }
+    }
+    
+    class Cart {
+        constructor() {
+            this.cart = {}
+        }
+        
+        getPart(name, args) {
+            return this.cart[name] ? new this.cart[name](args) : null;
+        }
+        
+        setPart(name, Part) {
+            this.cart[name] = Part;
+        }
+    }
+    
+    const cart = new Cart();
+    
+    cart.setPart('wheel', Wheel)
+    cart.setPart('oil', Oil)
+    
+    const wheel = cart.getPart('wheel', {name: '轮子A'});
+    const oil = cart.getPart('oil', {name: '汽油A'});
+    
+    wheel.turn();
+    oil.warn();
+```
+
+### 修饰器模式
+
+> 修饰：不改变原有对象，在其基础上进行拓展
+
+基本上每天都在用的设计模式...
+
+简单的修饰模式实现：
+```
+    const after = function(fn, afterFn) {
+        return function() {
+            fn.apply(this, arguments)
+            afterFn.apply(this, arguments)
+        }
+    }
+
+    const myAfter = after(after(fn1, fn2), fn3)
+    myAfter()
+```
+

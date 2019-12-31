@@ -1,10 +1,5 @@
 # CSS 基础
 
-css 常用知识点全在这里了。
-
-总结是对自己能力的提升，也希望能帮助到同学们。
-
-
 ### BFC
 
 块状格式化上下文（block formatting context）简称 `BFC`：是页面上的一个隔离的独立容器,容器里面的子元素不会影响到外面的元素。
@@ -15,6 +10,7 @@ css 常用知识点全在这里了。
 3. display 设置为 `inline-block` 、`table-block` 、 `table-caption`
 4. `overflow` 的值不为 `visible`
 5. `float` 的值不为 `none`
+6. [MDN 格式化上下文](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
 
 BFC的定位方案
 1. 内部的box会在 **垂直方向上** 一个接一个的摆放
@@ -42,7 +38,7 @@ Css选择器优先级
    1. 解决重叠方法：
    2. **父元素**设置 `BFC`（如overflow：hidden；如position：absolute等）
    3. **父元素**设置 `border`/`padding`
-5. 当 margin 的值为 `auto` 时。浏览器会自动选择一个合适的margin来应用
+5. 当 margin 的值为 `auto` 时。浏览器会自动选择一个合适的margin来应用（自动分配剩余空间）
    1. 需要元素是 块状元素
    2. 需要元素 设置宽度
 6. margin 可以为 负值

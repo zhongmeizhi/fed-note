@@ -1,0 +1,1989 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Vue 2.x 源码解析 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../mvvm/next_js.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    样式&&兼容性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../css/less.html">
+            
+                <a href="../css/less.html">
+            
+                    
+                    less&sass使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../css/mobile.html">
+            
+                <a href="../css/mobile.html">
+            
+                    
+                    移动端-适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../css/layout.html">
+            
+                <a href="../css/layout.html">
+            
+                    
+                    PC端-布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../css/css_test.html">
+            
+                <a href="../css/css_test.html">
+            
+                    
+                    CSS渐进增强
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../css/EXPERIENCE.html">
+            
+                <a href="../css/EXPERIENCE.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    计算机基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../browser/cross_origin.html">
+            
+                <a href="../browser/cross_origin.html">
+            
+                    
+                    跨域机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../base/page_load.html">
+            
+                <a href="../base/page_load.html">
+            
+                    
+                    页面加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../javascript/js_type.html">
+            
+                <a href="../javascript/js_type.html">
+            
+                    
+                    JS数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../javascript/function.html">
+            
+                <a href="../javascript/function.html">
+            
+                    
+                    函数（一）函数&尾递归
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../javascript/debounce_throttle.html">
+            
+                <a href="../javascript/debounce_throttle.html">
+            
+                    
+                    函数（二）防抖&节流
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../javascript/prototype.html">
+            
+                <a href="../javascript/prototype.html">
+            
+                    
+                    函数（三）原型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../javascript/iterator.html">
+            
+                <a href="../javascript/iterator.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../javascript/hybrid.html">
+            
+                <a href="../javascript/hybrid.html">
+            
+                    
+                    hybrid开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../javascript/event-point.html">
+            
+                <a href="../javascript/event-point.html">
+            
+                    
+                    埋点设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../javascript/animation.html">
+            
+                <a href="../javascript/animation.html">
+            
+                    
+                    关于动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../javascript/experience.html">
+            
+                <a href="../javascript/experience.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    前端进阶
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../sse/optimization.html">
+            
+                <a href="../sse/optimization.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../sse/async_await.html">
+            
+                <a href="../sse/async_await.html">
+            
+                    
+                    async await
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../sse/module.html">
+            
+                <a href="../sse/module.html">
+            
+                    
+                    模块化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../fed-tools/hot_loader.html">
+            
+                <a href="../fed-tools/hot_loader.html">
+            
+                    
+                    webpack（一）热加载原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../fed-tools/webpack_optimization.html">
+            
+                <a href="../fed-tools/webpack_optimization.html">
+            
+                    
+                    webpack（二）性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../browser/security_code.html">
+            
+                <a href="../browser/security_code.html">
+            
+                    
+                    前端安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../node/NPM.md">
+            
+                <span>
+            
+                    
+                    NPM机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../sse/event_loop.html">
+            
+                <a href="../sse/event_loop.html">
+            
+                    
+                    JS运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../browser/garbage_collection.html">
+            
+                <a href="../browser/garbage_collection.html">
+            
+                    
+                    JS垃圾回收机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    RXJS学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../sse/function_program.html">
+            
+                <a href="../sse/function_program.html">
+            
+                    
+                    RXJS学习（一）函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../rxjs/Observable.html">
+            
+                <a href="../rxjs/Observable.html">
+            
+                    
+                    RXJS学习（二）Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../rxjs/Operators.html">
+            
+                <a href="../rxjs/Operators.html">
+            
+                    
+                    RXJS学习（三）Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../rxjs/Subject.html">
+            
+                <a href="../rxjs/Subject.html">
+            
+                    
+                    RXJS学习（四）Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../rxjs/Scheduler.html">
+            
+                <a href="../rxjs/Scheduler.html">
+            
+                    
+                    RXJS学习（五）Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Vue + React 框架学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.7.1" data-path="vue2.html">
+            
+                <a href="vue2.html">
+            
+                    
+                    Vue 2.x 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../mvvm/next_js.html">
+            
+                <a href="../mvvm/next_js.html">
+            
+                    
+                    next.js 体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Node学习篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/z-mock">
+            
+                    
+                    用Koa2撸一个API Mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Dart篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../dart/PRIMER.html">
+            
+                <a href="../dart/PRIMER.html">
+            
+                    
+                    dart（一）概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../dart/base.html">
+            
+                <a href="../dart/base.html">
+            
+                    
+                    dart（二）基本操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../dart/class.html">
+            
+                <a href="../dart/class.html">
+            
+                    
+                    dart（三）类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../dart/again.html">
+            
+                <a href="../dart/again.html">
+            
+                    
+                    dart（四）稍微抽象点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../dart/event_loop.html">
+            
+                <a href="../dart/event_loop.html">
+            
+                    
+                    dart（X）运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Flutter基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../flutter/BRIEF.html">
+            
+                <a href="../flutter/BRIEF.html">
+            
+                    
+                    flutter 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../flutter/PRIMER.html">
+            
+                <a href="../flutter/PRIMER.html">
+            
+                    
+                    Flutter 屏幕适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../flutter/render.html">
+            
+                <a href="../flutter/render.html">
+            
+                    
+                    Flutter 渲染策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../flutter/webview.html">
+            
+                <a href="../flutter/webview.html">
+            
+                    
+                    Flutter WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../flutter/navigator.html">
+            
+                <a href="../flutter/navigator.html">
+            
+                    
+                    Flutter 局部路由实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../flutter/SCENES.html">
+            
+                <a href="../flutter/SCENES.html">
+            
+                    
+                    Flutter 环境问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../flutter/ISSUE.html">
+            
+                <a href="../flutter/ISSUE.html">
+            
+                    
+                    Flutter 开发细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/flutter-UI">
+            
+                    
+                    Flutter API使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/fultter-example-app">
+            
+                    
+                    Flutter 项目实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../java/JVM.html">
+            
+                <a href="../java/JVM.html">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../java/maven.html">
+            
+                <a href="../java/maven.html">
+            
+                    
+                    Maven
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../java/MYSQL.html">
+            
+                <a href="../java/MYSQL.html">
+            
+                    
+                    mysql环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../java/data_base.html">
+            
+                <a href="../java/data_base.html">
+            
+                    
+                    事务&锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../spring-boot/init.html">
+            
+                <a href="../spring-boot/init.html">
+            
+                    
+                    Spring Boot（一）入门篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    其他
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../other/GIT.html">
+            
+                <a href="../other/GIT.html">
+            
+                    
+                    git命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../other/GITHUB.html">
+            
+                <a href="../other/GITHUB.html">
+            
+                    
+                    GitHub的Host和Key
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" >
+            
+                <span>
+            
+                    
+                    大神github博客地址
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" >
+            
+                <a target="_blank" href="https://github.com/ruanyf">
+            
+                    
+                    阮一峰
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    司徒正美
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" >
+            
+                <a target="_blank" href="https://github.com/fouber/blog">
+            
+                    
+                    张云龙
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" >
+            
+                <a target="_blank" href="https://github.com/mqyqingfeng/Blog">
+            
+                    
+                    冴羽
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" >
+            
+                <a target="_blank" href="https://github.com/yygmind">
+            
+                    
+                    木易杨
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" >
+            
+                <a target="_blank" href="https://github.com/phodal/microfrontends">
+            
+                    
+                    微前端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" >
+            
+                <a target="_blank" href="https://github.com/Tnfe/TNFE-Weekly">
+            
+                    
+                    前端周报
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.8" >
+            
+                <a target="_blank" href="https://github.com/sisterAn/blog">
+            
+                    
+                    安安小姐姐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.9" >
+            
+                <a target="_blank" href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch3.html">
+            
+                    
+                    函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.10" >
+            
+                <a target="_blank" href="https://github.com/chokcoco/CSS-Inspiration">
+            
+                    
+                    CSS灵感
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.11" >
+            
+                <a target="_blank" href="https://github.com/RubyLouvre/mobileHack">
+            
+                    
+                    移动端各种坑解决
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.12" >
+            
+                <a target="_blank" href="https://github.com/lessfish/underscore-analysis">
+            
+                    
+                    underscore1.8.3解读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.13" >
+            
+                <a target="_blank" href="https://github.com/answershuto/learnVue">
+            
+                    
+                    Vue源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.14" >
+            
+                <a target="_blank" href="https://github.com/libin1991/libin_Blog">
+            
+                    
+                    博客大全
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.15" >
+            
+                <a target="_blank" href="https://github.com/horanly/Front-end-tutorial">
+            
+                    
+                    大杂烩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.16" >
+            
+                <a target="_blank" href="https://github.com/apachecn/AiLearning">
+            
+                    
+                    机器学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.17" >
+            
+                <a target="_blank" href="https://github.com/Snailclimb/JavaGuide">
+            
+                    
+                    Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.18" >
+            
+                <a target="_blank" href="https://github.com/jackfrued/Python-100-Days">
+            
+                    
+                    tython
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.19" >
+            
+                <a target="_blank" href="https://github.com/Micropoor/Micro8">
+            
+                    
+                    渗透攻击
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Vue 2.x 源码解析</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="vue-2x-&#x6E90;&#x7801;&#x89E3;&#x6790;">Vue 2.x &#x6E90;&#x7801;&#x89E3;&#x6790;</h1>
+<blockquote>
+<p>Vue (&#x8BFB;&#x97F3; /vju&#x2D0;/&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E; view)&#x662F;&#x4E00;&#x5957;&#x7528;&#x4E8E;&#x6784;&#x5EFA;&#x7528;&#x6237;&#x754C;&#x9762;&#x7684;&#x6E10;&#x8FDB;&#x5F0F;&#x6846;&#x67B6;&#x3002;</p>
+</blockquote>
+<p>&#x6E10;&#x8FDB;&#x5F0F;&#xFF1A;&#x53EF;&#x4EE5;&#x5728;&#x5DF2;&#x6709;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#x90E8;&#x5206;&#x9875;&#x9762;&#x5148;&#x4F7F;&#x7528;Vue&#xFF0C;&#x5148;&#x53EA;&#x4F7F;&#x7528;Vue&#x7684;&#x90E8;&#x5206;&#x529F;&#x80FD;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x6162;&#x6162;&#x6269;&#x5C55;Vue&#x7684;&#x5168;&#x5BB6;&#x6876;</p>
+<p>&#x5728; Vue &#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x7EC4;&#x4EF6;&#x7684;&#x4F9D;&#x8D56;&#x662F;&#x5728;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#x4E2D;&#x81EA;&#x52A8;&#x8FFD;&#x8E2A;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x7CFB;&#x7EDF;&#x80FD;&#x7CBE;&#x786E;&#x77E5;&#x6653;&#x54EA;&#x4E2A;&#x7EC4;&#x4EF6;&#x786E;&#x5B9E;&#x9700;&#x8981;&#x88AB;&#x91CD;&#x6E32;&#x67D3;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x90FD;&#x5DF2;&#x7ECF;&#x81EA;&#x52A8;&#x83B7;&#x5F97;&#x4E86; shouldComponentUpdate&#x3002;</p>
+<p>&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x5B9E;&#x73B0;&#x539F;&#x7406;&#x56FE;&#xFF1A;
+<img src="../img/vue_proxy.png" alt="vue&#x53CC;&#x5411;&#x7ED1;&#x5B9A;"></p>
+<p>Vue &#x8FD0;&#x884C;&#xFF1A;</p>
+<ul>
+<li>&#x5728;&#x521B;&#x5EFA;&#x65F6;&#xFF08;beforeCreate&#x4E4B;&#x540E;created&#x4E4B;&#x524D;&#xFF09;&#x4F7F;&#x7528;&#x4F9D;&#x8D56;&#x6536;&#x96C6;&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</li>
+<li>render&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x53BB;&#x7F16;&#x8BD1;template</li>
+<li>template&#x7F16;&#x8BD1;&#x4F1A;&#x88AB;&#x89E3;&#x6790;&#x6210;&#x5BF9;&#x8C61;&#x5F62;&#x5F0F;&#x7684;&#x6811;&#x7ED3;&#x6784;&#xFF08;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;&#xFF08;abstract syntax tree&#x6216;&#x8005;&#x7F29;&#x5199;&#x4E3A;AST&#xFF09;&#xFF09;</li>
+<li>AST&#x4F1A;&#x7ECF;&#x8FC7;generate&#x5F97;&#x5230;render&#x51FD;&#x6570;&#xFF0C;render&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;VNode&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x865A;&#x62DF;DOM</li>
+<li>&#x865A;&#x62DF;Dom&#x7684;&#x5728;&#x66F4;&#x65B0;&#x65F6;&#x4F1A;&#x7ECF;&#x8FC7; setter -&gt; Dep -&gt; Watcher -&gt; update -&gt; patch&#x3002;</li>
+<li>patch&#x7684;&#x6838;&#x5FC3;&#x65F6;diff&#x7B97;&#x6CD5;&#xFF08;&#x901A;&#x8FC7;&#x540C;&#x5C42;&#x7684;&#x6811;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF09;&#xFF0C;&#x4F1A;&#x6D89;&#x53CA;sameVnode&#x7684;&#x6982;&#x5FF5;</li>
+</ul>
+<p>Vue &#x4E3B;&#x8981;&#x6A21;&#x5757;&#xFF1A;</p>
+<ul>
+<li>&#x56DB;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF08;$on&#xFF0C;$once&#xFF0C;$off&#xFF0C;$emit&#xFF09;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x7C7B;&#x4F3C;EventBus</li>
+<li>&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x521B;&#x5EFA;&#xFF0C;&#x6302;&#x8F7D;&#xFF0C;&#x66F4;&#x65B0;&#xFF0C;&#x9500;&#x6BC1;&#xFF09;</li>
+<li>nextTick &#xFF08;&#x6709;&#x591A;&#x79CD;&#x964D;&#x7EA7;&#x7B56;&#x7565;&#xFF09;</li>
+<li>keep-alive &#x548C; instance&#xFF08;&#x57FA;&#x4E8E;VNode&#x8282;&#x70B9;&#xFF09;&#xFF0C;&#x8FD8;&#x6709;activated&#x4E0E;deactivated</li>
+</ul>
+<h2 id="&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;">&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</h2>
+<blockquote>
+<p>Vue&#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x662F;<code>&#x5229;&#x7528;&#x8BA2;&#x9605;-&#x53D1;&#x5E03;&#x8005;&#x6A21;&#x5F0F;</code>+<code>&#x6570;&#x636E;&#x52AB;&#x6301;</code>&#x5B9E;&#x73B0;&#x7684;</p>
+</blockquote>
+<p>&#x5229;&#x7528;<code>Object.defineProperty</code>&#x7684;<code>getter</code>&#x65B9;&#x6CD5;&#xFF1A;&#x7531;<code>Deps</code>&#x6536;&#x96C6;<code>Watcher</code>&#x5BF9;&#x8C61;&#xFF0C;&#x5728;<code>setter</code>&#x4E2D;<code>notify</code>&#x3002;</p>
+<p>&#x5728;<code>getter</code>&#x4E2D;&#x5B9E;&#x73B0;&#x7ED1;&#x5B9A;&#x7684;&#x800C;&#x4E0D;&#x662F;<code>setter</code>&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x53EA;&#x52AB;&#x6301;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#xFF1A;</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;div&gt;
+            &lt;input v-model=&quot;num&quot;/&gt;
+            &lt;p v-bind=&quot;num&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;button @click=&quot;addNum&quot;&gt;
+                &#x52A0;&#x4E00;&#x6B21;
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+
+        let protoToString = Object.prototype.toString;
+
+        function isArray(value) {
+            return protoToString.call(value) === &apos;[object Array]&apos;
+        }
+
+        class Watcher {
+            constructor(node, cb, key){
+                this.node = node;
+                this.cb = cb;
+                this.key = key;
+            }
+
+            update () {
+                this.cb(this.node);
+            }
+        }
+
+        class Vue {
+            constructor({el, data, methods, render}) {
+                this.$ele = document.querySelector(el);
+                // x
+                this.$dep = {};
+                this.$data = this._obs(data);
+                this.$methods = methods;
+                this._compileHtml(this.$ele);
+            }
+
+            // &#x6570;&#x636E;&#x52AB;&#x6301;
+            _obs(data) {
+                let _that = this
+                return new Proxy(data, {
+                    get(target, key) {
+                        return target[key];
+                    },
+                    set(target, key, value) {
+                        let val = Reflect.set(target, key, value);
+                        _that.$dep[key].forEach(item =&gt; item.update());
+                        return val;
+                    }
+                });
+            }
+
+      // &#x8BA2;&#x9605;
+            _pushWatcher(watcher) {
+                if (!this.$dep[watcher.key]) {
+                    this.$dep[watcher.key] = [];
+                }
+                this.$dep[watcher.key].push(watcher);
+            }
+
+            // &#x89E3;&#x6790;html
+            _compileHtml(ele) {
+                const nodes = Array.from(ele.children);
+                let data = this.$data;
+                for(let node of nodes) {
+                    let attrs = Array.from(node.attributes);
+                    // &#x5224;&#x65AD;&#x662F;&#x5426;input???
+                    if (node.getAttribute(&apos;v-model&apos;)) {
+                        const key = node.getAttribute(&apos;v-model&apos;);
+                        let cb = () =&gt; {
+                            node.value = this.$data[key];
+                        }
+                        cb();
+                        this._pushWatcher(new Watcher(node, cb, key));
+                        node.addEventListener(&apos;input&apos;, () =&gt; {
+                            data[key] = node.value;
+                        });
+                    }
+                    if (node.getAttribute(&apos;v-bind&apos;)) {
+                        const key = node.getAttribute(&apos;v-bind&apos;);
+                        let cb = () =&gt; {
+                            node.innerHTML = this.$data[key];
+                        }
+                        cb();
+                        this._pushWatcher(new Watcher(node, cb, key));
+                    }
+                    if (node.getAttribute(&apos;@click&apos;)) {
+                        const key = node.getAttribute(&apos;@click&apos;);
+                        node.addEventListener(&apos;click&apos;, () =&gt; {
+                            this.$methods[key].call(this);
+                        });
+                    }
+                    // &#x5B50;&#x5143;&#x7D20;&#x9012;&#x5F52;
+                    if (node.children &amp;&amp; node.children.length) {
+                        this._compileHtml(node);
+                    }
+                }
+            }
+        }
+
+    // &#x4F7F;&#x7528;
+        var app = new Vue({
+            el: &apos;#app&apos;,
+            data: {
+                num: 0
+            },
+            methods: {
+                addNum() {
+                    this.$data.num++
+                }
+            }
+        })
+
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><strong>&#x6CE8;&#x610F;&#x70B9;&#xFF1A;</strong></p>
+<ul>
+<li>Vue&#x5728;&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x6570;&#x636E;(data&#x3001;props&#x3001;computed&#x3001;methods&#x3001;events&#x3001;watch)&#x65F6;&#xFF0C;&#x53D1;&#x751F;&#x5728;create&#x65F6;&#x671F;&#xFF08;beforeCreate&#x4E0E;created&#x4E4B;&#x95F4;&#xFF09;</li>
+<li>render(&#x6E32;&#x67D3;)&#x89E6;&#x53D1;&#x7684;&#x662F;Data&#x7684;getter&#x64CD;&#x4F5C;&#xFF08;&#x4FDD;&#x8BC1;&#x89C6;&#x56FE;&#x4E2D;&#x7528;&#x5230;&#x7684;&#x6570;&#x636E;&#x6539;&#x53D8;&#x624D;&#x89E6;&#x53D1;&#x540E;&#x7EED;&#x7684;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#xFF09;</li>
+<li>Vue2.0&#x7684;&#x6570;&#x636E;&#x52AB;&#x6301;<code>Object.defineProperty</code>&#x65B9;&#x6CD5;&#x662F;&#x65E0;&#x6CD5;&#x76D1;&#x542C;<code>Array</code>&#x53D8;&#x5316;&#x7684;<ul>
+<li>&#x5C24;&#x5927;&#x4F7F;&#x7528;&#x4E86;hack&#x624B;&#x6CD5;&#xFF0C;&#x91CD;&#x5199;&#x4E86;[&apos;push&apos;, &apos;pop&apos;, &apos;shift&apos;, &apos;unshift&apos;, &apos;splice&apos;, &apos;sort&apos;, &apos;reverse&apos;]&#xFF0C;</li>
+<li>&#x540C;&#x65F6;&#x4F7F;&#x7528;<code>const arrayMethods = Object.create(arrayProto)</code>&#x786E;&#x4FDD;&#x4E0D;&#x6C61;&#x67D3;&#x539F;&#x751F;&#x6570;&#x7EC4;&#x65B9;&#x6CD5;</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x5F02;&#x6B65;&#x66F4;&#x65B0;--nexttick">&#x5F02;&#x6B65;&#x66F4;&#x65B0; &amp;&amp; NextTick</h2>
+<blockquote>
+<p>Vue&#x7684;$nextTick&#x7684;&#x5B9E;&#x73B0;&#x4E3B;&#x8981;&#x5229;&#x7528;&#x4E86;JS&#x7684;EventLoop</p>
+</blockquote>
+<h3 id="vue&#x4E3A;&#x4EC0;&#x4E48;&#x6709;nexttick-&#xFF1F;">Vue&#x4E3A;&#x4EC0;&#x4E48;&#x6709;$nextTick &#xFF1F;</h3>
+<ul>
+<li>Vue&#x7684;Dom&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#x662F;<strong>&#x5F02;&#x6B65;&#x66F4;&#x65B0;</strong>&#xFF0C;&#x8C03;&#x7528;<code>queueWatcher</code>&#x51FD;&#x6570;</li>
+<li>queueWatcher&#x4E2D;&#xFF0C;Watch&#x5BF9;&#x8C61;&#x5E76;&#x4E0D;&#x662F;&#x7ACB;&#x5373;&#x66F4;&#x65B0;&#x89C6;&#x56FE;&#xFF0C;&#x800C;&#x662F;<code>queue.push(watcher)</code>(&#x88AB;push&#x8FDB;&#x4E86;&#x4E00;&#x4E2A;&#x961F;&#x5217;queue)</li>
+<li>&#x66F4;&#x65B0;&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#x5F02;&#x6B65;&#x7684;&#xFF08;&#x5FAE;&#x4EFB;&#x52A1;&#x5B9E;&#x73B0;&#xFF0C;&#x5982;&#x679C;&#x6D4F;&#x89C8;&#x5668;&#x4E0D;&#x652F;&#x6301;&#x5FAE;&#x4EFB;&#x52A1;&#x5219;&#x964D;&#x7EA7;&#x4E3A;setTimeout&#xFF09;</li>
+</ul>
+<h3 id="nexttick&#x964D;&#x7EA7;&#x7B56;&#x7565;&#xFF08;&#x7531;&#x5FAE;&#x4EFB;&#x52A1;&#x964D;&#x7EA7;&#x5230;&#x5B8F;&#x4EFB;&#x52A1;&#xFF09;">$nextTick&#x964D;&#x7EA7;&#x7B56;&#x7565;&#xFF08;&#x7531;&#x5FAE;&#x4EFB;&#x52A1;&#x964D;&#x7EA7;&#x5230;&#x5B8F;&#x4EFB;&#x52A1;&#xFF09;</h3>
+<p>$nextTick&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x6709;timerFunc&#x51FD;&#x6570;</p>
+<pre><code>  if (typeof Promise !== &apos;undefined&apos; &amp;&amp; isNative(Promise)) {
+    var p = Promise.resolve();
+    timerFunc = function () {
+      p.then(flushCallbacks);
+
+      //&#x5728;&#x6709;&#x95EE;&#x9898;&#x7684;UIWebViews&#x4E2D;&#xFF0C;Promise.then&#x5E76;&#x6CA1;&#x6709;&#x5B8C;&#x5168;&#x7834;&#x574F;&#xFF0C;&#x4F46;&#x662F;
+      //&#x5B83;&#x53EF;&#x80FD;&#x4F1A;&#x9677;&#x5165;&#x4E00;&#x79CD;&#x5947;&#x602A;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5176;&#x4E2D;&#x56DE;&#x8C03;&#x88AB;&#x63A8;&#x5165;
+      //&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4F46;&#x662F;&#x961F;&#x5217;&#x6CA1;&#x6709;&#x88AB;&#x5237;&#x65B0;&#xFF0C;&#x76F4;&#x5230;&#x6D4F;&#x89C8;&#x5668;
+      //&#x9700;&#x8981;&#x505A;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5DE5;&#x4F5C;&#xFF0C;&#x4F8B;&#x5982;&#x5904;&#x7406;&#x8BA1;&#x65F6;&#x5668;&#x3002;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;
+      //&#x901A;&#x8FC7;&#x6DFB;&#x52A0;&#x7A7A;&#x8BA1;&#x65F6;&#x5668;&#x201C;&#x5F3A;&#x5236;&#x201D;&#x5237;&#x65B0;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x3002;
+
+      if (isIOS) { setTimeout(noop); }
+    };
+    isUsingMicroTask = true;
+  } else if (!isIE &amp;&amp; typeof MutationObserver !== &apos;undefined&apos; &amp;&amp; (
+    isNative(MutationObserver) ||
+    // PhantomJS &#x548C; iOS 7.x
+    MutationObserver.toString() === &apos;[object MutationObserverConstructor]&apos;
+  )) {
+
+    // &#x5F53;Promise&#x4E0D;&#x53EF;&#x7528;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;MutationObserver
+    // &#x4F8B;&#x5982;PhantomJS&#xFF0C;iOS7&#xFF0C;Android 4.4
+    //&#xFF08;&#xFF03;6466 MutationObserver&#x5728;IE11&#x4E2D;&#x4E0D;&#x53EF;&#x9760;&#xFF09;
+
+    var counter = 1;
+    var observer = new MutationObserver(flushCallbacks);
+    var textNode = document.createTextNode(String(counter));
+    observer.observe(textNode, {
+      characterData: true
+    });
+    timerFunc = function () {
+      counter = (counter + 1) % 2;
+      textNode.data = String(counter);
+    };
+    isUsingMicroTask = true;
+  } else if (typeof setImmediate !== &apos;undefined&apos; &amp;&amp; isNative(setImmediate)) {
+    // &#x5C3D;&#x7BA1;setImmediate&#x662F;&#x5B8F;&#x4EFB;&#x52A1;&#xFF0C;&#x4F46;&#x662F;&#x6BD4;setTimeout&#x66F4;&#x597D;
+    timerFunc = function () {
+      setImmediate(flushCallbacks);
+    };
+  } else {
+    // &#x6700;&#x540E;&#x964D;&#x7EA7;&#x4E3A; setTimeout.
+    timerFunc = function () {
+      setTimeout(flushCallbacks, 0);
+    };
+  }
+</code></pre><p>&#x6240;&#x4EE5;&#xFF1A;$nextTick&#x7684;&#x964D;&#x7EA7;&#x987A;&#x5E8F;&#x662F;</p>
+<ul>
+<li>Promise</li>
+<li>MutationObserver (copy&#x6E90;&#x7801;&#x6765;&#x81EA; Vue.js v2.6.10)</li>
+<li>setImmediate</li>
+<li>setTimeout</li>
+</ul>
+<p>&#x987E;&#x8F76;&#x7075;&#x5728;&#x77E5;&#x4E4E;&#x4E0A;&#xFF08;2017-11-12&#xFF09;&#x8BF4;&#xFF1A;Vue &#x7684; nextTick &#x5B9E;&#x73B0;&#x79FB;&#x9664;&#x4E86; MutationObserver &#x7684;&#x65B9;&#x5F0F;&#xFF08;&#x517C;&#x5BB9;&#x6027;&#x539F;&#x56E0;&#xFF09;&#xFF0C;&#x53D6;&#x800C;&#x4EE3;&#x4E4B;&#x7684;&#x662F;&#x4F7F;&#x7528; MessageChannel&#x3002;&#x4F46;&#x662F;&#x5728;&#x6E90;&#x7801;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x770B;&#x5230;&#xFF08;2019-05-05 v2.6.10&#xFF09;</p>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;nexttick&#x8981;&#x964D;&#x7EA7;-&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;$nextTick&#x8981;&#x964D;&#x7EA7; &#xFF1F;</h3>
+<p>&#x6839;&#x636E;HTML&#x6807;&#x51C6;&#xFF0C;&#x5728;&#x6BCF;&#x4E2A;<code>task</code>&#x8FD0;&#x884C;&#x5B8C;&#x4EE5;&#x540E;&#xFF0C;<code>UI</code>&#x90FD;&#x4F1A;&#x91CD;&#x6E32;&#x67D3;&#xFF0C;&#x90A3;&#x4E48;&#x5728;<code>microtask</code>&#x4E2D;&#x5C31;&#x5B8C;&#x6210;&#x6570;&#x636E;&#x66F4;&#x65B0;&#xFF0C;&#x5F53;&#x524D; task &#x7ED3;&#x675F;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x6700;&#x65B0;&#x7684; UI &#x4E86;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; task &#x6765;&#x505A;&#x6570;&#x636E;&#x66F4;&#x65B0;&#xFF0C;&#x90A3;&#x4E48;&#x6E32;&#x67D3;&#x5C31;&#x4F1A;&#x8FDB;&#x884C;&#x4E24;&#x6B21;&#x3002;</li>
+<li>&#x5E76;&#x4E14;setTimeout&#x7684;&#x95F4;&#x9694;&#x65F6;&#x95F4;&#x6BD4;&#x8F83;&#x4E45;</li>
+</ul>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5F02;&#x6B65;&#x66F4;&#x65B0;-&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5F02;&#x6B65;&#x66F4;&#x65B0; &#xFF1F;</h3>
+<p>&#x548C;&#x8282;&#x6D41;&#x3001;&#x9632;&#x6296;&#x5DEE;&#x4E0D;&#x591A;&#x5427;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5F02;&#x6B65;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x8FDE;&#x7EED;&#x7684;&#x6539;&#x52A8;&#x90FD;&#x4F1A;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;DOM&#x66F4;&#x65B0;&#x89C6;&#x56FE;&#xFF0C;&#x8FD9;&#x662F;&#x975E;&#x5E38;&#x6D88;&#x8017;&#x6027;&#x80FD;&#x7684;&#x3002;</p>
+<p>&#x800C;&#x4E14;<code>queueWatcher</code>&#x4E2D;&#x6709;<code>watcher.id</code>&#x9632;&#x91CD;&#x590D;</p>
+<pre><code>export function queueWatcher (watcher: Watcher) {
+  const id = watcher.id
+  // &#x68C0;&#x9A8C;id&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x5219;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;
+  if (has[id] == null) {
+    has[id] = true
+    if (!flushing) {
+      // &#x5982;&#x679C;&#x6CA1;&#x6709;flush&#xFF0C;&#x76F4;&#x63A5;push&#x5230;&#x961F;&#x5217;&#x4E2D;
+      queue.push(watcher)
+    } else {
+      let i = queue.length - 1
+      while (i &gt;= 0 &amp;&amp; queue[i].id &gt; watcher.id) {
+        i--
+      }
+      queue.splice(Math.max(i, index) + 1, 0, watcher)
+    }
+    if (!waiting) {
+      waiting = true
+      nextTick(flushSchedulerQueue)
+    }
+  }
+}
+</code></pre><h2 id="diff&#x7B97;&#x6CD5;">Diff&#x7B97;&#x6CD5;</h2>
+<blockquote>
+<p>patch&#x7684;&#x6838;&#x5FC3;&#x662F;diff&#x7B97;&#x6CD5;</p>
+</blockquote>
+<p>diff&#x7B97;&#x6CD5;&#x662F;&#x901A;&#x8FC7;<code>&#x540C;&#x5C42;&#x7684;&#x6811;&#x8282;&#x70B9;&#x6BD4;&#x8F83;</code>&#x800C;&#x975E;&#x5BF9;&#x6811;&#x8FDB;&#x884C;&#x9010;&#x5C42;&#x641C;&#x7D22;&#x904D;&#x5386;&#xFF0C;&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x4E3A;O(n)</p>
+<p>diff&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x4E3A;2&#x79CD;&#xFF1A;</p>
+<ol>
+<li>&#x503C;&#x5F97;&#x6BD4;&#x8F83;(sameVnode)</li>
+<li>&#x4E0D;&#x503C;&#x5F97;&#x6BD4;&#x8F83;</li>
+</ol>
+<p>&#x5224;&#x65AD;&#x4E24;&#x4E2A;VNode&#x8282;&#x70B9;&#x662F;&#x5426;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;(<code>sameVnode</code>)&#xFF0C;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0B;&#x6761;&#x4EF6;</p>
+<ul>
+<li><code>key</code>&#x76F8;&#x540C;</li>
+<li><code>tagName</code>&#x76F8;&#x540C;</li>
+<li>isComment&#xFF08;&#x662F;&#x5426;&#x4E3A;&#x6CE8;&#x91CA;&#x8282;&#x70B9;&#xFF09;&#x76F8;&#x540C;</li>
+<li>&#x662F;&#x5426; data</li>
+<li>&#x5F53;&#x6807;&#x7B7E;&#x662F;<code>&lt;input&gt;</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;type&#x5FC5;&#x987B;&#x76F8;&#x540C;</li>
+</ul>
+<p>&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>function sameVnode (a, b) {
+  return (
+    a.key === b.key &amp;&amp;
+    a.tag === b.tag &amp;&amp;
+    a.isComment === b.isComment &amp;&amp;
+    isDef(a.data) === isDef(b.data) &amp;&amp;
+    sameInputType(a, b)
+  )
+}
+</code></pre><p>&#x5982;&#x679C;&#x503C;&#x5F97;&#x6BD4;&#x8F83;&#xFF1A;</p>
+<ul>
+<li>&#x5224;&#x65AD;&#x662F;&#x5426;&#x65B0;&#x8001;&#x8282;&#x70B9;&#x53EA;&#x6709;&#x6587;&#x672C;  -&gt; &#x66FF;&#x6362;&#x6587;&#x672C;</li>
+<li>&#x65B0;&#x8282;&#x70B9;&#x6709;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x8001;&#x8282;&#x70B9;&#x6CA1;&#x6709;&#x5B50;&#x8282;&#x70B9;  -&gt; &#x6E05;&#x7A7A;&#x8001;&#x8282;&#x70B9;&#x6587;&#x672C;&#xFF0C;&#x4E3A;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x6DFB;&#x52A0;&#x5B50;&#x8282;&#x70B9;</li>
+<li>&#x65B0;&#x8282;&#x70B9;&#x6CA1;&#x6709;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x8001;&#x8282;&#x70B9;&#x6709;&#x5B50;&#x8282;&#x70B9;  -&gt; &#x6E05;&#x7A7A;&#x8001;&#x8282;&#x70B9;&#x7684;&#x5B50;&#x8282;&#x70B9;</li>
+<li>&#x65B0;&#x8001;&#x8282;&#x70B9;&#x90FD;&#x6709;&#x5B50;&#x8282;&#x70B9;&#xFF1A;&#x8C03;&#x7528;updateChildren&#x65B9;&#x6CD5;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x4E0D;&#x503C;&#x5F97;&#x6BD4;&#x8F83;&#xFF0C;&#x90A3;&#x4E48;&#x4F1A;&#x79FB;&#x9664;&#x65E7;&#x7684;DOM&#xFF0C;&#x521B;&#x5EFA;&#x65B0;&#x7684;DOM</p>
+<p><code>updateChildren</code>&#x65B9;&#x6CD5;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;&#xFF08;&#x904D;&#x5386;&#x8FC7;&#x7A0B;&#x4E2D;&#x8FD9;&#x51E0;&#x4E2A;&#x53D8;&#x91CF;&#x90FD;&#x5411;&#x4E2D;&#x95F4;&#x9760;&#x62E2;&#xFF09;</p>
+<pre><code>while (oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx) {
+  if...
+    ++oldStartIdx
+    ++newStartIdx
+  if...
+    --oldEndIdx
+    --newEndIdx
+}
+</code></pre><p>Vue&#x4F1A;&#x9010;&#x7EA7;&#x9012;&#x5F52;&#x5BF9;children&#x4EF6;&#x8FDB;&#x884C;diff&#xFF0C;&#x5355;&#x6BCF;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;diff&#x662F;&#x72EC;&#x7ACB;&#x7684;</p>
+<h2 id="keep-alive">keep-alive</h2>
+<p>Vue&#x4E2D;<code>keep-alive</code>&#x662F;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>&#x5728;create&#x4E2D;&#x521B;&#x5EFA;cache&#x5BF9;&#x8C61;</li>
+<li>&#x5728;destroyed&#x65F6;&#x9500;&#x6BC1;cache</li>
+</ul>
+<p>&#x7F13;&#x5B58;&#x7684;&#x662F;Vnode&#x7684;<code>componentInstance</code>&#xFF08;&#x7EC4;&#x4EF6;&#x5B9E;&#x4F8B;&#xFF09;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x521B;&#x5EFA;&#x4E4B;&#x521D;&#x4F1A;<code>getFirstComponentChild(this.$slots.default)</code></p>
+<pre><code>  if (this.cache[key]) {
+      vnode.componentInstance = this.cache[key].componentInstance
+  } else {
+      this.cache[key] = vnode
+  }
+</code></pre><p>include &#x548C; exclude &#x5C5E;&#x6027;&#x5141;&#x8BB8;&#x7EC4;&#x4EF6;&#x6709;&#x6761;&#x4EF6;&#x5730;&#x7F13;&#x5B58;</p>
+<pre><code>  // &#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x6B63;&#x5219;
+
+  function matches (pattern: string | RegExp, name: string): boolean {
+    if (typeof pattern === &apos;string&apos;) {
+      return pattern.split(&apos;,&apos;).indexOf(name) &gt; -1
+    } else if (isRegExp(pattern)) {
+      return pattern.test(name)
+    }
+    return false
+  }
+</code></pre><p>&#x5E76;&#x4E14;&#x4F1A;&#x76D1;&#x89C6;<code>include</code>&#x548C;<code>exclude</code>&#xFF0C;&#x5728;&#x88AB;&#x4FEE;&#x6539;&#x7684;&#x65F6;&#x5019;&#x5BF9;cache&#x8FDB;&#x884C;&#x4FEE;&#x6B63;</p>
+<pre><code>  watch: {
+    include (val: string | RegExp) {
+        pruneCache(this.cache, this._vnode, name =&gt; matches(val, name))
+    },
+    exclude (val: string | RegExp) {
+        pruneCache(this.cache, this._vnode, name =&gt; !matches(val, name))
+    }
+  },
+</code></pre><p>keep-alive&#x6709;2&#x4E2A;&#x65B0;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;<code>activated</code>&#x548C;<code>deactivated</code>&#xFF0C;&#x5728;&#x8FDB;&#x5165;/&#x9000;&#x51FA;&#x65F6;&#x89E6;&#x53D1;&#x3002;</p>
+<p>&#x89E6;&#x53D1;&#x987A;&#x5E8F;&#xFF1A;created-&gt; mounted-&gt; activated</p>
+<h2 id="&#x5BF9;array&#x7684;hack&#x5B9E;&#x73B0;">&#x5BF9;Array&#x7684;hack&#x5B9E;&#x73B0;</h2>
+<ol>
+<li>&#x5B9E;&#x73B0;&#x4E86;&#x4E2A;&#x5305;&#x542B;&#x9700;&#x8981;hack&#x7684;&#x6570;&#x7EC4;&#x65B9;&#x6CD5;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x5728;<code>Observer</code>&#x65F6;&#x5C06;&#x8BE5;hack&#x65B9;&#x6CD5;&#x8986;&#x76D6;&#x9700;&#x8981;&#x52AB;&#x6301;&#x7684;Array&#x7684;&#x539F;&#x578B;</li>
+</ol>
+<pre><code>  var arrayProto = Array.prototype;
+
+  // &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C; &#x8BE5;&#x5BF9;&#x8C61;&#x4EE5;&#x6570;&#x7EC4;&#x7684;&#x539F;&#x578B;&#x4E3A;&#x539F;&#x578B;
+  var arrayMethods = Object.create(arrayProto);
+
+  // &#x5B9E;&#x73B0;&#x7684;hack &#x65B9;&#x6CD5;
+  var methodsToPatch = [
+    &apos;push&apos;,
+    &apos;pop&apos;,
+    &apos;shift&apos;,
+    &apos;unshift&apos;,
+    &apos;splice&apos;,
+    &apos;sort&apos;,
+    &apos;reverse&apos;
+  ];
+
+  methodsToPatch.forEach(function (method) {
+    // cache original method
+
+    // &#x83B7;&#x53D6;&#x5230;&#x539F;&#x751F;&#x7684; &#x6570;&#x7EC4;&#x65B9;&#x6CD5;
+    var original = arrayProto[method];
+    /* 
+      &#x4F7F; arrayMethods &#x83B7;&#x5F97;&#x4E86;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x539F;&#x751F;&#x6570;&#x7EC4;&#x7684;&#x65B9;&#x6CD5;
+      &#x540C;&#x65F6;&#x8FD8;&#x83B7;&#x5F97;&#x4E86;&#x8C03;&#x7528; &#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#x7684; &#x66F4;&#x65B0;&#x80FD;&#x529B;
+
+
+      &#x540E;&#x7EED;&#x5728; &#x89C2;&#x5BDF;&#x8005;&#x7C7B;&lt;Observer&gt; &#x4E2D;&#x5224;&#x65AD; &#x662F;&#x5426; Array
+      &#x5982;&#x679C;&#x662F; Array &#x5C31;&#x4F1A; &#x8C03;&#x7528; protoAugment&lt;&#x6709;__proto__&#x60C5;&#x51B5;&gt; || copyAugment&lt;&#x65E0;__proto__&#x60C5;&#x51B5;&gt;
+      &#x66FF;&#x6362;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x6570;&#x7EC4;&#x7684; __proto__ &#x66FF;&#x6362;&#x4E3A; arrayMethods
+    */
+    def(arrayMethods, method, function mutator () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // &#x6267;&#x884C;&#x771F;&#x6B63;&#x7684;&#x65B9;&#x6CD5;
+      var result = original.apply(this, args);
+      var ob = this.__ob__;
+      var inserted;
+      switch (method) {
+        case &apos;push&apos;:
+        case &apos;unshift&apos;:
+          inserted = args;
+          break
+        case &apos;splice&apos;:
+          inserted = args.slice(2);
+          break
+      }
+      if (inserted) { ob.observeArray(inserted); }
+      // notify change
+      ob.dep.notify();
+      return result
+    });
+  });
+
+  //... &#x7701;&#x7565;
+
+  var Observer = function Observer (value) {
+    this.value = value;
+    this.dep = new Dep();
+    this.vmCount = 0;
+    def(value, &apos;__ob__&apos;, this);
+
+    // &#x5BF9; Array&#x8FDB;&#x884C; hack
+    if (Array.isArray(value)) {
+      if (hasProto) {
+        protoAugment(value, arrayMethods);
+      } else {
+        copyAugment(value, arrayMethods, arrayKeys);
+      }
+      this.observeArray(value);
+    } else {
+      this.walk(value);
+    }
+  };
+
+  //... &#x7701;&#x7565;
+
+  // &#x6709;__proto__&#x65F6; &#x6302;&#x8F7D;__proto__
+  function protoAugment (target, src) {
+    /* eslint-disable no-proto */
+    target.__proto__ = src;
+    /* eslint-enable no-proto */
+  }
+
+  /**
+    * Augment a target Object or Array by defining
+    * hidden properties.
+
+    &#x6CA1;&#x6709;__proto__&#x65F6;
+    &#x7ED9;&#x5BF9;&#x8C61;&#x6BCF;&#x4E2A;&#x5C5E;&#x6027;&#x90FD;&#x914D;&#x4E00;&#x4E2A;&#x5BF9;&#x5E94;&#x65B9;&#x6CD5;
+
+    */
+  /* istanbul ignore next */
+  function copyAugment (target, src, keys) {
+    for (var i = 0, l = keys.length; i &lt; l; i++) {
+      var key = keys[i];
+      def(target, key, src[key]);
+    }
+  }
+</code></pre><h2 id="vuex&#x6E90;&#x7801;&#x5B9E;&#x73B0;">Vuex&#x6E90;&#x7801;&#x5B9E;&#x73B0;</h2>
+<h3 id="vuex&#x7684;install&#x5B9E;&#x73B0;">Vuex&#x7684;install&#x5B9E;&#x73B0;</h3>
+<ol>
+<li>&#x901A;&#x8FC7;<code>applyMixin(Vue)</code>&#x5728;Vue&#x7684;<code>beforeCreate</code>&#x65F6;&#x6CE8;&#x5165;</li>
+<li>&#x4E3A;&#x4E86;&#x83B7;&#x53D6;&#x540C;&#x4E00;&#x4EFD;store&#xFF0C;&#x4F1A;&#x5C1D;&#x8BD5;&#x4ECE;<code>options.store</code>&#xFF08;root&#x8282;&#x70B9;&#xFF09;&#x548C;<code>options.parent.$store</code>&#x83B7;&#x53D6;store</li>
+</ol>
+<h3 id="&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x5B9E;&#x73B0;">&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x5B9E;&#x73B0;</h3>
+<pre><code>  // &#x4E00;
+  // &#x901A;&#x8FC7; new Vue&#x5B9E;&#x73B0;$$state&#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;
+  store._vm = new Vue({
+      data: {
+        $$state: state
+      },
+      computed: computed
+  });
+
+  // &#x4E8C;
+  // &#x5F53;&#x83B7;&#x53D6;state&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x4EE5;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x7684;$$sate
+  var prototypeAccessors$1 = { state: { configurable: true } };
+
+  prototypeAccessors$1.state.get = function () {
+    return this._vm._data.$$state
+  };
+
+  // &#x4E09;
+  // &#x5C06;state&#x5B9A;&#x4E49;&#x5728;&#x539F;&#x578B;&#x4E2D;
+  Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+</code></pre><h3 id="&#x4FEE;&#x6539;state">&#x4FEE;&#x6539;state</h3>
+<p>&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E2D;&#xFF1A;&#x4F1A;&#x8C03;&#x7528;<code>store._vm.$watch(...)</code>&#xFF0C;&#x76D1;&#x542C;state&#x7684;&#x6539;&#x52A8;&#xFF0C;&#x5982;&#x679C;<code>!_committing</code>&#x5219;&#x4F1A;&#x629B;&#x51FA;&#x9519;&#x8BEF;&#x3002;</p>
+<p>&#x53EA;&#x80FD;&#x4F7F;&#x7528;mutation&#x66F4;&#x6539;state</p>
+<pre><code>_withCommit (fn) {
+  const committing = this._committing
+  this._committing = true
+  fn()
+  this._committing = committing
+}
+</code></pre><p>action&#x662F;&#x5F02;&#x6B65;&#x7684;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x662F;Promise&#x3002; - -&#x6CA1;&#x5565;&#x597D;&#x8BF4;&#x7684;&#x3002;</p>
+<h3 id="vuex&#x548C;vue&#x7684;&#x51B2;&#x7A81;">Vuex&#x548C;Vue&#x7684;&#x51B2;&#x7A81;</h3>
+<p>&#x89C1;&#x5B98;&#x7F51;&#xFF1A;<a href="https://vuex.vuejs.org/zh/guide/forms.html" target="_blank">Vuex&#x8868;&#x5355;&#x5904;&#x7406;</a></p>
+<p>&#x5F53;&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E2D;&#x4F7F;&#x7528; Vuex &#x65F6;&#xFF08;&#x4FEE;&#x6539;state&#xFF09;&#xFF0C;&#x5728;&#x5C5E;&#x4E8E; Vuex &#x7684; state &#x4E0A;&#x4F7F;&#x7528; v-model &#x4F1A;&#x6BD4;&#x8F83;&#x68D8;&#x624B;&#xFF1A;</p>
+<p>&#x7531;&#x4E8E;v-model&#x4FEE;&#x6539;&#x662F;&#x5728;Vue&#x4E2D;&#x4FEE;&#x6539;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5728;Vuex&#x7684;<code>store._vm.$watch(...)</code>&#x6240;&#x76D1;&#x542C;&#x4E2D;&#xFF0C;<code>this._committing</code>&#x5E76;&#x4E0D;&#x662F;<code>_committing</code></p>
+<pre><code>  &lt;input v-model=&quot;obj.message&quot;&gt;
+
+  // &#x89E3;&#x51B3;&#x65B9;&#x6848; &#x4E00;
+  &lt;input :value=&quot;message&quot; @input=&quot;updateMessage&quot;&gt;
+
+  methods: {
+    updateMessage (e) {
+      this.$store.commit(&apos;updateMessage&apos;, e.target.value)
+    }
+  }
+
+  // &#x89E3;&#x51B3;&#x65B9;&#x6848; &#x4E8C;
+  &lt;input v-model=&quot;message&quot;&gt;
+
+  computed: {
+    message: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit(&apos;updateMessage&apos;, value)
+      }
+    }
+  }
+</code></pre><h2 id="vue-&#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;">Vue &#x7684;&#x8BA1;&#x7B97;&#x5C5E;&#x6027;</h2>
+<p>&#x6838;&#x5FC3;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<ol>
+<li>&#x5148;&#x5B9E;&#x73B0;<code>$data</code>&#x7684;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;</li>
+<li>&#x8C03;&#x7528;computed&#x5BF9;&#x8C61;&#x7684;getter&#x65B9;&#x6CD5;</li>
+<li>&#x89E6;&#x53D1; &#x5BF9;&#x5E94;$data &#x7684;getter&#x65B9;&#x6CD5;</li>
+<li>&#x5C06;&#x5BF9;&#x5E94;<code>$data</code>&#x7684; &#x89C2;&#x5BDF;&#x8005;push&#x5230; computed&#x5BF9;&#x8C61;&#x7684; <code>Watcher</code> &#x4E2D;</li>
+</ol>
+<h3 id="vueuse-&#x63D2;&#x4EF6;&#x5B89;&#x88C5;">Vue.use &#x63D2;&#x4EF6;&#x5B89;&#x88C5;</h3>
+<pre><code>  // &#x9996;&#x5148;&#x4F1A;&#x6821;&#x9A8C;`installedPlugins`&#x6570;&#x7EC4;&#x4E2D;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x542B;&#x6709;&#x5BF9;&#x5E94;&#x7EC4;&#x4EF6;
+  const installedPlugins = this._installedPlugins || (this._installedPlugins = [])
+
+  // &#x9632;&#x6B62;&#x91CD;&#x590D;&#x5B89;&#x88C5;
+  if (installedPlugins.indexOf(plugin) &gt; -1) {
+    return this
+  }
+
+  const args = toArray(arguments, 1)
+
+  // &#x63D2;&#x5165;Vue
+  args.unshift(this)
+
+  // &#x63D2;&#x4EF6;&#x5305;&#x542B; install&#x65B9;&#x6CD5;
+  if (typeof plugin.install === &apos;function&apos;) {
+    plugin.install.apply(plugin, args)
+  // &#x63D2;&#x4EF6;&#x662F;&#x51FD;&#x6570;
+  } else if (typeof plugin === &apos;function&apos;) {
+    plugin.apply(null, args)
+  }
+
+  // &#x7F13;&#x5B58;&#xFF0C;&#x7528;&#x4EE5;&#x68C0;&#x6D4B;&#x662F;&#x5426;&#x91CD;&#x590D;&#x5B89;&#x88C5;
+  installedPlugins.push(plugin)
+
+  return this
+</code></pre><h2 id="vuerouter-&#x5B9E;&#x73B0;">VueRouter &#x5B9E;&#x73B0;</h2>
+<blockquote>
+<p>VueRouter &#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x4E00;&#x4E2A; Vue&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;<code>Vue.use(VueRouter)</code>&#x6765;&#x8C03;&#x7528;<code>VueRouter</code>&#x7684;<code>install</code>&#x65B9;&#x6CD5;</p>
+</blockquote>
+<p>&#x6700;&#x91CD;&#x8981;&#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<ol>
+<li>&#x901A;&#x8FC7;<code>Vue.mixin</code>&#x5728;<code>beforeCreate</code>&#x4E2D;&#x521D;&#x59CB;&#x5316;router</li>
+<li><p>&#x5168;&#x5C40;&#x6CE8;&#x518C;2&#x4E2A;&#x7EC4;&#x4EF6;&#xFF1A;<code>router-link</code>&#x548C;<code>router-view</code></p>
+<pre><code>// &#x901A;&#x8FC7; Vue.mixin &#x5728; beforeCreate &#x4E2D;&#x6CE8;&#x5165;
+Vue.mixin({
+ beforeCreate() {
+   // &#x5224;&#x65AD;&#x7EC4;&#x4EF6;&#x662F;&#x5426;&#x5B58;&#x5728; router &#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x53EA;&#x5728;&#x6839;&#x7EC4;&#x4EF6;&#x4E0A;&#x6709;
+   if (isDef(this.$options.router)) {
+     // &#x6839;&#x8DEF;&#x7531;&#x8BBE;&#x7F6E;&#x4E3A;&#x81EA;&#x5DF1;
+     this._routerRoot = this
+     this._router = this.$options.router
+
+     // &#x521D;&#x59CB;&#x5316;&#x8DEF;&#x7531;
+     this._router.init(this)
+     // &#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x4E3A; _route &#x5C5E;&#x6027;&#x5B9E;&#x73B0;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;
+     // &#x89E6;&#x53D1;&#x7EC4;&#x4EF6;&#x6E32;&#x67D3;
+     Vue.util.defineReactive(this, &apos;_route&apos;, this._router.history.current)
+   } else {
+     // &#x7528;&#x4E8E; router-view &#x5C42;&#x7EA7;&#x5224;&#x65AD;
+     this._routerRoot = (this.$parent &amp;&amp; this.$parent._routerRoot) || this
+   }
+   registerInstance(this, this)
+ },
+ destroyed() {
+   registerInstance(this)
+ }
+})
+
+// &#x5168;&#x5C40;&#x6CE8;&#x518C;&#x7EC4;&#x4EF6; router-link &#x548C; router-view
+Vue.component(&apos;RouterView&apos;, View)
+Vue.component(&apos;RouterLink&apos;, Link)
+</code></pre></li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="../mvvm/next_js.html" class="navigation navigation-next navigation-unique" aria-label="Next page: next.js 体验">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Vue 2.x 源码解析","level":"1.7.1","depth":2,"next":{"title":"next.js 体验","level":"1.7.2","depth":2,"path":"md/mvvm/next_js.md","ref":"md/mvvm/next_js.md","articles":[]},"previous":{"title":"Vue + React 框架学习","level":"1.7","depth":1,"ref":"","articles":[{"title":"Vue 2.x 源码解析","level":"1.7.1","depth":2,"path":"md/resource-analysis/vue2.md","ref":"md/resource-analysis/vue2.md","articles":[]},{"title":"next.js 体验","level":"1.7.2","depth":2,"path":"md/mvvm/next_js.md","ref":"md/mvvm/next_js.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/resource-analysis/vue2.md","mtime":"2019-11-15T10:23:42.859Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-28T02:34:49.813Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
