@@ -1,8 +1,8 @@
 # useEffect 完全指南
 
-> 文章系译文：
-> 作者是facebook大佬：Dan Abramov
-> https://github.com/gaearon
+> 阅读 facebook大佬：Dan Abramov 的文章颇有感悟
+
+> 大佬 github地址 github.com/gaearon
 
 ## 重点总结
 
