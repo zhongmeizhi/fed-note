@@ -1,8 +1,6 @@
 # useEffect 完全指南
 
-> 阅读 facebook大佬：Dan Abramov 的文章颇有感悟
-
-> 大佬 github地址 github.com/gaearon
+> 参考自 facebook大佬：Dan Abramov 的博客
 
 ## 重点总结
 
@@ -15,19 +13,7 @@
 7. 可以使用 `useMemo` 让复杂对象做动态改变
 
 
-你用[Hooks](https://reactjs.org/docs/hooks-intro.html)写了一些组件，甚或写了一个小型应用。你可能很满意，使用它的API很舒服并且在这个过程中获得了一些小技巧。你甚至可能写了一些 [custom Hooks](https://reactjs.org/docs/hooks-custom.html)去抽离重复的逻辑（精简掉了300行代码），并且得意地展示给你的同事看，"干得漂亮"，他们如是说。
-
-但有时候当你使用 `useEffect`你总觉得哪儿有点不对劲。你会嘀咕你可能遗漏了什么。它看起来像class的生命周期...但真的是这样吗？你发觉自己在问类似下面的这些问题：
-
-* 🤔 如何用 `useEffect`模拟 `componentDidMount`生命周期？
-* 🤔 如何正确地在 `useEffect`里请求数据？ `[]`又是什么？
-* 🤔 我应该把函数当做effect的依赖吗？
-* 🤔 为什么有时候会出现无限重复请求的问题？
-* 🤔 为什么有时候在effect里拿到的是旧的state或prop？
-
-**当我不再透过熟悉的class生命周期方法去窥视 `useEffect` 这个Hook的时候，我才得以融会贯通。**
-
-> "忘记你已经学到的。" — Yoda
+你用[Hooks](https://reactjs.org/docs/hooks-intro.html)写了一些组件，甚或写了一个小型应用。你可能很满意，使用它的API很舒服并且在这个过程中获得了一些小技巧。你甚至可能写了一些 [custom Hooks](https://reactjs.org/docs/hooks-custom.html)去抽离重复的逻辑（精简掉了300行代码）
 
 
 ## 摘要

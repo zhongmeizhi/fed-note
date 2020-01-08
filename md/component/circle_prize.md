@@ -89,9 +89,9 @@ class Game {
     }
 
     run(cb) {
+        this.addIdx();
         this.speedControl();
         setTimeout(() => {
-            this.addIdx();
             !this.isFinish && this.run(cb);
         }, this.speed);
     }
@@ -242,10 +242,10 @@ class Game {
   }
 
   run(cb) {
-    this.speedControl();
+    this.addIdx();
     typeof cb === 'function' && cb(this.Order_List[this.idx]);
+    this.speedControl();
     setTimeout(() => {
-      this.addIdx();
       !this.isFinish && this.run(cb);
     }, this.speed);
   }

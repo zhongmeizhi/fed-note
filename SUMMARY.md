@@ -57,8 +57,8 @@
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java
   * [git命令](md/other/GIT.md)
-  * [Spring Boot（一）入门篇](md/spring-boot/init.md)
-  <!-- * [Spring Boot（二）注解](md/spring-boot/decoration.md）-->
+  * [Spring Boot（一）入门篇](md/java/init.md)
+  <!-- * [Spring Boot（二）注解](md/java/decoration.md）-->
 * 其他
   * [git命令](md/other/GIT.md)
   * [GitHub的Host和Key](md/other/GITHUB.md)

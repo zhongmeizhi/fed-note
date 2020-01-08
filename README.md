@@ -57,7 +57,7 @@
   * [JS函数篇](/md/review/js_function.md)
   * [Webpack篇](/md/review/webpack.md)
 * Vue + React 框架学习
-  * [React useEffect详解](md/mvvm/useEffect.md)
+  * [React useEffect完全指南](md/mvvm/useEffect.md)
   * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
   * [next.js 体验](md/mvvm/next_js.md)
   <!-- * [Vue 2.6.10 全代码解读](md/mvvm/vue_2.6.10.js) -->
@@ -86,8 +86,8 @@
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java
   * [入门](md/java/begin.md)
-  * [Spring Boot（一）入门篇](md/spring-boot/init.md)
-  <!-- * [Spring Boot（二）注解](md/spring-boot/decoration.md）-->
+  * [Spring Boot（一）入门篇](md/java/init.md)
+  <!-- * [Spring Boot（二）注解](md/java/decoration.md）-->
 * 其他
   * [git命令](md/other/GIT.md)
   * [GitHub的Host和Key](md/other/GITHUB.md)
