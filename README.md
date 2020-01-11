@@ -20,6 +20,11 @@
 
 喜欢请Star。
 
+见解有限，如有描述不当之处，请帮忙及时指出，如有错误，会及时修正。
+
+如果看完本文后，有看不懂的地方请回复我，一定是我写的不够清楚，我改。。。
+
+
 ## 电子书快速阅读地址：
 
 [https://zhongmeizhi.github.io/FED-note/](https://zhongmeizhi.github.io/FED-note/)
