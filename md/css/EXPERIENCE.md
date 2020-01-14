@@ -11,6 +11,18 @@
   box-shadow: 0 13px 0px -6px rebeccapurple, 14px 0px 0px -5px grey;
 ```
 
+### flex 
+
+1. 主轴 -> `justify-content`
+2. 交叉轴 -> `align-items`(单项) + `align-content`(多项)
+3. 顺序 -> `order`
+4. flex-grow 放大比例，默认为 0 （不放大）
+5. flex-shrink 缩小比例，默认 1 （空间不足自动缩小）
+   * 剩余空间按照 空间 * 元素放大值 / 总放大值
+6. flex-basis 计算剩余空间时的元素大小，auto 表示原本大小
+7. flex [flex-grow、 flex-shrink、 flex-basis]，默认 [0 1 auto]
+8. align-self 当前项的 align-items
+
 ### p标签 细节
 
 p标签是无法包裹块状标签的（不注意如果产生BUG）
