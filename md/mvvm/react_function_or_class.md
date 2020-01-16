@@ -14,7 +14,7 @@
 
 ### 简单的案例
 
-函数式组件以来，它一直存在，但是经常被忽略：**函数式组件捕获了渲染所用的值。（Function components capture the rendered values.）**
+函数式组件以经常被忽略的点：**函数式组件捕获了渲染所用的值。（Function components capture the rendered values.）**
 
 思考这个组件:
 
