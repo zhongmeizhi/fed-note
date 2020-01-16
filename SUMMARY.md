@@ -29,6 +29,7 @@
   * [Webpack篇](/md/review/webpack.md)
 * Vue + React 框架学习
   * [React useEffect详解](md/mvvm/useEffect.md)
+  * [React 函数式组件和类组件的区别](md/mvvm/react_function_or_class.md)
   * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
   * [next.js 体验](md/mvvm/next_js.md)
   <!-- * [Vue 2.6.10 全代码解读](md/mvvm/vue_2.6.10.js) -->
