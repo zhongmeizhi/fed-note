@@ -257,3 +257,19 @@ Node中多进程就是进程的复制（`child_process.fork`）开启多个`子�
 利用协程可以做时间切片。
 
 ![协程](/md/img/program.jpeg)
+
+### NPM 更新 package.json 包版本
+
+```
+    // 全局安装更新插件
+    npm install -g npm-check-updates
+
+    // 检查
+    ncu
+
+    // 升级 package.json
+    ncu -u
+
+    // 更新包
+    npm i
+```
