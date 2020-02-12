@@ -273,3 +273,26 @@ Node中多进程就是进程的复制（`child_process.fork`）开启多个`子�
     // 更新包
     npm i
 ```
+
+### 开发 组件库时遇到的坑
+
+1. iphone 访问 mac 本地服务器
+   1. mac 关闭防火墙(系统偏好设置 -> 安全性与隐私)
+   2. 手机电脑在同一网络
+   3. 手机 wifi 配置代理(电脑ip + 应用端口)
+   4. 通过浏览器访问 http://localhost:端口
+2. Safari 对渐变背景支持度不太好，渐变使用`transprant`更不友好
+3. 从 chrome56 开始，在 window、document 和 body 上注册的 `touchstart` 和 `touchmove` 事件处理函数，会默认为是 `passive: true`
+   * 浏览器忽略 `preventDefault()` 以便第一时间滚动。
+   * 历史：当浏览器首先对默认的事件进行响应的时候，要检查一下是否进行了默认事件的取消。这样就在响应滑动操作之前有那么一丝丝的耽误时间。
+   * 解决：`window.addEventListener(‘touchmove’, func, { passive: false })` 或者使用 `touch-action: none;`
+4. `Ignored attempt to cancel a touchmove event with cancelable=false, for examp`
+   * 产生原因：为防止性能问题，在Chrome中 touchmove 进行主动滚动时调用，不能通过 preventDefault 中断滚动。
+   * 解决方法：`if (e.cancelable) { e.preventDefault() }`
+5. ios 的WebView有侧滑回退功能（在写Swiper时需要注意）
+   * `UIWebView` 在使用过程中对于内存开销比较大，而且加载速度也存在问题
+   * `WKWebView` 替代了 `UIWebView` 解决了这两个问题。
+6. Picker 和 Scroll 滚动时需要阻止触发页面滚动
+   * 滚动锁定要在滚动的第一帧完成
+7. Swiper需要做方向锁定
+   * 方向锁定在滚动一定距离时触发
