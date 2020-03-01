@@ -101,6 +101,7 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 
 inspect打开方式：Chrome输入链接 [chrome://inspect/#devices](chrome://inspect/#devices)
 
+
 ### 禁用 IOS 长按下载图片
 
 IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
@@ -110,6 +111,29 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
     -webkit-touch-callout:none;
 ```
 
+### IOS 自动识别电话问题
+
+Safari 会对那些看起来像是电话号码的数字处理为电话链接
+
+```html
+    // 关闭识别
+    <meta name="format-detection" content="telephone=no" />
+
+    // 开启识别
+    <a href="tel:123456">123456</a>
+```
+
+### 点击产生黑框问题
+
+```css
+    body {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+```
+
+### 点击延迟问题
+
+使用 `fastclick.js` 可以解决在手机上点击事件的300ms延迟
 
 ### input type="file" 相机和相册问题
 
@@ -125,8 +149,19 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
 * 如果限制图片枚举不够，会出现Android无法调用相册的情况。
 * 推荐用`accept="image/*"`
 
+## 相关BUG
 
-### input 问题2， IOS中placeholder在input上部
+### IOS 默认滚动卡顿
+
+在滚动容器上添加
+
+```css
+    .warp {
+        -webkit-overflow-scrolling: touch;
+    }
+```
+
+### IOS placeholder在input上部
 
 解决方案：
 1. chrome浏览器展示 DOM 的隐藏项
@@ -135,7 +170,7 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
 4. 设置 placeholder 的 `line-light` 使用顶部和 input顶部一致
 
 
-### 关于 IOS 键盘弹出问题
+### IOS 键盘弹出问题
 
 > IOS键盘弹出后，是覆盖式的。安卓是上推式的。
 
@@ -163,7 +198,7 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
     })
 ```
 
-### IOS键盘弹出问题 2 （在WebView中BUG）
+### IOS 键盘弹出问题 2 （在WebView中BUG）
 
 在IOS中系统键盘弹出后，webview会弹到上边不回来了。（这个要看Native端，反正我用Flutter没问题，但是在公司某App的Hybrid开发中遇到了）
 
@@ -180,9 +215,9 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
     );
 ```
 
-### Hybrid中 new Date 的兼容性BUG （一般在IOS中）
+### IOS new Date 的兼容性BUG
 
-> 在不同的浏览器上：不支持中横线这种时间，得改为斜杠
+> 在不同的浏览器上：不支持中横线(`-`)这种时间，得改为斜杠(`/`)
 
 ```
     new Date('2019-07-26 24:00:00'); // 有兼容性问题
@@ -191,7 +226,7 @@ IOS在Hybrid中默认还是用 长按下载图片的，Android正常。
 
 ```
 
-### 解决IOS中 子元素滚动传播到父元素的情况
+### IOS 子元素滚动传播到父元素的情况
 
 > 会出现 dialog滚动到尽头时body滚动的情况 的BUG
 
@@ -226,6 +261,40 @@ ps: overscroll-behavior 的兼容性并没有太好
 
 参考 [can i use](https://www.caniuse.com/#search=overscroll-behavior)
 
+解决方案 三:
+
+阻止默认事件`preventDefault()`
+
+
+### IOS 正则BUG
+
+IOS 不支持零宽断言：
+* 零宽断言，比如：`?<=`
+
+### 开发 组件库时遇到的坑
+
+1. iphone 访问 mac 本地服务器
+   1. mac 关闭防火墙(系统偏好设置 -> 安全性与隐私)
+   2. 手机电脑在同一网络
+   3. 手机直接通过 ip + 端口 就能访问
+2. Safari 对渐变背景支持度不太好，渐变使用`transprant`更不友好
+3. 从 chrome56 开始，在 window、document 和 body 上注册的 `touchstart` 和 `touchmove` 事件处理函数，会默认为是 `passive: true`
+   * 浏览器忽略 `preventDefault()` 以便第一时间滚动。
+   * 历史：当浏览器首先对默认的事件进行响应的时候，要检查一下是否进行了默认事件的取消。这样就在响应滑动操作之前有那么一丝丝的耽误时间。
+   * 解决：`window.addEventListener(‘touchmove’, func, { passive: false })` 或者使用 `touch-action: none;`
+4. `Ignored attempt to cancel a touchmove event with cancelable=false, for examp`
+   * 产生原因：为防止性能问题，在Chrome中 touchmove 进行主动滚动时调用，不能通过 preventDefault 中断滚动。
+   * 解决方法：`if (e.cancelable) { e.preventDefault() }`
+5. IOS 的WebView有侧滑回退功能（在写Swiper时需要注意）
+   * `UIWebView` 在使用过程中对于内存开销比较大，而且加载速度也存在问题
+   * `WKWebView` 替代了 `UIWebView` 解决了这两个问题。
+6. Picker 和 Scroll 滚动时需要阻止触发页面滚动
+   * 滚动锁定要在滚动的第一帧完成
+7. Swiper需要做方向锁定
+   * 方向锁定在滚动一定距离时触发
+8. 移动端：需要处理安全边界的问题
+   * safari中使用 `fixed` 需要配合 `viewport-fit` 和 `safe-area-inset`
+   * 如果不解决安全边界问题 `fixed` 内容将出现在安全边界外，比如 safari 的底部导航栏
 
 ### End
 
