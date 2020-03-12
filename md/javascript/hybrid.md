@@ -1,4 +1,4 @@
-# Hybrid开发
+# Hybrid开发相关
 
 > 所谓的Hybrid开发就是一层原生App（Native）的的壳，WebView 内嵌 H5。
 
@@ -148,6 +148,18 @@ Safari 会对那些看起来像是电话号码的数字处理为电话链接
 关于`accept="image/*"`
 * 如果限制图片枚举不够，会出现Android无法调用相册的情况。
 * 推荐用`accept="image/*"`
+
+### Swiper 库相关问题
+
+* 使用动态数据，页面就无法滑动
+   * 解决办法:   就是添加一个 `observer` 属性
+* 使用v-if条件，swiper界面混乱，且无法进行切换
+  * 解决办法：添加 `observeParents` 属性
+
+```
+    observer:true,
+    observeParents:true,
+```
 
 ## 相关BUG
 

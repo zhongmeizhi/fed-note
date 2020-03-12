@@ -10,7 +10,7 @@
   * [跨域机制](md/browser/cross_origin.md)
   * [页面加载过程](md/browser/page_load.md)
 * 前端基础
-  * [hybrid开发](md/javascript/hybrid.md)
+  * [Hybrid开发相关](md/javascript/hybrid.md)
   * [经验包](md/javascript/experience.md)
   * [性能优化](md/sse/optimization.md)
   * [设计模式](md/sse/design_model.md)
