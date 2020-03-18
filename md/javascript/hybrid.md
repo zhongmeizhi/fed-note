@@ -101,6 +101,18 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 
 inspect打开方式：Chrome输入链接 [chrome://inspect/#devices](chrome://inspect/#devices)
 
+### hammer 使用swipeup
+
+hammer 默认禁止了`swipeup`，使用 `swipeup` 需要
+
+```js
+    var hammer = new Hammer(ele);
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+    hammer.on("swipeup swipeleft", () => {
+        // ...略
+    })
+```
+
 
 ### 禁用 IOS 长按下载图片
 
