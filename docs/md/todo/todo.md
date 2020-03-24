@@ -8,4 +8,9 @@
   * [koa2 进阶](https://github.com/chenshenhai/koa2-note)
   * [机器学习](https://github.com/apachecn/AiLearning)
 
+工具
+  * [网页 转 markdown](https://github.com/croqaz/clean-mark)
+    1. `npm install clean-mark --global`
+    2. `cd 承载目录`
+    3. `clean-mark url`
   * [markdown 在线免费转 html](http://md.aclickall.com/)

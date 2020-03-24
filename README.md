@@ -41,7 +41,7 @@
   * [less & sass](md/css/less.md)
   * [经验包](md/css/EXPERIENCE.md)
 * 计算机基础
-  * [跨域机制](md/browser/cross_origin.md)
+  * [前端安全性](md/browser/security_code.md)
   * [页面加载过程](md/browser/page_load.md)
 * 前端基础
   * [Hybrid开发相关](md/javascript/hybrid.md)
@@ -52,7 +52,6 @@
   * [模块化](md/sse/module.md)
   * [关于动画](md/javascript/animation.md)
   * [迭代器](md/javascript/iterator.md)
-  * [前端安全性](md/browser/security_code.md)
   * [NPM机制](node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)

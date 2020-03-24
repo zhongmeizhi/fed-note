@@ -19,6 +19,8 @@
 4. `inline`/`inline-block` 水平盒子
 5. `z-index` 支持且为正
 
+ps： 子元素的 `z-index` 只作用于父元素内部。
+
 ### flex 
 
 1. 主轴 -> `justify-content`

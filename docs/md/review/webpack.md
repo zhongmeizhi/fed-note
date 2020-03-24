@@ -67,7 +67,58 @@ Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转�
 * `webpack` 是打包器(bundler)：帮助你取得准备用于部署的 JavaScript 和样式表，将它们转换为适合浏览器的可用格式。例如，JavaScript 可以压缩、拆分 chunk 和懒加载，
 
 
-### Webpack 优化
+### Webpack 优化概况
+
+Webpack 加快打包速度的方法
+1. 使用 `include` 或 `exclude` 加快文件查找速度
+2. 使用 `HappyPack` 开启多进程 `Loader` 转换
+3. 使用 `ParallelUglifyPlugin` 开启多进程 JS 压缩
+4. 使用 `DllPlugin` + `DllReferencePlugin` 分离打包
+   1. 将 `库` 和 `项目代码` 分离打包
+   2. 需要 dll 映射文件
+5. 配置缓存（插件自带 loader，不支持的可以用 `cache-loader`）
+
+Webpack 加快代码运行速度方法
+1. 代码压缩
+2. 抽离公共模块
+3. 懒加载模块
+4. 将小图片转成 base64 以减少请求
+5. 预取(`prefetch`) || 预加载(`preload`)
+6. 精灵图
+7. `webpack-bundle-analyzer` 代码分析
+
+
+### Webpack 优化细节
+
+### webpack 4.6.0+增加了对预取和预加载的支持。
+
+动态导入
+```
+  import(/* webpackChunkName: "lodash" */ 'lodash')
+
+  // 注释中的使用webpackChunkName。
+  // 这将导致我们单独的包被命名，lodash.bundle.js
+  // 而不是just [id].bundle.js。
+```
+
+预取(`prefetch`)：将来可能需要一些导航资源
+* 只要父`chunk`加载完成，`webpack`就会添加 `prefetch`
+```
+  import(/* webpackPrefetch: true */ 'LoginModal');
+
+  // 将<link rel="prefetch" href="login-modal-chunk.js">其附加在页面的开头
+```
+
+预加载(`preload`)：当前导航期间可能需要资源
+* `preload` chunk 会在父 chunk 加载时，以并行方式开始加载
+* 不正确地使用 `webpackPreload` 会有损性能，
+```
+  import(/* webpackPreload: true */ 'ChartingLibrary');
+
+  // 在加载父 chunk 的同时
+  // 还会通过 <link rel="preload"> 请求 charting-library-chunk
+```
+
 
 ##### DllPlugin + DllReferencePlugin
 
@@ -335,6 +386,21 @@ webpack打包结果分析插件
 ```
 
 
+##### test & include & exclude
+
+减小文件搜索范围，从而提升速度
+
+示例
+```
+  {
+    test: /\.css$/,
+    include: [
+      path.resolve(__dirname, "app/styles"),
+      path.resolve(__dirname, "vendor/styles")
+    ]
+  }
+```
+
 ##### 外部扩展(externals)
 
 这玩意不是插件，是wenpack的配置选项
@@ -352,21 +418,6 @@ externals 配置选项提供了「从输出的 bundle 中排除依赖」的方�
   }
 ```
 
-
-##### test & include & exclude
-
-减小文件搜索范围，从而提升速度
-
-示例
-```
-  {
-    test: /\.css$/,
-    include: [
-      path.resolve(__dirname, "app/styles"),
-      path.resolve(__dirname, "vendor/styles")
-    ]
-  }
-```
 
 ### Webpack HMR 原理解析
 
