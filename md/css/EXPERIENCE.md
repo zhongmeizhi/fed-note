@@ -11,6 +11,14 @@
   box-shadow: 0 13px 0px -6px rebeccapurple, 14px 0px 0px -5px grey;
 ```
 
+### 关于层级
+
+1. `z-index` 支持为负
+2. `block` 块状盒子
+3. `float` 浮动元素
+4. `inline`/`inline-block` 水平盒子
+5. `z-index` 支持且为正
+
 ### flex 
 
 1. 主轴 -> `justify-content`
@@ -26,7 +34,8 @@
 ### p标签 细节
 
 p标签是无法包裹块状标签的（不注意如果产生BUG）
-```
+
+```html
   <p>
     <p>asaaa</p>
     <span>xxx</span>

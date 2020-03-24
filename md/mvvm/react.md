@@ -3,7 +3,8 @@
 ## 生命周期
 
 生命周期主要是：挂载、销毁、更新
-```
+
+```js
   // 用于初始化 state
   constructor() {}
 
@@ -22,29 +23,56 @@
 
   // 渲染组件函数
   render() {}
-
-  /*
-    新增组件
-  */
-
-  // 用于替换 `componentWillReceiveProps` 
-  // 因为该函数是静态函数，所以取不到 `this`
-  // 如果需要对比 `prevProps` 需要单独在 `state` 中维护
-  // 该函数会在初始化和 `update` 时被调用
-  static getDerivedStateFromProps(nextProps, prevState) {} 
-
-  // 用来替换 componentWillUpdate
-  // 用于获得最新的 DOM 数据
-  getSnapshotBeforeUpdate() 
+```
 
 
+### 16版本 新生命周期
+
+16版本后，取消与 `componentWill` 相关的生命周期
+
+```js
   /*
     16版本 已取消的组件
   */
-  ~~ componentWillReceiveProps ~~
-  ~~ componentWillUnmount ~~
-  ~~ componentWillUpdate ~~
+  ~~ componentWillReceiveProps ~~ // 将收到父组件的属性
+  ~~ componentWillUnmount ~~  // 将销毁
+  ~~ componentWillUpdate ~~ // 将更新
 ```
+
+删除这些生命周期的原因是：因为这些生命周期发生在渲染的 `reconciliation` 阶段，而这阶段是可以被打断的，所以执行的生命周期函数**可能会出现调用多次**的情况。
+
+
+通过新增组件来代替旧的生命周期
+
+```js
+  static getDerivedStateFromProps(nextProps, prevState) {} 
+
+  getSnapshotBeforeUpdate() 
+```
+
+1. getDerivedStateFromProps
+
+`getDerivedStateFromProps` 用于替换 `componentWillReceiveProps` 
+
+该函数会在**初始化**和**update**时被调用。（虚拟dom之后，实际dom挂载之前）。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。
+
+注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。
+
+调用this.setState() 通常不会触发 getDerivedStateFromProps()。
+
+因为该函数是静态函数，所以取不到 `this`，如果需要对比 `prevProps` 需要单独在 `state` 中维护
+
+
+2. getSnapshotBeforeUpdate
+
+`getSnapshotBeforeUpdate` 用于替换 `componentWillUpdate` ，该函数会在最新的渲染输出提交给DOM前调用（update 后 DOM 更新前），用于读取最新的 DOM 数据。
+
+代替的原因：由于异步渲染，在“渲染”时期（如componentWillUpdate和render）和“提交”时期（如componentDidUpdate）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，**从componentWillUpdate中读出的scrollHeight值将是滞后的**。
+
+返回值作为 `componentDidUpdate` 的第三个参数使用
+
+
+### 异步渲染
 
 **异步渲染**分两个阶段：`reconciliation`（可以打断） 和 `commit`（不能暂停，会一直更新界面直到完成）
 
@@ -60,26 +88,6 @@ Commit 阶段
 * ~~componentWillUnmount~~
 
 因为 `reconciliation` 阶段是可以被打断的，所以执行的生命周期函数**可能会出现调用多次**的情况，从而引起 Bug。所以对于 reconciliation 阶段调用的几个函数，除了 shouldComponentUpdate 以外，其他都应该避免去使用。所以在 V16 中删除了shouldComponentUpdate 以外的生命周期，并且引入了新的 生命周期钩子 来解决这个问题。
-
-
-##### getDerivedStateFromProps
-
-`getDerivedStateFromProps` 用于替换 `componentWillReceiveProps` ，该函数会在**初始化**和**update**时被调用。（虚拟dom之后，实际dom挂载之前）
-
-组件实例化后和接受新属性时将会调用getDerivedStateFromProps。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。
-
-注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。
-
-调用this.setState() 通常不会触发 getDerivedStateFromProps()。
-
-
-##### getSnapshotBeforeUpdate
-
-由于异步渲染，在“渲染”时期（如componentWillUpdate和render）和“提交”时期（如componentDidUpdate）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，从componentWillUpdate中读出的scrollHeight值将是滞后的。
-
-`getSnapshotBeforeUpdate` 用于替换 `componentWillUpdate` ，该函数会在最新的渲染输出提交给DOM前调用（update 后 DOM 更新前），用于读取最新的 DOM 数据。
-
-返回值作为 `componentDidUpdate` 的第三个参数使用
 
 
 ### setState
