@@ -576,12 +576,15 @@ let sum = (a, b, c, d) => {
 }
 
 // 柯里化函数，返回一个被处理过的函数 
-let curry = (fn, ...arr) => {  // arr 记录已有参数
-  return (...args) => {   // args 接收新参数
-    if (fn.length <= (...arr,...args)) {  // 参数够时，触发执行
-      return fn(...arr, ...args)
-    } else {  // 继续添加参数
-      return curry(fn, [...arr, ...args])
+// 柯里化函数，返回一个被处理过的函数 
+let curry = (fn, ...arr) => { // arr 记录已有参数
+  var len = fn.length; //计算期望函数的参数长度
+  return (...args) => { // args 接收新参数
+    const combArg = [...arr, ...args];
+    if (len <= combArg.length) { // 参数够时，触发执行
+      return fn(...combArg)
+    } else { // 继续添加参数
+      return curry(fn, ...combArg)
     }
   }
 }
