@@ -30,6 +30,7 @@
 ### 域名解析
 
 IP 查找顺序（查询到就返回）
+
 1. 首先从`浏览器缓存`中查找 IP
 2. 从`Host文件`中查找 IP
 3. 从`路由器`缓存中查找 IP
@@ -42,11 +43,11 @@ IP 查找顺序（查询到就返回）
 10. 本地DNS将IP保存到自己的缓存中
 
 概念：
+
 * DNS 即 (domain name system，域名系统)，一个域名和IP地址相互映射的分布式数据库。
 * 根域名：全球共13个根服务器 (包含所有顶级域名服务器的域名和IP地址)
 * 顶级域名：域名的最后一部分（如：.com、.cn、.net 等）
 * 二级域名：域名的倒数第二个部分，如：example.baidu.com中，二级域名是Baidu
-
 
 
 ### HTTPS
@@ -54,7 +55,11 @@ IP 查找顺序（查询到就返回）
 > HTTPS（全称：Hyper Text Transfer Protocol over Secure Socket Layer 超文本传输**安全**协议）
 
 
-HTTPS在传统的HTTP和TCP之间加了一层用于`加密解密的SSL/TLS层`（安全套接层Secure Sockets Layer/安全传输层Transport Layer Security）层。使用HTTPS必须要有一套自己的数字证书（**包含公钥和私钥**）。
+HTTPS在传统的HTTP和TCP之间加了一层用于`加密解密的SSL/TLS层`（安全套接层Secure Sockets Layer/安全传输层Transport Layer Security）层。
+
+PS: 当`SSL`发展到第三大版本时才被标准版，成为 `TLS`。即：`TLS1.0 = SSL3.1`
+
+使用HTTPS必须要有一套自己的数字证书（**包含公钥和私钥**）。
 
 HTTPS解决的问题
 * 信息加密传输：第三方无法窃听；
@@ -111,6 +116,22 @@ HTTPS加密过程：
 * [刘某某_adf3](https://www.jianshu.com/p/954961bac588)
 * [jimsshom](https://www.jianshu.com/p/24af67c40e8d)
 
+
+### HTTP2
+
+主要改进
+
+1. 头部压缩 -> 减少体积
+   * 采用`HPACK`压缩：利用服务器和客户端之间建立哈希表的映射，传递索引来精简和复用请求头部
+2. 多路复用 -> 解决队头阻塞
+   * 由于浏览器对HTTP有并发限制（大部分是6个并发），而且HTTP 基于请求-响应的模型，在同一个 TCP 长连接中，前面的请求没有得到响应，后面的请求就会被阻塞。
+   * 因此，HTTP2 采用多路复用解决HTTP队头阻塞的问题（只需要占用一个 TCP 连接）
+3. 二进制 + 分帧传输 -> 减少体积 + 提高安全性
+   * 由于 HTTP 的明文传输解析太过复杂（比如 `\n` 到底是换行还是字符串？），而且并不安全。所以，采用二进制进行传输
+   * 将数据以流的形式进行传输，并将请求和响应数据分割成更小的帧，而多个帧之间可以乱序发送，根据帧首部的流标识来重新组装。
+5. 服务器推送
+
+PS：2020年2月chrome更改了`SameSite` 属性（从默认 `None` 改为 `Lax`），用以预防`CSRF` 攻击。
 
 
 ### TCP三次握手
