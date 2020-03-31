@@ -14,3 +14,8 @@
     2. `cd 承载目录`
     3. `clean-mark url`
   * [markdown 在线免费转 html](http://md.aclickall.com/)
+
+小方法
+  * 同时启动 多个微信：
+  * 利用 `.bat` 添加，运行命令，几行就几个。
+  * `start/d "C:\Program Files (x86)\Tencent\WeChat\" Wechat.exe`

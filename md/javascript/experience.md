@@ -136,6 +136,7 @@
 
 还有可能是同时有`import Vue from 'vue/dist/vue.esm'`和`import Vue from 'vue'`之类的导致多个不同Vue的地方，可能是webpack中alias导致的。
 
+弄 Vue 插件的时候传值可以使用 `v-bind="$attrs"`, 将非props的属性传值给子组件。
 
 
 ### npm插件 babel没有作用的问题。
