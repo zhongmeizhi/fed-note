@@ -96,6 +96,9 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 其他调试方式
 * 如果有真机，可以使用 `fiddler` 进行真机调试
 * 如果没有真机，可以使用 `xCode` 或 `Android Studio`的虚拟机进行调试
+  * 虚拟机推荐使用 MuMu 模拟器，比 Android Studio 要快
+  * 虚拟机联网开通 `inspect` 需要运行 `adb connect 127.0.0.1:7555`
+  * 在 `inspect` 中如果页面 `404`，则需要使用梯子
 * **无论是虚拟机还是真机，都可以使用Chrome自带的inspect打开调试模式调试。**
 * 当然也可以使用[spy-debugger](https://github.com/wuchangming/spy-debugger)
 
