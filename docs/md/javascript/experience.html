@@ -336,9 +336,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.9" data-path="../../node/NPM.md">
+        <li class="chapter " data-level="1.4.9" data-path="../node/NPM.html">
             
-                <span>
+                <a href="../node/NPM.html">
             
                     
                     NPM机制
@@ -1122,6 +1122,7 @@
 <pre><code>    !isUpdatingChildComponent &amp;&amp; warn(&quot;$attrs is readonly.&quot;, vm, isUpdatingChildComponent);
 </code></pre><p>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;&#x591A;&#x4E2A;Vue&#x6587;&#x4EF6;&#xFF1F; &#x53EF;&#x80FD;&#x662F;<code>vue</code>&#x4E0E;<code>vue-tempalte-compiler</code>&#x7684;&#x7248;&#x672C;&#x4E0D;&#x4E00;&#x81F4;&#x9020;&#x6210;&#x7684;&#xFF0C;&#x770B;&#x770B;&#x63D2;&#x4EF6;Vue&#x7684;&#x7248;&#x672C;&#xFF1F;</p>
 <p>&#x8FD8;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540C;&#x65F6;&#x6709;<code>import Vue from &apos;vue/dist/vue.esm&apos;</code>&#x548C;<code>import Vue from &apos;vue&apos;</code>&#x4E4B;&#x7C7B;&#x7684;&#x5BFC;&#x81F4;&#x591A;&#x4E2A;&#x4E0D;&#x540C;Vue&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x53EF;&#x80FD;&#x662F;webpack&#x4E2D;alias&#x5BFC;&#x81F4;&#x7684;&#x3002;</p>
+<p>&#x5F04; Vue &#x63D2;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x4F20;&#x503C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>v-bind=&quot;$attrs&quot;</code>, &#x5C06;&#x975E;props&#x7684;&#x5C5E;&#x6027;&#x4F20;&#x503C;&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#x3002;</p>
 <h3 id="npm&#x63D2;&#x4EF6;-babel&#x6CA1;&#x6709;&#x4F5C;&#x7528;&#x7684;&#x95EE;&#x9898;&#x3002;">npm&#x63D2;&#x4EF6; babel&#x6CA1;&#x6709;&#x4F5C;&#x7528;&#x7684;&#x95EE;&#x9898;&#x3002;</h3>
 <blockquote>
 <p><code>.babelrc</code>&#x662F;&#x7528;&#x4E8E;&#x672C;&#x5730;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x7684;&#x8F6C;&#x6362;&#xFF08;&#x4E0D;&#x5305;&#x62EC;node_modules&#xFF09;&#xFF0C;&#x800C;<code>babel.config.js</code>&#x7ED1;&#x5B9A;&#xFF08;node_modules&#xFF09;</p>
@@ -1213,7 +1214,16 @@
 
     // &#x66F4;&#x65B0;&#x5305;
     npm i
-</code></pre>
+</code></pre><h3 id="node-&#x7248;&#x672C;&#x7BA1;&#x7406;-nvm">node &#x7248;&#x672C;&#x7BA1;&#x7406; nvm</h3>
+<p><code>nvm</code>&#xFF1A;&#x8BA9;&#x4F60;&#x5728;&#x540C;&#x4E00;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x5B89;&#x88C5;&#x548C;&#x5207;&#x6362;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;node&#x7684;&#x5DE5;&#x5177;</p>
+<ul>
+<li><code>nvm ls-remote</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x7684;node&#x7248;&#x672C;&#x53F7;</li>
+<li><code>nvm install v10.4.0</code>&#xFF1A;&#x5B89;&#x88C5;&#x6307;&#x5B9A;&#x7248;&#x672C;&#x53F7;&#x7684;node</li>
+<li><code>nvm use v10.3.0</code>&#xFF1A;&#x5207;&#x6362;node&#x7684;&#x7248;&#x672C;&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x5168;&#x5C40;&#x7684;</li>
+<li><code>nvm current</code>&#xFF1A;&#x5F53;&#x524D;node&#x7248;&#x672C;</li>
+<li><code>nvm ls</code>&#xFF1A;&#x5217;&#x51FA;&#x6240;&#x6709;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x7684;node&#x7248;&#x672C;</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -1256,7 +1266,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"经验包","level":"1.4.2","depth":2,"next":{"title":"性能优化","level":"1.4.3","depth":2,"path":"md/sse/optimization.md","ref":"md/sse/optimization.md","articles":[]},"previous":{"title":"Hybrid开发相关","level":"1.4.1","depth":2,"path":"md/javascript/hybrid.md","ref":"md/javascript/hybrid.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/javascript/experience.md","mtime":"2020-03-12T12:46:47.193Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-24T02:59:26.652Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"经验包","level":"1.4.2","depth":2,"next":{"title":"性能优化","level":"1.4.3","depth":2,"path":"md/sse/optimization.md","ref":"md/sse/optimization.md","articles":[]},"previous":{"title":"Hybrid开发相关","level":"1.4.1","depth":2,"path":"md/javascript/hybrid.md","ref":"md/javascript/hybrid.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/javascript/experience.md","mtime":"2020-04-26T13:23:33.633Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T13:46:04.620Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

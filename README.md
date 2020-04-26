@@ -52,7 +52,7 @@
   * [模块化](md/sse/module.md)
   * [关于动画](md/javascript/animation.md)
   * [迭代器](md/javascript/iterator.md)
-  * [NPM机制](node/NPM.md)
+  * [NPM机制](md/node/NPM.md)
   * [JS运行机制](md/sse/event_loop.md)
   * [JS垃圾回收机制](md/browser/garbage_collection.md)
 * 前端总结

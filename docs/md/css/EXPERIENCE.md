@@ -33,6 +33,14 @@ ps： 子元素的 `z-index` 只作用于父元素内部。
 7. flex [flex-grow、 flex-shrink、 flex-basis]，默认 [0 1 auto]
 8. align-self 当前项的 align-items
 
+### 可替换元素（img、input、select 等）伪类细节
+
+以 `img` 标签的 `before`, `after` 为例：
+1. 替换元素标准并没有清晰定义，这也导致了浏览器实现的差异性。
+2. 在大多数浏览器中替换元素的 `before`, `after` 是无效的
+3. 对于 `img` 这种自闭合标签，似乎不存在 `content`
+
+
 ### p标签 细节
 
 p标签是无法包裹块状标签的（不注意如果产生BUG）
