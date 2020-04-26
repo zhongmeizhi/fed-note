@@ -266,3 +266,13 @@ Node中多进程就是进程的复制（`child_process.fork`）开启多个`子�
     // 更新包
     npm i
 ```
+
+### node 版本管理 nvm
+
+`nvm`：让你在同一台机器上安装和切换不同版本的node的工具
+
+* `nvm ls-remote`：列出所有可以安装的node版本号
+* `nvm install v10.4.0`：安装指定版本号的node
+* `nvm use v10.3.0`：切换node的版本，这个是全局的
+* `nvm current`：当前node版本
+* `nvm ls`：列出所有已经安装的node版本
