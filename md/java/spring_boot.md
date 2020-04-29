@@ -114,20 +114,25 @@ ResponseEntity: 表示整个HTTP Response：状态码，标头和正文内容。
 
 ##### 使用 yml 配置文件
 
-1. 在 `application.properties` 统计目录添加 `application.yml`
-2. yml 添加内容
-  ```yml
-    myself:
-    name: Mokou
-    age: 16
-  ```
-3. 最简单的使用方法，使用 `@value`
+在 `application.properties` 统计目录添加 `application.yml`
+
+yml 添加内容 如下
+
+```yml
+  myself:
+  name: Mokou
+  age: 16
+```
+
+
+最简单的使用方法，使用 `@value`
    * 例如：在 class 中添加
     ```java
       @Value("${myself.age}")
       private String age;
     ```
-4. 如果需要一个 `JavaBean` 来专门映射配置的话, 一般使用 `@ConfigurationProperties` 读取.
+
+如果需要一个 `JavaBean` 来专门映射配置的话, 一般使用 `@ConfigurationProperties` 读取.
    1. 添加 `config/Myself.java`
     ```java
       @Component
@@ -156,12 +161,14 @@ ResponseEntity: 表示整个HTTP Response：状态码，标头和正文内容。
           }
       }
     ```
-    2. 引入
+    1. 引入
       ```java
         @Autowired
         private Myself myself;
       ```
-    3. 使用
+    2. 使用
       ```java
         System.out.println(myself.getName());
       ```
+
+第三种方法：使用 `@Environment`，但是没人用，
