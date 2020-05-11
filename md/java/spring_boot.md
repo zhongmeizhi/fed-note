@@ -63,7 +63,9 @@ Ideal 汉化
 2. 将 jar 包放入 `IntelliJ IDEA\lib` 目录下
 3. 重启 Idea
 
-ps: 还可以通过 `Lombok` 简化代码
+简化代码
+* 通过 `Lombok` 简化代码，但是很少有人用（维护不方便）
+* 通过 `JPA` 维护 SQL，（单表查询很方便，多表查询不好用且性能会变差）
 
 
 ### 标准目录结构
@@ -93,9 +95,9 @@ ps: 还可以通过 `Lombok` 简化代码
   4. 页面以及js/css/image等置于static文件夹下的各自文件下
 
 
-### 基础部分
+### 请求相关
 
-##### 注解`@`
+注解`@`
 
 * `@RestController` 将返回的对象数据直接以 JSON 或 XML 形式写入 HTTP 响应(Response)中，大部分都是 `JSON` 形式
   * `@RestController` = `@Controller` + `@ResponseBody`
@@ -106,13 +108,19 @@ ps: 还可以通过 `Lombok` 简化代码
 * `@PathVariable` :取url地址中的参数
 * `@RequestParam` :取url的查询参数值。
 
-
-##### 常用对象
-
 ResponseEntity: 表示整个HTTP Response：状态码，标头和正文内容。我们可以使用它来自定义HTTP Response 的内容。
 
 
-##### 使用 yml 配置文件
+### 请求过滤和拦截
+
+过滤器（Filter）：当你有一堆东西的时候，你只希望选择符合你要求的某一些东西。定义这些要求的工具，就是过滤器。
+  * 通过实现 `javax.Servlet.Filter`接口：注册过滤器
+拦截器（Interceptor）：在一个流程正在进行的时候，你希望干预它的进展，甚至终止它进行，这是拦截器做的事情。
+  * 通过继承 `servlet.handler.HandlerInterceptorAdapter` 类：注册拦截器
+
+
+
+### 使用 yml 配置文件
 
 在 `application.properties` 统计目录添加 `application.yml`
 
@@ -135,10 +143,8 @@ yml 添加内容 如下
 如果需要一个 `JavaBean` 来专门映射配置的话, 一般使用 `@ConfigurationProperties` 读取.
    1. 添加 `config/Myself.java`
     ```java
-      @Component
-      // 不加这个注解的话, 使用 @Autowired 就不能注入进去了
-      @ConfigurationProperties(prefix = "myself")
-      // 配置文件中的前缀
+      @Component // 不加这个注解的话, 使用 @Autowired 就不能注入进去了
+      @ConfigurationProperties(prefix = "myself") // 配置文件中的前缀
       public class Myself {
           private String name;
 
@@ -171,4 +177,13 @@ yml 添加内容 如下
         System.out.println(myself.getName());
       ```
 
-第三种方法：使用 `@Environment`，但是没人用，
+第三种方法：使用 `@Environment`，但是没人用
+
+
+### 全局异常处理
+
+1. 使用 `@ControllerAdvice` 和 `@ExceptionHandler` 处理全局异常
+2. `@ExceptionHandler` 处理 `Controller` 级别的异常
+3. `ResponseStatusException`
+
+
