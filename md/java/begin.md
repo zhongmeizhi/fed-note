@@ -159,3 +159,50 @@ JDK / JRE / JVM 的关系图（盗）
   * 可以用> <来提高颗粒度
   * 一旦锁的粒度掌握不好，就容易发生业务失败
 
+### 数据库索引
+
+> 主键是索引的一种
+
+不走索引的情况、有以下索引
+```sql
+    key 'idx_age' ('age'),
+    key 'idx_name' ('name')
+```
+
+1. 索引用来计算不走索引
+```sql
+    A:select * from student where age = 10+8
+    B:select * from student where age + 8 = 18
+```
+
+2. 列用函数不走索引
+```sql
+    A:select * from student where name = concat('王哈','哈');
+    B:select * from student where  concat('name','哈') ='王哈哈';
+
+    # A走索引、B不走索引
+```
+
+3. `!=` 不走索引
+
+```sql
+    select * from student where age != 18
+
+    # != 不走索引
+```
+
+4. Like的 % 在前面的不走索引
+
+```sql
+    A:select * from student where 'name' like '王%'
+    B:select * from student where 'name' like '%小'
+    
+    # A走索引、B不走索引
+```
+
+5. 隐式转换导致不走索引
+
+
+### 懒汉模式
+
+### 饿汉模式

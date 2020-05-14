@@ -1,7 +1,5 @@
 # 经验之谈
 
-> JavaScript 总是严格按照从左至右的顺序来计算表达式 by.《JavaScript 权威指南》
-
 ### 名词解释
 
 * OOP：面向对象编程（Object Oriented Programming）（Oriented = 导向的）
