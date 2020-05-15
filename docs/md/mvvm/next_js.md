@@ -170,5 +170,22 @@ ps：就刚好用的`9.0.7`版本有这个问题，会有这个问题，
         })
 ```
 
+###  兄弟框架 Nuxt 官网未说明的代理问题
 
+通过 `@nuxtjs/proxy` 和 `axios` 就可以配置代理了
+```js
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/proxy'
+  ],
+  proxy: {
+    '/abc': {
+      target: "https://www.baidu.com",
+      changeOrigin: true,
+    },
+  },
+```
+
+so... next 肯定 也有更简单的代理方式
 

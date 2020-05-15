@@ -29,6 +29,40 @@
 4. 依赖原则
 5. 接口分离原则
 
+### Vue $route.query 多个相同参数问题
+
+在 vue 中, 如果在 hash 的 query 中有2个参数 ?a=1&a=2
+
+此时
+```js
+const { a } = this.$route.query;
+
+console.log(a); // [1, 2]
+```
+
+### Vue style scope 不生效问题
+
+问题：
+
+在 `.vue` 文件中，使用以下代码
+
+```css
+<style  scoped>
+    @import "./abc.css";
+</style>
+```
+
+产生结果 `.abc.css` 依然是全局的
+
+解决方案：通过 `less` 预处理一下。
+
+```css
+<style lang="less" scoped>
+    @import "./abc.less";
+</style>
+```
+
+或者直接在 `src="./abc.less" scoped`
 
 ### 处理精确度问题
 
@@ -49,6 +83,65 @@
         return (num1 * baseNum + num2 * baseNum) / baseNum;
     }
 ```
+
+### moment.js / day.js 主要思想
+
+1. 列出 时间Map
+
+例如`day.js`
+```js
+    const matches = {
+        YY: String(this.$y).slice(-2),
+        YYYY: this.$y,
+        M: $M + 1,
+        MM: Utils.s($M + 1, 2, '0'),
+        MMM: getShort(locale.monthsShort, $M, months, 3),
+        MMMM: getShort(months, $M),
+        D: this.$D,
+        DD: Utils.s(this.$D, 2, '0'),
+        d: String(this.$W),
+        dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
+        ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
+        dddd: weekdays[this.$W],
+        H: String($H),
+        HH: Utils.s($H, 2, '0'),
+        h: get$H(1),
+        hh: get$H(2),
+        a: meridiemFunc($H, $m, true),
+        A: meridiemFunc($H, $m, false),
+        m: String($m),
+        mm: Utils.s($m, 2, '0'),
+        s: String(this.$s),
+        ss: Utils.s(this.$s, 2, '0'),
+        SSS: Utils.s(this.$ms, 3, '0'),
+        Z: zoneStr // 'ZZ' logic below
+    }
+```
+
+`moment.js`
+```js
+    formatTokenFunctions = {
+        M    : function () {
+            return this.month() + 1;
+        },
+        MMM  : function (format) {
+            return this.lang().monthsShort(this, format);
+        },
+        MMMM : function (format) {
+            return this.lang().months(this, format);
+        },
+        D    : function () {
+            return this.date();
+        },
+        DDD  : function () {
+            return this.dayOfYear();
+        },
+        // ...略
+    }
+```
+
+2. 通过正则/逐一匹配生成对应时间格式
+
 
 
 ### echarts 按需引入

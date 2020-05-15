@@ -11,7 +11,6 @@ java的垃圾回收机制是在JVM上实现的。
 JDK / JRE / JVM 的关系图（盗）
 ![虚拟机](/md/img/jdk.png)
 
-
 ### Maven
 
 > maven仓库地址 https://mvnrepository.com/
@@ -87,122 +86,107 @@ JDK / JRE / JVM 的关系图（盗）
 </project>
 ```
 
-### mysql 安装&&初始化
+### 标准目录结构
 
-*安装的mysql版本为 5.7*
+代码层的结构
+  1. 工程启动类(ApplicationServer.java)
+  2. 实体类(domain)：置于com.springboot.domain
+     * 如：用户，
+  3. 数据访问层(Dao)：置于com.springboot.repository
+     * 访问数据库
+  4. 数据服务层(Service)：置于com,springboot.service,
+     * 数据服务的实现接口(serviceImpl)至于com.springboot.service.impl
+  5. 前端控制器(Controller)：置于com.springboot.controller
+     * 包装service中的数据
+  6. 工具类(utils)：置于com.springboot.utils
+  7. 常量接口类(constant)：置于com.springboot.constant
+  8. 配置信息类(config)：置于com.springboot.config
+  9. 数据传输类(vo)：置于com.springboot.vo
+     * 比如body体，response体
 
-安装步骤
-1. 官网下载 https://dev.mysql.com/downloads/file/?id=484900
-2. 解压zip包 mysql-8.0.15-winx64
-3. 配置path环境变量(到bin目录)
-4. 默认解压后没有my.ini文件，故新增my.ini文件，内容如下
-    ```
-        [mysql]
-        # 设置mysql客户端默认字符集
-        default-character-set=utf8
-        [mysqld]
-        #设置3306端口
-        port = 3306
-        # 设置mysql的安装目录
-        basedir=D:\\soft\\mysql-5.7.25-winx64
-        # 允许最大连接数
-        max_connections=200
-        # 服务端使用的字符集默认为8比特编码的latin1字符集
-        character-set-server=utf8
-        # 创建新表时将使用的默认存储引擎
-        default-storage-engine=INNODB
-    ```
-5.  以管理员身份(否则没权限)运行cmd，cd到解压目录mysql-8.0.15-winx64
-6.  执行 **mysqld --initialize-insecure** 以初始化data文件夹
-7.  执行 **mysqld --install** 安装mysql服务
-8.  执行 **net start mysql** 启动mysql
-9.  *mysql5.7默认有随机密码* 密码存放在 data目录下的 xxx.err文件内
-    * 搜索password is generated for root@localhost:可以找到默认密码
-10. 执行 **mysql -u root -p** 输入默认密码
-11. 执行 **SET PASSWORD FOR 'root'@'localhost' = PASSWORD('');** 修改默认root密码为空
+5 -> 4 -> 3 -> 2 -> 9 -> page
 
-##### Java连接Mysql异常
-
-> This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver'. 
-
-将旧版本jdbc.propertiesd的`com.mysql.dbc.Driver`改成`com.mysql.cj.jdbc.Driver`
-
-> The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver
-
-需要配置服务器或JDBC驱动程序的时区
-
-解决：
-* 进入数据库，运行`set Global time_zone='+8:00'`
+资源文件的结构(根目录:src/main/resources)
+  1. 配置文件(.properties/.json等)置于config文件夹下
+  2. 国际化(i18n))置于i18n文件夹下
+  3. spring.xml置于META-INF/spring文件夹下
+  4. 页面以及js/css/image等置于static文件夹下的各自文件下
 
 
+### 什么是 Java Bean
 
-### 事务
+JavaBean是公共Java类，是一种不破坏向后兼容性的**规范**。
 
-> 事务：指访问并可能更新数据库中各种数据项的一个程序执行单元(unit)
+1. 提供 `public` 默认构造器
+2. 所有属性为 `private`
+3. 提供 `public` 的 `getter` 和 `setter`
+4. 实现 `serializable` 接口（需要序列化）
 
-* mongodb 4.0版本之前没有事务管理
+
+### 类加载机制
+
+类加载器并不需要等到某个类被“首次主动使用”时再加载它，JVM规范允许类加载器在预料某个类将要被使用时就预先加载它
+
+对于初始化阶段，虚拟机严格规范了有且只有6种情况下，必须对类进行初始化(只有主动去使用类才会初始化类)：
+
+1. 当遇到 new 、 getstatic、putstatic或invokestatic 这4条直接码指令时，比如 new 一个类，读取一个静态字段(未被 final 修饰)、或调用一个类的静态方法时。
+   * 当jvm执行new指令时会初始化类。即当程序创建一个类的实例对象。
+   * 当jvm执行getstatic指令时会初始化类。即程序访问类的静态变量(不是静态常量，常量会被加载到运行时常量池)。
+   * 当jvm执行putstatic指令时会初始化类。即程序给类的静态变量赋值。
+   * 当jvm执行invokestatic指令时会初始化类。即程序调用类的静态方法。
+2. 使用 java.lang.reflect 包的方法对类进行反射调用时如Class.forname("..."), newInstance()等等。 ，如果类没初始化，需要触发其初始化。
+3. 初始化一个类，如果其父类还未初始化，则先触发该父类的初始化。
+4. 当虚拟机启动时，用户需要定义一个要执行的主类 (包含 main 方法的那个类)，虚拟机会先初始化这个类。
+5. MethodHandle和VarHandle可以看作是轻量级的反射调用机制，而要想使用这2个调用， 就必须先使用findStaticVarHandle来初始化要调用的类。
+6. 当一个接口中定义了JDK8新加入的默认方法（被default关键字修饰的接口方法）时，如果有这个接口的实现类发生了初始化，那该接口要在其之前被初始化。
 
 
-### 并发控制：
+### 单例模式
 
-悲观锁：
-* 悲观：并发修改的概率比较大
-* 借用数据库锁机制（for update），先锁再访问（修改）
-* 尝试加排他锁，加锁失败说明该记录正在被修改
-* 效率低，死锁率高
-* 使用的越来越少了 -.-!
+单例模式实现并发时的线程安全？
 
-乐观锁：
-* 乐观：假设数据一般情况下不会造成冲突
-* 冲突检测和数据更新
-  * 可以利用 version 来检查是否过期
-  * 可以用> <来提高颗粒度
-  * 一旦锁的粒度掌握不好，就容易发生业务失败
+##### 懒汉模式
 
-### 数据库索引
+懒汉式单例模式：比较懒，在类加载时不创建实例，因此类加载速度快，但运行时获取对象的速度慢，
 
-> 主键是索引的一种
+通过 `synchronized` 同步操作实现线程安全
 
-不走索引的情况、有以下索引
-```sql
-    key 'idx_age' ('age'),
-    key 'idx_name' ('name')
+```java
+    public class LazySingleton {
+        private static LazySingleton intance = null; // 静态私用成员，没有初始化
+        
+        private LazySingleton() {
+            //私有构造函数
+        }
+        
+        public static synchronized LazySingleton getInstance() { //静态，同步，公开访问点
+            if(intance == null)
+            {
+                intance = new LazySingleton();
+            }
+            return intance;
+        }
+    }
 ```
-
-1. 索引用来计算不走索引
-```sql
-    A:select * from student where age = 10+8
-    B:select * from student where age + 8 = 18
-```
-
-2. 列用函数不走索引
-```sql
-    A:select * from student where name = concat('王哈','哈');
-    B:select * from student where  concat('name','哈') ='王哈哈';
-
-    # A走索引、B不走索引
-```
-
-3. `!=` 不走索引
-
-```sql
-    select * from student where age != 18
-
-    # != 不走索引
-```
-
-4. Like的 % 在前面的不走索引
-
-```sql
-    A:select * from student where 'name' like '王%'
-    B:select * from student where 'name' like '%小'
-    
-    # A走索引、B不走索引
-```
-
-5. 隐式转换导致不走索引
-
-
-### 懒汉模式
 
 ### 饿汉模式
+
+饿汉式单例模式：在**类加载时就完成了初始化**，所以类加载较慢，但获取对象的速度快
+
+因为只在类加载时初始化，所以线程是安全的
+
+```java
+    public class EagerSingleton {
+        private static EagerSingleton instance = new EagerSingleton();// 静态私有成员，已初始化
+        
+        private EagerSingleton() {
+            //私有构造函数
+        }
+        
+        public static EagerSingleton getInstance() { //静态，不用同步（类加载时已初始化，不会有多线程的问题）
+            return instance;
+        }
+        
+        
+    }
+```
