@@ -91,9 +91,9 @@
   * [Flutter API使用](https://github.com/zhongmeizhi/flutter-UI)
   * [Flutter 项目实战](https://github.com/zhongmeizhi/fultter-example-app)
 * Java
-  * [开始](md/java/begin.md)
+  * [Java常识](md/java/begin.md)
   * [数据库相关](md/java/db.md)
-  * [Spring Boot（一）入门篇](md/java/spring_boot.md)
+  * [SpringBoot 基础](md/java/spring_boot.md)
 * 其他
   * [git命令](md/other/GIT.md)
   * [GitHub的Host和Key](md/other/GITHUB.md)

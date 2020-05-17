@@ -190,3 +190,150 @@ JavaBean是公共Java类，是一种不破坏向后兼容性的**规范**。
         
     }
 ```
+
+### 浅拷贝 && 深拷贝
+
+简单来说:
+
+* 浅拷贝：对基本数据类型进行值传递，对引用数据类型进行引用传递般的拷贝，此为浅拷贝
+* 深拷贝： 对基本数据类型进行值传递，对引用数据类型，创建一个新的对象，并复制其内容，此为深拷贝。
+
+实现方式：
+
+1. Apache 的 BeanUtils
+
+```java
+    BeanUtils.copyProperties(instance, copyTarget);
+```
+
+默认情况下，使用 `org.apache.commons.beanutils.BeanUtils` 对复杂对象的复制是引用，这是一种浅拷贝
+
+但是由于 Apache下的BeanUtils对象拷贝性能太差，不建议使用,
+
+为什么 `BeanUtils` 性能很差？
+
+因为 `BeanUtils` 对于对象拷贝加了很多的检验，包括类型的转换，甚至还会检验对象所属的类的可访问性, 这也造就了它的差劲的性能
+
+源码如下:
+
+```java
+    public void copyProperties(final Object dest, final Object orig)
+        throws IllegalAccessException, InvocationTargetException {
+
+        // Validate existence of the specified beans
+        if (dest == null) {
+            throw new IllegalArgumentException
+                    ("No destination bean specified");
+        }
+        if (orig == null) {
+            throw new IllegalArgumentException("No origin bean specified");
+        }
+        if (log.isDebugEnabled()) {
+            log.debug("BeanUtils.copyProperties(" + dest + ", " +
+                      orig + ")");
+        }
+
+        // Copy the properties, converting as necessary
+        if (orig instanceof DynaBean) {
+            final DynaProperty[] origDescriptors =
+                ((DynaBean) orig).getDynaClass().getDynaProperties();
+            for (DynaProperty origDescriptor : origDescriptors) {
+                final String name = origDescriptor.getName();
+                // Need to check isReadable() for WrapDynaBean
+                // (see Jira issue# BEANUTILS-61)
+                if (getPropertyUtils().isReadable(orig, name) &&
+                    getPropertyUtils().isWriteable(dest, name)) {
+                    final Object value = ((DynaBean) orig).get(name);
+                    copyProperty(dest, name, value);
+                }
+            }
+        } else if (orig instanceof Map) {
+            @SuppressWarnings("unchecked")
+            final
+            // Map properties are always of type <String, Object>
+            Map<String, Object> propMap = (Map<String, Object>) orig;
+            for (final Map.Entry<String, Object> entry : propMap.entrySet()) {
+                final String name = entry.getKey();
+                if (getPropertyUtils().isWriteable(dest, name)) {
+                    copyProperty(dest, name, entry.getValue());
+                }
+            }
+        } else /* if (orig is a standard JavaBean) */ {
+            final PropertyDescriptor[] origDescriptors =
+                getPropertyUtils().getPropertyDescriptors(orig);
+            for (PropertyDescriptor origDescriptor : origDescriptors) {
+                final String name = origDescriptor.getName();
+                if ("class".equals(name)) {
+                    continue; // No point in trying to set an object's class
+                }
+                if (getPropertyUtils().isReadable(orig, name) &&
+                    getPropertyUtils().isWriteable(dest, name)) {
+                    try {
+                        final Object value =
+                            getPropertyUtils().getSimpleProperty(orig, name);
+                        copyProperty(dest, name, value);
+                    } catch (final NoSuchMethodException e) {
+                        // Should not happen
+                    }
+                }
+            }
+        }
+
+    }
+```
+
+2. Spring 的 BeanUtils
+
+`spring` 下的 `BeanUtils` 也是使用 `copyProperties` 方法进行拷贝，只不过它的实现方式非常简单，就是对两个对象中相同名字的属性进行简单的 `get/set`，仅检查属性的可访问性。
+
+
+源码如下:
+
+```java
+    private static void copyProperties(Object source, Object target, @Nullable Class<?> editable,
+            @Nullable String... ignoreProperties) throws BeansException {
+
+        Assert.notNull(source, "Source must not be null");
+        Assert.notNull(target, "Target must not be null");
+
+        Class<?> actualEditable = target.getClass();
+        if (editable != null) {
+            if (!editable.isInstance(target)) {
+                throw new IllegalArgumentException("Target class [" + target.getClass().getName() +
+                        "] not assignable to Editable class [" + editable.getName() + "]");
+            }
+            actualEditable = editable;
+        }
+        PropertyDescriptor[] targetPds = getPropertyDescriptors(actualEditable);
+        List<String> ignoreList = (ignoreProperties != null ? Arrays.asList(ignoreProperties) : null);
+
+        for (PropertyDescriptor targetPd : targetPds) {
+            Method writeMethod = targetPd.getWriteMethod();
+            if (writeMethod != null && (ignoreList == null || !ignoreList.contains(targetPd.getName()))) {
+                PropertyDescriptor sourcePd = getPropertyDescriptor(source.getClass(), targetPd.getName());
+                if (sourcePd != null) {
+                    Method readMethod = sourcePd.getReadMethod();
+                    if (readMethod != null &&
+                            ClassUtils.isAssignable(writeMethod.getParameterTypes()[0], readMethod.getReturnType())) {
+                        try {
+                            if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) {
+                                readMethod.setAccessible(true);
+                            }
+                            Object value = readMethod.invoke(source);
+                            if (!Modifier.isPublic(writeMethod.getDeclaringClass().getModifiers())) {
+                                writeMethod.setAccessible(true);
+                            }
+                            writeMethod.invoke(target, value);
+                        }
+                        catch (Throwable ex) {
+                            throw new FatalBeanException(
+                                    "Could not copy property '" + targetPd.getName() + "' from source to target", ex);
+                        }
+                    }
+                }
+            }
+        }
+    }
+```
+
+
