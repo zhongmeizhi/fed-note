@@ -76,7 +76,7 @@
 
 **异步渲染**分两个阶段：`reconciliation`（可以打断） 和 `commit`（不能暂停，会一直更新界面直到完成）
 
-Reconciliation 阶段（可译：调和）
+Reconciliation 阶段（可译：调和/协调）
 * shouldComponentUpdate
 * ~~componentWillMount~~
 * ~~componentWillReceiveProps~~
