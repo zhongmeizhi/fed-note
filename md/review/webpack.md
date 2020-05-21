@@ -5,10 +5,63 @@
 ### Webpack 核心概念：
 
 * `Entry`（入口）：Webpack 执行构建的第一步将从 Entry 开始，可抽象成输入。
+* `Output`（出口）：指示 webpack 如何去输出、以及在哪里输出
 * `Module`（模块）：在 Webpack 里一切皆模块，一个模块对应着一个文件。Webpack 会从配置的 Entry 开始递归找出所有依赖的模块。
-* `Chunk`（代码块）：一个 Chunk 由多个模块组合而成，用于代码合并与分割。
+* `Chunk`（代码块）：一个 Chunk **由多个模块组合而成**，用于代码合并与分割。
 * `Loader`（模块转换器）：用于把模块原内容按照需求转换成新内容。
 * `Plugin`（扩展插件）：在 Webpack 构建流程中的特定时机会广播出对应的事件，插件可以监听这些事件，并改变输出结果
+
+### 配置项
+
+1. 入口 Entry
+
+```js
+entry: {
+  a: "./app/entry-a",
+  b: ["./app/entry-b1", "./app/entry-b2"]
+},
+```
+
+多入口可以通过 `HtmlWebpackPlugin` 分开注入
+
+```js
+plugins: [
+  new HtmlWebpackPlugin({
+    chunks: ['a'],
+    filename: 'test.html',
+    template: 'src/assets/test.html'
+  })
+]
+```
+
+2. 出口 Output
+
+修改路径相关
+
+* `publicPath`：并不会对生成文件的目录造成影响，主要是对你的页面里面引入的资源的路径做对应的补全
+* `filename`：能修改文件名，也能更改文件目录
+
+导出库相关
+
+* `library`: 导出库的名称
+* `libraryTarget`: 通用模板定义方式
+
+3. 模块 Module
+
+webpack 一切皆模块，配置项 Module，定义模块的各种操作，
+
+Module 主要配置：
+
+* `loader`： 各种模块转换器
+* `extensions`：使用的扩展名
+* `alias`：别名、例如：vue-cli 常用的 `@` 出自此处
+
+4. 其他
+
+* `plugins`: 插件列表
+* `devServer`：开发环境相关配置，譬如 `proxy`
+* `externals`：打包排除模块
+* `target`：包应该运行的环境，默认 `web`
 
 
 ### Webpack 执行流程
@@ -16,7 +69,7 @@
 webpack从启动到结束会依次执行以下流程：
 1. 初始化：解析webpack配置参数，生产 `Compiler` 实例
 2. 注册插件：调用插件的`apply`方法，给插件传入`compiler`实例的引用，插件通过compiler调用Webpack提供的API，让插件可以监听后续的所有事件节点。
-3. 开始编译：读取入口文件
+3. 入口：读取入口文件
 4. 解析文件：使用`loader`将文件解析成抽象语法树 `AST`
 5. 生成依赖图谱：找出每个文件的依赖项（遍历）
 6. 输出：根据转换好的代码，生成 `chunk`
@@ -65,6 +118,44 @@ Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转�
 
 * `gulp` 是任务执行器(task runner)：就是用来自动化处理常见的开发任务，例如项目的检查(lint)、构建(build)、测试(test)
 * `webpack` 是打包器(bundler)：帮助你取得准备用于部署的 JavaScript 和样式表，将它们转换为适合浏览器的可用格式。例如，JavaScript 可以压缩、拆分 chunk 和懒加载，
+
+
+### 实现一个 loader
+
+`loader` 就是一个js文件，它导出了一个返回了一个 `buffer` 或者 `string` 的函数;
+
+譬如:
+
+```js
+// log-loader.js
+module.exports = function (source) {
+  console.log('test...', source)
+  return source
+}
+```
+
+在 use 时，如果 `log-loader` 并没有在 `node_modules` 中，那么可以使用路径导入。
+
+
+### 实现一个 plugin
+
+plugin： 是一个含有 `apply` 方法的 `类`。
+
+譬如：
+
+```js
+class DemoWebpackPlugin {
+    constructor () {
+        console.log('初始化 插件')
+    }
+    apply (compiler) {
+    }
+}
+
+module.exports = DemoWebpackPlugin
+```
+
+apply 方法中接收一个 `compiler` 参数，也就是 webpack实例。由于该参数的存在 plugin 可以很好的运用 webpack 的生命周期钩子，在不同的时间节点做一些操作。
 
 
 ### Webpack 优化概况
