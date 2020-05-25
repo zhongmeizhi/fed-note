@@ -7,7 +7,7 @@
 
 旧版本React同步更新：当React决定要加载或者更新组件树时，会做很多事，比如调用各个组件的生命周期函数，计算和比对Virtual DOM，最后更新DOM树。
 
-举个栗子：更新一个组件需要1毫秒，如果有200个组件要更新，那就需要200毫秒，在这200毫秒的更新过程中，主线程都在专心运行更新操作。
+举个栗子：更新一个组件需要1毫秒，如果要更新1000个组件，那就需要200毫秒，在这200毫秒的更新过程中，主线程都在专心运行更新操作。
 
 而浏览器每间隔一定的时间重新绘制一下当前页面。一般来说这个频率是每秒60次。也就是说每16毫秒（ 1 / 60 ≈ 0.0167 ）浏览器会有一个周期性地重绘行为，这每16毫秒我们称为一帧。这一帧的时间里面浏览器做些什么事情呢：
 
@@ -24,11 +24,9 @@
 
 ### 什么是 Fiber
 
-> Fiber 就是由 `performUnitOfWork` 方法操控的 所说的工作单元
-
 解决同步更新的方案之一就是时间切片：把更新过程碎片化，把一个耗时长的任务分成很多小片。执行非阻塞渲染，基于优先级应用更新以及在后台预渲染内容。
 
-fiber作为一种数据结构，用于代表某些worker，换句话说，就是一个work单元，通过Fiber的架构，提供了一种跟踪，调度，暂停和中止工作的便捷方式。
+Fiber 就是由 `performUnitOfWork` 方法操控的 所说的工作单元（后文详细讲述），作为一种数据结构，用于代表某些worker，换句话说，就是一个work单元，通过Fiber的架构，提供了一种跟踪，调度，暂停和中止工作的便捷方式。
 
 Fiber的创建和使用过程：
 
@@ -36,9 +34,9 @@ Fiber的创建和使用过程：
 2. React为每个React元素创建了一个fiber node
 3. 与React元素不同，每次渲染过程，不会再重新创建fiber
 4. 随后的更新中，React重用fiber节点，并使用来自相应React元素的数据来更新必要的属性。
+5. 同时React 会维护一个 `workInProgressTree` 用于计算更新，可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 `alternate` 指向旧树的同等节点。
 
 Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`render 和 commit`，
-
 
 ### React 的 Reconciliation 阶段
 
@@ -73,7 +71,9 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 
 ### Fiber 如何处理优先级？
 
-对于UI来说还需要考虑以下问题：
+[源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
+
+对于UI来说需要考虑以下问题：
 
 并不是所有的state更新都需要立即显示出来，比如:
 
@@ -81,11 +81,458 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 * 用户输入的响应优先级要比通过请求填充内容的响应优先级更高
 * 理想情况下，对于某些高优先级的操作，应该是可以打断低优先级的操作执行的
 
-React 会维护一个 `workInProgressTree` 用于计算更新，可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 `alternate` 指向旧树的同等节点。
+所以，React 定义了一系列事件优先级
+
+```js
+  var maxSigned31BitInt = 1073741823;
+
+  // Times out immediately
+  var IMMEDIATE_PRIORITY_TIMEOUT = -1;
+  // Eventually times out
+  var USER_BLOCKING_PRIORITY = 250;
+  var NORMAL_PRIORITY_TIMEOUT = 5000;
+  var LOW_PRIORITY_TIMEOUT = 10000;
+  // Never times out
+  var IDLE_PRIORITY = maxSigned31BitInt;
+
+  function timeoutForPriorityLevel(priorityLevel) {
+    switch (priorityLevel) {
+      case ImmediatePriority:
+        return IMMEDIATE_PRIORITY_TIMEOUT;
+      case UserBlockingPriority:
+        return USER_BLOCKING_PRIORITY;
+      case IdlePriority:
+        return IDLE_PRIORITY;
+      case LowPriority:
+        return LOW_PRIORITY_TIMEOUT;
+      case NormalPriority:
+      default:
+        return NORMAL_PRIORITY_TIMEOUT;
+    }
+  }
+```
 
 当有更新任务来的时候，不会马上去做 Diff 操作，而是先把当前的更新送入一个 Update Queue 中，然后交给 `Scheduler` 去处理，Scheduler 会根据当前主线程的使用情况去处理这次 Update。
 
 不管执行的过程怎样拆分、以什么顺序执行，Fiber 都会保证状态的一致性和视图的一致性。
+
+
+### Fiber 如何调度？
+
+首先要找到入口地址
+
+每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同，每一次更新都会调用这个方法 `function ensureRootIsScheduled(root: FiberRoot) {`
+
+[源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
+
+```js
+function ensureRootIsScheduled(root: FiberRoot) {
+  const lastExpiredTime = root.lastExpiredTime;
+  if (lastExpiredTime !== NoWork) {
+    // Special case: Expired work should flush synchronously.
+    root.callbackExpirationTime = Sync;
+    root.callbackPriority_old = ImmediatePriority;
+    root.callbackNode = scheduleSyncCallback(
+      performSyncWorkOnRoot.bind(null, root),
+    );
+    return;
+  }
+
+  const expirationTime = getNextRootExpirationTimeToWorkOn(root);
+  const existingCallbackNode = root.callbackNode;
+  if (expirationTime === NoWork) {
+    // There's nothing to work on.
+    if (existingCallbackNode !== null) {
+      root.callbackNode = null;
+      root.callbackExpirationTime = NoWork;
+      root.callbackPriority_old = NoPriority;
+    }
+    return;
+  }
+
+  // TODO: If this is an update, we already read the current time. Pass the
+  // time as an argument.
+  const currentTime = requestCurrentTimeForUpdate();
+  const priorityLevel = inferPriorityFromExpirationTime(
+    currentTime,
+    expirationTime,
+  );
+
+  // If there's an existing render task, confirm it has the correct priority and
+  // expiration time. Otherwise, we'll cancel it and schedule a new one.
+  if (existingCallbackNode !== null) {
+    const existingCallbackPriority = root.callbackPriority_old;
+    const existingCallbackExpirationTime = root.callbackExpirationTime;
+    if (
+      // Callback must have the exact same expiration time.
+      existingCallbackExpirationTime === expirationTime &&
+      // Callback must have greater or equal priority.
+      existingCallbackPriority >= priorityLevel
+    ) {
+      // Existing callback is sufficient.
+      return;
+    }
+    // Need to schedule a new task.
+    // TODO: Instead of scheduling a new task, we should be able to change the
+    // priority of the existing one.
+    cancelCallback(existingCallbackNode);
+  }
+
+  root.callbackExpirationTime = expirationTime;
+  root.callbackPriority_old = priorityLevel;
+
+  let callbackNode;
+  if (expirationTime === Sync) {
+    // Sync React callbacks are scheduled on a special internal queue
+    callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
+  } else if (disableSchedulerTimeoutBasedOnReactExpirationTime) {
+    callbackNode = scheduleCallback(
+      priorityLevel,
+      performConcurrentWorkOnRoot.bind(null, root),
+    );
+  } else {
+    callbackNode = scheduleCallback(
+      priorityLevel,
+      performConcurrentWorkOnRoot.bind(null, root),
+      // Compute a task timeout based on the expiration time. This also affects
+      // ordering because tasks are processed in timeout order.
+      {timeout: expirationTimeToMs(expirationTime) - now()},
+    );
+  }
+
+  root.callbackNode = callbackNode;
+}
+```
+
+然后进入 CallBack 
+
+同步调度 `function scheduleSyncCallback(callback: SchedulerCallback)` ：同步任务调度的中间方法,如果队列不为空就推入同步队列（`syncQueue.push(callback)`），如果为空就立即推入 **任务调度队列**(`Scheduler_scheduleCallback`)
+
+[源码文件](https://github.com/facebook/react/blob/4c6470cb3b821f3664955290cd4c4c7ac0de733a/packages/react-reconciler/src/SchedulerWithReactIntegration.old.js)
+
+```js
+export function scheduleSyncCallback(callback: SchedulerCallback) {
+  // Push this callback into an internal queue. We'll flush these either in
+  // the next tick, or earlier if something calls `flushSyncCallbackQueue`.
+  if (syncQueue === null) {
+    syncQueue = [callback];
+    // Flush the queue in the next tick, at the earliest.
+    immediateQueueCallbackNode = Scheduler_scheduleCallback(
+      Scheduler_ImmediatePriority,
+      flushSyncCallbackQueueImpl,
+    );
+  } else {
+    // Push onto existing queue. Don't need to schedule a callback because
+    // we already scheduled one when we created the queue.
+    syncQueue.push(callback);
+  }
+  return fakeCallbackNode;
+}
+
+```
+
+异步调度，异步的任务调度很简单，直接将异步任务推入调度队列(`Scheduler_scheduleCallback`)
+
+```js
+export function scheduleCallback(
+  reactPriorityLevel: ReactPriorityLevel,
+  callback: SchedulerCallback,
+  options: SchedulerCallbackOptions | void | null,
+) {
+  const priorityLevel = reactPriorityToSchedulerPriority(reactPriorityLevel);
+  return Scheduler_scheduleCallback(priorityLevel, callback, options);
+}
+```
+
+
+不管同步调度还是异步调度，都会经过 `Scheduler_scheduleCallback` 也就是调度的核心方法 `function unstable_scheduleCallback(priorityLevel, callback, options)`：
+
+[源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
+
+
+通过 `options.delay` 和 `options.timeout` 加上 `timeoutForPriorityLevel()` 来获得 `newTask` 的 `expirationTime`，
+
+```js
+// 将一个任务推入任务调度队列
+function unstable_scheduleCallback(priorityLevel, callback, options) {
+  var currentTime = getCurrentTime();
+
+  var startTime;
+  var timeout;
+  if (typeof options === 'object' && options !== null) {
+    var delay = options.delay;
+    if (typeof delay === 'number' && delay > 0) {
+      startTime = currentTime + delay;
+    } else {
+      startTime = currentTime;
+    } 
+    timeout =
+      typeof options.timeout === 'number'
+        ? options.timeout
+        : timeoutForPriorityLevel(priorityLevel);
+  } else {
+    // 针对不同的优先级算出不同的过期时间
+    timeout = timeoutForPriorityLevel(priorityLevel);
+    startTime = currentTime;
+  }
+  
+   // 定义新的过期时间
+  var expirationTime = startTime + timeout;
+
+  // 定义一个新的任务
+  var newTask = {
+    id: taskIdCounter++,
+    callback,
+    priorityLevel,
+    startTime,
+    expirationTime,
+    sortIndex: -1,
+  };
+  if (enableProfiling) {
+    newTask.isQueued = false;
+  }
+
+  if (startTime > currentTime) {
+    // This is a delayed task.
+    newTask.sortIndex = startTime;
+
+    // 将超时的任务推入超时队列
+    push(timerQueue, newTask);
+    if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
+      // All tasks are delayed, and this is the task with the earliest delay.
+      // 当所有任务都延迟时，而且该任务是最早的任务
+      if (isHostTimeoutScheduled) {
+        // Cancel an existing timeout.
+        cancelHostTimeout();
+      } else {
+        isHostTimeoutScheduled = true;
+      }
+      // Schedule a timeout.
+      requestHostTimeout(handleTimeout, startTime - currentTime);
+    }
+  } else {
+    newTask.sortIndex = expirationTime;
+
+    // 将新的任务推入任务队列
+    push(taskQueue, newTask);
+    if (enableProfiling) {
+      markTaskStart(newTask, currentTime);
+      newTask.isQueued = true;
+    }
+    // Schedule a host callback, if needed. If we're already performing work,
+    // wait until the next time we yield.
+    // 执行回调方法，如果已经再工作需要等待一次回调的完成
+    if (!isHostCallbackScheduled && !isPerformingWork) {
+      isHostCallbackScheduled = true;
+        (flushWork);
+    }
+  }
+
+  return newTask;
+}
+```
+
+最后进入重点：`requestHostCallback` 通过 `MessageChannel` 的异步方法来开启任务调度 `performWorkUntilDeadline`
+
+[源码文件](https://github.com/facebook/react/blob/3e94bce765d355d74f6a60feb4addb6d196e3482/packages/scheduler/src/forks/SchedulerHostConfig.default.js)
+
+```js
+// 通过onmessage 调用 performWorkUntilDeadline 方法
+channel.port1.onmessage = performWorkUntilDeadline;
+
+// postMessage
+requestHostCallback = function(callback) {
+  scheduledHostCallback = callback;
+  if (!isMessageLoopRunning) {
+    isMessageLoopRunning = true;
+    port.postMessage(null);
+  }
+};
+```
+
+然后是同文件下的 `performWorkUntilDeadline`，调用了 `scheduledHostCallback`, 也就是之前传入的 `flushWork` 
+
+```js
+
+const performWorkUntilDeadline = () => {
+  if (scheduledHostCallback !== null) {
+    const currentTime = getCurrentTime();
+    // Yield after `yieldInterval` ms, regardless of where we are in the vsync
+    // cycle. This means there's always time remaining at the beginning of
+    // the message event.
+    deadline = currentTime + yieldInterval;
+    const hasTimeRemaining = true;
+    try {
+      const hasMoreWork = scheduledHostCallback(
+        hasTimeRemaining,
+        currentTime,
+      );
+      if (!hasMoreWork) {
+        isMessageLoopRunning = false;
+        scheduledHostCallback = null;
+      } else {
+        // If there's more work, schedule the next message event at the end
+        // of the preceding one.
+        port.postMessage(null);
+      }
+    } catch (error) {
+      // If a scheduler task throws, exit the current browser task so the
+      // error can be observed.
+      port.postMessage(null);
+      throw error;
+    }
+  } else {
+    isMessageLoopRunning = false;
+  }
+  // Yielding to the browser will give it a chance to paint, so we can
+  // reset this.
+  needsPaint = false;
+};
+```
+
+`flushWork` 主要的作用是调用 `workLoop` 去循环执行所有的任务
+
+[源码文件](https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/Scheduler.js)
+
+```js
+function flushWork(hasTimeRemaining, initialTime) {
+  if (enableProfiling) {
+    markSchedulerUnsuspended(initialTime);
+  }
+
+  // We'll need a host callback the next time work is scheduled.
+  isHostCallbackScheduled = false;
+  if (isHostTimeoutScheduled) {
+    // We scheduled a timeout but it's no longer needed. Cancel it.
+    isHostTimeoutScheduled = false;
+    cancelHostTimeout();
+  }
+
+  isPerformingWork = true;
+  const previousPriorityLevel = currentPriorityLevel;
+  try {
+    if (enableProfiling) {
+      try {
+        return workLoop(hasTimeRemaining, initialTime);
+      } catch (error) {
+        if (currentTask !== null) {
+          const currentTime = getCurrentTime();
+          markTaskErrored(currentTask, currentTime);
+          currentTask.isQueued = false;
+        }
+        throw error;
+      }
+    } else {
+      // No catch in prod codepath.
+      return workLoop(hasTimeRemaining, initialTime);
+    }
+  } finally {
+    currentTask = null;
+    currentPriorityLevel = previousPriorityLevel;
+    isPerformingWork = false;
+    if (enableProfiling) {
+      const currentTime = getCurrentTime();
+      markSchedulerSuspended(currentTime);
+    }
+  }
+}
+```
+
+`workLoop` 和 `flushWork` 在一个文件中，作用是从调度任务队列中取出优先级最高的任务，然后去执行。
+
+* 对于同步任务执行的是 `performSyncWorkOnRoot`
+* 对于异步的任务执行的是 `performConcurrentWorkOnRoot`
+
+```js
+function workLoop(hasTimeRemaining, initialTime) {
+  let currentTime = initialTime;
+  advanceTimers(currentTime);
+  currentTask = peek(taskQueue);
+  while (
+    currentTask !== null &&
+    !(enableSchedulerDebugging && isSchedulerPaused)
+  ) {
+    if (
+      currentTask.expirationTime > currentTime &&
+      (!hasTimeRemaining || shouldYieldToHost())
+    ) {
+      // This currentTask hasn't expired, and we've reached the deadline.
+      break;
+    }
+    const callback = currentTask.callback;
+    if (callback !== null) {
+      currentTask.callback = null;
+      currentPriorityLevel = currentTask.priorityLevel;
+      const didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
+      markTaskRun(currentTask, currentTime);
+      const continuationCallback = callback(didUserCallbackTimeout);
+      currentTime = getCurrentTime();
+      if (typeof continuationCallback === 'function') {
+        currentTask.callback = continuationCallback;
+        markTaskYield(currentTask, currentTime);
+      } else {
+        if (enableProfiling) {
+          markTaskCompleted(currentTask, currentTime);
+          currentTask.isQueued = false;
+        }
+        if (currentTask === peek(taskQueue)) {
+          pop(taskQueue);
+        }
+      }
+      advanceTimers(currentTime);
+    } else {
+      pop(taskQueue);
+    }
+    currentTask = peek(taskQueue);
+  }
+  // Return whether there's additional work
+  if (currentTask !== null) {
+    return true;
+  } else {
+    const firstTimer = peek(timerQueue);
+    if (firstTimer !== null) {
+      requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+    }
+    return false;
+  }
+}
+```
+
+最终都会通过 `performUnitOfWork` 操作。
+
+这个方法只不过异步的方法是可以打断的，我们每次调用都要查看是否超时。
+
+ [源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
+
+```js
+function performUnitOfWork(unitOfWork: Fiber): void {
+  // The current, flushed, state of this fiber is the alternate. Ideally
+  // nothing should rely on this, but relying on it here means that we don't
+  // need an additional field on the work in progress.
+  const current = unitOfWork.alternate;
+  setCurrentDebugFiberInDEV(unitOfWork);
+
+  let next;
+  if (enableProfilerTimer && (unitOfWork.mode & ProfileMode) !== NoMode) {
+    startProfilerTimer(unitOfWork);
+    next = beginWork(current, unitOfWork, renderExpirationTime);
+    stopProfilerTimerIfRunningAndRecordDelta(unitOfWork, true);
+  } else {
+    next = beginWork(current, unitOfWork, renderExpirationTime);
+  }
+
+  resetCurrentDebugFiberInDEV();
+  unitOfWork.memoizedProps = unitOfWork.pendingProps;
+  if (next === null) {
+    // If this doesn't spawn new work, complete the current work.
+    completeUnitOfWork(unitOfWork);
+  } else {
+    workInProgress = next;
+  }
+
+  ReactCurrentOwner.current = null;
+}
+```
 
 
 ### Fiber 为什么要使用链表
@@ -125,12 +572,12 @@ React 会维护一个 `workInProgressTree` 用于计算更新，可以认为是�
 > 你可以在空闲回调函数中调用 `requestIdleCallback()`，以便在下一次通过事件循环之前调度另一个回调。
 
 
-看似完美契合时间切片的思想，但实际上 `requestIdleCallback`  有点过于严格，并且执行频率不足以实现流畅的UI呈现。
+看似完美契合时间切片的思想，所以起初 React 的时间分片渲染就想要用到这个 API，不过目前浏览器支持的不给力，他们是自己去用 `postMessage` 实现了一套。但实际上 `requestIdleCallback`  有点过于严格，并且执行频率不足以实现流畅的UI呈现。
 
 而且我们希望通过Fiber 架构，让 `reconcilation` 过程变成可被中断。 '适时'地让出 CPU 执行权。因此React团队不得不实现自己的版本。
 
 Fiber 的思想和协程的概念是契合的。举个栗子：
-
+ 
 普通函数: （无法被中断和恢复）
 
 ```js
