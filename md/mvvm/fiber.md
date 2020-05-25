@@ -2,12 +2,21 @@
 
 本人系一个惯用Vue的菜鸡，恰巧周末和大佬扯蛋，峰回路转谈到了fiber，被大佬疯狂鄙视...
 
+大佬还和我吐槽了现在的忘了环境
+1. 百度是不可信的，百度到的东西出来广告其他都是出自同一个作者（大部分情况确实这样）
+2. 很多水文都是以 copy 的形式产生的，你看到的文章说不定已经过时好几个版本了（大部分情况确实这样）
 
-### Fiber的出现是为了解决什么问题？
+于是本菜开始了 React Fiber 相关的读源码过程。为什么看 Fiber？因为 Vue 没有，Vue3 也没有，但是却被吹的很神奇。
+
+本菜于编写时间于：`2020/05/25`，参考的当日源码版本 `v16.13.1`
+
+### Fiber的出现是为了解决什么问题？ <精简>
+
+首先必须要知道为什么会出现 Fiber
 
 旧版本React同步更新：当React决定要加载或者更新组件树时，会做很多事，比如调用各个组件的生命周期函数，计算和比对Virtual DOM，最后更新DOM树。
 
-举个栗子：更新一个组件需要1毫秒，如果要更新1000个组件，那就需要200毫秒，在这200毫秒的更新过程中，主线程都在专心运行更新操作。
+举个栗子：更新一个组件需要1毫秒，如果要更新1000个组件，那就会耗时`1秒`，在这`1秒`的更新过程中，主线程都在专心运行更新操作。
 
 而浏览器每间隔一定的时间重新绘制一下当前页面。一般来说这个频率是每秒60次。也就是说每16毫秒（ 1 / 60 ≈ 0.0167 ）浏览器会有一个周期性地重绘行为，这每16毫秒我们称为一帧。这一帧的时间里面浏览器做些什么事情呢：
 
@@ -17,16 +26,16 @@
 4. 绘制图层样式(Paint)。
 5. 组合计算渲染呈现结果(Composite)。
 
-如果这六个步骤中，任意一个步骤所占用的时间过长，总时间超过 16ms 了之后，用户也许就能看到卡顿。而上述栗子中组件同步更新耗时 200ms。
+如果这六个步骤中，任意一个步骤所占用的时间过长，总时间超过 16ms 了之后，用户也许就能看到卡顿。而上述栗子中组件同步更新耗时 `1秒`，意味着差不多用户卡顿了 1秒钟！！！
 
 因为JavaScript单线程的特点，每个同步任务不能耗时太长，不然就会让程序不会对其他输入作出相应，React的更新过程就是犯了这个禁忌，而React Fiber就是要改变现状。
 
 
-### 什么是 Fiber
+### 什么是 Fiber <精简>
 
 解决同步更新的方案之一就是时间切片：把更新过程碎片化，把一个耗时长的任务分成很多小片。执行非阻塞渲染，基于优先级应用更新以及在后台预渲染内容。
 
-Fiber 就是由 `performUnitOfWork` 方法操控的 所说的工作单元（后文详细讲述），作为一种数据结构，用于代表某些worker，换句话说，就是一个work单元，通过Fiber的架构，提供了一种跟踪，调度，暂停和中止工作的便捷方式。
+Fiber 就是由 `performUnitOfWork`（ps：后文详细讲述） 方法操控的 **工作单元**，作为一种数据结构，用于代表某些worker，换句话说，就是一个work单元，通过Fiber的架构，提供了一种跟踪，调度，暂停和中止工作的便捷方式。
 
 Fiber的创建和使用过程：
 
@@ -34,11 +43,11 @@ Fiber的创建和使用过程：
 2. React为每个React元素创建了一个fiber node
 3. 与React元素不同，每次渲染过程，不会再重新创建fiber
 4. 随后的更新中，React重用fiber节点，并使用来自相应React元素的数据来更新必要的属性。
-5. 同时React 会维护一个 `workInProgressTree` 用于计算更新，可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 `alternate` 指向旧树的同等节点。
+5. 同时React 会维护一个 `workInProgressTree` 用于计算更新（双缓冲），可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 `alternate` 指向旧树的同等节点。
 
 Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`render 和 commit`，
 
-### React 的 Reconciliation 阶段
+### React 的 Reconciliation 阶段 <精简>
 
 > Reconciliation 阶段在 Fiber重构后 和旧版本思路差别不大, 只不过不会再递归去比对、而且不会马上提交变更。
 
@@ -57,7 +66,7 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 
 完成 reconciliation 过程。这里用的是 `深度优先搜索(DFS)`，先处理子节点，再处理兄弟节点，直到循环完成。
 
-### React 的 Commit 阶段
+### React 的 Commit 阶段 <精简>
 
 涉及生命钩子
 
@@ -94,34 +103,154 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
   var LOW_PRIORITY_TIMEOUT = 10000;
   // Never times out
   var IDLE_PRIORITY = maxSigned31BitInt;
-
-  function timeoutForPriorityLevel(priorityLevel) {
-    switch (priorityLevel) {
-      case ImmediatePriority:
-        return IMMEDIATE_PRIORITY_TIMEOUT;
-      case UserBlockingPriority:
-        return USER_BLOCKING_PRIORITY;
-      case IdlePriority:
-        return IDLE_PRIORITY;
-      case LowPriority:
-        return LOW_PRIORITY_TIMEOUT;
-      case NormalPriority:
-      default:
-        return NORMAL_PRIORITY_TIMEOUT;
-    }
-  }
 ```
 
 当有更新任务来的时候，不会马上去做 Diff 操作，而是先把当前的更新送入一个 Update Queue 中，然后交给 `Scheduler` 去处理，Scheduler 会根据当前主线程的使用情况去处理这次 Update。
 
 不管执行的过程怎样拆分、以什么顺序执行，Fiber 都会保证状态的一致性和视图的一致性。
 
+如何保证相同在一定时间内触发的优先级一样的任务到期时间相同？ React 通过 `ceiling` 方法来实现的。。。本菜没使用过 `|` 语法...
+
+```js
+function ceiling(num, precision) {
+  return (((num / precision) | 0) + 1) * precision;
+}
+```
+
+那么为什么需要保证时间一致性？请看下文。
+
 
 ### Fiber 如何调度？
 
-首先要找到入口地址
+首先要找到入口地址 `scheduleUpdateOnFiber`，
 
-每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同，每一次更新都会调用这个方法 `function ensureRootIsScheduled(root: FiberRoot) {`
+该方法每次调用都会通过 `markUpdateTimeFromFiberToRoot` 更新 Fiber 节点的 `expirationTime`
+
+[源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
+
+```js
+export function scheduleUpdateOnFiber(
+  fiber: Fiber,
+  expirationTime: ExpirationTime,
+) {
+  checkForNestedUpdates();
+  warnAboutRenderPhaseUpdatesInDEV(fiber);
+
+  // 调用markUpdateTimeFromFiberToRoot，更新 fiber 节点的 expirationTime
+  // ps 此时的fiber树只有一个root fiber。
+  const root = markUpdateTimeFromFiberToRoot(fiber, expirationTime);
+  if (root === null) {
+    warnAboutUpdateOnUnmountedFiberInDEV(fiber);
+    return;
+  }
+
+  // TODO: computeExpirationForFiber also reads the priority. Pass the
+  // priority as an argument to that function and this one.
+  // 还只是TODO
+  // computeExpirationForFiber还会读取优先级。
+  // 将优先级作为参数传递给该函数和该函数。
+  const priorityLevel = getCurrentPriorityLevel();
+
+  // 第一次进来都是 true
+  if (expirationTime === Sync) {
+    if (
+      // Check if we're inside unbatchedUpdates
+      // 检查是否在未批处理的更新内
+      (executionContext & LegacyUnbatchedContext) !== NoContext &&
+      // Check if we're not already rendering
+      // 检查是否尚未渲染
+      (executionContext & (RenderContext | CommitContext)) === NoContext
+    ) {
+      // Register pending interactions on the root to avoid losing traced interaction data.
+      // 在根上注册待处理的交互，以避免丢失跟踪的交互数据。
+      schedulePendingInteractions(root, expirationTime);
+
+      // This is a legacy edge case. The initial mount of a ReactDOM.render-ed
+      // root inside of batchedUpdates should be synchronous, but layout updates
+      // should be deferred until the end of the batch.
+      performSyncWorkOnRoot(root);
+    } else {
+      ensureRootIsScheduled(root);
+      schedulePendingInteractions(root, expirationTime);
+      if (executionContext === NoContext) {
+        // Flush the synchronous work now, unless we're already working or inside
+        // a batch. This is intentionally inside scheduleUpdateOnFiber instead of
+        // scheduleCallbackForFiber to preserve the ability to schedule a callback
+        // without immediately flushing it. We only do this for user-initiated
+        // updates, to preserve historical behavior of legacy mode.
+        // 推入调度任务队列
+        flushSyncCallbackQueue();
+      }
+    }
+  } else {
+    // Schedule a discrete update but only if it's not Sync.
+    if (
+      (executionContext & DiscreteEventContext) !== NoContext &&
+      // Only updates at user-blocking priority or greater are considered
+      // discrete, even inside a discrete event.
+      (priorityLevel === UserBlockingPriority ||
+        priorityLevel === ImmediatePriority)
+    ) {
+      // This is the result of a discrete event. Track the lowest priority
+      // discrete update per root so we can flush them early, if needed.
+      if (rootsWithPendingDiscreteUpdates === null) {
+        rootsWithPendingDiscreteUpdates = new Map([[root, expirationTime]]);
+      } else {
+        const lastDiscreteTime = rootsWithPendingDiscreteUpdates.get(root);
+        if (
+          lastDiscreteTime === undefined ||
+          lastDiscreteTime > expirationTime
+        ) {
+          rootsWithPendingDiscreteUpdates.set(root, expirationTime);
+        }
+      }
+    }
+    // Schedule other updates after in case the callback is sync.
+    ensureRootIsScheduled(root);
+    schedulePendingInteractions(root, expirationTime);
+  }
+}
+```
+
+而 `schedulePendingInteractions` 实际上会调用 `scheduleInteractions` 利用FiberRoot的 `pendingInteractionMap` 属性和不同的 `expirationTime`，获取每次schedule所需的update任务的集合，记录它们的数量，并检测这些任务是否会出错。
+
+```js
+function scheduleInteractions(root, expirationTime, interactions) {
+  if (!enableSchedulerTracing) {
+    return;
+  }
+
+  if (interactions.size > 0) {
+    const pendingInteractionMap = root.pendingInteractionMap_old;
+    const pendingInteractions = pendingInteractionMap.get(expirationTime);
+    if (pendingInteractions != null) {
+      interactions.forEach(interaction => {
+        if (!pendingInteractions.has(interaction)) {
+          // Update the pending async work count for previously unscheduled interaction.
+          interaction.__count++;
+        }
+
+        pendingInteractions.add(interaction);
+      });
+    } else {
+      pendingInteractionMap.set(expirationTime, new Set(interactions));
+
+      // Update the pending async work count for the current interactions.
+      interactions.forEach(interaction => {
+        interaction.__count++;
+      });
+    }
+
+    const subscriber = __subscriberRef.current;
+    if (subscriber !== null) {
+      const threadID = computeThreadID(root, expirationTime);
+      subscriber.onWorkScheduled(interactions, threadID);
+    }
+  }
+}
+```
+
+每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同（所以用上文的 `ceiling` 方法来控制到期时间），每一次更新都会调用 `function ensureRootIsScheduled(root: FiberRoot)`
 
 [源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
 
@@ -203,8 +332,6 @@ function ensureRootIsScheduled(root: FiberRoot) {
   root.callbackNode = callbackNode;
 }
 ```
-
-然后进入 CallBack 
 
 同步调度 `function scheduleSyncCallback(callback: SchedulerCallback)` ：同步任务调度的中间方法,如果队列不为空就推入同步队列（`syncQueue.push(callback)`），如果为空就立即推入 **任务调度队列**(`Scheduler_scheduleCallback`)
 
@@ -572,11 +699,11 @@ function performUnitOfWork(unitOfWork: Fiber): void {
 > 你可以在空闲回调函数中调用 `requestIdleCallback()`，以便在下一次通过事件循环之前调度另一个回调。
 
 
-看似完美契合时间切片的思想，所以起初 React 的时间分片渲染就想要用到这个 API，不过目前浏览器支持的不给力，他们是自己去用 `postMessage` 实现了一套。但实际上 `requestIdleCallback`  有点过于严格，并且执行频率不足以实现流畅的UI呈现。
+看似完美契合时间切片的思想，所以起初 React 的时间分片渲染就想要用到这个 API，不过目前浏览器支持的不给力，而且 `requestIdleCallback` 有点过于严格，并且执行频率不足以实现流畅的UI呈现。
 
-而且我们希望通过Fiber 架构，让 `reconcilation` 过程变成可被中断。 '适时'地让出 CPU 执行权。因此React团队不得不实现自己的版本。
+而且我们希望通过Fiber 架构，让 `reconcilation` 过程变成可被中断。'适时'地让出 CPU 执行权。因此React团队不得不实现自己的版本。
 
-Fiber 的思想和协程的概念是契合的。举个栗子：
+实际上 Fiber 的思想和协程的概念是契合的。举个栗子：
  
 普通函数: （无法被中断和恢复）
 
@@ -643,4 +770,5 @@ React 团队也曾经考虑过，尝试提出共享的不可变持久数据结�
 
 而fiber，就是说你更新这个组件时如果超过了16毫秒，我可以中途打断他，比如说他渲染了他有六个元素，那渲染到第三个的时候，他需要被打断了，然后下一次我继续渲染剩下那三个。
 
-ps：Vue3.0，（vue-next）曾使用双任务（微任务 + 宏任务）来实现时间切片，不过已经被废除了
+
+ps: 本菜不会用 React，第一次读 React 源码，对源码有误读请指正
