@@ -80,8 +80,6 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 
 ### Fiber 如何处理优先级？
 
-[源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
-
 对于UI来说需要考虑以下问题：
 
 并不是所有的state更新都需要立即显示出来，比如:
@@ -91,6 +89,10 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 * 理想情况下，对于某些高优先级的操作，应该是可以打断低优先级的操作执行的
 
 所以，React 定义了一系列事件优先级
+
+下面是优先级时间的源码
+
+[源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
 
 ```js
   var maxSigned31BitInt = 1073741823;
@@ -111,6 +113,10 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 
 如何保证相同在一定时间内触发的优先级一样的任务到期时间相同？ React 通过 `ceiling` 方法来实现的。。。本菜没使用过 `|` 语法...
 
+下面是处理到期时间的 `ceiling` 源码
+
+[源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
+
 ```js
 function ceiling(num, precision) {
   return (((num / precision) | 0) + 1) * precision;
@@ -122,9 +128,9 @@ function ceiling(num, precision) {
 
 ### Fiber 如何调度？
 
-首先要找到入口地址 `scheduleUpdateOnFiber`，
+首先要找到调度入口地址 `scheduleUpdateOnFiber`，
 
-该方法每次调用都会通过 `markUpdateTimeFromFiberToRoot` 更新 Fiber 节点的 `expirationTime`
+每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同（所以用上文提到的 `ceiling` 方法来控制到期时间）
 
 [源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
 
@@ -151,7 +157,6 @@ export function scheduleUpdateOnFiber(
   // 将优先级作为参数传递给该函数和该函数。
   const priorityLevel = getCurrentPriorityLevel();
 
-  // 第一次进来都是 true
   if (expirationTime === Sync) {
     if (
       // Check if we're inside unbatchedUpdates
@@ -212,45 +217,16 @@ export function scheduleUpdateOnFiber(
 }
 ```
 
-而 `schedulePendingInteractions` 实际上会调用 `scheduleInteractions` 利用FiberRoot的 `pendingInteractionMap` 属性和不同的 `expirationTime`，获取每次schedule所需的update任务的集合，记录它们的数量，并检测这些任务是否会出错。
+上面源码主要做了以下几件事
 
-```js
-function scheduleInteractions(root, expirationTime, interactions) {
-  if (!enableSchedulerTracing) {
-    return;
-  }
+1. 调用 `markUpdateTimeFromFiberToRoot` 更新 Fiber 节点的 `expirationTime`
+2. `ensureRootIsScheduled`（更新重点）
+3. `schedulePendingInteractions` 实际上会调用 `scheduleInteractions` 
+  * `scheduleInteractions` 会利用FiberRoot的 `pendingInteractionMap` 属性和不同的 `expirationTime`，获取每次schedule所需的update任务的集合，记录它们的数量，并检测这些任务是否会出错。
 
-  if (interactions.size > 0) {
-    const pendingInteractionMap = root.pendingInteractionMap_old;
-    const pendingInteractions = pendingInteractionMap.get(expirationTime);
-    if (pendingInteractions != null) {
-      interactions.forEach(interaction => {
-        if (!pendingInteractions.has(interaction)) {
-          // Update the pending async work count for previously unscheduled interaction.
-          interaction.__count++;
-        }
+更新的重点在于 `scheduleUpdateOnFiber` 每一次更新都会调用 `function ensureRootIsScheduled(root: FiberRoot)`
 
-        pendingInteractions.add(interaction);
-      });
-    } else {
-      pendingInteractionMap.set(expirationTime, new Set(interactions));
-
-      // Update the pending async work count for the current interactions.
-      interactions.forEach(interaction => {
-        interaction.__count++;
-      });
-    }
-
-    const subscriber = __subscriberRef.current;
-    if (subscriber !== null) {
-      const threadID = computeThreadID(root, expirationTime);
-      subscriber.onWorkScheduled(interactions, threadID);
-    }
-  }
-}
-```
-
-每一个root都有一个唯一的调度任务，如果已经存在，我们要确保到期时间与下一级别任务的相同（所以用上文的 `ceiling` 方法来控制到期时间），每一次更新都会调用 `function ensureRootIsScheduled(root: FiberRoot)`
+下面是 `ensureRootIsScheduled` 的源码
 
 [源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)
 
@@ -333,7 +309,14 @@ function ensureRootIsScheduled(root: FiberRoot) {
 }
 ```
 
-同步调度 `function scheduleSyncCallback(callback: SchedulerCallback)` ：同步任务调度的中间方法,如果队列不为空就推入同步队列（`syncQueue.push(callback)`），如果为空就立即推入 **任务调度队列**(`Scheduler_scheduleCallback`)
+上面源码 `ensureRootIsScheduled` 主要是根据同步/异步状态做不同的 push 功能。
+
+同步调度 `function scheduleSyncCallback(callback: SchedulerCallback)` ：
+* 如果队列不为空就推入同步队列（`syncQueue.push(callback)`）
+* 如果为空就立即推入 **任务调度队列**(`Scheduler_scheduleCallback`)
+* 会将 `performSyncWorkOnRoot` 作为 `SchedulerCallback`
+
+下面是 `scheduleSyncCallback` 源码内容
 
 [源码文件](https://github.com/facebook/react/blob/4c6470cb3b821f3664955290cd4c4c7ac0de733a/packages/react-reconciler/src/SchedulerWithReactIntegration.old.js)
 
@@ -358,7 +341,7 @@ export function scheduleSyncCallback(callback: SchedulerCallback) {
 
 ```
 
-异步调度，异步的任务调度很简单，直接将异步任务推入调度队列(`Scheduler_scheduleCallback`)
+异步调度，异步的任务调度很简单，直接将异步任务推入调度队列(`Scheduler_scheduleCallback`)，会将 `performConcurrentWorkOnRoot` 作为 `SchedulerCallback`
 
 ```js
 export function scheduleCallback(
@@ -371,13 +354,23 @@ export function scheduleCallback(
 }
 ```
 
+不管同步调度还是异步调度，都会经过 `Scheduler_scheduleCallback` 也就是调度的核心方法 `function unstable_scheduleCallback(priorityLevel, callback, options)`，它们会有各自的 `SchedulerCallback`
 
-不管同步调度还是异步调度，都会经过 `Scheduler_scheduleCallback` 也就是调度的核心方法 `function unstable_scheduleCallback(priorityLevel, callback, options)`：
+小提示：由于下面很多代码中会使用 `peek`，先插一段 `peek` 实现，其实就是返回数组中的第一个 或者 null
+
+[peek 相关源码文件](https://github.com/facebook/react/blob/e706721490e50d0bd6af2cd933dbf857fd8b61ed/packages/scheduler/src/SchedulerMinHeap.js)
+
+```js
+  export function peek(heap: Heap): Node | null {
+    const first = heap[0];
+    return first === undefined ? null : first;
+  }
+```
+
+下面是 `Scheduler_scheduleCallback` 相关源码
 
 [源码文件]（https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js）
 
-
-通过 `options.delay` 和 `options.timeout` 加上 `timeoutForPriorityLevel()` 来获得 `newTask` 的 `expirationTime`，
 
 ```js
 // 将一个任务推入任务调度队列
@@ -459,7 +452,132 @@ function unstable_scheduleCallback(priorityLevel, callback, options) {
 }
 ```
 
-最后进入重点：`requestHostCallback` 通过 `MessageChannel` 的异步方法来开启任务调度 `performWorkUntilDeadline`
+小提示: `markTaskStart` 主要起到记录的功能，对应的是 `markTaskCompleted`
+
+[源码文件](https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/SchedulerProfiling.js)
+
+```js
+export function markTaskStart(
+  task: {
+    id: number,
+    priorityLevel: PriorityLevel,
+    ...
+  },
+  ms: number,
+) {
+  if (enableProfiling) {
+    profilingState[QUEUE_SIZE]++;
+
+    if (eventLog !== null) {
+      // performance.now returns a float, representing milliseconds. When the
+      // event is logged, it's coerced to an int. Convert to microseconds to
+      // maintain extra degrees of precision.
+      logEvent([TaskStartEvent, ms * 1000, task.id, task.priorityLevel]);
+    }
+  }
+}
+
+export function markTaskCompleted(
+  task: {
+    id: number,
+    priorityLevel: PriorityLevel,
+    ...
+  },
+  ms: number,
+) {
+  if (enableProfiling) {
+    profilingState[PRIORITY] = NoPriority;
+    profilingState[CURRENT_TASK_ID] = 0;
+    profilingState[QUEUE_SIZE]--;
+
+    if (eventLog !== null) {
+      logEvent([TaskCompleteEvent, ms * 1000, task.id]);
+    }
+  }
+}
+```
+
+`unstable_scheduleCallback` 主要做了几件事
+* 通过 `options.delay` 和 `options.timeout` 加上 `timeoutForPriorityLevel()` 来获得 `newTask` 的 `expirationTime`
+* 如果任务已过期
+  * 将超时任务推入超时队列
+  * 如果所有任务都延迟时，而且该任务是最早的任务，会调用 `cancelHostTimeout`
+  * 调用 `requestHostTimeout`
+* 将新任务推入任务队列
+
+[源码文件](https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/Scheduler.js)
+
+补上 `cancelHostTimeout` 源码
+
+```js
+  cancelHostTimeout = function() {
+    clearTimeout(_timeoutID);
+  };
+```
+
+再补上 `requestHostTimeout` 源码
+```js
+  requestHostTimeout = function(cb, ms) {
+    _timeoutID = setTimeout(cb, ms);
+  };
+```
+
+然后 `requestHostTimeout` 的 `cb` 也就是 `handleTimeout` 是啥呢？
+
+```js
+  function handleTimeout(currentTime) {
+    isHostTimeoutScheduled = false;
+    advanceTimers(currentTime);
+
+    if (!isHostCallbackScheduled) {
+      if (peek(taskQueue) !== null) {
+        isHostCallbackScheduled = true;
+        requestHostCallback(flushWork);
+      } else {
+        const firstTimer = peek(timerQueue);
+        if (firstTimer !== null) {
+          requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+        }
+      }
+    }
+  }
+```
+
+上面这个方法很重要，它主要做了下面几件事
+
+1. 调用 `advanceTimers` 检查不再延迟的任务，并将其添加到队列中。
+
+下面是 `advanceTimers` 源码
+
+```js
+function advanceTimers(currentTime) {
+  // Check for tasks that are no longer delayed and add them to the queue.
+  let timer = peek(timerQueue);
+  while (timer !== null) {
+    if (timer.callback === null) {
+      // Timer was cancelled.
+      pop(timerQueue);
+    } else if (timer.startTime <= currentTime) {
+      // Timer fired. Transfer to the task queue.
+      pop(timerQueue);
+      timer.sortIndex = timer.expirationTime;
+      push(taskQueue, timer);
+      if (enableProfiling) {
+        markTaskStart(timer, currentTime);
+        timer.isQueued = true;
+      }
+    } else {
+      // Remaining timers are pending.
+      return;
+    }
+    timer = peek(timerQueue);
+  }
+}
+```
+
+2. 调用 `requestHostCallback` 通过 `MessageChannel` 的异步方法来开启任务调度 `performWorkUntilDeadline`
+
+`requestHostCallback` 这个方法特别重要
 
 [源码文件](https://github.com/facebook/react/blob/3e94bce765d355d74f6a60feb4addb6d196e3482/packages/scheduler/src/forks/SchedulerHostConfig.default.js)
 
@@ -567,6 +685,8 @@ function flushWork(hasTimeRemaining, initialTime) {
 
 `workLoop` 和 `flushWork` 在一个文件中，作用是从调度任务队列中取出优先级最高的任务，然后去执行。
 
+还记得上文讲的 `SchedulerCallback` 吗？
+
 * 对于同步任务执行的是 `performSyncWorkOnRoot`
 * 对于异步的任务执行的是 `performConcurrentWorkOnRoot`
 
@@ -660,6 +780,8 @@ function performUnitOfWork(unitOfWork: Fiber): void {
   ReactCurrentOwner.current = null;
 }
 ```
+
+最后，就到了 `beginWork` 流程了 - -。
 
 
 ### Fiber 为什么要使用链表
@@ -758,17 +880,6 @@ React 团队也曾经考虑过，尝试提出共享的不可变持久数据结�
 你无法安全地中止后台线程。中止和重启线程并不是很便宜。在许多语言中，它也不安全，因为你可能处于一些懒惰的初始化工作之中。即使它被有效地中断了，你也必须继续在它上面花费CPU周期。
 
 另一个限制是，由于无法立即中止线程，因此无法确定两个线程是否同时处理同一组件。这导致了一些限制，例如无法支持有状态的类实例（如React.Component）。线程不能只记住你在一个线程中完成的部分工作并在另一个线程中重复使用。
-
-
-### 时间切片为什么不用双任务？
-
-设想：采用的 微任务 + 宏任务的双任务队列去实现的时间切片。
-
-`anu.js` 使用的就是 双任务模式。
-
-但实际上有微任务，只要不是小组件，就很容易超过16ms，而微任务不能中断，就一定会阻塞UI的。
-
-而fiber，就是说你更新这个组件时如果超过了16毫秒，我可以中途打断他，比如说他渲染了他有六个元素，那渲染到第三个的时候，他需要被打断了，然后下一次我继续渲染剩下那三个。
 
 
 ps: 本菜不会用 React，第一次读 React 源码，对源码有误读请指正
