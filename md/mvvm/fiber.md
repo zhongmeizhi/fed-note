@@ -10,7 +10,7 @@
 
 本菜于编写时间于：`2020/05/25`，参考的当日源码版本 `v16.13.1`
 
-### Fiber的出现是为了解决什么问题？ <精简>
+### Fiber的出现是为了解决什么问题？ <略过一下>
 
 首先必须要知道为什么会出现 Fiber
 
@@ -26,12 +26,12 @@
 4. 绘制图层样式(Paint)。
 5. 组合计算渲染呈现结果(Composite)。
 
-如果这六个步骤中，任意一个步骤所占用的时间过长，总时间超过 16ms 了之后，用户也许就能看到卡顿。而上述栗子中组件同步更新耗时 `1秒`，意味着差不多用户卡顿了 1秒钟！！！
+如果这六个步骤中，任意一个步骤所占用的时间过长，总时间超过 16ms 了之后，用户也许就能看到卡顿。而上述栗子中组件同步更新耗时 `1秒`，意味着差不多用户卡顿了 1秒钟！！！（差不多 - -!）
 
 因为JavaScript单线程的特点，每个同步任务不能耗时太长，不然就会让程序不会对其他输入作出相应，React的更新过程就是犯了这个禁忌，而React Fiber就是要改变现状。
 
 
-### 什么是 Fiber <精简>
+### 什么是 Fiber <略过一下>
 
 解决同步更新的方案之一就是时间切片：把更新过程碎片化，把一个耗时长的任务分成很多小片。执行非阻塞渲染，基于优先级应用更新以及在后台预渲染内容。
 
@@ -45,9 +45,13 @@ Fiber的创建和使用过程：
 4. 随后的更新中，React重用fiber节点，并使用来自相应React元素的数据来更新必要的属性。
 5. 同时React 会维护一个 `workInProgressTree` 用于计算更新（双缓冲），可以认为是一颗表示当前工作进度的树。还有一颗表示已渲染界面的旧树，React就是一边和旧树比对，一边构建WIP树的。 `alternate` 指向旧树的同等节点。
 
+PS：上文说的 `workInProgress` 属于 `beginWork` 流程了，如果要写下来差不多篇幅还会增加一倍，这就不详细说明了...（主要是本人懒又菜...）
+
+想看 `beginWork` 源码的可以自行尝试 [beginWork相关源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberBeginWork.old.js)
+
 Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`render 和 commit`，
 
-### React 的 Reconciliation 阶段 <精简>
+### React 的 Reconciliation 阶段 <略过一下>
 
 > Reconciliation 阶段在 Fiber重构后 和旧版本思路差别不大, 只不过不会再递归去比对、而且不会马上提交变更。
 
@@ -66,7 +70,7 @@ Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`ren
 
 完成 reconciliation 过程。这里用的是 `深度优先搜索(DFS)`，先处理子节点，再处理兄弟节点，直到循环完成。
 
-### React 的 Commit 阶段 <精简>
+### React 的 Commit 阶段 <略过一下>
 
 涉及生命钩子
 
