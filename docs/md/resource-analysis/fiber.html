@@ -1,0 +1,1907 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Fiber 源码解析 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../mvvm/next_js.html" />
+    
+    
+    <link rel="prev" href="vue2.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    样式&&兼容性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../css/mobile.html">
+            
+                <a href="../css/mobile.html">
+            
+                    
+                    移动端-适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../css/layout.html">
+            
+                <a href="../css/layout.html">
+            
+                    
+                    PC端-布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../css/less.html">
+            
+                <a href="../css/less.html">
+            
+                    
+                    less & sass
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../css/EXPERIENCE.html">
+            
+                <a href="../css/EXPERIENCE.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    计算机基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../browser/security_code.html">
+            
+                <a href="../browser/security_code.html">
+            
+                    
+                    前端安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../browser/page_load.html">
+            
+                <a href="../browser/page_load.html">
+            
+                    
+                    页面加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../javascript/hybrid.html">
+            
+                <a href="../javascript/hybrid.html">
+            
+                    
+                    Hybrid开发相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../javascript/experience.html">
+            
+                <a href="../javascript/experience.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../sse/optimization.html">
+            
+                <a href="../sse/optimization.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../sse/design_model.html">
+            
+                <a href="../sse/design_model.html">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../sse/async_await.html">
+            
+                <a href="../sse/async_await.html">
+            
+                    
+                    async await
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../sse/module.html">
+            
+                <a href="../sse/module.html">
+            
+                    
+                    模块化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../javascript/animation.html">
+            
+                <a href="../javascript/animation.html">
+            
+                    
+                    关于动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../javascript/iterator.html">
+            
+                <a href="../javascript/iterator.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../node/NPM.html">
+            
+                <a href="../node/NPM.html">
+            
+                    
+                    NPM机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../sse/event_loop.html">
+            
+                <a href="../sse/event_loop.html">
+            
+                    
+                    JS运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../browser/garbage_collection.html">
+            
+                <a href="../browser/garbage_collection.html">
+            
+                    
+                    JS垃圾回收机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    前端总结
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../review/css_base.html">
+            
+                <a href="../review/css_base.html">
+            
+                    
+                    CSS篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../review/js_type.html">
+            
+                <a href="../review/js_type.html">
+            
+                    
+                    JS数据类型篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../review/js_function.html">
+            
+                <a href="../review/js_function.html">
+            
+                    
+                    JS函数篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../review/webpack.html">
+            
+                <a href="../review/webpack.html">
+            
+                    
+                    Webpack篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../review/js_code.html">
+            
+                <a href="../review/js_code.html">
+            
+                    
+                    各种手写代码实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Vue + React 框架学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mvvm/useEffect.html">
+            
+                <a href="../mvvm/useEffect.html">
+            
+                    
+                    React useEffect详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../mvvm/react_function_or_class.html">
+            
+                <a href="../mvvm/react_function_or_class.html">
+            
+                    
+                    React 函数式组件和类组件的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="vue2.html">
+            
+                <a href="vue2.html">
+            
+                    
+                    Vue 2.x 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.4" data-path="fiber.html">
+            
+                <a href="fiber.html">
+            
+                    
+                    Fiber 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../mvvm/next_js.html">
+            
+                <a href="../mvvm/next_js.html">
+            
+                    
+                    next.js 体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Node学习篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/z-mock">
+            
+                    
+                    用Koa2撸一个API Mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    RXJS学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../sse/function_program.html">
+            
+                <a href="../sse/function_program.html">
+            
+                    
+                    RXJS学习（一）函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../rxjs/Observable.html">
+            
+                <a href="../rxjs/Observable.html">
+            
+                    
+                    RXJS学习（二）Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../rxjs/Operators.html">
+            
+                <a href="../rxjs/Operators.html">
+            
+                    
+                    RXJS学习（三）Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../rxjs/Subject.html">
+            
+                <a href="../rxjs/Subject.html">
+            
+                    
+                    RXJS学习（四）Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../rxjs/Scheduler.html">
+            
+                <a href="../rxjs/Scheduler.html">
+            
+                    
+                    RXJS学习（五）Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Dart篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../dart/PRIMER.html">
+            
+                <a href="../dart/PRIMER.html">
+            
+                    
+                    dart（一）概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../dart/base.html">
+            
+                <a href="../dart/base.html">
+            
+                    
+                    dart（二）基本操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../dart/class.html">
+            
+                <a href="../dart/class.html">
+            
+                    
+                    dart（三）类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../dart/again.html">
+            
+                <a href="../dart/again.html">
+            
+                    
+                    dart（四）稍微抽象点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Flutter基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../flutter/BRIEF.html">
+            
+                <a href="../flutter/BRIEF.html">
+            
+                    
+                    flutter 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../flutter/PRIMER.html">
+            
+                <a href="../flutter/PRIMER.html">
+            
+                    
+                    Flutter 屏幕适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../flutter/render.html">
+            
+                <a href="../flutter/render.html">
+            
+                    
+                    Flutter 渲染策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../flutter/webview.html">
+            
+                <a href="../flutter/webview.html">
+            
+                    
+                    Flutter WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../flutter/navigator.html">
+            
+                <a href="../flutter/navigator.html">
+            
+                    
+                    Flutter 局部路由实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../flutter/SCENES.html">
+            
+                <a href="../flutter/SCENES.html">
+            
+                    
+                    Flutter 环境问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../flutter/ISSUE.html">
+            
+                <a href="../flutter/ISSUE.html">
+            
+                    
+                    Flutter 开发细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/flutter-UI">
+            
+                    
+                    Flutter API使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/fultter-example-app">
+            
+                    
+                    Flutter 项目实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../java/begin.html">
+            
+                <a href="../java/begin.html">
+            
+                    
+                    Java常识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../java/db.html">
+            
+                <a href="../java/db.html">
+            
+                    
+                    数据库相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../java/spring_boot.html">
+            
+                <a href="../java/spring_boot.html">
+            
+                    
+                    SpringBoot 基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    其他
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../other/GIT.html">
+            
+                <a href="../other/GIT.html">
+            
+                    
+                    git命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../other/GITHUB.html">
+            
+                <a href="../other/GITHUB.html">
+            
+                    
+                    GitHub的Host和Key
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Fiber 源码解析</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="fiber">fiber</h1>
+<p>&#x672C;&#x4EBA;&#x7CFB;&#x4E00;&#x4E2A;&#x60EF;&#x7528;Vue&#x7684;&#x83DC;&#x9E21;&#xFF0C;&#x6070;&#x5DE7;&#x5468;&#x672B;&#x548C;&#x5927;&#x4F6C;&#x626F;&#x86CB;&#xFF0C;&#x5CF0;&#x56DE;&#x8DEF;&#x8F6C;&#x8C08;&#x5230;&#x4E86;fiber&#xFF0C;&#x88AB;&#x5927;&#x4F6C;&#x75AF;&#x72C2;&#x9119;&#x89C6;...</p>
+<p>&#x5927;&#x4F6C;&#x8FD8;&#x548C;&#x6211;&#x5410;&#x69FD;&#x4E86;&#x73B0;&#x5728;&#x7684;&#x5FD8;&#x4E86;&#x73AF;&#x5883;</p>
+<ol>
+<li>&#x767E;&#x5EA6;&#x662F;&#x4E0D;&#x53EF;&#x4FE1;&#x7684;&#xFF0C;&#x767E;&#x5EA6;&#x5230;&#x7684;&#x4E1C;&#x897F;&#x51FA;&#x6765;&#x5E7F;&#x544A;&#x5176;&#x4ED6;&#x90FD;&#x662F;&#x51FA;&#x81EA;&#x540C;&#x4E00;&#x4E2A;&#x4F5C;&#x8005;&#xFF08;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x786E;&#x5B9E;&#x8FD9;&#x6837;&#xFF09;</li>
+<li>&#x5F88;&#x591A;&#x6C34;&#x6587;&#x90FD;&#x662F;&#x4EE5; copy &#x7684;&#x5F62;&#x5F0F;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x4F60;&#x770B;&#x5230;&#x7684;&#x6587;&#x7AE0;&#x8BF4;&#x4E0D;&#x5B9A;&#x5DF2;&#x7ECF;&#x8FC7;&#x65F6;&#x597D;&#x51E0;&#x4E2A;&#x7248;&#x672C;&#x4E86;&#xFF08;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x786E;&#x5B9E;&#x8FD9;&#x6837;&#xFF09;</li>
+</ol>
+<p>&#x4E8E;&#x662F;&#x672C;&#x83DC;&#x5F00;&#x59CB;&#x4E86; React Fiber &#x76F8;&#x5173;&#x7684;&#x8BFB;&#x6E90;&#x7801;&#x8FC7;&#x7A0B;&#x3002;&#x4E3A;&#x4EC0;&#x4E48;&#x770B; Fiber&#xFF1F;&#x56E0;&#x4E3A; Vue &#x6CA1;&#x6709;&#xFF0C;Vue3 &#x4E5F;&#x6CA1;&#x6709;&#xFF0C;&#x4F46;&#x662F;&#x5374;&#x88AB;&#x5439;&#x7684;&#x5F88;&#x795E;&#x5947;&#x3002;</p>
+<p>&#x672C;&#x83DC;&#x4E8E;&#x7F16;&#x5199;&#x65F6;&#x95F4;&#x4E8E;&#xFF1A;<code>2020/05/25</code>&#xFF0C;&#x53C2;&#x8003;&#x7684;&#x5F53;&#x65E5;&#x6E90;&#x7801;&#x7248;&#x672C; <code>v16.13.1</code></p>
+<h3 id="fiber&#x7684;&#x51FA;&#x73B0;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;-&#x7565;&#x8FC7;&#x4E00;&#x4E0B;">Fiber&#x7684;&#x51FA;&#x73B0;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F; &lt;&#x7565;&#x8FC7;&#x4E00;&#x4E0B;&gt;</h3>
+<p>&#x9996;&#x5148;&#x5FC5;&#x987B;&#x8981;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0; Fiber</p>
+<p>&#x65E7;&#x7248;&#x672C;React&#x540C;&#x6B65;&#x66F4;&#x65B0;&#xFF1A;&#x5F53;React&#x51B3;&#x5B9A;&#x8981;&#x52A0;&#x8F7D;&#x6216;&#x8005;&#x66F4;&#x65B0;&#x7EC4;&#x4EF6;&#x6811;&#x65F6;&#xFF0C;&#x4F1A;&#x505A;&#x5F88;&#x591A;&#x4E8B;&#xFF0C;&#x6BD4;&#x5982;&#x8C03;&#x7528;&#x5404;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;&#xFF0C;&#x8BA1;&#x7B97;&#x548C;&#x6BD4;&#x5BF9;Virtual DOM&#xFF0C;&#x6700;&#x540E;&#x66F4;&#x65B0;DOM&#x6811;&#x3002;</p>
+<p>&#x4E3E;&#x4E2A;&#x6817;&#x5B50;&#xFF1A;&#x66F4;&#x65B0;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x9700;&#x8981;1&#x6BEB;&#x79D2;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x66F4;&#x65B0;1000&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x90A3;&#x5C31;&#x4F1A;&#x8017;&#x65F6;<code>1&#x79D2;</code>&#xFF0C;&#x5728;&#x8FD9;<code>1&#x79D2;</code>&#x7684;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E3B;&#x7EBF;&#x7A0B;&#x90FD;&#x5728;&#x4E13;&#x5FC3;&#x8FD0;&#x884C;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x800C;&#x6D4F;&#x89C8;&#x5668;&#x6BCF;&#x95F4;&#x9694;&#x4E00;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x91CD;&#x65B0;&#x7ED8;&#x5236;&#x4E00;&#x4E0B;&#x5F53;&#x524D;&#x9875;&#x9762;&#x3002;&#x4E00;&#x822C;&#x6765;&#x8BF4;&#x8FD9;&#x4E2A;&#x9891;&#x7387;&#x662F;&#x6BCF;&#x79D2;60&#x6B21;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;16&#x6BEB;&#x79D2;&#xFF08; 1 / 60 &#x2248; 0.0167 &#xFF09;&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;&#x5468;&#x671F;&#x6027;&#x5730;&#x91CD;&#x7ED8;&#x884C;&#x4E3A;&#xFF0C;&#x8FD9;&#x6BCF;16&#x6BEB;&#x79D2;&#x6211;&#x4EEC;&#x79F0;&#x4E3A;&#x4E00;&#x5E27;&#x3002;&#x8FD9;&#x4E00;&#x5E27;&#x7684;&#x65F6;&#x95F4;&#x91CC;&#x9762;&#x6D4F;&#x89C8;&#x5668;&#x505A;&#x4E9B;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x5462;&#xFF1A;</p>
+<ol>
+<li>&#x6267;&#x884C;JS&#x3002;</li>
+<li>&#x8BA1;&#x7B97;Style&#x3002;</li>
+<li>&#x6784;&#x5EFA;&#x5E03;&#x5C40;&#x6A21;&#x578B;(Layout)&#x3002;</li>
+<li>&#x7ED8;&#x5236;&#x56FE;&#x5C42;&#x6837;&#x5F0F;(Paint)&#x3002;</li>
+<li>&#x7EC4;&#x5408;&#x8BA1;&#x7B97;&#x6E32;&#x67D3;&#x5448;&#x73B0;&#x7ED3;&#x679C;(Composite)&#x3002;</li>
+</ol>
+<p>&#x5982;&#x679C;&#x8FD9;&#x516D;&#x4E2A;&#x6B65;&#x9AA4;&#x4E2D;&#xFF0C;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x6240;&#x5360;&#x7528;&#x7684;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#xFF0C;&#x603B;&#x65F6;&#x95F4;&#x8D85;&#x8FC7; 16ms &#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x7528;&#x6237;&#x4E5F;&#x8BB8;&#x5C31;&#x80FD;&#x770B;&#x5230;&#x5361;&#x987F;&#x3002;&#x800C;&#x4E0A;&#x8FF0;&#x6817;&#x5B50;&#x4E2D;&#x7EC4;&#x4EF6;&#x540C;&#x6B65;&#x66F4;&#x65B0;&#x8017;&#x65F6; <code>1&#x79D2;</code>&#xFF0C;&#x610F;&#x5473;&#x7740;&#x5DEE;&#x4E0D;&#x591A;&#x7528;&#x6237;&#x5361;&#x987F;&#x4E86; 1&#x79D2;&#x949F;&#xFF01;&#xFF01;&#xFF01;&#xFF08;&#x5DEE;&#x4E0D;&#x591A; - -!&#xFF09;</p>
+<p>&#x56E0;&#x4E3A;JavaScript&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x6BCF;&#x4E2A;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x4E0D;&#x80FD;&#x8017;&#x65F6;&#x592A;&#x957F;&#xFF0C;&#x4E0D;&#x7136;&#x5C31;&#x4F1A;&#x8BA9;&#x7A0B;&#x5E8F;&#x4E0D;&#x4F1A;&#x5BF9;&#x5176;&#x4ED6;&#x8F93;&#x5165;&#x4F5C;&#x51FA;&#x76F8;&#x5E94;&#xFF0C;React&#x7684;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x5C31;&#x662F;&#x72AF;&#x4E86;&#x8FD9;&#x4E2A;&#x7981;&#x5FCC;&#xFF0C;&#x800C;React Fiber&#x5C31;&#x662F;&#x8981;&#x6539;&#x53D8;&#x73B0;&#x72B6;&#x3002;</p>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;-fiber-&#x7565;&#x8FC7;&#x4E00;&#x4E0B;">&#x4EC0;&#x4E48;&#x662F; Fiber &lt;&#x7565;&#x8FC7;&#x4E00;&#x4E0B;&gt;</h3>
+<p>&#x89E3;&#x51B3;&#x540C;&#x6B65;&#x66F4;&#x65B0;&#x7684;&#x65B9;&#x6848;&#x4E4B;&#x4E00;&#x5C31;&#x662F;&#x65F6;&#x95F4;&#x5207;&#x7247;&#xFF1A;&#x628A;&#x66F4;&#x65B0;&#x8FC7;&#x7A0B;&#x788E;&#x7247;&#x5316;&#xFF0C;&#x628A;&#x4E00;&#x4E2A;&#x8017;&#x65F6;&#x957F;&#x7684;&#x4EFB;&#x52A1;&#x5206;&#x6210;&#x5F88;&#x591A;&#x5C0F;&#x7247;&#x3002;&#x6267;&#x884C;&#x975E;&#x963B;&#x585E;&#x6E32;&#x67D3;&#xFF0C;&#x57FA;&#x4E8E;&#x4F18;&#x5148;&#x7EA7;&#x5E94;&#x7528;&#x66F4;&#x65B0;&#x4EE5;&#x53CA;&#x5728;&#x540E;&#x53F0;&#x9884;&#x6E32;&#x67D3;&#x5185;&#x5BB9;&#x3002;</p>
+<p>Fiber &#x5C31;&#x662F;&#x7531; <code>performUnitOfWork</code>&#xFF08;ps&#xFF1A;&#x540E;&#x6587;&#x8BE6;&#x7EC6;&#x8BB2;&#x8FF0;&#xFF09; &#x65B9;&#x6CD5;&#x64CD;&#x63A7;&#x7684; <strong>&#x5DE5;&#x4F5C;&#x5355;&#x5143;</strong>&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x7528;&#x4E8E;&#x4EE3;&#x8868;&#x67D0;&#x4E9B;worker&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x4E2A;work&#x5355;&#x5143;&#xFF0C;&#x901A;&#x8FC7;Fiber&#x7684;&#x67B6;&#x6784;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x8DDF;&#x8E2A;&#xFF0C;&#x8C03;&#x5EA6;&#xFF0C;&#x6682;&#x505C;&#x548C;&#x4E2D;&#x6B62;&#x5DE5;&#x4F5C;&#x7684;&#x4FBF;&#x6377;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>Fiber&#x7684;&#x521B;&#x5EFA;&#x548C;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF1A;</p>
+<ol>
+<li>&#x6765;&#x81EA;render&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x6BCF;&#x4E2A;React&#x5143;&#x7D20;&#x7684;&#x6570;&#x636E;&#x88AB;&#x5408;&#x5E76;&#x5230;fiber node&#x6811;&#x4E2D;</li>
+<li>React&#x4E3A;&#x6BCF;&#x4E2A;React&#x5143;&#x7D20;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;fiber node</li>
+<li>&#x4E0E;React&#x5143;&#x7D20;&#x4E0D;&#x540C;&#xFF0C;&#x6BCF;&#x6B21;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#xFF0C;&#x4E0D;&#x4F1A;&#x518D;&#x91CD;&#x65B0;&#x521B;&#x5EFA;fiber</li>
+<li>&#x968F;&#x540E;&#x7684;&#x66F4;&#x65B0;&#x4E2D;&#xFF0C;React&#x91CD;&#x7528;fiber&#x8282;&#x70B9;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;&#x6765;&#x81EA;&#x76F8;&#x5E94;React&#x5143;&#x7D20;&#x7684;&#x6570;&#x636E;&#x6765;&#x66F4;&#x65B0;&#x5FC5;&#x8981;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x540C;&#x65F6;React &#x4F1A;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A; <code>workInProgressTree</code> &#x7528;&#x4E8E;&#x8BA1;&#x7B97;&#x66F4;&#x65B0;&#xFF08;&#x53CC;&#x7F13;&#x51B2;&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x4E00;&#x9897;&#x8868;&#x793A;&#x5F53;&#x524D;&#x5DE5;&#x4F5C;&#x8FDB;&#x5EA6;&#x7684;&#x6811;&#x3002;&#x8FD8;&#x6709;&#x4E00;&#x9897;&#x8868;&#x793A;&#x5DF2;&#x6E32;&#x67D3;&#x754C;&#x9762;&#x7684;&#x65E7;&#x6811;&#xFF0C;React&#x5C31;&#x662F;&#x4E00;&#x8FB9;&#x548C;&#x65E7;&#x6811;&#x6BD4;&#x5BF9;&#xFF0C;&#x4E00;&#x8FB9;&#x6784;&#x5EFA;WIP&#x6811;&#x7684;&#x3002; <code>alternate</code> &#x6307;&#x5411;&#x65E7;&#x6811;&#x7684;&#x540C;&#x7B49;&#x8282;&#x70B9;&#x3002;</li>
+</ol>
+<p>PS&#xFF1A;&#x4E0A;&#x6587;&#x8BF4;&#x7684; <code>workInProgress</code> &#x5C5E;&#x4E8E; <code>beginWork</code> &#x6D41;&#x7A0B;&#x4E86;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x5199;&#x4E0B;&#x6765;&#x5DEE;&#x4E0D;&#x591A;&#x7BC7;&#x5E45;&#x8FD8;&#x4F1A;&#x589E;&#x52A0;&#x4E00;&#x500D;&#xFF0C;&#x8FD9;&#x5C31;&#x4E0D;&#x8BE6;&#x7EC6;&#x8BF4;&#x660E;&#x4E86;...&#xFF08;&#x4E3B;&#x8981;&#x662F;&#x672C;&#x4EBA;&#x61D2;&#x53C8;&#x83DC;...&#xFF09;</p>
+<p>Fiber&#x7684;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x4E3B;&#x8981;&#x9636;&#x6BB5;&#xFF1A;<code>reconciliation</code>&#xFF08;&#x534F;&#x8C03;&#xFF09;/<code>render &#x548C; commit</code>&#xFF0C;</p>
+<h3 id="react-&#x7684;-reconciliation-&#x9636;&#x6BB5;-&#x7565;&#x8FC7;&#x4E00;&#x4E0B;">React &#x7684; Reconciliation &#x9636;&#x6BB5; &lt;&#x7565;&#x8FC7;&#x4E00;&#x4E0B;&gt;</h3>
+<blockquote>
+<p>Reconciliation &#x9636;&#x6BB5;&#x5728; Fiber&#x91CD;&#x6784;&#x540E; &#x548C;&#x65E7;&#x7248;&#x672C;&#x601D;&#x8DEF;&#x5DEE;&#x522B;&#x4E0D;&#x5927;, &#x53EA;&#x4E0D;&#x8FC7;&#x4E0D;&#x4F1A;&#x518D;&#x9012;&#x5F52;&#x53BB;&#x6BD4;&#x5BF9;&#x3001;&#x800C;&#x4E14;&#x4E0D;&#x4F1A;&#x9A6C;&#x4E0A;&#x63D0;&#x4EA4;&#x53D8;&#x66F4;&#x3002;</p>
+</blockquote>
+<p>&#x6D89;&#x53CA;&#x751F;&#x547D;&#x94A9;&#x5B50;</p>
+<ul>
+<li>shouldComponentUpdate</li>
+<li><del>componentWillMount</del>&#xFF08;&#x5E9F;&#x5F03;&#xFF09;</li>
+<li><del>componentWillReceiveProps</del>&#xFF08;&#x5E9F;&#x5F03;&#xFF09;</li>
+<li><del>componentWillUpdate</del>&#xFF08;&#x5E9F;&#x5F03;&#xFF09;</li>
+<li>static getDerivedStateFromProps</li>
+</ul>
+<p><code>reconciliation</code> &#x7279;&#x6027;&#xFF1A;</p>
+<ul>
+<li>&#x53EF;&#x4EE5;&#x6253;&#x65AD;&#xFF0C;&#x5728;&#x534F;&#x8C03;&#x9636;&#x6BB5;&#x5982;&#x679C;&#x65F6;&#x95F4;&#x7247;&#x7528;&#x5B8C;&#xFF0C;React&#x5C31;&#x4F1A;&#x9009;&#x62E9;&#x8BA9;&#x51FA;&#x63A7;&#x5236;&#x6743;&#x3002;&#x56E0;&#x4E3A;&#x534F;&#x8C03;&#x9636;&#x6BB5;&#x6267;&#x884C;&#x7684;&#x5DE5;&#x4F5C;&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x4EFB;&#x4F55;&#x7528;&#x6237;&#x53EF;&#x89C1;&#x7684;&#x53D8;&#x66F4;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x9636;&#x6BB5;&#x8BA9;&#x51FA;&#x63A7;&#x5236;&#x6743;&#x4E0D;&#x4F1A;&#x6709;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#x3002;</li>
+<li>&#x56E0;&#x4E3A;&#x534F;&#x8C03;&#x9636;&#x6BB5;&#x53EF;&#x80FD;&#x88AB;&#x4E2D;&#x65AD;&#x3001;&#x6062;&#x590D;&#xFF0C;&#x751A;&#x81F3;&#x91CD;&#x505A;&#xFF0C;React &#x534F;&#x8C03;&#x9636;&#x6BB5;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x94A9;&#x5B50;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x591A;&#x6B21;!, &#x4F8B;&#x5982; componentWillMount &#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x4E24;&#x6B21;&#x3002;</li>
+<li>&#x56E0;&#x6B64;&#x534F;&#x8C03;&#x9636;&#x6BB5;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x94A9;&#x5B50;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x8BE5;&#x94A9;&#x5B50;&#x5C31;&#x88AB;&#x5E9F;&#x5F03;&#x4E86;</li>
+</ul>
+<p>&#x5B8C;&#x6210; reconciliation &#x8FC7;&#x7A0B;&#x3002;&#x8FD9;&#x91CC;&#x7528;&#x7684;&#x662F; <code>&#x6DF1;&#x5EA6;&#x4F18;&#x5148;&#x641C;&#x7D22;(DFS)</code>&#xFF0C;&#x5148;&#x5904;&#x7406;&#x5B50;&#x8282;&#x70B9;&#xFF0C;&#x518D;&#x5904;&#x7406;&#x5144;&#x5F1F;&#x8282;&#x70B9;&#xFF0C;&#x76F4;&#x5230;&#x5FAA;&#x73AF;&#x5B8C;&#x6210;&#x3002;</p>
+<h3 id="react-&#x7684;-commit-&#x9636;&#x6BB5;-&#x7565;&#x8FC7;&#x4E00;&#x4E0B;">React &#x7684; Commit &#x9636;&#x6BB5; &lt;&#x7565;&#x8FC7;&#x4E00;&#x4E0B;&gt;</h3>
+<p>&#x6D89;&#x53CA;&#x751F;&#x547D;&#x94A9;&#x5B50;</p>
+<ul>
+<li>componentDidMount</li>
+<li>componentDidUpdate</li>
+<li><del>componentWillUnmount</del>&#xFF08;&#x5E9F;&#x5F03;&#xFF09;</li>
+<li>getSnapshotBeforeUpdate</li>
+</ul>
+<p><code>render</code> &#x548C; <code>commit</code>&#xFF1A;&#x4E0D;&#x80FD;&#x6682;&#x505C;&#xFF0C;&#x4F1A;&#x4E00;&#x76F4;&#x66F4;&#x65B0;&#x754C;&#x9762;&#x76F4;&#x5230;&#x5B8C;&#x6210;</p>
+<h3 id="fiber-&#x5982;&#x4F55;&#x5904;&#x7406;&#x4F18;&#x5148;&#x7EA7;&#xFF1F;">Fiber &#x5982;&#x4F55;&#x5904;&#x7406;&#x4F18;&#x5148;&#x7EA7;&#xFF1F;</h3>
+<p>&#x5BF9;&#x4E8E;UI&#x6765;&#x8BF4;&#x9700;&#x8981;&#x8003;&#x8651;&#x4EE5;&#x4E0B;&#x95EE;&#x9898;&#xFF1A;</p>
+<p>&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;state&#x66F4;&#x65B0;&#x90FD;&#x9700;&#x8981;&#x7ACB;&#x5373;&#x663E;&#x793A;&#x51FA;&#x6765;&#xFF0C;&#x6BD4;&#x5982;:</p>
+<ul>
+<li>&#x5C4F;&#x5E55;&#x4E4B;&#x5916;&#x7684;&#x90E8;&#x5206;&#x7684;&#x66F4;&#x65B0;&#x5E76;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x66F4;&#x65B0;&#x4F18;&#x5148;&#x7EA7;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;</li>
+<li>&#x7528;&#x6237;&#x8F93;&#x5165;&#x7684;&#x54CD;&#x5E94;&#x4F18;&#x5148;&#x7EA7;&#x8981;&#x6BD4;&#x901A;&#x8FC7;&#x8BF7;&#x6C42;&#x586B;&#x5145;&#x5185;&#x5BB9;&#x7684;&#x54CD;&#x5E94;&#x4F18;&#x5148;&#x7EA7;&#x66F4;&#x9AD8;</li>
+<li>&#x7406;&#x60F3;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x53EF;&#x4EE5;&#x6253;&#x65AD;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x64CD;&#x4F5C;&#x6267;&#x884C;&#x7684;</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#xFF0C;React &#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x4E8B;&#x4EF6;&#x4F18;&#x5148;&#x7EA7;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4F18;&#x5148;&#x7EA7;&#x65F6;&#x95F4;&#x7684;&#x6E90;&#x7801;</p>
+<p>[&#x6E90;&#x7801;&#x6587;&#x4EF6;]&#xFF08;<a href="https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;" target="_blank">https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;</a></p>
+<pre><code class="lang-js">  <span class="hljs-keyword">var</span> maxSigned31BitInt = <span class="hljs-number">1073741823</span>;
+
+  <span class="hljs-comment">// Times out immediately</span>
+  <span class="hljs-keyword">var</span> IMMEDIATE_PRIORITY_TIMEOUT = <span class="hljs-number">-1</span>;
+  <span class="hljs-comment">// Eventually times out</span>
+  <span class="hljs-keyword">var</span> USER_BLOCKING_PRIORITY = <span class="hljs-number">250</span>;
+  <span class="hljs-keyword">var</span> NORMAL_PRIORITY_TIMEOUT = <span class="hljs-number">5000</span>;
+  <span class="hljs-keyword">var</span> LOW_PRIORITY_TIMEOUT = <span class="hljs-number">10000</span>;
+  <span class="hljs-comment">// Never times out</span>
+  <span class="hljs-keyword">var</span> IDLE_PRIORITY = maxSigned31BitInt;
+</code></pre>
+<p>&#x5F53;&#x6709;&#x66F4;&#x65B0;&#x4EFB;&#x52A1;&#x6765;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x4F1A;&#x9A6C;&#x4E0A;&#x53BB;&#x505A; Diff &#x64CD;&#x4F5C;&#xFF0C;&#x800C;&#x662F;&#x5148;&#x628A;&#x5F53;&#x524D;&#x7684;&#x66F4;&#x65B0;&#x9001;&#x5165;&#x4E00;&#x4E2A; Update Queue &#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x4EA4;&#x7ED9; <code>Scheduler</code> &#x53BB;&#x5904;&#x7406;&#xFF0C;Scheduler &#x4F1A;&#x6839;&#x636E;&#x5F53;&#x524D;&#x4E3B;&#x7EBF;&#x7A0B;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x53BB;&#x5904;&#x7406;&#x8FD9;&#x6B21; Update&#x3002;</p>
+<p>&#x4E0D;&#x7BA1;&#x6267;&#x884C;&#x7684;&#x8FC7;&#x7A0B;&#x600E;&#x6837;&#x62C6;&#x5206;&#x3001;&#x4EE5;&#x4EC0;&#x4E48;&#x987A;&#x5E8F;&#x6267;&#x884C;&#xFF0C;Fiber &#x90FD;&#x4F1A;&#x4FDD;&#x8BC1;&#x72B6;&#x6001;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x548C;&#x89C6;&#x56FE;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x3002;</p>
+<p>&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#x76F8;&#x540C;&#x5728;&#x4E00;&#x5B9A;&#x65F6;&#x95F4;&#x5185;&#x89E6;&#x53D1;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x4E00;&#x6837;&#x7684;&#x4EFB;&#x52A1;&#x5230;&#x671F;&#x65F6;&#x95F4;&#x76F8;&#x540C;&#xFF1F; React &#x901A;&#x8FC7; <code>ceiling</code> &#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x3002;&#x3002;&#x672C;&#x83DC;&#x6CA1;&#x4F7F;&#x7528;&#x8FC7; <code>|</code> &#x8BED;&#x6CD5;...</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x5904;&#x7406;&#x5230;&#x671F;&#x65F6;&#x95F4;&#x7684; <code>ceiling</code> &#x6E90;&#x7801;</p>
+<p>[&#x6E90;&#x7801;&#x6587;&#x4EF6;]&#xFF08;<a href="https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;" target="_blank">https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ceiling</span>(<span class="hljs-params">num, precision</span>) </span>{
+  <span class="hljs-keyword">return</span> (((num / precision) | <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>) * precision;
+}
+</code></pre>
+<p>&#x90A3;&#x4E48;&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x65F6;&#x95F4;&#x4E00;&#x81F4;&#x6027;&#xFF1F;&#x8BF7;&#x770B;&#x4E0B;&#x6587;&#x3002;</p>
+<h3 id="fiber-&#x5982;&#x4F55;&#x8C03;&#x5EA6;&#xFF1F;">Fiber &#x5982;&#x4F55;&#x8C03;&#x5EA6;&#xFF1F;</h3>
+<p>&#x9996;&#x5148;&#x8981;&#x627E;&#x5230;&#x8C03;&#x5EA6;&#x5165;&#x53E3;&#x5730;&#x5740; <code>scheduleUpdateOnFiber</code>&#xFF0C;</p>
+<p>&#x6BCF;&#x4E00;&#x4E2A;root&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x8C03;&#x5EA6;&#x4EFB;&#x52A1;&#xFF0C;&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x786E;&#x4FDD;&#x5230;&#x671F;&#x65F6;&#x95F4;&#x4E0E;&#x4E0B;&#x4E00;&#x7EA7;&#x522B;&#x4EFB;&#x52A1;&#x7684;&#x76F8;&#x540C;&#xFF08;&#x6240;&#x4EE5;&#x7528;&#x4E0A;&#x6587;&#x63D0;&#x5230;&#x7684; <code>ceiling</code> &#x65B9;&#x6CD5;&#x6765;&#x63A7;&#x5236;&#x5230;&#x671F;&#x65F6;&#x95F4;&#xFF09;</p>
+<p><a href="https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scheduleUpdateOnFiber</span>(<span class="hljs-params">
+  fiber: Fiber,
+  expirationTime: ExpirationTime,
+</span>) </span>{
+  checkForNestedUpdates();
+  warnAboutRenderPhaseUpdatesInDEV(fiber);
+
+  <span class="hljs-comment">// &#x8C03;&#x7528;markUpdateTimeFromFiberToRoot&#xFF0C;&#x66F4;&#x65B0; fiber &#x8282;&#x70B9;&#x7684; expirationTime</span>
+  <span class="hljs-comment">// ps &#x6B64;&#x65F6;&#x7684;fiber&#x6811;&#x53EA;&#x6709;&#x4E00;&#x4E2A;root fiber&#x3002;</span>
+  <span class="hljs-keyword">const</span> root = markUpdateTimeFromFiberToRoot(fiber, expirationTime);
+  <span class="hljs-keyword">if</span> (root === <span class="hljs-literal">null</span>) {
+    warnAboutUpdateOnUnmountedFiberInDEV(fiber);
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> computeExpirationForFiber also reads the priority. Pass the</span>
+  <span class="hljs-comment">// priority as an argument to that function and this one.</span>
+  <span class="hljs-comment">// &#x8FD8;&#x53EA;&#x662F;TODO</span>
+  <span class="hljs-comment">// computeExpirationForFiber&#x8FD8;&#x4F1A;&#x8BFB;&#x53D6;&#x4F18;&#x5148;&#x7EA7;&#x3002;</span>
+  <span class="hljs-comment">// &#x5C06;&#x4F18;&#x5148;&#x7EA7;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9;&#x8BE5;&#x51FD;&#x6570;&#x548C;&#x8BE5;&#x51FD;&#x6570;&#x3002;</span>
+  <span class="hljs-keyword">const</span> priorityLevel = getCurrentPriorityLevel();
+
+  <span class="hljs-keyword">if</span> (expirationTime === Sync) {
+    <span class="hljs-keyword">if</span> (
+      <span class="hljs-comment">// Check if we&apos;re inside unbatchedUpdates</span>
+      <span class="hljs-comment">// &#x68C0;&#x67E5;&#x662F;&#x5426;&#x5728;&#x672A;&#x6279;&#x5904;&#x7406;&#x7684;&#x66F4;&#x65B0;&#x5185;</span>
+      (executionContext &amp; LegacyUnbatchedContext) !== NoContext &amp;&amp;
+      <span class="hljs-comment">// Check if we&apos;re not already rendering</span>
+      <span class="hljs-comment">// &#x68C0;&#x67E5;&#x662F;&#x5426;&#x5C1A;&#x672A;&#x6E32;&#x67D3;</span>
+      (executionContext &amp; (RenderContext | CommitContext)) === NoContext
+    ) {
+      <span class="hljs-comment">// Register pending interactions on the root to avoid losing traced interaction data.</span>
+      <span class="hljs-comment">// &#x5728;&#x6839;&#x4E0A;&#x6CE8;&#x518C;&#x5F85;&#x5904;&#x7406;&#x7684;&#x4EA4;&#x4E92;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x4E22;&#x5931;&#x8DDF;&#x8E2A;&#x7684;&#x4EA4;&#x4E92;&#x6570;&#x636E;&#x3002;</span>
+      schedulePendingInteractions(root, expirationTime);
+
+      <span class="hljs-comment">// This is a legacy edge case. The initial mount of a ReactDOM.render-ed</span>
+      <span class="hljs-comment">// root inside of batchedUpdates should be synchronous, but layout updates</span>
+      <span class="hljs-comment">// should be deferred until the end of the batch.</span>
+      performSyncWorkOnRoot(root);
+    } <span class="hljs-keyword">else</span> {
+      ensureRootIsScheduled(root);
+      schedulePendingInteractions(root, expirationTime);
+      <span class="hljs-keyword">if</span> (executionContext === NoContext) {
+        <span class="hljs-comment">// Flush the synchronous work now, unless we&apos;re already working or inside</span>
+        <span class="hljs-comment">// a batch. This is intentionally inside scheduleUpdateOnFiber instead of</span>
+        <span class="hljs-comment">// scheduleCallbackForFiber to preserve the ability to schedule a callback</span>
+        <span class="hljs-comment">// without immediately flushing it. We only do this for user-initiated</span>
+        <span class="hljs-comment">// updates, to preserve historical behavior of legacy mode.</span>
+        <span class="hljs-comment">// &#x63A8;&#x5165;&#x8C03;&#x5EA6;&#x4EFB;&#x52A1;&#x961F;&#x5217;</span>
+        flushSyncCallbackQueue();
+      }
+    }
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Schedule a discrete update but only if it&apos;s not Sync.</span>
+    <span class="hljs-keyword">if</span> (
+      (executionContext &amp; DiscreteEventContext) !== NoContext &amp;&amp;
+      <span class="hljs-comment">// Only updates at user-blocking priority or greater are considered</span>
+      <span class="hljs-comment">// discrete, even inside a discrete event.</span>
+      (priorityLevel === UserBlockingPriority ||
+        priorityLevel === ImmediatePriority)
+    ) {
+      <span class="hljs-comment">// This is the result of a discrete event. Track the lowest priority</span>
+      <span class="hljs-comment">// discrete update per root so we can flush them early, if needed.</span>
+      <span class="hljs-keyword">if</span> (rootsWithPendingDiscreteUpdates === <span class="hljs-literal">null</span>) {
+        rootsWithPendingDiscreteUpdates = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[root, expirationTime]]);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">const</span> lastDiscreteTime = rootsWithPendingDiscreteUpdates.get(root);
+        <span class="hljs-keyword">if</span> (
+          lastDiscreteTime === <span class="hljs-literal">undefined</span> ||
+          lastDiscreteTime &gt; expirationTime
+        ) {
+          rootsWithPendingDiscreteUpdates.set(root, expirationTime);
+        }
+      }
+    }
+    <span class="hljs-comment">// Schedule other updates after in case the callback is sync.</span>
+    ensureRootIsScheduled(root);
+    schedulePendingInteractions(root, expirationTime);
+  }
+}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x6E90;&#x7801;&#x4E3B;&#x8981;&#x505A;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x4EF6;&#x4E8B;</p>
+<ol>
+<li>&#x8C03;&#x7528; <code>markUpdateTimeFromFiberToRoot</code> &#x66F4;&#x65B0; Fiber &#x8282;&#x70B9;&#x7684; <code>expirationTime</code></li>
+<li><code>ensureRootIsScheduled</code>&#xFF08;&#x66F4;&#x65B0;&#x91CD;&#x70B9;&#xFF09;</li>
+<li><code>schedulePendingInteractions</code> &#x5B9E;&#x9645;&#x4E0A;&#x4F1A;&#x8C03;&#x7528; <code>scheduleInteractions</code> <ul>
+<li><code>scheduleInteractions</code> &#x4F1A;&#x5229;&#x7528;FiberRoot&#x7684; <code>pendingInteractionMap</code> &#x5C5E;&#x6027;&#x548C;&#x4E0D;&#x540C;&#x7684; <code>expirationTime</code>&#xFF0C;&#x83B7;&#x53D6;&#x6BCF;&#x6B21;schedule&#x6240;&#x9700;&#x7684;update&#x4EFB;&#x52A1;&#x7684;&#x96C6;&#x5408;&#xFF0C;&#x8BB0;&#x5F55;&#x5B83;&#x4EEC;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5E76;&#x68C0;&#x6D4B;&#x8FD9;&#x4E9B;&#x4EFB;&#x52A1;&#x662F;&#x5426;&#x4F1A;&#x51FA;&#x9519;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<p>&#x66F4;&#x65B0;&#x7684;&#x91CD;&#x70B9;&#x5728;&#x4E8E; <code>scheduleUpdateOnFiber</code> &#x6BCF;&#x4E00;&#x6B21;&#x66F4;&#x65B0;&#x90FD;&#x4F1A;&#x8C03;&#x7528; <code>function ensureRootIsScheduled(root: FiberRoot)</code></p>
+<p>&#x4E0B;&#x9762;&#x662F; <code>ensureRootIsScheduled</code> &#x7684;&#x6E90;&#x7801;</p>
+<p><a href="https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ensureRootIsScheduled</span>(<span class="hljs-params">root: FiberRoot</span>) </span>{
+  <span class="hljs-keyword">const</span> lastExpiredTime = root.lastExpiredTime;
+  <span class="hljs-keyword">if</span> (lastExpiredTime !== NoWork) {
+    <span class="hljs-comment">// Special case: Expired work should flush synchronously.</span>
+    root.callbackExpirationTime = Sync;
+    root.callbackPriority_old = ImmediatePriority;
+    root.callbackNode = scheduleSyncCallback(
+      performSyncWorkOnRoot.bind(<span class="hljs-literal">null</span>, root),
+    );
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-keyword">const</span> expirationTime = getNextRootExpirationTimeToWorkOn(root);
+  <span class="hljs-keyword">const</span> existingCallbackNode = root.callbackNode;
+  <span class="hljs-keyword">if</span> (expirationTime === NoWork) {
+    <span class="hljs-comment">// There&apos;s nothing to work on.</span>
+    <span class="hljs-keyword">if</span> (existingCallbackNode !== <span class="hljs-literal">null</span>) {
+      root.callbackNode = <span class="hljs-literal">null</span>;
+      root.callbackExpirationTime = NoWork;
+      root.callbackPriority_old = NoPriority;
+    }
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> If this is an update, we already read the current time. Pass the</span>
+  <span class="hljs-comment">// time as an argument.</span>
+  <span class="hljs-keyword">const</span> currentTime = requestCurrentTimeForUpdate();
+  <span class="hljs-keyword">const</span> priorityLevel = inferPriorityFromExpirationTime(
+    currentTime,
+    expirationTime,
+  );
+
+  <span class="hljs-comment">// If there&apos;s an existing render task, confirm it has the correct priority and</span>
+  <span class="hljs-comment">// expiration time. Otherwise, we&apos;ll cancel it and schedule a new one.</span>
+  <span class="hljs-keyword">if</span> (existingCallbackNode !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">const</span> existingCallbackPriority = root.callbackPriority_old;
+    <span class="hljs-keyword">const</span> existingCallbackExpirationTime = root.callbackExpirationTime;
+    <span class="hljs-keyword">if</span> (
+      <span class="hljs-comment">// Callback must have the exact same expiration time.</span>
+      existingCallbackExpirationTime === expirationTime &amp;&amp;
+      <span class="hljs-comment">// Callback must have greater or equal priority.</span>
+      existingCallbackPriority &gt;= priorityLevel
+    ) {
+      <span class="hljs-comment">// Existing callback is sufficient.</span>
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-comment">// Need to schedule a new task.</span>
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Instead of scheduling a new task, we should be able to change the</span>
+    <span class="hljs-comment">// priority of the existing one.</span>
+    cancelCallback(existingCallbackNode);
+  }
+
+  root.callbackExpirationTime = expirationTime;
+  root.callbackPriority_old = priorityLevel;
+
+  <span class="hljs-keyword">let</span> callbackNode;
+  <span class="hljs-keyword">if</span> (expirationTime === Sync) {
+    <span class="hljs-comment">// Sync React callbacks are scheduled on a special internal queue</span>
+    callbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(<span class="hljs-literal">null</span>, root));
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (disableSchedulerTimeoutBasedOnReactExpirationTime) {
+    callbackNode = scheduleCallback(
+      priorityLevel,
+      performConcurrentWorkOnRoot.bind(<span class="hljs-literal">null</span>, root),
+    );
+  } <span class="hljs-keyword">else</span> {
+    callbackNode = scheduleCallback(
+      priorityLevel,
+      performConcurrentWorkOnRoot.bind(<span class="hljs-literal">null</span>, root),
+      <span class="hljs-comment">// Compute a task timeout based on the expiration time. This also affects</span>
+      <span class="hljs-comment">// ordering because tasks are processed in timeout order.</span>
+      {timeout: expirationTimeToMs(expirationTime) - now()},
+    );
+  }
+
+  root.callbackNode = callbackNode;
+}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x6E90;&#x7801; <code>ensureRootIsScheduled</code> &#x4E3B;&#x8981;&#x662F;&#x6839;&#x636E;&#x540C;&#x6B65;/&#x5F02;&#x6B65;&#x72B6;&#x6001;&#x505A;&#x4E0D;&#x540C;&#x7684; push &#x529F;&#x80FD;&#x3002;</p>
+<p>&#x540C;&#x6B65;&#x8C03;&#x5EA6; <code>function scheduleSyncCallback(callback: SchedulerCallback)</code> &#xFF1A;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x961F;&#x5217;&#x4E0D;&#x4E3A;&#x7A7A;&#x5C31;&#x63A8;&#x5165;&#x540C;&#x6B65;&#x961F;&#x5217;&#xFF08;<code>syncQueue.push(callback)</code>&#xFF09;</li>
+<li>&#x5982;&#x679C;&#x4E3A;&#x7A7A;&#x5C31;&#x7ACB;&#x5373;&#x63A8;&#x5165; <strong>&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x961F;&#x5217;</strong>(<code>Scheduler_scheduleCallback</code>)</li>
+<li>&#x4F1A;&#x5C06; <code>performSyncWorkOnRoot</code> &#x4F5C;&#x4E3A; <code>SchedulerCallback</code></li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x662F; <code>scheduleSyncCallback</code> &#x6E90;&#x7801;&#x5185;&#x5BB9;</p>
+<p><a href="https://github.com/facebook/react/blob/4c6470cb3b821f3664955290cd4c4c7ac0de733a/packages/react-reconciler/src/SchedulerWithReactIntegration.old.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scheduleSyncCallback</span>(<span class="hljs-params">callback: SchedulerCallback</span>) </span>{
+  <span class="hljs-comment">// Push this callback into an internal queue. We&apos;ll flush these either in</span>
+  <span class="hljs-comment">// the next tick, or earlier if something calls `flushSyncCallbackQueue`.</span>
+  <span class="hljs-keyword">if</span> (syncQueue === <span class="hljs-literal">null</span>) {
+    syncQueue = [callback];
+    <span class="hljs-comment">// Flush the queue in the next tick, at the earliest.</span>
+    immediateQueueCallbackNode = Scheduler_scheduleCallback(
+      Scheduler_ImmediatePriority,
+      flushSyncCallbackQueueImpl,
+    );
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Push onto existing queue. Don&apos;t need to schedule a callback because</span>
+    <span class="hljs-comment">// we already scheduled one when we created the queue.</span>
+    syncQueue.push(callback);
+  }
+  <span class="hljs-keyword">return</span> fakeCallbackNode;
+}
+</code></pre>
+<p>&#x5F02;&#x6B65;&#x8C03;&#x5EA6;&#xFF0C;&#x5F02;&#x6B65;&#x7684;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x5F02;&#x6B65;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x8C03;&#x5EA6;&#x961F;&#x5217;(<code>Scheduler_scheduleCallback</code>)&#xFF0C;&#x4F1A;&#x5C06; <code>performConcurrentWorkOnRoot</code> &#x4F5C;&#x4E3A; <code>SchedulerCallback</code></p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scheduleCallback</span>(<span class="hljs-params">
+  reactPriorityLevel: ReactPriorityLevel,
+  callback: SchedulerCallback,
+  options: SchedulerCallbackOptions | void | null,
+</span>) </span>{
+  <span class="hljs-keyword">const</span> priorityLevel = reactPriorityToSchedulerPriority(reactPriorityLevel);
+  <span class="hljs-keyword">return</span> Scheduler_scheduleCallback(priorityLevel, callback, options);
+}
+</code></pre>
+<p>&#x4E0D;&#x7BA1;&#x540C;&#x6B65;&#x8C03;&#x5EA6;&#x8FD8;&#x662F;&#x5F02;&#x6B65;&#x8C03;&#x5EA6;&#xFF0C;&#x90FD;&#x4F1A;&#x7ECF;&#x8FC7; <code>Scheduler_scheduleCallback</code> &#x4E5F;&#x5C31;&#x662F;&#x8C03;&#x5EA6;&#x7684;&#x6838;&#x5FC3;&#x65B9;&#x6CD5; <code>function unstable_scheduleCallback(priorityLevel, callback, options)</code>&#xFF0C;&#x5B83;&#x4EEC;&#x4F1A;&#x6709;&#x5404;&#x81EA;&#x7684; <code>SchedulerCallback</code></p>
+<p>&#x5C0F;&#x63D0;&#x793A;&#xFF1A;&#x7531;&#x4E8E;&#x4E0B;&#x9762;&#x5F88;&#x591A;&#x4EE3;&#x7801;&#x4E2D;&#x4F1A;&#x4F7F;&#x7528; <code>peek</code>&#xFF0C;&#x5148;&#x63D2;&#x4E00;&#x6BB5; <code>peek</code> &#x5B9E;&#x73B0;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8FD4;&#x56DE;&#x6570;&#x7EC4;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A; &#x6216;&#x8005; null</p>
+<p><a href="https://github.com/facebook/react/blob/e706721490e50d0bd6af2cd933dbf857fd8b61ed/packages/scheduler/src/SchedulerMinHeap.js" target="_blank">peek &#x76F8;&#x5173;&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js">  <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">peek</span>(<span class="hljs-params">heap: Heap</span>): <span class="hljs-title">Node</span> | <span class="hljs-title">null</span> </span>{
+    <span class="hljs-keyword">const</span> first = heap[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">return</span> first === <span class="hljs-literal">undefined</span> ? <span class="hljs-literal">null</span> : first;
+  }
+</code></pre>
+<p>&#x4E0B;&#x9762;&#x662F; <code>Scheduler_scheduleCallback</code> &#x76F8;&#x5173;&#x6E90;&#x7801;</p>
+<p>[&#x6E90;&#x7801;&#x6587;&#x4EF6;]&#xFF08;<a href="https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;" target="_blank">https://github.com/facebook/react/blob/a152827ef697c55f89926f9b6b7aa436f1c0504e/packages/scheduler/src/Scheduler.js&#xFF09;</a></p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x5C06;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x961F;&#x5217;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unstable_scheduleCallback</span>(<span class="hljs-params">priorityLevel, callback, options</span>) </span>{
+  <span class="hljs-keyword">var</span> currentTime = getCurrentTime();
+
+  <span class="hljs-keyword">var</span> startTime;
+  <span class="hljs-keyword">var</span> timeout;
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> options === <span class="hljs-string">&apos;object&apos;</span> &amp;&amp; options !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">var</span> delay = options.delay;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> delay === <span class="hljs-string">&apos;number&apos;</span> &amp;&amp; delay &gt; <span class="hljs-number">0</span>) {
+      startTime = currentTime + delay;
+    } <span class="hljs-keyword">else</span> {
+      startTime = currentTime;
+    } 
+    timeout =
+      <span class="hljs-keyword">typeof</span> options.timeout === <span class="hljs-string">&apos;number&apos;</span>
+        ? options.timeout
+        : timeoutForPriorityLevel(priorityLevel);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// &#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x7B97;&#x51FA;&#x4E0D;&#x540C;&#x7684;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</span>
+    timeout = timeoutForPriorityLevel(priorityLevel);
+    startTime = currentTime;
+  }
+
+   <span class="hljs-comment">// &#x5B9A;&#x4E49;&#x65B0;&#x7684;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</span>
+  <span class="hljs-keyword">var</span> expirationTime = startTime + timeout;
+
+  <span class="hljs-comment">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x4EFB;&#x52A1;</span>
+  <span class="hljs-keyword">var</span> newTask = {
+    id: taskIdCounter++,
+    callback,
+    priorityLevel,
+    startTime,
+    expirationTime,
+    sortIndex: <span class="hljs-number">-1</span>,
+  };
+  <span class="hljs-keyword">if</span> (enableProfiling) {
+    newTask.isQueued = <span class="hljs-literal">false</span>;
+  }
+
+  <span class="hljs-keyword">if</span> (startTime &gt; currentTime) {
+    <span class="hljs-comment">// This is a delayed task.</span>
+    newTask.sortIndex = startTime;
+
+    <span class="hljs-comment">// &#x5C06;&#x8D85;&#x65F6;&#x7684;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x8D85;&#x65F6;&#x961F;&#x5217;</span>
+    push(timerQueue, newTask);
+    <span class="hljs-keyword">if</span> (peek(taskQueue) === <span class="hljs-literal">null</span> &amp;&amp; newTask === peek(timerQueue)) {
+      <span class="hljs-comment">// All tasks are delayed, and this is the task with the earliest delay.</span>
+      <span class="hljs-comment">// &#x5F53;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x5EF6;&#x8FDF;&#x65F6;&#xFF0C;&#x800C;&#x4E14;&#x8BE5;&#x4EFB;&#x52A1;&#x662F;&#x6700;&#x65E9;&#x7684;&#x4EFB;&#x52A1;</span>
+      <span class="hljs-keyword">if</span> (isHostTimeoutScheduled) {
+        <span class="hljs-comment">// Cancel an existing timeout.</span>
+        cancelHostTimeout();
+      } <span class="hljs-keyword">else</span> {
+        isHostTimeoutScheduled = <span class="hljs-literal">true</span>;
+      }
+      <span class="hljs-comment">// Schedule a timeout.</span>
+      requestHostTimeout(handleTimeout, startTime - currentTime);
+    }
+  } <span class="hljs-keyword">else</span> {
+    newTask.sortIndex = expirationTime;
+
+    <span class="hljs-comment">// &#x5C06;&#x65B0;&#x7684;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x4EFB;&#x52A1;&#x961F;&#x5217;</span>
+    push(taskQueue, newTask);
+    <span class="hljs-keyword">if</span> (enableProfiling) {
+      markTaskStart(newTask, currentTime);
+      newTask.isQueued = <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-comment">// Schedule a host callback, if needed. If we&apos;re already performing work,</span>
+    <span class="hljs-comment">// wait until the next time we yield.</span>
+    <span class="hljs-comment">// &#x6267;&#x884C;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF0C;&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x518D;&#x5DE5;&#x4F5C;&#x9700;&#x8981;&#x7B49;&#x5F85;&#x4E00;&#x6B21;&#x56DE;&#x8C03;&#x7684;&#x5B8C;&#x6210;</span>
+    <span class="hljs-keyword">if</span> (!isHostCallbackScheduled &amp;&amp; !isPerformingWork) {
+      isHostCallbackScheduled = <span class="hljs-literal">true</span>;
+        (flushWork);
+    }
+  }
+
+  <span class="hljs-keyword">return</span> newTask;
+}
+</code></pre>
+<p>&#x5C0F;&#x63D0;&#x793A;: <code>markTaskStart</code> &#x4E3B;&#x8981;&#x8D77;&#x5230;&#x8BB0;&#x5F55;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x662F; <code>markTaskCompleted</code></p>
+<p><a href="https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/SchedulerProfiling.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markTaskStart</span>(<span class="hljs-params">
+  task: {
+    id: number,
+    priorityLevel: PriorityLevel,
+    ...
+  },
+  ms: number,
+</span>) </span>{
+  <span class="hljs-keyword">if</span> (enableProfiling) {
+    profilingState[QUEUE_SIZE]++;
+
+    <span class="hljs-keyword">if</span> (eventLog !== <span class="hljs-literal">null</span>) {
+      <span class="hljs-comment">// performance.now returns a float, representing milliseconds. When the</span>
+      <span class="hljs-comment">// event is logged, it&apos;s coerced to an int. Convert to microseconds to</span>
+      <span class="hljs-comment">// maintain extra degrees of precision.</span>
+      logEvent([TaskStartEvent, ms * <span class="hljs-number">1000</span>, task.id, task.priorityLevel]);
+    }
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markTaskCompleted</span>(<span class="hljs-params">
+  task: {
+    id: number,
+    priorityLevel: PriorityLevel,
+    ...
+  },
+  ms: number,
+</span>) </span>{
+  <span class="hljs-keyword">if</span> (enableProfiling) {
+    profilingState[PRIORITY] = NoPriority;
+    profilingState[CURRENT_TASK_ID] = <span class="hljs-number">0</span>;
+    profilingState[QUEUE_SIZE]--;
+
+    <span class="hljs-keyword">if</span> (eventLog !== <span class="hljs-literal">null</span>) {
+      logEvent([TaskCompleteEvent, ms * <span class="hljs-number">1000</span>, task.id]);
+    }
+  }
+}
+</code></pre>
+<p><code>unstable_scheduleCallback</code> &#x4E3B;&#x8981;&#x505A;&#x4E86;&#x51E0;&#x4EF6;&#x4E8B;</p>
+<ul>
+<li>&#x901A;&#x8FC7; <code>options.delay</code> &#x548C; <code>options.timeout</code> &#x52A0;&#x4E0A; <code>timeoutForPriorityLevel()</code> &#x6765;&#x83B7;&#x5F97; <code>newTask</code> &#x7684; <code>expirationTime</code></li>
+<li>&#x5982;&#x679C;&#x4EFB;&#x52A1;&#x5DF2;&#x8FC7;&#x671F;<ul>
+<li>&#x5C06;&#x8D85;&#x65F6;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x8D85;&#x65F6;&#x961F;&#x5217;</li>
+<li>&#x5982;&#x679C;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x5EF6;&#x8FDF;&#x65F6;&#xFF0C;&#x800C;&#x4E14;&#x8BE5;&#x4EFB;&#x52A1;&#x662F;&#x6700;&#x65E9;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x4F1A;&#x8C03;&#x7528; <code>cancelHostTimeout</code></li>
+<li>&#x8C03;&#x7528; <code>requestHostTimeout</code></li>
+</ul>
+</li>
+<li>&#x5C06;&#x65B0;&#x4EFB;&#x52A1;&#x63A8;&#x5165;&#x4EFB;&#x52A1;&#x961F;&#x5217;</li>
+</ul>
+<p><a href="https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/Scheduler.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<p>&#x8865;&#x4E0A; <code>cancelHostTimeout</code> &#x6E90;&#x7801;</p>
+<pre><code class="lang-js">  cancelHostTimeout = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    clearTimeout(_timeoutID);
+  };
+</code></pre>
+<p>&#x518D;&#x8865;&#x4E0A; <code>requestHostTimeout</code> &#x6E90;&#x7801;</p>
+<pre><code class="lang-js">  requestHostTimeout = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb, ms</span>) </span>{
+    _timeoutID = setTimeout(cb, ms);
+  };
+</code></pre>
+<p>&#x7136;&#x540E; <code>requestHostTimeout</code> &#x7684; <code>cb</code> &#x4E5F;&#x5C31;&#x662F; <code>handleTimeout</code> &#x662F;&#x5565;&#x5462;&#xFF1F;</p>
+<pre><code class="lang-js">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleTimeout</span>(<span class="hljs-params">currentTime</span>) </span>{
+    isHostTimeoutScheduled = <span class="hljs-literal">false</span>;
+    advanceTimers(currentTime);
+
+    <span class="hljs-keyword">if</span> (!isHostCallbackScheduled) {
+      <span class="hljs-keyword">if</span> (peek(taskQueue) !== <span class="hljs-literal">null</span>) {
+        isHostCallbackScheduled = <span class="hljs-literal">true</span>;
+        requestHostCallback(flushWork);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">const</span> firstTimer = peek(timerQueue);
+        <span class="hljs-keyword">if</span> (firstTimer !== <span class="hljs-literal">null</span>) {
+          requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+        }
+      }
+    }
+  }
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x5B83;&#x4E3B;&#x8981;&#x505A;&#x4E86;&#x4E0B;&#x9762;&#x51E0;&#x4EF6;&#x4E8B;</p>
+<ol>
+<li>&#x8C03;&#x7528; <code>advanceTimers</code> &#x68C0;&#x67E5;&#x4E0D;&#x518D;&#x5EF6;&#x8FDF;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x6DFB;&#x52A0;&#x5230;&#x961F;&#x5217;&#x4E2D;&#x3002;</li>
+</ol>
+<p>&#x4E0B;&#x9762;&#x662F; <code>advanceTimers</code> &#x6E90;&#x7801;</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">advanceTimers</span>(<span class="hljs-params">currentTime</span>) </span>{
+  <span class="hljs-comment">// Check for tasks that are no longer delayed and add them to the queue.</span>
+  <span class="hljs-keyword">let</span> timer = peek(timerQueue);
+  <span class="hljs-keyword">while</span> (timer !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">if</span> (timer.callback === <span class="hljs-literal">null</span>) {
+      <span class="hljs-comment">// Timer was cancelled.</span>
+      pop(timerQueue);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (timer.startTime &lt;= currentTime) {
+      <span class="hljs-comment">// Timer fired. Transfer to the task queue.</span>
+      pop(timerQueue);
+      timer.sortIndex = timer.expirationTime;
+      push(taskQueue, timer);
+      <span class="hljs-keyword">if</span> (enableProfiling) {
+        markTaskStart(timer, currentTime);
+        timer.isQueued = <span class="hljs-literal">true</span>;
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// Remaining timers are pending.</span>
+      <span class="hljs-keyword">return</span>;
+    }
+    timer = peek(timerQueue);
+  }
+}
+</code></pre>
+<ol>
+<li>&#x8C03;&#x7528; <code>requestHostCallback</code> &#x901A;&#x8FC7; <code>MessageChannel</code> &#x7684;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#x6765;&#x5F00;&#x542F;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6; <code>performWorkUntilDeadline</code></li>
+</ol>
+<p><code>requestHostCallback</code> &#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7279;&#x522B;&#x91CD;&#x8981;</p>
+<p><a href="https://github.com/facebook/react/blob/3e94bce765d355d74f6a60feb4addb6d196e3482/packages/scheduler/src/forks/SchedulerHostConfig.default.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-comment">// &#x901A;&#x8FC7;onmessage &#x8C03;&#x7528; performWorkUntilDeadline &#x65B9;&#x6CD5;</span>
+channel.port1.onmessage = performWorkUntilDeadline;
+
+<span class="hljs-comment">// postMessage</span>
+requestHostCallback = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
+  scheduledHostCallback = callback;
+  <span class="hljs-keyword">if</span> (!isMessageLoopRunning) {
+    isMessageLoopRunning = <span class="hljs-literal">true</span>;
+    port.postMessage(<span class="hljs-literal">null</span>);
+  }
+};
+</code></pre>
+<p>&#x7136;&#x540E;&#x662F;&#x540C;&#x6587;&#x4EF6;&#x4E0B;&#x7684; <code>performWorkUntilDeadline</code>&#xFF0C;&#x8C03;&#x7528;&#x4E86; <code>scheduledHostCallback</code>, &#x4E5F;&#x5C31;&#x662F;&#x4E4B;&#x524D;&#x4F20;&#x5165;&#x7684; <code>flushWork</code> </p>
+<pre><code class="lang-js">
+<span class="hljs-keyword">const</span> performWorkUntilDeadline = () =&gt; {
+  <span class="hljs-keyword">if</span> (scheduledHostCallback !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">const</span> currentTime = getCurrentTime();
+    <span class="hljs-comment">// Yield after `yieldInterval` ms, regardless of where we are in the vsync</span>
+    <span class="hljs-comment">// cycle. This means there&apos;s always time remaining at the beginning of</span>
+    <span class="hljs-comment">// the message event.</span>
+    deadline = currentTime + yieldInterval;
+    <span class="hljs-keyword">const</span> hasTimeRemaining = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> hasMoreWork = scheduledHostCallback(
+        hasTimeRemaining,
+        currentTime,
+      );
+      <span class="hljs-keyword">if</span> (!hasMoreWork) {
+        isMessageLoopRunning = <span class="hljs-literal">false</span>;
+        scheduledHostCallback = <span class="hljs-literal">null</span>;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// If there&apos;s more work, schedule the next message event at the end</span>
+        <span class="hljs-comment">// of the preceding one.</span>
+        port.postMessage(<span class="hljs-literal">null</span>);
+      }
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-comment">// If a scheduler task throws, exit the current browser task so the</span>
+      <span class="hljs-comment">// error can be observed.</span>
+      port.postMessage(<span class="hljs-literal">null</span>);
+      <span class="hljs-keyword">throw</span> error;
+    }
+  } <span class="hljs-keyword">else</span> {
+    isMessageLoopRunning = <span class="hljs-literal">false</span>;
+  }
+  <span class="hljs-comment">// Yielding to the browser will give it a chance to paint, so we can</span>
+  <span class="hljs-comment">// reset this.</span>
+  needsPaint = <span class="hljs-literal">false</span>;
+};
+</code></pre>
+<p><code>flushWork</code> &#x4E3B;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x8C03;&#x7528; <code>workLoop</code> &#x53BB;&#x5FAA;&#x73AF;&#x6267;&#x884C;&#x6240;&#x6709;&#x7684;&#x4EFB;&#x52A1;</p>
+<p><a href="https://github.com/facebook/react/blob/2325375f4faaa77db6671e914da5220a879a1da8/packages/scheduler/src/Scheduler.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flushWork</span>(<span class="hljs-params">hasTimeRemaining, initialTime</span>) </span>{
+  <span class="hljs-keyword">if</span> (enableProfiling) {
+    markSchedulerUnsuspended(initialTime);
+  }
+
+  <span class="hljs-comment">// We&apos;ll need a host callback the next time work is scheduled.</span>
+  isHostCallbackScheduled = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">if</span> (isHostTimeoutScheduled) {
+    <span class="hljs-comment">// We scheduled a timeout but it&apos;s no longer needed. Cancel it.</span>
+    isHostTimeoutScheduled = <span class="hljs-literal">false</span>;
+    cancelHostTimeout();
+  }
+
+  isPerformingWork = <span class="hljs-literal">true</span>;
+  <span class="hljs-keyword">const</span> previousPriorityLevel = currentPriorityLevel;
+  <span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">if</span> (enableProfiling) {
+      <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> workLoop(hasTimeRemaining, initialTime);
+      } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-keyword">if</span> (currentTask !== <span class="hljs-literal">null</span>) {
+          <span class="hljs-keyword">const</span> currentTime = getCurrentTime();
+          markTaskErrored(currentTask, currentTime);
+          currentTask.isQueued = <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">throw</span> error;
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-comment">// No catch in prod codepath.</span>
+      <span class="hljs-keyword">return</span> workLoop(hasTimeRemaining, initialTime);
+    }
+  } <span class="hljs-keyword">finally</span> {
+    currentTask = <span class="hljs-literal">null</span>;
+    currentPriorityLevel = previousPriorityLevel;
+    isPerformingWork = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">if</span> (enableProfiling) {
+      <span class="hljs-keyword">const</span> currentTime = getCurrentTime();
+      markSchedulerSuspended(currentTime);
+    }
+  }
+}
+</code></pre>
+<p><code>workLoop</code> &#x548C; <code>flushWork</code> &#x5728;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x4ECE;&#x8C03;&#x5EA6;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x4E2D;&#x53D6;&#x51FA;&#x4F18;&#x5148;&#x7EA7;&#x6700;&#x9AD8;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x7136;&#x540E;&#x53BB;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x8FD8;&#x8BB0;&#x5F97;&#x4E0A;&#x6587;&#x8BB2;&#x7684; <code>SchedulerCallback</code> &#x5417;&#xFF1F;</p>
+<ul>
+<li>&#x5BF9;&#x4E8E;&#x540C;&#x6B65;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x7684;&#x662F; <code>performSyncWorkOnRoot</code></li>
+<li>&#x5BF9;&#x4E8E;&#x5F02;&#x6B65;&#x7684;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x7684;&#x662F; <code>performConcurrentWorkOnRoot</code></li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">workLoop</span>(<span class="hljs-params">hasTimeRemaining, initialTime</span>) </span>{
+  <span class="hljs-keyword">let</span> currentTime = initialTime;
+  advanceTimers(currentTime);
+  currentTask = peek(taskQueue);
+  <span class="hljs-keyword">while</span> (
+    currentTask !== <span class="hljs-literal">null</span> &amp;&amp;
+    !(enableSchedulerDebugging &amp;&amp; isSchedulerPaused)
+  ) {
+    <span class="hljs-keyword">if</span> (
+      currentTask.expirationTime &gt; currentTime &amp;&amp;
+      (!hasTimeRemaining || shouldYieldToHost())
+    ) {
+      <span class="hljs-comment">// This currentTask hasn&apos;t expired, and we&apos;ve reached the deadline.</span>
+      <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">const</span> callback = currentTask.callback;
+    <span class="hljs-keyword">if</span> (callback !== <span class="hljs-literal">null</span>) {
+      currentTask.callback = <span class="hljs-literal">null</span>;
+      currentPriorityLevel = currentTask.priorityLevel;
+      <span class="hljs-keyword">const</span> didUserCallbackTimeout = currentTask.expirationTime &lt;= currentTime;
+      markTaskRun(currentTask, currentTime);
+      <span class="hljs-keyword">const</span> continuationCallback = callback(didUserCallbackTimeout);
+      currentTime = getCurrentTime();
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> continuationCallback === <span class="hljs-string">&apos;function&apos;</span>) {
+        currentTask.callback = continuationCallback;
+        markTaskYield(currentTask, currentTime);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">if</span> (enableProfiling) {
+          markTaskCompleted(currentTask, currentTime);
+          currentTask.isQueued = <span class="hljs-literal">false</span>;
+        }
+        <span class="hljs-keyword">if</span> (currentTask === peek(taskQueue)) {
+          pop(taskQueue);
+        }
+      }
+      advanceTimers(currentTime);
+    } <span class="hljs-keyword">else</span> {
+      pop(taskQueue);
+    }
+    currentTask = peek(taskQueue);
+  }
+  <span class="hljs-comment">// Return whether there&apos;s additional work</span>
+  <span class="hljs-keyword">if</span> (currentTask !== <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">const</span> firstTimer = peek(timerQueue);
+    <span class="hljs-keyword">if</span> (firstTimer !== <span class="hljs-literal">null</span>) {
+      requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+}
+</code></pre>
+<p>&#x6700;&#x7EC8;&#x90FD;&#x4F1A;&#x901A;&#x8FC7; <code>performUnitOfWork</code> &#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x53EA;&#x4E0D;&#x8FC7;&#x5F02;&#x6B65;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x53EF;&#x4EE5;&#x6253;&#x65AD;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x6BCF;&#x6B21;&#x8C03;&#x7528;&#x90FD;&#x8981;&#x67E5;&#x770B;&#x662F;&#x5426;&#x8D85;&#x65F6;&#x3002;</p>
+<p> <a href="https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberWorkLoop.old.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">performUnitOfWork</span>(<span class="hljs-params">unitOfWork: Fiber</span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-comment">// The current, flushed, state of this fiber is the alternate. Ideally</span>
+  <span class="hljs-comment">// nothing should rely on this, but relying on it here means that we don&apos;t</span>
+  <span class="hljs-comment">// need an additional field on the work in progress.</span>
+  <span class="hljs-keyword">const</span> current = unitOfWork.alternate;
+  setCurrentDebugFiberInDEV(unitOfWork);
+
+  <span class="hljs-keyword">let</span> next;
+  <span class="hljs-keyword">if</span> (enableProfilerTimer &amp;&amp; (unitOfWork.mode &amp; ProfileMode) !== NoMode) {
+    startProfilerTimer(unitOfWork);
+    next = beginWork(current, unitOfWork, renderExpirationTime);
+    stopProfilerTimerIfRunningAndRecordDelta(unitOfWork, <span class="hljs-literal">true</span>);
+  } <span class="hljs-keyword">else</span> {
+    next = beginWork(current, unitOfWork, renderExpirationTime);
+  }
+
+  resetCurrentDebugFiberInDEV();
+  unitOfWork.memoizedProps = unitOfWork.pendingProps;
+  <span class="hljs-keyword">if</span> (next === <span class="hljs-literal">null</span>) {
+    <span class="hljs-comment">// If this doesn&apos;t spawn new work, complete the current work.</span>
+    completeUnitOfWork(unitOfWork);
+  } <span class="hljs-keyword">else</span> {
+    workInProgress = next;
+  }
+
+  ReactCurrentOwner.current = <span class="hljs-literal">null</span>;
+}
+</code></pre>
+<p>&#x4E0A;&#x9762;&#x7684; <code>startProfilerTimer</code> &#x548C; <code>stopProfilerTimerIfRunningAndRecordDelta</code> &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8BB0;&#x5F55; fiber &#x7684;&#x5DE5;&#x4F5C;&#x65F6;&#x957F;&#x3002;</p>
+<p><a href="https://github.com/facebook/react/blob/a30a1c6ef3a621a57e9372c8249439dbfd9a7375/packages/react-reconciler/src/ReactProfilerTimer.old.js" target="_blank">&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startProfilerTimer</span>(<span class="hljs-params">fiber: Fiber</span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">if</span> (!enableProfilerTimer) {
+    <span class="hljs-keyword">return</span>;
+  }
+
+  profilerStartTime = now();
+
+  <span class="hljs-keyword">if</span> (((fiber.actualStartTime: any): number) &lt; <span class="hljs-number">0</span>) {
+    fiber.actualStartTime = now();
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stopProfilerTimerIfRunningAndRecordDelta</span>(<span class="hljs-params">
+  fiber: Fiber,
+  overrideBaseTime: boolean,
+</span>): <span class="hljs-title">void</span> </span>{
+  <span class="hljs-keyword">if</span> (!enableProfilerTimer) {
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-keyword">if</span> (profilerStartTime &gt;= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">const</span> elapsedTime = now() - profilerStartTime;
+    fiber.actualDuration += elapsedTime;
+    <span class="hljs-keyword">if</span> (overrideBaseTime) {
+      fiber.selfBaseDuration = elapsedTime;
+    }
+    profilerStartTime = <span class="hljs-number">-1</span>;
+  }
+}
+</code></pre>
+<p>&#x6700;&#x540E;&#xFF0C;&#x5C31;&#x5230;&#x4E86; <code>beginWork</code> &#x6D41;&#x7A0B;&#x4E86; - -&#x3002;&#x91CC;&#x9762;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F; <code>workInProgress</code> &#x8FD8;&#x6709;&#x4E00;&#x5927;&#x5806;&#x7684; <code>switch case</code>&#x3002;</p>
+<p>&#x60F3;&#x770B; <code>beginWork</code> &#x6E90;&#x7801;&#x7684;&#x53EF;&#x4EE5;&#x81EA;&#x884C;&#x5C1D;&#x8BD5; <a href="https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberBeginWork.old.js" target="_blank">beginWork&#x76F8;&#x5173;&#x6E90;&#x7801;&#x6587;&#x4EF6;</a></p>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<p>&#x6700;&#x540E;&#x662F;&#x603B;&#x7ED3;&#x90E8;&#x5206;&#xFF0C;&#x8BE5;&#x4E0D;&#x8BE5;&#x5199;&#x8FD9;&#x4E2A;&#x60F3;&#x4E86;&#x5F88;&#x4E45;&#xFF0C;&#x6BCF;&#x4E2A;&#x8BFB;&#x8005;&#x5728;&#x4E0D;&#x540C;&#x65F6;&#x95F4;&#x4E0D;&#x540C;&#x5FC3;&#x5883;&#x4E0B;&#x770B;&#x6E90;&#x7801;&#x7684;&#x611F;&#x609F;&#x5E94;&#x8BE5;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF08;&#x5F53;&#x7136;&#x81EA;&#x5DF1;&#x56DE;&#x987E;&#x7684;&#x65F6;&#x5019;&#x4E5F;&#x662F;&#x8BFB;&#x8005;&#xFF09;&#x3002;&#x6BCF;&#x6B21;&#x770B;&#x5E94;&#x8BE5;&#x90FD;&#x6709;&#x6BCF;&#x4E2A;&#x65F6;&#x671F;&#x7684;&#x603B;&#x7ED3;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x4E0D;&#x5199;&#x603B;&#x7ED3;&#xFF0C;&#x8FD9;&#x7BC7;&#x89E3;&#x6790;&#x53C8;&#x611F;&#x89C9;&#x67AF;&#x71E5;&#x65E0;&#x5473;&#xFF0C;&#x4E14;&#x6CA1;&#x6709;&#x7ED3;&#x679C;&#x3002;&#x6240;&#x4EE5;&#x7B80;&#x5355;&#x7565;&#x8FC7;&#x4E00;&#x4E0B;&#xFF08;&#x80AF;&#x5B9A;&#x662F;&#x539F;&#x521B;&#x5566;&#xFF0C;&#x522B;&#x7684;&#x5730;&#x65B9;&#x6CA1;&#x6709;&#x7684;&#xFF09;</p>
+<ol>
+<li>fiber&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x662F;&#x94FE;&#x8868;&#x7684;&#x904D;&#x5386;&#x5F62;&#x5F0F;</li>
+<li>fiber &#x901A;&#x8FC7;&#x4F18;&#x5148;&#x7EA7;&#x8BA1;&#x7B97; <code>expirationTime</code> &#x5F97;&#x5230;&#x8FC7;&#x671F;&#x65F6;&#x95F4;</li>
+<li>&#x56E0;&#x4E3A;&#x94FE;&#x8868;&#x7ED3;&#x6784;&#x6240;&#x4EE5;&#x65F6;&#x95F4;&#x5207;&#x7247;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x4E2D;&#x65AD;&#x548C;&#x6062;&#x590D;</li>
+<li>&#x65F6;&#x95F4;&#x5207;&#x7247;&#x7684;&#x5B9E;&#x73B0;&#x662F;&#x901A;&#x8FC7; <code>settimeout</code> + <code>postMessage</code> &#x5B9E;&#x73B0;&#x7684;</li>
+<li>&#x5F53;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x5EF6;&#x8FDF;&#x65F6;&#x4F1A;&#x6267;&#x884C; <code>clearTimeout</code></li>
+<li>&#x4EFB;&#x52A1;&#x6570; &#x548C; &#x5DE5;&#x4F5C;&#x65F6;&#x95F4;&#x7684;&#x8BA1;&#x7B97;</li>
+</ol>
+<h3 id="fiber-&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x94FE;&#x8868;">Fiber &#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x94FE;&#x8868;</h3>
+<p>&#x4F7F;&#x7528;&#x94FE;&#x8868;&#x7ED3;&#x6784;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x7ED3;&#x679C;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x76EE;&#x7684;&#xFF0C;React &#x5F00;&#x53D1;&#x8005;&#x4E00;&#x5F00;&#x59CB;&#x7684;&#x76EE;&#x7684;&#x662F;&#x51B2;&#x7740;&#x6A21;&#x62DF;&#x8C03;&#x7528;&#x6808;&#x53BB;&#x7684;</p>
+<p>&#x8C03;&#x7528;&#x6808;&#x6700;&#x7ECF;&#x5E38;&#x88AB;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x5B50;&#x7A0B;&#x5E8F;&#x7684;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#x3002;&#x5728;&#x8C03;&#x7528;&#x4EFB;&#x4F55;&#x5B50;&#x7A0B;&#x5E8F;&#x65F6;&#xFF0C;&#x4E3B;&#x7A0B;&#x5E8F;&#x90FD;&#x5FC5;&#x987B;&#x6682;&#x5B58;&#x5B50;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x5E94;&#x8BE5;&#x8FD4;&#x56DE;&#x5230;&#x7684;&#x5730;&#x5740;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x5B50;&#x7A0B;&#x5E8F;&#x8FD8;&#x8981;&#x8C03;&#x7528;&#x5176;&#x4ED6;&#x7684;&#x5B50;&#x7A0B;&#x5E8F;&#xFF0C;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#x5C31;&#x5FC5;&#x987B;&#x5B58;&#x5165;&#x8C03;&#x7528;&#x6808;&#xFF0C;&#x5728;&#x5176;&#x81EA;&#x8EAB;&#x8FD0;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x518D;&#x884C;&#x53D6;&#x56DE;&#x3002;&#x9664;&#x4E86;&#x8FD4;&#x56DE;&#x5730;&#x5740;&#xFF0C;&#x8FD8;&#x4F1A;&#x4FDD;&#x5B58;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x3001;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x3001;&#x73AF;&#x5883;&#x4F20;&#x9012;&#x3002;</p>
+<p>&#x56E0;&#x6B64; Fiber &#x5BF9;&#x8C61;&#x88AB;&#x8BBE;&#x8BA1;&#x6210;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x7ED3;&#x6784;&#xFF0C;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x4E3B;&#x8981;&#x5C5E;&#x6027;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x94FE;&#x8868;</p>
+<ul>
+<li><code>type</code> &#x7C7B;&#x578B;</li>
+<li><code>return</code> &#x5B58;&#x50A8;&#x5F53;&#x524D;&#x8282;&#x70B9;&#x7684;&#x7236;&#x8282;&#x70B9;</li>
+<li><code>child</code> &#x5B58;&#x50A8;&#x7B2C;&#x4E00;&#x4E2A;&#x5B50;&#x8282;&#x70B9;</li>
+<li><code>sibling</code> &#x5B58;&#x50A8;&#x53F3;&#x8FB9;&#x7B2C;&#x4E00;&#x4E2A;&#x7684;&#x5144;&#x5F1F;&#x8282;&#x70B9;</li>
+<li><code>alternate</code> &#x65E7;&#x6811;&#x7684;&#x540C;&#x7B49;&#x8282;&#x70B9;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x5728;&#x904D;&#x5386; dom &#x6811; diff &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5373;&#x4F7F;&#x4E2D;&#x65AD;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x8BB0;&#x4F4F;&#x4E2D;&#x65AD;&#x65F6;&#x5019;&#x7684;&#x90A3;&#x4E48;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x4E0B;&#x4E2A;&#x65F6;&#x95F4;&#x7247;&#x6062;&#x590D;&#x7EE7;&#x7EED;&#x904D;&#x5386;&#x5E76; diff&#x3002;&#x8FD9;&#x5C31;&#x662F; fiber &#x6570;&#x636E;&#x7ED3;&#x6784;&#x9009;&#x7528;&#x94FE;&#x8868;&#x7684;&#x4E00;&#x5927;&#x597D;&#x5904;&#x3002;</p>
+<h3 id="&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528;-requestidlecallback">&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528; requestIdleCallback</h3>
+<p>&#x6D4F;&#x89C8;&#x5668;&#x4E2A;&#x5468;&#x671F;&#x6267;&#x884C;&#x7684;&#x4E8B;&#x4EF6;</p>
+<pre><code>  1. &#x5B8F;&#x4EFB;&#x52A1;
+  2. &#x5FAE;&#x4EFB;&#x52A1;
+  4. requestAnimationFrame
+  5. IntersectionObserver
+  6. &#x66F4;&#x65B0;&#x754C;&#x9762;
+  7. requestIdleCallback
+  8. &#x4E0B;&#x4E00;&#x5E27;
+</code></pre><p>&#x6839;&#x636E;<a href="[requestIdleCallback](https:/developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback">&#x5B98;&#x65B9;</a>)&#x63CF;&#x8FF0;: </p>
+<blockquote>
+<p><code>window.requestIdleCallback()</code> &#x65B9;&#x6CD5;&#x5C06;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7A7A;&#x95F2;&#x65F6;&#x6BB5;&#x5185;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;&#x6392;&#x961F;&#x3002;&#x8FD9;&#x4F7F;&#x5F00;&#x53D1;&#x8005;&#x80FD;&#x591F;&#x5728;&#x4E3B;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#x4E0A;&#x6267;&#x884C;&#x540E;&#x53F0;&#x548C;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x5DE5;&#x4F5C;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x5EF6;&#x8FDF;&#x5173;&#x952E;&#x4E8B;&#x4EF6;&#xFF0C;&#x5982;&#x52A8;&#x753B;&#x548C;&#x8F93;&#x5165;&#x54CD;&#x5E94;&#x3002;&#x51FD;&#x6570;&#x4E00;&#x822C;&#x4F1A;&#x6309;&#x5148;&#x8FDB;&#x5148;&#x8C03;&#x7528;&#x7684;&#x987A;&#x5E8F;&#x6267;&#x884C;&#xFF0C;&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x6307;&#x5B9A;&#x4E86;&#x6267;&#x884C;&#x8D85;&#x65F6;&#x65F6;&#x95F4; <code>timeout</code>&#xFF0C;&#x5219;&#x6709;&#x53EF;&#x80FD;&#x4E3A;&#x4E86;&#x5728;&#x8D85;&#x65F6;&#x524D;&#x6267;&#x884C;&#x51FD;&#x6570;&#x800C;&#x6253;&#x4E71;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x3002;
+&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x7A7A;&#x95F2;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528; <code>requestIdleCallback()</code>&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x901A;&#x8FC7;&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;&#x4E4B;&#x524D;&#x8C03;&#x5EA6;&#x53E6;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x3002;</p>
+</blockquote>
+<p>&#x770B;&#x4F3C;&#x5B8C;&#x7F8E;&#x5951;&#x5408;&#x65F6;&#x95F4;&#x5207;&#x7247;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x6240;&#x4EE5;&#x8D77;&#x521D; React &#x7684;&#x65F6;&#x95F4;&#x5206;&#x7247;&#x6E32;&#x67D3;&#x5C31;&#x60F3;&#x8981;&#x7528;&#x5230;&#x8FD9;&#x4E2A; API&#xFF0C;&#x4E0D;&#x8FC7;&#x76EE;&#x524D;&#x6D4F;&#x89C8;&#x5668;&#x652F;&#x6301;&#x7684;&#x4E0D;&#x7ED9;&#x529B;&#xFF0C;&#x800C;&#x4E14; <code>requestIdleCallback</code> &#x6709;&#x70B9;&#x8FC7;&#x4E8E;&#x4E25;&#x683C;&#xFF0C;&#x5E76;&#x4E14;&#x6267;&#x884C;&#x9891;&#x7387;&#x4E0D;&#x8DB3;&#x4EE5;&#x5B9E;&#x73B0;&#x6D41;&#x7545;&#x7684;UI&#x5448;&#x73B0;&#x3002;</p>
+<p>&#x800C;&#x4E14;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x901A;&#x8FC7;Fiber &#x67B6;&#x6784;&#xFF0C;&#x8BA9; <code>reconcilation</code> &#x8FC7;&#x7A0B;&#x53D8;&#x6210;&#x53EF;&#x88AB;&#x4E2D;&#x65AD;&#x3002;&apos;&#x9002;&#x65F6;&apos;&#x5730;&#x8BA9;&#x51FA; CPU &#x6267;&#x884C;&#x6743;&#x3002;&#x56E0;&#x6B64;React&#x56E2;&#x961F;&#x4E0D;&#x5F97;&#x4E0D;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x7248;&#x672C;&#x3002;</p>
+<p>&#x5B9E;&#x9645;&#x4E0A; Fiber &#x7684;&#x601D;&#x60F3;&#x548C;&#x534F;&#x7A0B;&#x7684;&#x6982;&#x5FF5;&#x662F;&#x5951;&#x5408;&#x7684;&#x3002;&#x4E3E;&#x4E2A;&#x6817;&#x5B50;&#xFF1A;</p>
+<p>&#x666E;&#x901A;&#x51FD;&#x6570;: &#xFF08;&#x65E0;&#x6CD5;&#x88AB;&#x4E2D;&#x65AD;&#x548C;&#x6062;&#x590D;&#xFF09;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> tasks = []
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> task
+  <span class="hljs-keyword">while</span> (task = tasks.shift()) {
+    execute(task)
+  }
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528; <code>Generator</code> &#x8BED;&#x6CD5;:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> tasks = []
+<span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> task
+
+  <span class="hljs-keyword">while</span> (task = tasks.shift()) {
+    <span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x4E8B;&#x4EF6;&#x9700;&#x8981;&#x5904;&#x7406;, &#x6709;&#x7684;&#x8BDD;&#x8BA9;&#x51FA;&#x63A7;&#x5236;&#x6743;</span>
+    <span class="hljs-keyword">if</span> (hasHighPriorityEvent()) {
+      <span class="hljs-keyword">yield</span>
+    }
+
+    <span class="hljs-comment">// &#x5904;&#x7406;&#x5B8C;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x4E8B;&#x4EF6;&#x540E;&#xFF0C;&#x6062;&#x590D;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x6808;&#xFF0C;&#x7EE7;&#x7EED;&#x6267;&#x884C;...</span>
+    execute(task)
+  }
+}
+</code></pre>
+<p>&#x4F46;&#x662F; React &#x5C1D;&#x8BD5;&#x8FC7;&#x7528; Generator &#x5B9E;&#x73B0;&#xFF0C;&#x540E;&#x6765;&#x53D1;&#x73B0;&#x5F88;&#x9EBB;&#x70E6;&#xFF0C;&#x5C31;&#x653E;&#x5F03;&#x4E86;&#x3002;</p>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E0D;&#x4F7F;&#x7528;-generator">&#x4E3A;&#x4EC0;&#x4E48;&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E0D;&#x4F7F;&#x7528; Generator</h3>
+<p>&#x4E3B;&#x8981;&#x662F;2&#x4E2A;&#x539F;&#x56E0;&#xFF1A;</p>
+<ol>
+<li><code>Generator</code> &#x5FC5;&#x987B;&#x5C06;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x5305;&#x88C5;&#x5728; Generator &#x5806;&#x6808;&#x4E2D;&#x3002;&#x8FD9;&#x4E0D;&#x4EC5;&#x589E;&#x52A0;&#x4E86;&#x5F88;&#x591A;&#x8BED;&#x6CD5;&#x5F00;&#x9500;&#xFF0C;&#x800C;&#x4E14;&#x8FD8;&#x589E;&#x52A0;&#x4E86;&#x73B0;&#x6709;&#x5B9E;&#x73B0;&#x4E2D;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x5F00;&#x9500;&#x3002;&#x867D;&#x7136;&#x6709;&#x80DC;&#x4E8E;&#x65E0;&#xFF0C;&#x4F46;&#x662F;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x4ECD;&#x7136;&#x5B58;&#x5728;&#x3002;</li>
+<li>&#x6700;&#x5927;&#x7684;&#x539F;&#x56E0;&#x662F;&#x751F;&#x6210;&#x5668;&#x662F;&#x6709;&#x72B6;&#x6001;&#x7684;&#x3002;&#x65E0;&#x6CD5;&#x5728;&#x5176;&#x4E2D;&#x9014;&#x6062;&#x590D;&#x3002;&#x5982;&#x679C;&#x4F60;&#x8981;&#x6062;&#x590D;&#x9012;&#x5F52;&#x73B0;&#x573A;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4ECE;&#x5934;&#x5F00;&#x59CB;, &#x6062;&#x590D;&#x5230;&#x4E4B;&#x524D;&#x7684;&#x8C03;&#x7528;&#x6808;&#x3002;</li>
+</ol>
+<h3 id="&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x4F7F;&#x7528;-web-workers">&#x65F6;&#x95F4;&#x5207;&#x7247;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x4F7F;&#x7528; Web Workers</h3>
+<p>&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>Web Worker</code> &#x6765;&#x521B;&#x5EFA;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x6765;&#x5B9E;&#x73B0;&#x65F6;&#x95F4;&#x5207;&#x7247;&#x5462;&#xFF1F;</p>
+<p>React &#x56E2;&#x961F;&#x4E5F;&#x66FE;&#x7ECF;&#x8003;&#x8651;&#x8FC7;&#xFF0C;&#x5C1D;&#x8BD5;&#x63D0;&#x51FA;&#x5171;&#x4EAB;&#x7684;&#x4E0D;&#x53EF;&#x53D8;&#x6301;&#x4E45;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x5C1D;&#x8BD5;&#x4E86;&#x81EA;&#x5B9A;&#x4E49; VM &#x8C03;&#x6574;&#x7B49;&#xFF0C;&#x4F46;&#x662F; <code>JavaScript</code> &#x8BE5;&#x8BED;&#x8A00;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x6B64;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x53EF;&#x53D8;&#x7684;&#x5171;&#x4EAB;&#x8FD0;&#x884C;&#x65F6;&#xFF08;&#x4F8B;&#x5982;&#x539F;&#x578B;&#xFF09;&#xFF0C;&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x8FD8;&#x6CA1;&#x6709;&#x505A;&#x597D;&#x51C6;&#x5907;&#xFF0C;&#x56E0;&#x4E3A;&#x4F60;&#x5FC5;&#x987B;&#x8DE8;&#x5DE5;&#x4F5C;&#x4EBA;&#x5458;&#x91CD;&#x590D;&#x4EE3;&#x7801;&#x52A0;&#x8F7D;&#x548C;&#x6A21;&#x5757;&#x521D;&#x59CB;&#x5316;&#x3002;&#x5982;&#x679C;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x5FC5;&#x987B;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x5219;&#x5B83;&#x4EEC;&#x7684;&#x6548;&#x7387;&#x4E0D;&#x5982;&#x5F53;&#x524D;&#x9AD8;&#x6548;&#xFF0C;&#x5E76;&#x4E14;VM&#x5B9E;&#x73B0;&#x8005;&#x4F3C;&#x4E4E;&#x4E0D;&#x613F;&#x610F;&#x627F;&#x62C5;&#x6301;&#x4E45;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684;&#x5B9E;&#x73B0;&#x6210;&#x672C;&#x3002;&#x5171;&#x4EAB;&#x7684;&#x53EF;&#x53D8;&#x7C7B;&#x578B;&#x6570;&#x7EC4;&#x4F3C;&#x4E4E;&#x6B63;&#x5728;&#x53D1;&#x5C55;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x5F53;&#x4ECA;&#x7684;&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x8981;&#x6C42;&#x6240;&#x6709;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x6B64;&#x5C42;&#x4F3C;&#x4E4E;&#x662F;&#x4E0D;&#x53EF;&#x884C;&#x7684;&#x3002;&#x4EE3;&#x7801;&#x5E93;&#x7684;&#x4E0D;&#x540C;&#x90E8;&#x5206;&#x4E4B;&#x95F4;&#x7684;&#x4EBA;&#x4E3A;&#x8FB9;&#x754C;&#x4E5F;&#x65E0;&#x6CD5;&#x5F88;&#x597D;&#x5730;&#x5DE5;&#x4F5C;&#xFF0C;&#x5E76;&#x4E14;&#x4F1A;&#x5E26;&#x6765;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x6469;&#x64E6;&#x3002;&#x5373;&#x4F7F;&#x90A3;&#x6837;&#xFF0C;&#x4F60;&#x4ECD;&#x7136;&#x6709;&#x5F88;&#x591A;JS&#x4EE3;&#x7801;&#xFF08;&#x4F8B;&#x5982;&#x5B9E;&#x7528;&#x7A0B;&#x5E8F;&#x5E93;&#xFF09;&#x5FC5;&#x987B;&#x5728;&#x5DE5;&#x4F5C;&#x4EBA;&#x5458;&#x4E4B;&#x95F4;&#x590D;&#x5236;&#x3002;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x542F;&#x52A8;&#x65F6;&#x95F4;&#x548C;&#x5185;&#x5B58;&#x5F00;&#x9500;&#x53D8;&#x6162;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x662F;&#x7684;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5B9A;&#x4F4D;&#x8BF8;&#x5982;Web Assembly&#x4E4B;&#x7C7B;&#x7684;&#x4E1C;&#x897F;&#x4E4B;&#x524D;&#xFF0C;&#x7EBF;&#x7A0B;&#x53EF;&#x80FD;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x7684;&#x3002;</p>
+<p>&#x4F60;&#x65E0;&#x6CD5;&#x5B89;&#x5168;&#x5730;&#x4E2D;&#x6B62;&#x540E;&#x53F0;&#x7EBF;&#x7A0B;&#x3002;&#x4E2D;&#x6B62;&#x548C;&#x91CD;&#x542F;&#x7EBF;&#x7A0B;&#x5E76;&#x4E0D;&#x662F;&#x5F88;&#x4FBF;&#x5B9C;&#x3002;&#x5728;&#x8BB8;&#x591A;&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x5B83;&#x4E5F;&#x4E0D;&#x5B89;&#x5168;&#xFF0C;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x80FD;&#x5904;&#x4E8E;&#x4E00;&#x4E9B;&#x61D2;&#x60F0;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5DE5;&#x4F5C;&#x4E4B;&#x4E2D;&#x3002;&#x5373;&#x4F7F;&#x5B83;&#x88AB;&#x6709;&#x6548;&#x5730;&#x4E2D;&#x65AD;&#x4E86;&#xFF0C;&#x4F60;&#x4E5F;&#x5FC5;&#x987B;&#x7EE7;&#x7EED;&#x5728;&#x5B83;&#x4E0A;&#x9762;&#x82B1;&#x8D39;CPU&#x5468;&#x671F;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x4E2A;&#x9650;&#x5236;&#x662F;&#xFF0C;&#x7531;&#x4E8E;&#x65E0;&#x6CD5;&#x7ACB;&#x5373;&#x4E2D;&#x6B62;&#x7EBF;&#x7A0B;&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x6CD5;&#x786E;&#x5B9A;&#x4E24;&#x4E2A;&#x7EBF;&#x7A0B;&#x662F;&#x5426;&#x540C;&#x65F6;&#x5904;&#x7406;&#x540C;&#x4E00;&#x7EC4;&#x4EF6;&#x3002;&#x8FD9;&#x5BFC;&#x81F4;&#x4E86;&#x4E00;&#x4E9B;&#x9650;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#x65E0;&#x6CD5;&#x652F;&#x6301;&#x6709;&#x72B6;&#x6001;&#x7684;&#x7C7B;&#x5B9E;&#x4F8B;&#xFF08;&#x5982;React.Component&#xFF09;&#x3002;&#x7EBF;&#x7A0B;&#x4E0D;&#x80FD;&#x53EA;&#x8BB0;&#x4F4F;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E2D;&#x5B8C;&#x6210;&#x7684;&#x90E8;&#x5206;&#x5DE5;&#x4F5C;&#x5E76;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x4E2D;&#x91CD;&#x590D;&#x4F7F;&#x7528;&#x3002;</p>
+<p>ps: &#x672C;&#x83DC;&#x4E0D;&#x4F1A;&#x7528; React&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x8BFB; React &#x6E90;&#x7801;&#xFF0C;&#x5BF9;&#x6E90;&#x7801;&#x6709;&#x8BEF;&#x8BFB;&#x8BF7;&#x6307;&#x6B63;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="vue2.html" class="navigation navigation-prev " aria-label="Previous page: Vue 2.x 源码解析">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../mvvm/next_js.html" class="navigation navigation-next " aria-label="Next page: next.js 体验">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Fiber 源码解析","level":"1.6.4","depth":2,"next":{"title":"next.js 体验","level":"1.6.5","depth":2,"path":"md/mvvm/next_js.md","ref":"md/mvvm/next_js.md","articles":[]},"previous":{"title":"Vue 2.x 源码解析","level":"1.6.3","depth":2,"path":"md/resource-analysis/vue2.md","ref":"md/resource-analysis/vue2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/resource-analysis/fiber.md","mtime":"2020-05-27T06:28:33.268Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-27T06:32:13.550Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

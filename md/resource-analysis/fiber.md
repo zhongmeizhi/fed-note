@@ -47,8 +47,6 @@ Fiber的创建和使用过程：
 
 PS：上文说的 `workInProgress` 属于 `beginWork` 流程了，如果要写下来差不多篇幅还会增加一倍，这就不详细说明了...（主要是本人懒又菜...）
 
-想看 `beginWork` 源码的可以自行尝试 [beginWork相关源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberBeginWork.old.js)
-
 Fiber的体系结构分为两个主要阶段：`reconciliation`（协调）/`render 和 commit`，
 
 ### React 的 Reconciliation 阶段 <略过一下>
@@ -785,7 +783,59 @@ function performUnitOfWork(unitOfWork: Fiber): void {
 }
 ```
 
-最后，就到了 `beginWork` 流程了 - -。
+上面的 `startProfilerTimer` 和 `stopProfilerTimerIfRunningAndRecordDelta` 其实就是记录 fiber 的工作时长。
+
+[源码文件](https://github.com/facebook/react/blob/a30a1c6ef3a621a57e9372c8249439dbfd9a7375/packages/react-reconciler/src/ReactProfilerTimer.old.js)
+
+```js
+function startProfilerTimer(fiber: Fiber): void {
+  if (!enableProfilerTimer) {
+    return;
+  }
+
+  profilerStartTime = now();
+
+  if (((fiber.actualStartTime: any): number) < 0) {
+    fiber.actualStartTime = now();
+  }
+}
+
+function stopProfilerTimerIfRunningAndRecordDelta(
+  fiber: Fiber,
+  overrideBaseTime: boolean,
+): void {
+  if (!enableProfilerTimer) {
+    return;
+  }
+
+  if (profilerStartTime >= 0) {
+    const elapsedTime = now() - profilerStartTime;
+    fiber.actualDuration += elapsedTime;
+    if (overrideBaseTime) {
+      fiber.selfBaseDuration = elapsedTime;
+    }
+    profilerStartTime = -1;
+  }
+}
+```
+
+最后，就到了 `beginWork` 流程了 - -。里面有什么呢？ `workInProgress` 还有一大堆的 `switch case`。
+
+想看 `beginWork` 源码的可以自行尝试 [beginWork相关源码文件](https://github.com/facebook/react/blob/142d4f1c00c66f3d728177082dbc027fd6335115/packages/react-reconciler/src/ReactFiberBeginWork.old.js)
+
+
+### 总结
+
+最后是总结部分，该不该写这个想了很久，每个读者在不同时间不同心境下看源码的感悟应该是不一样的（当然自己回顾的时候也是读者）。每次看应该都有每个时期的总结。
+
+但是如果不写总结，这篇解析又感觉枯燥无味，且没有结果。所以简单略过一下（肯定是原创啦，别的地方没有的）
+
+1. fiber其实就是一个节点，是链表的遍历形式
+2. fiber 通过优先级计算 `expirationTime` 得到过期时间
+3. 因为链表结构所以时间切片可以做到很方便的中断和恢复
+4. 时间切片的实现是通过 `settimeout` + `postMessage` 实现的
+5. 当所有任务都延迟时会执行 `clearTimeout`
+6. 任务数 和 工作时间的计算
 
 
 ### Fiber 为什么要使用链表

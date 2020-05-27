@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../mvvm/next_js.html" />
+    <link rel="next" href="fiber.html" />
     
     
     <link rel="prev" href="../mvvm/react_function_or_class.html" />
@@ -517,7 +517,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../mvvm/next_js.html">
+        <li class="chapter " data-level="1.6.4" data-path="fiber.html">
+            
+                <a href="fiber.html">
+            
+                    
+                    Fiber 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../mvvm/next_js.html">
             
                 <a href="../mvvm/next_js.html">
             
@@ -872,12 +885,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.11.1" data-path="../other/GIT.html">
+        <li class="chapter " data-level="1.11.1" data-path="../java/begin.html">
             
-                <a href="../other/GIT.html">
+                <a href="../java/begin.html">
             
                     
-                    git命令
+                    Java常识
             
                 </a>
             
@@ -885,12 +898,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.2" data-path="../java/init.html">
+        <li class="chapter " data-level="1.11.2" data-path="../java/db.html">
             
-                <a href="../java/init.html">
+                <a href="../java/db.html">
             
                     
-                    Spring Boot（一）入门篇
+                    数据库相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../java/spring_boot.html">
+            
+                <a href="../java/spring_boot.html">
+            
+                    
+                    SpringBoot 基础
             
                 </a>
             
@@ -1614,7 +1640,7 @@ Vue.component(&apos;RouterLink&apos;, Link)
                 </a>
                 
                 
-                <a href="../mvvm/next_js.html" class="navigation navigation-next " aria-label="Next page: next.js 体验">
+                <a href="fiber.html" class="navigation navigation-next " aria-label="Next page: Fiber 源码解析">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1625,7 +1651,7 @@ Vue.component(&apos;RouterLink&apos;, Link)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Vue 2.x 源码解析","level":"1.6.3","depth":2,"next":{"title":"next.js 体验","level":"1.6.4","depth":2,"path":"md/mvvm/next_js.md","ref":"md/mvvm/next_js.md","articles":[]},"previous":{"title":"React 函数式组件和类组件的区别","level":"1.6.2","depth":2,"path":"md/mvvm/react_function_or_class.md","ref":"md/mvvm/react_function_or_class.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/resource-analysis/vue2.md","mtime":"2019-11-15T10:23:42.859Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T13:46:04.620Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Vue 2.x 源码解析","level":"1.6.3","depth":2,"next":{"title":"Fiber 源码解析","level":"1.6.4","depth":2,"path":"md/resource-analysis/fiber.md","ref":"md/resource-analysis/fiber.md","articles":[]},"previous":{"title":"React 函数式组件和类组件的区别","level":"1.6.2","depth":2,"path":"md/mvvm/react_function_or_class.md","ref":"md/mvvm/react_function_or_class.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/resource-analysis/vue2.md","mtime":"2019-11-15T10:23:42.859Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-27T06:32:13.550Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

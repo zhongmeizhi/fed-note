@@ -66,8 +66,8 @@ canvas具有外部画布宽高，还有内部画布宽高（canvas基础）
   context.canvas.width = _width * 3;
   context.canvas.height = _height * 3;
   // 外部展示
-  $ele.style.width = _width + 'px';
-  $ele.style.height = _height + 'px';
+  $ele.width = _width + 'px';
+  $ele.height = _height + 'px';
 ```
 
 

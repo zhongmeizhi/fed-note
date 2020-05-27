@@ -517,7 +517,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../mvvm/next_js.html">
+        <li class="chapter " data-level="1.6.4" data-path="../resource-analysis/fiber.html">
+            
+                <a href="../resource-analysis/fiber.html">
+            
+                    
+                    Fiber 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../mvvm/next_js.html">
             
                 <a href="../mvvm/next_js.html">
             
@@ -872,12 +885,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.11.1" data-path="../other/GIT.html">
+        <li class="chapter " data-level="1.11.1" data-path="../java/begin.html">
             
-                <a href="../other/GIT.html">
+                <a href="../java/begin.html">
             
                     
-                    git命令
+                    Java常识
             
                 </a>
             
@@ -885,12 +898,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11.2" data-path="../java/init.html">
+        <li class="chapter " data-level="1.11.2" data-path="../java/db.html">
             
-                <a href="../java/init.html">
+                <a href="../java/db.html">
             
                     
-                    Spring Boot（一）入门篇
+                    数据库相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../java/spring_boot.html">
+            
+                <a href="../java/spring_boot.html">
+            
+                    
+                    SpringBoot 基础
             
                 </a>
             
@@ -1030,6 +1056,27 @@
 <li>&#x4F9D;&#x8D56;&#x539F;&#x5219;</li>
 <li>&#x63A5;&#x53E3;&#x5206;&#x79BB;&#x539F;&#x5219;</li>
 </ol>
+<h3 id="vue-routequery-&#x591A;&#x4E2A;&#x76F8;&#x540C;&#x53C2;&#x6570;&#x95EE;&#x9898;">Vue $route.query &#x591A;&#x4E2A;&#x76F8;&#x540C;&#x53C2;&#x6570;&#x95EE;&#x9898;</h3>
+<p>&#x5728; vue &#x4E2D;, &#x5982;&#x679C;&#x5728; hash &#x7684; query &#x4E2D;&#x6709;2&#x4E2A;&#x53C2;&#x6570; ?a=1&amp;a=2</p>
+<p>&#x6B64;&#x65F6;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> { a } = <span class="hljs-keyword">this</span>.$route.query;
+
+<span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">// [1, 2]</span>
+</code></pre>
+<h3 id="vue-style-scope-&#x4E0D;&#x751F;&#x6548;&#x95EE;&#x9898;">Vue style scope &#x4E0D;&#x751F;&#x6548;&#x95EE;&#x9898;</h3>
+<p>&#x95EE;&#x9898;&#xFF1A;</p>
+<p>&#x5728; <code>.vue</code> &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-css">&lt;style  scoped&gt;
+    @import &quot;./abc.css&quot;;
+&lt;/style&gt;
+</code></pre>
+<p>&#x4EA7;&#x751F;&#x7ED3;&#x679C; <code>.abc.css</code> &#x4F9D;&#x7136;&#x662F;&#x5168;&#x5C40;&#x7684;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;&#x901A;&#x8FC7; <code>less</code> &#x9884;&#x5904;&#x7406;&#x4E00;&#x4E0B;&#x3002;</p>
+<pre><code class="lang-css">&lt;style lang=&quot;less&quot; scoped&gt;
+    @import &quot;./abc.less&quot;;
+&lt;/style&gt;
+</code></pre>
+<p>&#x6216;&#x8005;&#x76F4;&#x63A5;&#x5728; <code>src=&quot;./abc.less&quot; scoped</code></p>
 <h3 id="&#x5904;&#x7406;&#x7CBE;&#x786E;&#x5EA6;&#x95EE;&#x9898;">&#x5904;&#x7406;&#x7CBE;&#x786E;&#x5EA6;&#x95EE;&#x9898;</h3>
 <blockquote>
 <p>JS&#x7684;&#x7CBE;&#x786E;&#x5EA6;&#x3002;&#x3002;&#x3002;</p>
@@ -1048,7 +1095,62 @@
         const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
         return (num1 * baseNum + num2 * baseNum) / baseNum;
     }
-</code></pre><h3 id="echarts-&#x6309;&#x9700;&#x5F15;&#x5165;">echarts &#x6309;&#x9700;&#x5F15;&#x5165;</h3>
+</code></pre><h3 id="momentjs--dayjs-&#x4E3B;&#x8981;&#x601D;&#x60F3;">moment.js / day.js &#x4E3B;&#x8981;&#x601D;&#x60F3;</h3>
+<ol>
+<li>&#x5217;&#x51FA; &#x65F6;&#x95F4;Map</li>
+</ol>
+<p>&#x4F8B;&#x5982;<code>day.js</code></p>
+<pre><code class="lang-js">    <span class="hljs-keyword">const</span> matches = {
+        YY: <span class="hljs-built_in">String</span>(<span class="hljs-keyword">this</span>.$y).slice(<span class="hljs-number">-2</span>),
+        YYYY: <span class="hljs-keyword">this</span>.$y,
+        M: $M + <span class="hljs-number">1</span>,
+        MM: Utils.s($M + <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        MMM: getShort(locale.monthsShort, $M, months, <span class="hljs-number">3</span>),
+        MMMM: getShort(months, $M),
+        D: <span class="hljs-keyword">this</span>.$D,
+        DD: Utils.s(<span class="hljs-keyword">this</span>.$D, <span class="hljs-number">2</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        d: <span class="hljs-built_in">String</span>(<span class="hljs-keyword">this</span>.$W),
+        dd: getShort(locale.weekdaysMin, <span class="hljs-keyword">this</span>.$W, weekdays, <span class="hljs-number">2</span>),
+        ddd: getShort(locale.weekdaysShort, <span class="hljs-keyword">this</span>.$W, weekdays, <span class="hljs-number">3</span>),
+        dddd: weekdays[<span class="hljs-keyword">this</span>.$W],
+        H: <span class="hljs-built_in">String</span>($H),
+        HH: Utils.s($H, <span class="hljs-number">2</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        h: get$H(<span class="hljs-number">1</span>),
+        hh: get$H(<span class="hljs-number">2</span>),
+        a: meridiemFunc($H, $m, <span class="hljs-literal">true</span>),
+        A: meridiemFunc($H, $m, <span class="hljs-literal">false</span>),
+        m: <span class="hljs-built_in">String</span>($m),
+        mm: Utils.s($m, <span class="hljs-number">2</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        s: <span class="hljs-built_in">String</span>(<span class="hljs-keyword">this</span>.$s),
+        ss: Utils.s(<span class="hljs-keyword">this</span>.$s, <span class="hljs-number">2</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        SSS: Utils.s(<span class="hljs-keyword">this</span>.$ms, <span class="hljs-number">3</span>, <span class="hljs-string">&apos;0&apos;</span>),
+        Z: zoneStr <span class="hljs-comment">// &apos;ZZ&apos; logic below</span>
+    }
+</code></pre>
+<p><code>moment.js</code></p>
+<pre><code class="lang-js">    formatTokenFunctions = {
+        M    : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.month() + <span class="hljs-number">1</span>;
+        },
+        MMM  : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">format</span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.lang().monthsShort(<span class="hljs-keyword">this</span>, format);
+        },
+        MMMM : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">format</span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.lang().months(<span class="hljs-keyword">this</span>, format);
+        },
+        D    : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.date();
+        },
+        DDD  : <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.dayOfYear();
+        },
+        <span class="hljs-comment">// ...&#x7565;</span>
+    }
+</code></pre>
+<ol>
+<li>&#x901A;&#x8FC7;&#x6B63;&#x5219;/&#x9010;&#x4E00;&#x5339;&#x914D;&#x751F;&#x6210;&#x5BF9;&#x5E94;&#x65F6;&#x95F4;&#x683C;&#x5F0F;</li>
+</ol>
+<h3 id="echarts-&#x6309;&#x9700;&#x5F15;&#x5165;">echarts &#x6309;&#x9700;&#x5F15;&#x5165;</h3>
 <pre><code>    // &#x65B0;&#x5EFA;abc.js&#x6587;&#x4EF6;, &#x5982;&#x4E0B;&#x914D;&#x7F6E;
 
     // &#x52A0;&#x8F7D;echarts&#xFF0C;&#x6CE8;&#x610F;&#x5F15;&#x5165;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;
@@ -1266,7 +1368,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"经验包","level":"1.4.2","depth":2,"next":{"title":"性能优化","level":"1.4.3","depth":2,"path":"md/sse/optimization.md","ref":"md/sse/optimization.md","articles":[]},"previous":{"title":"Hybrid开发相关","level":"1.4.1","depth":2,"path":"md/javascript/hybrid.md","ref":"md/javascript/hybrid.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/javascript/experience.md","mtime":"2020-04-26T13:23:33.633Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T13:46:04.620Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"经验包","level":"1.4.2","depth":2,"next":{"title":"性能优化","level":"1.4.3","depth":2,"path":"md/sse/optimization.md","ref":"md/sse/optimization.md","articles":[]},"previous":{"title":"Hybrid开发相关","level":"1.4.1","depth":2,"path":"md/javascript/hybrid.md","ref":"md/javascript/hybrid.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/javascript/experience.md","mtime":"2020-05-15T07:19:28.066Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-27T06:32:13.550Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

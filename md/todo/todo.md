@@ -14,7 +14,8 @@
     2. `cd 承载目录`
     3. `clean-mark url`
   * [markdown 在线免费转 html](http://md.aclickall.com/)
-    * [备用](https://www.zybuluo.com/mdeditor)
+    * [备用](https://mdnice.com/)
+    * [备用2](https://www.zybuluo.com/mdeditor)
 
 同时启动 多个微信：
   * 利用 `.bat` 添加，运行命令，几行就几个。

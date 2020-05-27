@@ -1,0 +1,1445 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>SpringBoot 基础 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="db.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    样式&&兼容性
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../css/mobile.html">
+            
+                <a href="../css/mobile.html">
+            
+                    
+                    移动端-适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../css/layout.html">
+            
+                <a href="../css/layout.html">
+            
+                    
+                    PC端-布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../css/less.html">
+            
+                <a href="../css/less.html">
+            
+                    
+                    less & sass
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../css/EXPERIENCE.html">
+            
+                <a href="../css/EXPERIENCE.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    计算机基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../browser/security_code.html">
+            
+                <a href="../browser/security_code.html">
+            
+                    
+                    前端安全性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../browser/page_load.html">
+            
+                <a href="../browser/page_load.html">
+            
+                    
+                    页面加载过程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    前端基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../javascript/hybrid.html">
+            
+                <a href="../javascript/hybrid.html">
+            
+                    
+                    Hybrid开发相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../javascript/experience.html">
+            
+                <a href="../javascript/experience.html">
+            
+                    
+                    经验包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../sse/optimization.html">
+            
+                <a href="../sse/optimization.html">
+            
+                    
+                    性能优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../sse/design_model.html">
+            
+                <a href="../sse/design_model.html">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../sse/async_await.html">
+            
+                <a href="../sse/async_await.html">
+            
+                    
+                    async await
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../sse/module.html">
+            
+                <a href="../sse/module.html">
+            
+                    
+                    模块化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../javascript/animation.html">
+            
+                <a href="../javascript/animation.html">
+            
+                    
+                    关于动画
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../javascript/iterator.html">
+            
+                <a href="../javascript/iterator.html">
+            
+                    
+                    迭代器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../node/NPM.html">
+            
+                <a href="../node/NPM.html">
+            
+                    
+                    NPM机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="../sse/event_loop.html">
+            
+                <a href="../sse/event_loop.html">
+            
+                    
+                    JS运行机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="../browser/garbage_collection.html">
+            
+                <a href="../browser/garbage_collection.html">
+            
+                    
+                    JS垃圾回收机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    前端总结
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../review/css_base.html">
+            
+                <a href="../review/css_base.html">
+            
+                    
+                    CSS篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../review/js_type.html">
+            
+                <a href="../review/js_type.html">
+            
+                    
+                    JS数据类型篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../review/js_function.html">
+            
+                <a href="../review/js_function.html">
+            
+                    
+                    JS函数篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../review/webpack.html">
+            
+                <a href="../review/webpack.html">
+            
+                    
+                    Webpack篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../review/js_code.html">
+            
+                <a href="../review/js_code.html">
+            
+                    
+                    各种手写代码实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Vue + React 框架学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mvvm/useEffect.html">
+            
+                <a href="../mvvm/useEffect.html">
+            
+                    
+                    React useEffect详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../mvvm/react_function_or_class.html">
+            
+                <a href="../mvvm/react_function_or_class.html">
+            
+                    
+                    React 函数式组件和类组件的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../resource-analysis/vue2.html">
+            
+                <a href="../resource-analysis/vue2.html">
+            
+                    
+                    Vue 2.x 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../resource-analysis/fiber.html">
+            
+                <a href="../resource-analysis/fiber.html">
+            
+                    
+                    Fiber 源码解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../mvvm/next_js.html">
+            
+                <a href="../mvvm/next_js.html">
+            
+                    
+                    next.js 体验
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Node学习篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/z-mock">
+            
+                    
+                    用Koa2撸一个API Mock
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    RXJS学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../sse/function_program.html">
+            
+                <a href="../sse/function_program.html">
+            
+                    
+                    RXJS学习（一）函数式编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../rxjs/Observable.html">
+            
+                <a href="../rxjs/Observable.html">
+            
+                    
+                    RXJS学习（二）Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../rxjs/Operators.html">
+            
+                <a href="../rxjs/Operators.html">
+            
+                    
+                    RXJS学习（三）Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../rxjs/Subject.html">
+            
+                <a href="../rxjs/Subject.html">
+            
+                    
+                    RXJS学习（四）Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../rxjs/Scheduler.html">
+            
+                <a href="../rxjs/Scheduler.html">
+            
+                    
+                    RXJS学习（五）Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Dart篇
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../dart/PRIMER.html">
+            
+                <a href="../dart/PRIMER.html">
+            
+                    
+                    dart（一）概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../dart/base.html">
+            
+                <a href="../dart/base.html">
+            
+                    
+                    dart（二）基本操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../dart/class.html">
+            
+                <a href="../dart/class.html">
+            
+                    
+                    dart（三）类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../dart/again.html">
+            
+                <a href="../dart/again.html">
+            
+                    
+                    dart（四）稍微抽象点
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Flutter基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../flutter/BRIEF.html">
+            
+                <a href="../flutter/BRIEF.html">
+            
+                    
+                    flutter 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../flutter/PRIMER.html">
+            
+                <a href="../flutter/PRIMER.html">
+            
+                    
+                    Flutter 屏幕适配
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../flutter/render.html">
+            
+                <a href="../flutter/render.html">
+            
+                    
+                    Flutter 渲染策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../flutter/webview.html">
+            
+                <a href="../flutter/webview.html">
+            
+                    
+                    Flutter WebView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../flutter/navigator.html">
+            
+                <a href="../flutter/navigator.html">
+            
+                    
+                    Flutter 局部路由实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../flutter/SCENES.html">
+            
+                <a href="../flutter/SCENES.html">
+            
+                    
+                    Flutter 环境问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="../flutter/ISSUE.html">
+            
+                <a href="../flutter/ISSUE.html">
+            
+                    
+                    Flutter 开发细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.8" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/flutter-UI">
+            
+                    
+                    Flutter API使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.9" >
+            
+                <a target="_blank" href="https://github.com/zhongmeizhi/fultter-example-app">
+            
+                    
+                    Flutter 项目实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="begin.html">
+            
+                <a href="begin.html">
+            
+                    
+                    Java常识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="db.html">
+            
+                <a href="db.html">
+            
+                    
+                    数据库相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.11.3" data-path="spring_boot.html">
+            
+                <a href="spring_boot.html">
+            
+                    
+                    SpringBoot 基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    其他
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../other/GIT.html">
+            
+                <a href="../other/GIT.html">
+            
+                    
+                    git命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../other/GITHUB.html">
+            
+                <a href="../other/GITHUB.html">
+            
+                    
+                    GitHub的Host和Key
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >SpringBoot 基础</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="spring-boot&#xFF08;&#x4E00;&#xFF09;&#x5165;&#x95E8;&#x7BC7;">Spring Boot&#xFF08;&#x4E00;&#xFF09;&#x5165;&#x95E8;&#x7BC7;</h1>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;-spring-boot-&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709; Spring Boot &#xFF1F;</h3>
+<p>&#x867D;&#x7136; <code>Spring</code> &#x7684;&#x7EC4;&#x4EF6;&#x4EE3;&#x7801;&#x662F;&#x8F7B;&#x91CF;&#x7EA7;&#x7684;&#xFF0C;&#x4F46;&#x5B83;&#x7684;&#x914D;&#x7F6E;&#x5374;&#x662F;&#x91CD;&#x91CF;&#x7EA7;&#x7684;&#xFF08;&#x9700;&#x8981;&#x5927;&#x91CF;XML&#x914D;&#x7F6E;&#xFF09;&#x3002;<code>Spring Boot</code>&#x7684;&#x5B98;&#x65B9;&#x4ECB;&#x7ECD;&#xFF1A;&#x4ECE;&#x672C;&#x8D28;&#x4E0A;&#x6765;&#x8BF4;&#xFF0C;Spring Boot&#x5C31;&#x662F;Spring&#xFF0C;<strong>&#x5B83;&#x505A;&#x4E86;&#x90A3;&#x4E9B;&#x6CA1;&#x6709;&#x5B83;&#x4F60;&#x81EA;&#x5DF1;&#x4E5F;&#x4F1A;&#x53BB;&#x505A;&#x7684;Spring Bean&#x914D;&#x7F6E;</strong>&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#xFF1A;Spring Boot &#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6846;&#x67B6;&#xFF0C; &#x800C;&#x662F;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x4E86;&#x5F88;&#x591A;&#x6846;&#x67B6;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x3002;&#x5C31;&#x50CF; Maven &#x6574;&#x5408;&#x4E86;&#x6240;&#x6709;&#x7684; Jar &#x5305;&#xFF0C;Spring Boot &#x6574;&#x5408;&#x4E86;&#x6240;&#x6709;&#x7684;&#x6846;&#x67B6;&#x3002;</p>
+<h3 id="&#x73AF;&#x5883;&#x642D;&#x5EFA;">&#x73AF;&#x5883;&#x642D;&#x5EFA;</h3>
+<h5 id="&#x4E00;&#x3001;&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;">&#x4E00;&#x3001;&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;</h5>
+<p>&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;&#x4F7F;&#x7528; <code>Idea</code> &#x7F16;&#x8F91;&#x5668;&#x64CD;&#x4F5C;&#x3002;</p>
+<ol>
+<li>&#x9996;&#x5148; Java JDK &#x73AF;&#x5883;</li>
+<li>&#x7136;&#x540E;&#x9700;&#x8981; Maven &#x73AF;&#x5883;</li>
+<li>&#x5728; Idea &#x7F16;&#x8F91;&#x5668;&#x4E2D; new Project</li>
+<li>&#x9009;&#x62E9; Spring Initialize</li>
+<li>&#x540E;&#x7EED;&#x5C31;&#x662F; Maven &#x7684;&#x4F9D;&#x8D56;&#x9009;&#x62E9;&#x4E86;&#x3002;&#xFF08;&#x53EF;&#x4E4B;&#x95F4;next&#xFF0C;&#x540E;&#x7EED;&#x518D;&#x5B89;&#x88C5;&#xFF09;</li>
+<li>&#x9009;&#x62E9; Maven auto import</li>
+<li>&#x7B49;&#x4F9D;&#x8D56;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#xFF0C;&#x5373;&#x53EF;&#x8FD0;&#x884C;&#x9879;&#x76EE;</li>
+</ol>
+<p>&#x521D;&#x59CB;&#x5316;&#x9879;&#x76EE;&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x7F51;&#x7AD9; <a href="https://start.spring.io/" target="_blank">https://start.spring.io/</a></li>
+<li>&#x6CE8;&#x610F;&#x9009;&#x62E9; <code>Spring Web</code> &#x6A21;&#x5757;</li>
+</ul>
+<h5 id="&#x4E8C;&#x3001;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;">&#x4E8C;&#x3001;&#x5B89;&#x88C5;&#x4F9D;&#x8D56;</h5>
+<p>&#x901A;&#x8FC7; maven &#x5B89;&#x88C5;&#x4F9D;&#x8D56;&#x5305;&#x3002;</p>
+<h5 id="&#x4E09;&#x3001;&#x8FD0;&#x884C;">&#x4E09;&#x3001;&#x8FD0;&#x884C;</h5>
+<ol>
+<li>&#x901A;&#x8FC7; <code>application.properties</code> &#x6587;&#x4EF6;&#x914D;&#x7F6E; &#x8FD0;&#x884C;&#x7AEF;&#x53E3; <code>server.port=8333</code></li>
+<li><p>&#x65B0;&#x5EFA; <code>controller/HelloWorldController.java</code> &#x6587;&#x4EF6;&#xFF0C;</p>
+<pre><code class="lang-java"> <span class="hljs-keyword">package</span> com.example.demo.controller;
+
+ <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;
+ <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;
+ <span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;
+
+ <span class="hljs-keyword">import</span> java.util.HashMap;
+ <span class="hljs-keyword">import</span> java.util.Map;
+
+ <span class="hljs-meta">@RestController</span>
+ <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;test&quot;</span>)
+ <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorldController</span> </span>{
+     <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">&quot;hello&quot;</span>)
+     <span class="hljs-function"><span class="hljs-keyword">public</span> Map <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>{
+         Map result = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();
+         result.put(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;zmz&quot;</span>);
+         result.put(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-string">&quot;16&quot;</span>);
+         <span class="hljs-keyword">return</span> result;
+     }
+ }
+</code></pre>
+</li>
+<li>&#x8FD0;&#x884C;</li>
+<li>&#x6253;&#x5F00; <code>http://localhost:8333/test/hello</code> &#x67E5;&#x770B; XHR</li>
+</ol>
+<h5 id="&#x5176;&#x4ED6;">&#x5176;&#x4ED6;</h5>
+<p>Ideal &#x6C49;&#x5316;</p>
+<ol>
+<li>&#x4E0B;&#x8F7D;&#x6C49;&#x5316;&#x5305;</li>
+<li>&#x5C06; jar &#x5305;&#x653E;&#x5165; <code>IntelliJ IDEA\lib</code> &#x76EE;&#x5F55;&#x4E0B;</li>
+<li>&#x91CD;&#x542F; Idea</li>
+</ol>
+<p>&#x7B80;&#x5316;&#x4EE3;&#x7801;</p>
+<ul>
+<li>&#x901A;&#x8FC7; <code>Lombok</code> &#x7B80;&#x5316;&#x4EE3;&#x7801;&#xFF0C;&#x4F46;&#x662F;&#x5F88;&#x5C11;&#x6709;&#x4EBA;&#x7528;&#xFF08;&#x7EF4;&#x62A4;&#x4E0D;&#x65B9;&#x4FBF;&#xFF09;</li>
+<li>&#x901A;&#x8FC7; <code>JPA</code> &#x7EF4;&#x62A4; SQL&#xFF0C;&#xFF08;&#x5355;&#x8868;&#x67E5;&#x8BE2;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x591A;&#x8868;&#x67E5;&#x8BE2;&#x4E0D;&#x597D;&#x7528;&#x4E14;&#x6027;&#x80FD;&#x4F1A;&#x53D8;&#x5DEE;&#xFF09;</li>
+</ul>
+<h3 id="&#x4E3B;&#x6CE8;&#x89E3;">&#x4E3B;&#x6CE8;&#x89E3;</h3>
+<ol>
+<li><code>@SpringBootApplication</code>: &#x521B;&#x5EFA; SpringBoot &#x9879;&#x76EE;&#x4E4B;&#x540E;&#x4F1A;&#x9ED8;&#x8BA4;&#x5728;&#x4E3B;&#x7C7B;</li>
+<li><code>@EnableAutoConfiguration</code>: &#x542F;&#x7528; SpringBoot &#x7684;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x673A;&#x5236;</li>
+<li><code>@ComponentScan</code>: &#x626B;&#x63CF;&#x88AB; @Component (@Service,@Controller) &#x6CE8;&#x89E3;&#x7684; Bean&#xFF0C;&#x6CE8;&#x89E3;&#x9ED8;&#x8BA4;&#x4F1A;&#x626B;&#x63CF;&#x8BE5;&#x7C7B;&#x6240;&#x5728;&#x7684;&#x5305;&#x4E0B;&#x6240;&#x6709;&#x7684;&#x7C7B;&#x3002;</li>
+<li><code>@Configuration</code>: &#x58F0;&#x660E;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>@Component</code> &#x4EE3;&#x66FF;&#xFF08;&#x8FD9;&#x6837;&#x5C31;&#x5931;&#x53BB;&#x4E86;&#x8BED;&#x4E49;&#x5316;&#xFF09;</li>
+</ol>
+<h3 id="spring-bean-&#x76F8;&#x5173;">Spring Bean &#x76F8;&#x5173;</h3>
+<p><code>@Autowired</code>: &#x81EA;&#x52A8;&#x5BFC;&#x5165;&#x5BF9;&#x8C61;&#x5230;&#x7C7B;&#x4E2D;&#xFF0C;&#x88AB;&#x6CE8;&#x5165;&#x8FDB;&#x7684;&#x7C7B;&#x540C;&#x6837;&#x8981;&#x88AB; Spring &#x5BB9;&#x5668;&#x7BA1;&#x7406;&#x6BD4;&#x5982;</p>
+<p>&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x6CE8;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x7C7B;&#x6807;&#x8BC6;&#x6210;&#x53EF;&#x7528;&#x4E8E; <code>@Autowired</code> &#x6CE8;&#x89E3;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7684; bean &#x7684;&#x7C7B;</p>
+<ol>
+<li><code>@Component</code>: &#x901A;&#x7528;&#x7684;&#x6CE8;&#x89E3;&#xFF0C;&#x53EF;&#x6807;&#x6CE8;&#x4EFB;&#x610F;&#x7C7B;&#x4E3A; Spring &#x7EC4;&#x4EF6;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A; Bean &#x4E0D;&#x77E5;&#x9053;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x5C42;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;@Component &#x6CE8;&#x89E3;&#x6807;&#x6CE8;&#x3002;</li>
+<li><code>@Repository</code>: &#x5BF9;&#x5E94;&#x6301;&#x4E45;&#x5C42;&#x5373; Dao &#x5C42;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x76F8;&#x5173;&#x64CD;&#x4F5C;&#x3002;</li>
+<li><code>@Service</code>: &#x5BF9;&#x5E94;&#x670D;&#x52A1;&#x5C42;&#xFF0C;&#x4E3B;&#x8981;&#x6D89;&#x53CA;&#x4E00;&#x4E9B;&#x590D;&#x6742;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x9700;&#x8981;&#x7528;&#x5230; Dao &#x5C42;</li>
+<li><code>@Controller</code>: &#x5BF9;&#x5E94; Spring MVC &#x63A7;&#x5236;&#x5C42;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x6237;&#x63A5;&#x53D7;&#x7528;&#x6237;&#x8BF7;&#x6C42;&#x5E76;&#x8C03;&#x7528; Service &#x5C42;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x7ED9;&#x524D;&#x7AEF;&#x9875;&#x9762;&#x3002;</li>
+</ol>
+<h3 id="&#x8BF7;&#x6C42;&#x76F8;&#x5173;">&#x8BF7;&#x6C42;&#x76F8;&#x5173;</h3>
+<ul>
+<li><code>@RestController</code> &#x5C06;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x6570;&#x636E;&#x76F4;&#x63A5;&#x4EE5; JSON &#x6216; XML &#x5F62;&#x5F0F;&#x5199;&#x5165; HTTP &#x54CD;&#x5E94;(Response)&#x4E2D;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x662F; <code>JSON</code> &#x5F62;&#x5F0F;<ul>
+<li><code>@RestController</code> = <code>@Controller</code> + <code>@ResponseBody</code></li>
+<li><code>@RequestBody</code> :&#x5C06; <code>HttpRequest body</code> &#x4E2D;&#x7684; JSON &#x7C7B;&#x578B;&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x5408;&#x9002;&#x7684; Java &#x7C7B;&#x578B;&#x3002;</li>
+</ul>
+</li>
+<li><code>@RequestMapping</code> &#x9ED8;&#x8BA4;&#x6620;&#x5C04;&#x6240;&#x6709; HTTP Action (GET&#x3001;PUT&#x3001;POST &#x7B49;)<ul>
+<li>&#x4F7F;&#x7528; <code>@RequestMapping(method=ActionType)</code> &#x6765;&#x7F29;&#x5C0F;&#x8FD9;&#x4E2A;&#x6620;&#x5C04;&#x3002;</li>
+<li><code>@PostMapping</code> &#x7B49;&#x4EF7;&#x4E8E; <code>@RequestMapping(method = RequestMethod.POST)</code></li>
+<li><code>@GetMapping</code></li>
+<li><code>@DeleteMapping</code></li>
+<li><code>@PutMapping</code></li>
+<li><code>@PatchMapping</code></li>
+</ul>
+</li>
+<li><code>@PathVariable</code> :&#x53D6;url&#x5730;&#x5740;&#x4E2D;&#x7684;&#x53C2;&#x6570;</li>
+<li><code>@RequestParam</code> :&#x53D6;url&#x7684;&#x67E5;&#x8BE2;&#x53C2;&#x6570;&#x503C;&#x3002;</li>
+</ul>
+<p>ResponseEntity: &#x8868;&#x793A;&#x6574;&#x4E2A;HTTP Response&#xFF1A;&#x72B6;&#x6001;&#x7801;&#xFF0C;&#x6807;&#x5934;&#x548C;&#x6B63;&#x6587;&#x5185;&#x5BB9;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x6765;&#x81EA;&#x5B9A;&#x4E49;HTTP Response &#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<h3 id="scope">@Scope</h3>
+<p>&#x58F0;&#x660E; Spring Bean &#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;:</p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-meta">@Scope</span>(<span class="hljs-string">&quot;singleton&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Person <span class="hljs-title">personSingleton</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Person();
+    }
+</code></pre>
+<p>&#x56DB;&#x79CD;&#x5E38;&#x89C1;&#x7684; Spring Bean &#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF1A;</p>
+<ol>
+<li><code>singleton</code>: &#x552F;&#x4E00; bean &#x5B9E;&#x4F8B;&#xFF0C;Spring &#x4E2D;&#x7684; bean &#x9ED8;&#x8BA4;&#x90FD;&#x662F;&#x5355;&#x4F8B;&#x7684;&#x3002;</li>
+<li><code>prototype</code>: &#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean &#x5B9E;&#x4F8B;&#x3002;</li>
+<li><code>request</code>: &#x6BCF;&#x4E00;&#x6B21; HTTP &#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean&#xFF0C;&#x8BE5; bean &#x4EC5;&#x5728;&#x5F53;&#x524D; HTTP request &#x5185;&#x6709;&#x6548;&#x3002;</li>
+<li><code>session</code>: &#x6BCF;&#x4E00;&#x6B21; HTTP &#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean&#xFF0C;&#x8BE5; bean &#x4EC5;&#x5728;&#x5F53;&#x524D; HTTP session &#x5185;&#x6709;&#x6548;&#x3002;</li>
+</ol>
+<h3 id="&#x53C2;&#x6570;&#x6821;&#x9A8C;">&#x53C2;&#x6570;&#x6821;&#x9A8C;</h3>
+<p>SpringBoot &#x9879;&#x76EE;&#x7684; spring-boot-starter-web &#x4F9D;&#x8D56;&#x4E2D;&#x5DF2;&#x7ECF;&#x6709; hibernate-validator &#x5305;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x5F15;&#x7528;&#x76F8;&#x5173;&#x4F9D;&#x8D56;&#x3002;</p>
+<p>&#x5E38;&#x7528;&#x7684;&#x5B57;&#x6BB5;&#x9A8C;&#x8BC1;&#x7684;&#x6CE8;&#x89E3;</p>
+<ul>
+<li><code>@NotEmpty</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x4E0D;&#x80FD;&#x4E3A; null &#x4E5F;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;</li>
+<li><code>@NotBlank</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x975E; null&#xFF0C;&#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x975E;&#x7A7A;&#x767D;&#x5B57;&#x7B26;</li>
+<li><code>@Null</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x4E3A; null</li>
+<li><code>@NotNull</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x4E0D;&#x4E3A; null</li>
+<li><code>@AssertTrue</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x4E3A; true</li>
+<li><code>@AssertFalse</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x4E3A; false</li>
+<li><code>@Pattern(regex=,flag=)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x7B26;&#x5408;&#x6307;&#x5B9A;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</li>
+<li><code>@Email</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F; Email &#x683C;&#x5F0F;&#x3002;</li>
+<li><code>@Min(value)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5176;&#x503C;&#x5FC5;&#x987B;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6700;&#x5C0F;&#x503C;</li>
+<li><code>@Max(value)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5176;&#x503C;&#x5FC5;&#x987B;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6700;&#x5927;&#x503C;</li>
+<li><code>@DecimalMin(value)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5176;&#x503C;&#x5FC5;&#x987B;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6700;&#x5C0F;&#x503C;</li>
+<li><code>@DecimalMax(value)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5176;&#x503C;&#x5FC5;&#x987B;&#x5C0F;&#x4E8E;&#x7B49;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6700;&#x5927;&#x503C;</li>
+<li><code>@Size(max=, min=)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x7684;&#x5927;&#x5C0F;&#x5FC5;&#x987B;&#x5728;&#x6307;&#x5B9A;&#x7684;&#x8303;&#x56F4;&#x5185;</li>
+<li><code>@Digits (integer, fraction)</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5176;&#x503C;&#x5FC5;&#x987B;&#x5728;&#x53EF;&#x63A5;&#x53D7;&#x7684;&#x8303;&#x56F4;&#x5185;</li>
+<li><code>@Past</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x8FC7;&#x53BB;&#x7684;&#x65E5;&#x671F;</li>
+<li><code>@Future</code> &#x88AB;&#x6CE8;&#x91CA;&#x7684;&#x5143;&#x7D20;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5C06;&#x6765;&#x7684;&#x65E5;&#x671F;</li>
+</ul>
+<p>&#x5728;&#x9700;&#x8981;&#x9A8C;&#x8BC1;&#x7684;&#x53C2;&#x6570;&#x4E0A;&#x52A0;&#x4E0A;&#x4E86; <code>@Valid</code> &#x6CE8;&#x89E3;&#xFF0C;&#x5982;&#x679C;&#x9A8C;&#x8BC1;&#x5931;&#x8D25;&#xFF0C;&#x5B83;&#x5C06;&#x629B;&#x51FA; <code>MethodArgumentNotValidException</code>
+&#x901A;&#x8FC7;&#x5728;&#x7C7B;&#x4E0A;&#x6DFB;&#x52A0; <code>@Validated</code> &#x6CE8;&#x89E3;&#xFF0C;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x544A;&#x8BC9; Spring &#x53BB;&#x6821;&#x9A8C;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-meta">@RestController</span>
+    <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">&quot;/api&quot;</span>)
+    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonController</span> </span>{
+
+        <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">&quot;/person&quot;</span>)
+        <span class="hljs-function"><span class="hljs-keyword">public</span> ResponseEntity&lt;Person&gt; <span class="hljs-title">getPerson</span><span class="hljs-params">(@RequestBody @Valid Person person)</span> </span>{
+            <span class="hljs-keyword">return</span> ResponseEntity.ok().body(person);
+        }
+    }
+</code></pre>
+<h3 id="&#x4E8B;&#x52A1;-transactional">&#x4E8B;&#x52A1; @Transactional</h3>
+<p>&#x5728; <code>@Transactional</code> &#x6CE8;&#x89E3;&#x4E2D;&#x5982;&#x679C;&#x4E0D;&#x914D;&#x7F6E; rollbackFor &#x5C5E;&#x6027;,&#x90A3;&#x4E48;&#x4E8B;&#x7269;&#x53EA;&#x4F1A;&#x5728;&#x9047;&#x5230; RuntimeException &#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x56DE;&#x6EDA;,&#x52A0;&#x4E0A; <code>rollbackFor=Exception.class</code>,&#x53EF;&#x4EE5;&#x8BA9;&#x4E8B;&#x7269;&#x5728;&#x9047;&#x5230;&#x975E;&#x8FD0;&#x884C;&#x65F6;&#x5F02;&#x5E38;&#x65F6;&#x4E5F;&#x56DE;&#x6EDA;&#x3002;</p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Transactional</span>(rollbackFor = Exception.class)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">save</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// &#x7565;</span>
+    }
+</code></pre>
+<ul>
+<li>&#x4F5C;&#x7528;&#x4E8E;&#x7C7B;&#xFF1A;&#x5F53;&#x628A; @Transactional &#x6CE8;&#x89E3;&#x653E;&#x5728;&#x7C7B;&#x4E0A;&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x6240;&#x6709;&#x8BE5;&#x7C7B;&#x7684; public &#x65B9;&#x6CD5;&#x90FD;&#x914D;&#x7F6E;&#x76F8;&#x540C;&#x7684;&#x4E8B;&#x52A1;&#x5C5E;&#x6027;&#x4FE1;&#x606F;&#x3002;</li>
+<li>&#x4F5C;&#x7528;&#x4E8E;&#x65B9;&#x6CD5;&#xFF1A;&#x5F53;&#x7C7B;&#x914D;&#x7F6E;&#x4E86; @Transactional&#xFF0C;&#x65B9;&#x6CD5;&#x4E5F;&#x914D;&#x7F6E;&#x4E86; @Transactional&#xFF0C;&#x65B9;&#x6CD5;&#x7684;&#x4E8B;&#x52A1;&#x4F1A;&#x8986;&#x76D6;&#x7C7B;&#x7684;&#x4E8B;&#x52A1;&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x3002;</li>
+</ul>
+<h3 id="&#x8BF7;&#x6C42;&#x8FC7;&#x6EE4;&#x548C;&#x62E6;&#x622A;">&#x8BF7;&#x6C42;&#x8FC7;&#x6EE4;&#x548C;&#x62E6;&#x622A;</h3>
+<p>&#x8FC7;&#x6EE4;&#x5668;&#xFF08;Filter&#xFF09;&#xFF1A;&#x5F53;&#x4F60;&#x6709;&#x4E00;&#x5806;&#x4E1C;&#x897F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x53EA;&#x5E0C;&#x671B;&#x9009;&#x62E9;&#x7B26;&#x5408;&#x4F60;&#x8981;&#x6C42;&#x7684;&#x67D0;&#x4E00;&#x4E9B;&#x4E1C;&#x897F;&#x3002;&#x5B9A;&#x4E49;&#x8FD9;&#x4E9B;&#x8981;&#x6C42;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x5C31;&#x662F;&#x8FC7;&#x6EE4;&#x5668;&#x3002;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x5B9E;&#x73B0; <code>javax.Servlet.Filter</code>&#x63A5;&#x53E3;&#xFF1A;&#x6CE8;&#x518C;&#x8FC7;&#x6EE4;&#x5668;
+&#x62E6;&#x622A;&#x5668;&#xFF08;Interceptor&#xFF09;&#xFF1A;&#x5728;&#x4E00;&#x4E2A;&#x6D41;&#x7A0B;&#x6B63;&#x5728;&#x8FDB;&#x884C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x5E0C;&#x671B;&#x5E72;&#x9884;&#x5B83;&#x7684;&#x8FDB;&#x5C55;&#xFF0C;&#x751A;&#x81F3;&#x7EC8;&#x6B62;&#x5B83;&#x8FDB;&#x884C;&#xFF0C;&#x8FD9;&#x662F;&#x62E6;&#x622A;&#x5668;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x3002;</li>
+<li>&#x901A;&#x8FC7;&#x7EE7;&#x627F; <code>servlet.handler.HandlerInterceptorAdapter</code> &#x7C7B;&#xFF1A;&#x6CE8;&#x518C;&#x62E6;&#x622A;&#x5668;</li>
+</ul>
+<h3 id="&#x4F7F;&#x7528;-yml-&#x914D;&#x7F6E;&#x6587;&#x4EF6;">&#x4F7F;&#x7528; yml &#x914D;&#x7F6E;&#x6587;&#x4EF6;</h3>
+<p>&#x5728; <code>application.properties</code> &#x7EDF;&#x8BA1;&#x76EE;&#x5F55;&#x6DFB;&#x52A0; <code>application.yml</code></p>
+<p>yml &#x6DFB;&#x52A0;&#x5185;&#x5BB9; &#x5982;&#x4E0B;</p>
+<pre><code class="lang-yml"><span class="hljs-attr">  myself:</span>
+<span class="hljs-attr">  name:</span> Mokou
+<span class="hljs-attr">  age:</span> <span class="hljs-number">16</span>
+</code></pre>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF0C;&#x4F7F;&#x7528; <code>@value</code></p>
+<ul>
+<li>&#x4F8B;&#x5982;&#xFF1A;&#x5728; class &#x4E2D;&#x6DFB;&#x52A0;<pre><code class="lang-java"> <span class="hljs-meta">@Value</span>(<span class="hljs-string">&quot;${myself.age}&quot;</span>)
+ <span class="hljs-keyword">private</span> String age;
+</code></pre>
+</li>
+</ul>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x4E00;&#x4E2A; <code>JavaBean</code> &#x6765;&#x4E13;&#x95E8;&#x6620;&#x5C04;&#x914D;&#x7F6E;&#x7684;&#x8BDD;, &#x4E00;&#x822C;&#x4F7F;&#x7528; <code>@ConfigurationProperties</code> &#x8BFB;&#x53D6;.</p>
+<ol>
+<li><p>&#x6DFB;&#x52A0; <code>config/Myself.java</code></p>
+<pre><code class="lang-java"><span class="hljs-meta">@Component</span> <span class="hljs-comment">// &#x4E0D;&#x52A0;&#x8FD9;&#x4E2A;&#x6CE8;&#x89E3;&#x7684;&#x8BDD;, &#x4F7F;&#x7528; @Autowired &#x5C31;&#x4E0D;&#x80FD;&#x6CE8;&#x5165;&#x8FDB;&#x53BB;&#x4E86;</span>
+<span class="hljs-meta">@ConfigurationProperties</span>(prefix = <span class="hljs-string">&quot;myself&quot;</span>) <span class="hljs-comment">// &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x524D;&#x7F00;</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Myself</span> </span>{
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+
+    <span class="hljs-keyword">private</span> String age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(String age)</span> </span>{
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+}
+</code></pre>
+<ol>
+<li>&#x5F15;&#x5165;<pre><code class="lang-java"><span class="hljs-meta">@Autowired</span>
+<span class="hljs-keyword">private</span> Myself myself;
+</code></pre>
+</li>
+<li>&#x4F7F;&#x7528;<pre><code class="lang-java">System.out.println(myself.getName());
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<p>&#x7B2C;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#xFF1A;&#x4F7F;&#x7528; <code>@Environment</code>&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x4EBA;&#x7528;</p>
+<h3 id="&#x5168;&#x5C40;&#x5F02;&#x5E38;&#x5904;&#x7406;">&#x5168;&#x5C40;&#x5F02;&#x5E38;&#x5904;&#x7406;</h3>
+<p>&#x4F7F;&#x7528; <code>@ControllerAdvice</code> &#x548C; <code>@ExceptionHandler</code> &#x5904;&#x7406;&#x5168;&#x5C40;&#x5F02;&#x5E38;</p>
+<ul>
+<li><code>@ControllerAdvice</code> :&#x6CE8;&#x89E3;&#x5B9A;&#x4E49;&#x5168;&#x5C40;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x7C7B;</li>
+<li><code>@ExceptionHandler</code> :&#x6CE8;&#x89E3;&#x58F0;&#x660E;&#x5F02;&#x5E38;&#x5904;&#x7406;&#x65B9;&#x6CD5;</li>
+</ul>
+<h3 id="&#x5F02;&#x6B65;">&#x5F02;&#x6B65;</h3>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728; SpringBoot &#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x7F16;&#x7A0B;&#x7684;&#x8BDD;&#xFF0C;&#x901A;&#x8FC7; Spring &#x63D0;&#x4F9B;&#x7684;&#x4E24;&#x4E2A;&#x6CE8;&#x89E3;&#x4F1A;&#x8BA9;&#x8FD9;&#x4EF6;&#x4E8B;&#x60C5;&#x53D8;&#x7684;&#x975E;&#x5E38;&#x7B80;&#x5355;&#x3002;</p>
+<ul>
+<li><code>@EnableAsync</code>&#xFF1A;&#x901A;&#x8FC7;&#x5728; &#x914D;&#x7F6E;&#x7C7B;&#x6216;&#x8005;Main&#x7C7B; &#x4E0A;&#x52A0; <code>@EnableAsync</code> &#x5F00;&#x542F;&#x5BF9;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#x7684;&#x652F;&#x6301;&#x3002;</li>
+<li><code>@Async</code> &#x53EF;&#x4EE5;&#x4F5C;&#x7528;&#x5728;&#x7C7B;&#x4E0A;&#x6216;&#x8005;&#x65B9;&#x6CD5;&#x4E0A;&#xFF0C;&#x4F5C;&#x7528;&#x5728;&#x7C7B;&#x4E0A;&#x4EE3;&#x8868;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x5F02;&#x6B65;&#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<h3 id="spring-schedule-&#x5B9E;&#x73B0;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;">Spring Schedule &#x5B9E;&#x73B0;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;</h3>
+<p>schedule&#xFF08;&#x8BD1;&#xFF1A;&#x65F6;&#x95F4;&#x8868;&#x3001;&#x8BA1;&#x5212;&#x8868;&#xFF09;, <a href="http://cron.qqe2.com/" target="_blank">&#x5728;&#x7EBF;Cron&#x8868;&#x8FBE;&#x5F0F;&#x751F;&#x6210;&#x5668;</a></p>
+<ol>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; scheduled task</li>
+</ol>
+<p><code>@Scheduled</code>&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;&#x56FA;&#x5B9A;&#x901F;&#x7387;&#x6267;&#x884C;&#x3001;&#x56FA;&#x5B9A;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#x3001;&#x521D;&#x59CB;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#x3001;&#x4F7F;&#x7528; Cron &#x8868;&#x8FBE;&#x5F0F;&#x6267;&#x884C;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x3002;</p>
+<pre><code class="lang-java">  <span class="hljs-keyword">import</span> org.slf4j.Logger;
+  <span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;
+  <span class="hljs-keyword">import</span> org.springframework.scheduling.annotation.Scheduled;
+  <span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+  <span class="hljs-keyword">import</span> java.text.SimpleDateFormat;
+  <span class="hljs-keyword">import</span> java.util.Date;
+  <span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+
+  <span class="hljs-meta">@Component</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScheduledTasks</span> </span>{
+      <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+      <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> SimpleDateFormat dateFormat = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">&quot;HH:mm:ss&quot;</span>);
+
+      <span class="hljs-comment">/**
+      * fixedRate&#xFF1A;&#x56FA;&#x5B9A;&#x901F;&#x7387;&#x6267;&#x884C;&#x3002;&#x6BCF;5&#x79D2;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x3002;
+      */</span>
+      <span class="hljs-meta">@Scheduled</span>(fixedRate = <span class="hljs-number">5000</span>)
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reportCurrentTimeWithFixedRate</span><span class="hljs-params">()</span> </span>{
+          log.info(<span class="hljs-string">&quot;Current Thread : {}&quot;</span>, Thread.currentThread().getName());
+          log.info(<span class="hljs-string">&quot;Fixed Rate Task : The time is now {}&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> Date()));
+      }
+
+      <span class="hljs-comment">/**
+      * fixedDelay&#xFF1A;&#x56FA;&#x5B9A;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#x3002;&#x8DDD;&#x79BB;&#x4E0A;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x6210;&#x529F;&#x540E;2&#x79D2;&#x624D;&#x6267;&#x3002;
+      */</span>
+      <span class="hljs-meta">@Scheduled</span>(fixedDelay = <span class="hljs-number">2000</span>)
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reportCurrentTimeWithFixedDelay</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">try</span> {
+              TimeUnit.SECONDS.sleep(<span class="hljs-number">3</span>);
+              log.info(<span class="hljs-string">&quot;Fixed Delay Task : The time is now {}&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> Date()));
+          } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+              e.printStackTrace();
+          }
+      }
+
+      <span class="hljs-comment">/**
+      * initialDelay:&#x521D;&#x59CB;&#x5EF6;&#x8FDF;&#x3002;&#x4EFB;&#x52A1;&#x7684;&#x7B2C;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x5C06;&#x5EF6;&#x8FDF;5&#x79D2;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x4EE5;5&#x79D2;&#x7684;&#x56FA;&#x5B9A;&#x95F4;&#x9694;&#x6267;&#x884C;&#x3002;
+      */</span>
+      <span class="hljs-meta">@Scheduled</span>(initialDelay = <span class="hljs-number">5000</span>, fixedRate = <span class="hljs-number">5000</span>)
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reportCurrentTimeWithInitialDelay</span><span class="hljs-params">()</span> </span>{
+          log.info(<span class="hljs-string">&quot;Fixed Rate Task with Initial Delay : The time is now {}&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> Date()));
+      }
+
+      <span class="hljs-comment">/**
+      * cron&#xFF1A;&#x4F7F;&#x7528;Cron&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x3000;&#x6BCF;&#x5206;&#x949F;&#x7684;1&#xFF0C;2&#x79D2;&#x8FD0;&#x884C;
+      */</span>
+      <span class="hljs-meta">@Scheduled</span>(cron = <span class="hljs-string">&quot;1-2 * * * * ? &quot;</span>)
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reportCurrentTimeWithCronExpression</span><span class="hljs-params">()</span> </span>{
+          log.info(<span class="hljs-string">&quot;Cron Expression: The time is now {}&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> Date()));
+      }
+  }
+</code></pre>
+<ol>
+<li>&#x542F;&#x52A8;&#x7C7B;&#x4E0A;&#x52A0;&#x4E0A; @EnableScheduling &#x6CE8;&#x89E3;</li>
+</ol>
+<p>&#x5728; SpringBoot &#x4E2D;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x5728;&#x542F;&#x52A8;&#x7C7B;&#x4E0A;&#x52A0;&#x4E0A; <code>@EnableScheduling</code> &#x4FBF;&#x53EF;&#x4EE5;&#x542F;&#x52A8;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x4E86;&#x3002;</p>
+<pre><code class="lang-java">  <span class="hljs-meta">@SpringBootApplication</span>
+  <span class="hljs-meta">@EnableScheduling</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoApplication</span> </span>{
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+          SpringApplication.run(DemoApplication.class, args);
+      }
+  }
+</code></pre>
+<ol>
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x7EBF;&#x7A0B;&#x6C60;&#x6267;&#x884C; scheduled task</li>
+</ol>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;<code>@Scheduled</code> &#x4EFB;&#x52A1;&#x90FD;&#x5728;Spring&#x521B;&#x5EFA;&#x7684;&#x5927;&#x5C0F;&#x4E3A;1&#x7684;&#x9ED8;&#x8BA4;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x6267;&#x884C;</p>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x4E49;&#x7EBF;&#x7A0B;&#x6C60;&#x6267;&#x884C;&#x53EA;&#x9700;&#x8981;&#x65B0;&#x52A0;&#x4E00;&#x4E2A;&#x5B9E;&#x73B0; <code>SchedulingConfigurer</code> &#x63A5;&#x53E3;&#x7684; <code>configureTasks</code> &#x7684;&#x7C7B;&#x5373;&#x53EF;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x9700;&#x8981;&#x52A0;&#x4E0A; <code>@Configuration</code> &#x6CE8;&#x89E3;&#x3002;</p>
+<pre><code class="lang-java">  <span class="hljs-meta">@Configuration</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SchedulerConfig</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SchedulingConfigurer</span> </span>{
+      <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> POOL_SIZE = <span class="hljs-number">10</span>;
+
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configureTasks</span><span class="hljs-params">(ScheduledTaskRegistrar scheduledTaskRegistrar)</span> </span>{
+          ThreadPoolTaskScheduler threadPoolTaskScheduler = <span class="hljs-keyword">new</span> ThreadPoolTaskScheduler();
+
+          threadPoolTaskScheduler.setPoolSize(POOL_SIZE);
+          threadPoolTaskScheduler.setThreadNamePrefix(<span class="hljs-string">&quot;my-scheduled-task-pool-&quot;</span>);
+          threadPoolTaskScheduler.initialize();
+
+          scheduledTaskRegistrar.setTaskScheduler(threadPoolTaskScheduler);
+      }
+  }
+</code></pre>
+<ol>
+<li>@EnableAsync &#x548C; @Async &#x4F7F;&#x5B9A;&#x65F6;&#x4EFB;&#x52A1;&#x5E76;&#x884C;&#x6267;&#x884C;</li>
+</ol>
+<p>&#x5982;&#x679C;&#x60F3;&#x8981;&#x4EE3;&#x7801;&#x5E76;&#x884C;&#x6267;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>@EnableAsync</code> &#x548C; <code>@Async</code> &#x8FD9;&#x4E24;&#x4E2A;&#x6CE8;&#x89E3;&#x5B9E;&#x73B0;</p>
+<pre><code class="lang-java">  <span class="hljs-meta">@Component</span>
+  <span class="hljs-meta">@EnableAsync</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncScheduledTasks</span> </span>{
+      <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger log = LoggerFactory.getLogger(AsyncScheduledTasks.class);
+      <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> SimpleDateFormat dateFormat = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">&quot;HH:mm:ss&quot;</span>);
+
+      <span class="hljs-comment">/**
+      * fixedDelay&#xFF1A;&#x56FA;&#x5B9A;&#x5EF6;&#x8FDF;&#x6267;&#x884C;&#x3002;&#x8DDD;&#x79BB;&#x4E0A;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x6210;&#x529F;&#x540E;2&#x79D2;&#x624D;&#x6267;&#x3002;
+      */</span>
+      <span class="hljs-comment">//@Async</span>
+      <span class="hljs-meta">@Scheduled</span>(fixedDelay = <span class="hljs-number">2000</span>)
+      <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reportCurrentTimeWithFixedDelay</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">try</span> {
+              TimeUnit.SECONDS.sleep(<span class="hljs-number">3</span>);
+              log.info(<span class="hljs-string">&quot;Fixed Delay Task : The time is now {}&quot;</span>, dateFormat.format(<span class="hljs-keyword">new</span> Date()));
+          } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+</code></pre>
+<p>&#x56E0;&#x4E3A; <code>@Scheduled</code> &#x4EFB;&#x52A1;&#x90FD;&#x5728;Spring&#x521B;&#x5EFA;&#x7684;&#x5927;&#x5C0F;&#x4E3A;1&#x7684;&#x9ED8;&#x8BA4;&#x7EBF;&#x7A0B;&#x6C60;&#x4E2D;&#x6267;&#x884C;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x4F7F;&#x7528; <code>@Async</code> &#x7A0B;&#x5E8F;&#x4F1A;&#x56E0;&#x4E3A; <code>sleep(3)</code>&#xFF0C;&#x4F7F; <code>reportCurrentTimeWithFixedDelay</code> &#x65B9;&#x6CD5; 5s &#x8C03;&#x7528;1&#x6B21;&#x3002;</p>
+<p>&#x4F7F;&#x7528; <code>@EnableAsync</code> &#x548C; <code>@Async</code> &#x540E;&#xFF0C;<code>reportCurrentTimeWithFixedDelay</code> &#x6BCF; 2s &#x8C03;&#x7528;1&#x6B21;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="db.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 数据库相关">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"SpringBoot 基础","level":"1.11.3","depth":2,"next":{"title":"其他","level":"1.12","depth":1,"ref":"","articles":[{"title":"git命令","level":"1.12.1","depth":2,"path":"md/other/GIT.md","ref":"md/other/GIT.md","articles":[]},{"title":"GitHub的Host和Key","level":"1.12.2","depth":2,"path":"md/other/GITHUB.md","ref":"md/other/GITHUB.md","articles":[]}]},"previous":{"title":"数据库相关","level":"1.11.2","depth":2,"path":"md/java/db.md","ref":"md/java/db.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"md/java/spring_boot.md","mtime":"2020-05-18T02:09:03.029Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-27T06:32:13.550Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
