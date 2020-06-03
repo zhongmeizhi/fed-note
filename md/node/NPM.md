@@ -142,6 +142,17 @@ node_modules
 * 然后就可以cd到需要作为插件的目录`npm publish`
 * 私有库可链接 `cnpm` 镜像
 
+### 私有库的管理
+
+[npm-scoped](https://docs.npmjs.com/misc/scope#publishing-public-scoped-packages-to-the-public-npm-registry)
+
+最简单的操作：
+1. 组件库命名使用 `@myco/名称` （其中：`@myco` 表示作用域）
+2. 使用 `npm config` 将作用域与注册表关联：
+   *  运行：`npm config set @myco:registry http://reg.example.com`
+   *  `npm config` 修改的是 `.npmrc` 文件，就是npm的配置文件所在位置。
+
+
 ### NPM 和 yarn
 
 yarn产生的原因：

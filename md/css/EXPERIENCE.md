@@ -61,13 +61,18 @@ canvas具有外部画布宽高，还有内部画布宽高（canvas基础）
 
 
 解决方案：百度echarts框架抗锯齿实现
-```
+```js
+  // 获取像素比
+  const ratio = window.devicePixelRatio;
+
   // 内部画布大小 按像素比扩大
-  context.canvas.width = _width * 3;
-  context.canvas.height = _height * 3;
+  context.canvas.width = _width * ratio;
+  context.canvas.height = _height * ratio;
   // 外部展示
-  $ele.width = _width + 'px';
-  $ele.height = _height + 'px';
+  $ele.width = _width;
+  $ele.height = _height;
+
+  // ps 先定内部，再定外部，顺序不能乱
 ```
 
 
