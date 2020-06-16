@@ -265,6 +265,8 @@ function track(target, type, key) {
 }
 ```
 
+首先 `track` 需要 `shouldTrack` 和 `activeEffect` 为真。
+
 ```js
 function trigger(target, type, key, newValue, oldValue, oldTarget) {
     const depsMap = targetMap.get(target);
