@@ -47,3 +47,35 @@ PrerenderSPAPlugin 使用
 ![prerender](/md/img/vue/prerender.png)
 
 
+###  微服务基础 single-spa
+
+子项目：
+* 在开发或者单独部署时，按照各自风格编写。
+* 如果要集成微服务架构，需要再设置单独的打包方式，以引入`single-spa-vue`或者其他单页面插件的js文件作为入口。
+* 需要打包为 `library`，target可以是umd或者其他方式。
+```
+  libraryTarget: 'umd',
+	library: 'app1'
+```
+
+根项目：
+* 引入`single-spa`
+* 通过`spa.registerApplication`的方式，在遇到特定`href`时加载不同的打包子项目入口文件
+* 在开发环境，通过代理来实现不同的遇到特定`href`代理不同的子项目。
+
+
+### 阿里 qiankun 实现微服务
+
+qiankun 是基于 single-spa 的微服务框架。实现了几乎包含所有构建微前端系统时所需要的基本能力，如 样式隔离、js 沙箱、预加载等。
+
+使用 自带的 example
+
+```
+  $ git clone https://github.com/umijs/qiankun.git
+  $ cd qiankun
+  $ yarn install
+  $ yarn examples:install
+  $ yarn examples:start
+```
+
+使用 qiankun 可以无缝兼容已有的项目，但兼容性有点问题（比如不兼容 Edge 浏览器）
