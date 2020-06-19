@@ -47,6 +47,11 @@ PrerenderSPAPlugin 使用
 ![prerender](/md/img/vue/prerender.png)
 
 
+### nuxt.js 搭建 ssr 或 预渲染
+
+直接通过 ![https://www.nuxtjs.cn/](https://www.nuxtjs.cn/) 官网就可以使用了。
+
+
 ###  微服务基础 single-spa
 
 子项目：
@@ -79,3 +84,4 @@ qiankun 是基于 single-spa 的微服务框架。实现了几乎包含所有构
 ```
 
 使用 qiankun 可以无缝兼容已有的项目，但兼容性有点问题（比如不兼容 Edge 浏览器）
+

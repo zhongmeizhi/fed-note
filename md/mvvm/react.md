@@ -131,9 +131,7 @@ PureComponent的缺点：一些深层数据的改变可能会产生`shouldCompon
 
 时间切片实际上是将任务分成不同的优先级，计算任务的运行时间，从而将任务分隔为，能暂停的方法在16ms以内
 
-React 实现调度主要靠两块内容：
-* 计算任务的 expriationTime
-* 实现 `requestIdleCallback` 的 polyfill 版本
+详情在 Fiber 源码解析 详细介绍
 
 ### JSX
 

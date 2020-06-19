@@ -6,12 +6,9 @@
 
 在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 shouldComponentUpdate。
 
-双向绑定实现原理图：
-![vue双向绑定](/md/img/vue_proxy.png)
-
 Vue 运行：
 * 在创建时（beforeCreate之后created之前）使用依赖收集实现双向绑定
-* render不存在的时候会去编译template
+* render不存在的时候会去编译template（即支持 render写法 也支持 template写法）
 * template编译会被解析成对象形式的树结构（抽象语法树（abstract syntax tree或者缩写为AST））
 * AST会经过generate得到render函数，render的返回值是VNode，也就是虚拟DOM
 * 虚拟Dom的在更新时会经过 setter -> Dep -> Watcher -> update -> patch。
@@ -24,8 +21,7 @@ Vue 主要模块：
 * keep-alive 和 instance（基于VNode节点），还有activated与deactivated
 
 
-
-## 实现双向绑定
+### 实现双向绑定
 
 > Vue的双向绑定是`利用订阅-发布者模式`+`数据劫持`实现的
 
@@ -33,9 +29,13 @@ Vue 主要模块：
 
 在`getter`中实现绑定的而不是`setter`，这样可以只劫持被使用的数据。
 
+双向绑定实现原理图：
+
+![vue双向绑定](/md/img/vue_proxy.png)
+
 实现一个简单的双向绑定：
 
-```
+```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -178,19 +178,22 @@ Vue 主要模块：
 
 
 
-## 异步更新 && NextTick
+### 异步更新 && NextTick
 
 > Vue的$nextTick的实现主要利用了JS的EventLoop
 
-### Vue为什么有$nextTick ？
+Vue为什么有$nextTick ？
+
 * Vue的Dom更新操作是**异步更新**，调用`queueWatcher`函数
 * queueWatcher中，Watch对象并不是立即更新视图，而是`queue.push(watcher)`(被push进了一个队列queue)
 * 更新的过程是异步的（微任务实现，如果浏览器不支持微任务则降级为setTimeout）
 
+
 ### $nextTick降级策略（由微任务降级到宏任务）
 
 $nextTick方法内部有timerFunc函数
-```
+
+```js
   if (typeof Promise !== 'undefined' && isNative(Promise)) {
     var p = Promise.resolve();
     timerFunc = function () {
@@ -245,7 +248,9 @@ $nextTick方法内部有timerFunc函数
 * setImmediate
 * setTimeout
 
-顾轶灵在知乎上（2017-11-12）说：Vue 的 nextTick 实现移除了 MutationObserver 的方式（兼容性原因），取而代之的是使用 MessageChannel。但是在源码中并没有看到（2019-05-05 v2.6.10）
+ps1: 顾轶灵在知乎上（2017-11-12）说：Vue 的 nextTick 实现移除了 MutationObserver 的方式（兼容性原因），取而代之的是使用 MessageChannel。但是在源码中并没有看到（2019-05-05 v2.6.10）
+
+ps2: 其实中途确实使用过 `MessageChannel` 但是出现了一些BUG，所以 尤大把代码回滚了
 
 ### 为什么$nextTick要降级 ？
 
@@ -255,10 +260,11 @@ $nextTick方法内部有timerFunc函数
 
 ### 为什么要异步更新 ？
 
-和节流、防抖差不多吧。如果没有异步更新操作，那么连续的改动都会直接操作DOM更新视图，这是非常消耗性能的。
+和节流、防抖差不多吧。如果没有异步更新操作，那么连续的改动都会直接操作DOM更新视图，这是非常消耗性能的。（react 中会有一个说法：不在乎过程，只在乎结果）
 
 而且`queueWatcher`中有`watcher.id`防重复
-```
+
+```js
 export function queueWatcher (watcher: Watcher) {
   const id = watcher.id
   // 检验id是否存在，已经存在则直接跳过
@@ -282,8 +288,6 @@ export function queueWatcher (watcher: Watcher) {
 }
 ```
 
-
-
 ## Diff算法
 
 > patch的核心是diff算法
@@ -302,7 +306,8 @@ diff算法主要为2种：
 * 当标签是`<input>`的时候，type必须相同
 
 源码如下：
-```
+
+```js
 function sameVnode (a, b) {
   return (
     a.key === b.key &&
@@ -324,7 +329,8 @@ function sameVnode (a, b) {
 
 
 `updateChildren`方法源码如下：（遍历过程中这几个变量都向中间靠拢）
-```
+
+```js
 while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
   if...
     ++oldStartIdx
@@ -344,7 +350,8 @@ Vue中`keep-alive`是一个组件：
 * 在destroyed时销毁cache
 
 缓存的是Vnode的`componentInstance`（组件实例），而且在创建之初会`getFirstComponentChild(this.$slots.default)`
-```
+
+```js
   if (this.cache[key]) {
       vnode.componentInstance = this.cache[key].componentInstance
   } else {
@@ -353,7 +360,8 @@ Vue中`keep-alive`是一个组件：
 ```
 
 include 和 exclude 属性允许组件有条件地缓存
-```
+
+```js
   // 允许使用字符串和正则
 
   function matches (pattern: string | RegExp, name: string): boolean {
@@ -367,7 +375,8 @@ include 和 exclude 属性允许组件有条件地缓存
 ```
 
 并且会监视`include`和`exclude`，在被修改的时候对cache进行修正
-```
+
+```js
   watch: {
     include (val: string | RegExp) {
         pruneCache(this.cache, this._vnode, name => matches(val, name))
@@ -382,12 +391,15 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
 
 触发顺序：created-> mounted-> activated
 
-## 对Array的hack实现
+
+### Vue 对Array的hack实现
+
+Vue2 使用的数据劫持方式是无法劫持数组改变的，所以 Array 类型需要 Hack。
 
 1. 实现了个包含需要hack的数组方法的对象
 2. 在`Observer`时将该hack方法覆盖需要劫持的Array的原型
 
-```
+```js
   var arrayProto = Array.prototype;
 
   // 创建一个对象， 该对象以数组的原型为原型
@@ -489,15 +501,16 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
   }
 ```
 
-## Vuex源码实现
+### Vuex源码实现
 
-### Vuex的install实现
+Vuex 的 install
+
 1. 通过`applyMixin(Vue)`在Vue的`beforeCreate`时注入
 2. 为了获取同一份store，会尝试从`options.store`（root节点）和`options.parent.$store`获取store
 
-### 双向绑定实现
+Vuex 双向绑定
 
-```
+```js
   // 一
   // 通过 new Vue实现$$state的双向绑定
   store._vm = new Vue({
@@ -520,12 +533,13 @@ keep-alive有2个新的生命周期`activated`和`deactivated`，在进入/退�
   Object.defineProperties( Store.prototype, prototypeAccessors$1 );
 ```
 
-### 修改state
+vuex 单向修改 state 原理
 
 在严格模式中：会调用`store._vm.$watch(...)`，监听state的改动，如果`!_committing`则会抛出错误。
 
-只能使用mutation更改state
-```
+只能使用 mutation 更改state
+
+```js
 _withCommit (fn) {
   const committing = this._committing
   this._committing = true
@@ -572,7 +586,9 @@ action是异步的，使用的是Promise。 - -没啥好说的。
   }
 ```
 
-## Vue 的计算属性
+### Vue 的计算属性
+
+计算属性就是 data 数据劫持的进一步封装。
 
 核心实现：
 1. 先实现`$data`的双向绑定
@@ -580,9 +596,10 @@ action是异步的，使用的是Promise。 - -没啥好说的。
 3. 触发 对应$data 的getter方法
 4. 将对应`$data`的 观察者push到 computed对象的 `Watcher` 中
 
+
 ### Vue.use 插件安装
 
-```
+```js
   // 首先会校验`installedPlugins`数组中是否已经含有对应组件
   const installedPlugins = this._installedPlugins || (this._installedPlugins = [])
 
@@ -610,14 +627,145 @@ action是异步的，使用的是Promise。 - -没啥好说的。
   return this
 ```
 
-## VueRouter 实现
+### VueRouter 实现
 
 > VueRouter 实际上是一个 Vue的插件，通过`Vue.use(VueRouter)`来调用`VueRouter`的`install`方法
 
-最重要的实现：
+hash 路由通过 监听 `hashchange` 形成堆栈实现
+
+```html
+  <ul>
+    <li onclick="router.push('/')">首页</li>
+    <li onclick="router.push('/aa')">AA</li>
+    <li onclick="router.push('/bb')">BB</li>
+  </ul>
+  <div id="routerView"></div>
+  <script>
+    var routerView = document.getElementById("routerView");
+    
+    class HashRouter {
+      constructor({routes}) {
+        this.routes = routes || [];
+        this.addListener();
+      }
+      
+      push(url) {
+        const href = "#" + url;
+        window.location.href = href;
+      }
+      
+      router() {
+        const curUrl = window.location.hash.slice(1) || '/';
+        // 找到路由
+        const route = this.routes.find(r => r.path === curUrl);
+        // 简单的校验下异常
+        if (typeof route === 'object') {
+          routerView.innerHTML = route.component;
+        }
+      }
+      
+      addListener() {
+        // 监听load事件，防止刷新页面数据丢失
+        window.addEventListener("load", this.router.bind(this));
+        window.addEventListener("hashchange", this.router.bind(this))
+      }
+    }
+
+    //初始化 使用
+    var router = new HashRouter({
+      routes: [{
+          path: '/',
+          component: '<div>这里是 根</div>'
+        },
+        {
+          path: '/aa',
+          component: '<div>这里是 AA</div>'
+        },
+        {
+          path: '/bb',
+          component: '<div>这里是 BB</div>'
+        }
+      ]
+    });
+  </script>
+```
+
+当然也可以使用 `history` 模式，原理大部分都是一样的
+
+1. 通过 `popstate` 监听 `history` 的改变
+2. 通过 `window.history.pushState({}, null, url);` 推入堆栈
+  * 小细节：`popstate` 并不能监听 `pushState` 的改变
+  * 故：需主动触发 `router`
+
+```html
+  <ul>
+    <li onclick="router.push('/')">首页</li>
+    <li onclick="router.push('/aa')">AA</li>
+    <li onclick="router.push('/bb')">BB</li>
+  </ul>
+  <div id="routerView"></div>
+  <script>
+    var routerView = document.getElementById("routerView");
+    
+    class HistoryRouter {
+      constructor({routes}) {
+        this.routes = routes || [];
+        this.addListener();
+      }
+      
+      push(url) {
+        window.history.pushState({}, null, url);
+        // pushState 并不会触发 popstate，所以需要主动触发 router
+        this.router();
+      }
+      
+      router() {
+        const curUrl = window.location.pathname;
+        // 找到路由
+        const route = this.routes.find(r => r.path === curUrl);
+        console.log(route, curUrl)
+        // 简单的校验下异常
+        if (typeof route === 'object') {
+          routerView.innerHTML = route.component;
+        }
+      }
+      
+      addListener() {
+        // 监听load事件，防止刷新页面数据丢失
+        window.addEventListener("load", this.router.bind(this));
+        window.addEventListener("popstate", this.router.bind(this))
+      }
+      
+    }
+
+    //初始化 使用
+    var router = new HistoryRouter({
+      routes: [{
+          path: '/',
+          component: '<div>这里是 根</div>'
+        },
+        {
+          path: '/aa',
+          component: '<div>这里是 AA</div>'
+        },
+        {
+          path: '/bb',
+          component: '<div>这里是 BB</div>'
+        }
+      ]
+    });
+  </script>
+```
+
+实现总结：
 1. 通过`Vue.mixin`在`beforeCreate`中初始化router
 2. 全局注册2个组件：`router-link`和`router-view`
-```
+  * `router-link` 组件：就是上例的 `<li onclick="router.push('/')">首页</li>`
+  * `router-view` 组件：就是上例的 `<div id="routerView"></div>`
+
+注入：
+
+```js
   // 通过 Vue.mixin 在 beforeCreate 中注入
   Vue.mixin({
     beforeCreate() {
