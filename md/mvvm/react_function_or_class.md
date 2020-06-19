@@ -2,12 +2,14 @@
 
 与React类组件相比，React函数式组件究竟有何不同？
 
+[参考1:作者github](https://github.com/ryardley/hooks-perf-issues/pull/2)
+
+[参考2：官网：](https://zh-hans.reactjs.org/docs/hooks-faq.html#are-hooks-slow-because-of-creating-functions-in-render)
+
 一般的回答都是：
 1. 类组件比函数式组件多了更多的特性，比如 `state`，那如果有 `Hooks` 之后呢？
 2. 函数组件性能比类组件好，**但是在现代浏览器中，闭包和类的原始性能只有在极端场景下才会有明显的差别。** 
    1. 性能主要取决于代码的作用，而不是选择函数式还是类组件。尽管优化策略有差别，但性能差异可以忽略不计。
-   2. 参考官网：(https://zh-hans.reactjs.org/docs/hooks-faq.html#are-hooks-slow-because-of-creating-functions-in-render)
-   3. 参考作者github：(https://github.com/ryardley/hooks-perf-issues/pull/2)
 
 而下面会重点讲述：React的函数式组件和类组件之间根本的区别： 在**心智模型**上。
 

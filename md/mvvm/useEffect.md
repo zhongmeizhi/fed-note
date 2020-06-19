@@ -2,6 +2,8 @@
 
 > 参考自 facebook大佬：Dan Abramov 的博客
 
+[Dan的github](https://github.com/ryardley/hooks-perf-issues/pull/2)
+
 ## 重点总结
 
 1. `useEffect` 是同步的
