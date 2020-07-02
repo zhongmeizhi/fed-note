@@ -596,6 +596,80 @@ action是异步的，使用的是Promise。 - -没啥好说的。
 3. 触发 对应$data 的getter方法
 4. 将对应`$data`的 观察者push到 computed对象的 `Watcher` 中
 
+从 `initComputed` 方法开始源码分析：-> 源码来自（vue v2.6.10），不重要的内容省略。
+
+```js
+function initComputed (vm, computed) {
+  var watchers = vm._computedWatchers = Object.create(null);
+
+  for (var key in computed) {
+    var userDef = computed[key];
+    var getter = typeof userDef === 'function' ? userDef : userDef.get;
+
+    // 异常部分 略...
+
+    watchers[key] = new Watcher(
+      vm,
+      getter || noop,
+      noop,
+      computedWatcherOptions
+    );
+
+    if (!(key in vm)) {
+      defineComputed(vm, key, userDef);
+    } else {
+      // 略...
+    }
+  }
+}
+```
+
+在初始化计算属性时主要做了3件事情
+
+1. 遍历所有挂载的计算属性
+2. 通过 `new Watcher` 监听每一个计算属性
+3. 调用 `defineComputed` 方法
+
+
+而上面的 `defineComputed` 主要是调用了 `createComputedGetter` 或 `createGetterInvoker` 方法
+
+```js
+  function defineComputed ( target, key, userDef ) {
+    if (typeof userDef === 'function') {
+      sharedPropertyDefinition.get = shouldCache
+        ? createComputedGetter(key)
+        : createGetterInvoker(userDef);
+      sharedPropertyDefinition.set = noop;
+    }
+    // 略...
+  }
+
+  function createComputedGetter (key) {
+    return function computedGetter () {
+      var watcher = this._computedWatchers && this._computedWatchers[key];
+      if (watcher) {
+        if (watcher.dirty) {
+          // evaluate 其实时调用自身 get 方法
+          watcher.evaluate();
+        }
+        if (Dep.target) {
+          // 将自身push到Dep 中
+          watcher.depend();
+        }
+        return watcher.value
+      }
+    }
+  }
+
+  function createGetterInvoker(fn) {
+    return function computedGetter () {
+      return fn.call(this, this)
+    }
+  }
+```
+
+实现 `computed` 计算属性重点就在于 `createComputedGetter` 方法。在这个方法中，无非就是通过 `watcher.evaluate();` 调用自身的 `get` 方法将内部所有用到的 `this.xxx` 全部加入到 `Dep` 中，从而统一监听内部用到的 `this.xxx`，这样计算属性就完成了。
+
 
 ### Vue.use 插件安装
 
