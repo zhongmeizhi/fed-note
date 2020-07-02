@@ -78,7 +78,7 @@ ps: 可能大部分人都不清楚 `vue3` 的开发api，将源码之前先讲�
 
 通过分析 `import` 的内容，识别是不是第三方库（这个主要是看前面是不是相对路径）
 
-如果是第三方库就去 `node_modules` 中查找，这里大圣在第三方库中添加了 `/@modules/`，然后发现了 `/@modules/` 后走 `第三方库逻辑`，这个其实没什么必要，已经知道是第三方库了呀（不过人家这个只是乞丐版。）
+如果是第三方库就去 `node_modules` 中查找，`vite` 中通过在第三方库中添加前缀 `/@modules/`，然后发现了 `/@modules/` 后走 `第三方库逻辑`
 
 ```js
     if(url.startsWith('/@modules/')){
@@ -342,79 +342,101 @@ function track(target, type, key) {
 
 首先 `track` 需要 `shouldTrack` 和 `activeEffect` 为真。
 
+在不考虑 `activeEffect` 的情况下。`track` 所做的事情就是
+
+1. 创建包含自身的 `map`
+2. 将 `activeEffect` 塞到 `map` 中
+3. 触发 `onTrack`
+
+
+然后 `activeEffect` 又是什么呢？找到 `3687` 行，这里有个 `createReactiveEffect` 函数。
+
 ```js
-function trigger(target, type, key, newValue, oldValue, oldTarget) {
-    const depsMap = targetMap.get(target);
-    if (!depsMap) {
-        // never been tracked
-        return;
-    }
-    const effects = new Set();
-    const computedRunners = new Set();
-    const add = (effectsToAdd) => {
-        if (effectsToAdd) {
-            effectsToAdd.forEach(effect => {
-                if (effect !== activeEffect || !shouldTrack) {
-                    if (effect.options.computed) {
-                        computedRunners.add(effect);
-                    }
-                    else {
-                        effects.add(effect);
-                    }
-                }
-            });
-        }
+function createReactiveEffect(fn, options) {
+    const effect = function reactiveEffect(...args) {
+        return run(effect, fn, args);
     };
-    if (type === "clear" /* CLEAR */) {
-        // collection being cleared
-        // trigger all effects for target
-        depsMap.forEach(add);
-    }
-    else if (key === 'length' && isArray(target)) {
-        depsMap.forEach((dep, key) => {
-            if (key === 'length' || key >= newValue) {
-                add(dep);
-            }
-        });
-    }
-    else {
-        // schedule runs for SET | ADD | DELETE
-        if (key !== void 0) {
-            add(depsMap.get(key));
-        }
-        // also run for iteration key on ADD | DELETE | Map.SET
-        const isAddOrDelete = type === "add" /* ADD */ ||
-            (type === "delete" /* DELETE */ && !isArray(target));
-        if (isAddOrDelete ||
-            (type === "set" /* SET */ && target instanceof Map)) {
-            add(depsMap.get(isArray(target) ? 'length' : ITERATE_KEY));
-        }
-        if (isAddOrDelete && target instanceof Map) {
-            add(depsMap.get(MAP_KEY_ITERATE_KEY));
-        }
-    }
-    const run = (effect) => {
-        if ( effect.options.onTrigger) {
-            effect.options.onTrigger({
-                effect,
-                target,
-                key,
-                type,
-                newValue,
-                oldValue,
-                oldTarget
-            });
-        }
-        if (effect.options.scheduler) {
-            effect.options.scheduler(effect);
-        }
-        else {
-            effect();
-        }
-    };
-    // Important: computed effects must be run first so that computed getters
-    // can be invalidated before any normal effects that depend on them are run.
-    computedRunners.forEach(run);
-    effects.forEach(run);
+    effect._isEffect = true;
+    effect.active = true;
+    effect.raw = fn;
+    effect.deps = [];
+    effect.options = options;
+    return effect;
 }
 ```
+
+`createReactiveEffect` 是在 `effect` 中被调用的
+
+而 `effect` 分别在以下地方被使用了
+
+*  `trigger` 通过 `scheduleRun` 调用 `effect`：源码 `3756` 行
+*  `mountComponent` 通过 `setupRenderEffect` 调用 `effect`：源码 6235 行
+   *  PS 该阶段在 `createComponentInstance` 之后
+*  `doWatch` 通过 `scheduler` 调用 `effect`
+
+先开始讲述 `trigget` 相关的代码（核心哦）
+
+```js
+function trigger(target, type, key, extraInfo) {
+    const depsMap = targetMap.get(target);
+    
+    // 略...
+
+    const effects = new Set();
+    const computedRunners = new Set();
+    if (type === "clear" /* CLEAR */) {
+      // collection being cleared, trigger all effects for target
+      depsMap.forEach(dep => {
+        addRunners(effects, computedRunners, dep);
+      });
+    }
+
+    // 略... 
+    const run = (effect) => {
+      scheduleRun(effect, target, type, key, extraInfo);
+    };
+    
+    computedRunners.forEach(run);
+    effects.forEach(run);
+  }
+```
+
+`trigger` 最终是在 `set` 函数中被使用，源码 `3855` 行，这个 `set` 就是数据劫持所用的 `set`
+
+```js
+function set(target, key, value, receiver) {
+    value = toRaw(value);
+    const oldValue = target[key];
+    if (isRef(oldValue) && !isRef(value)) {
+        oldValue.value = value;
+        return true;
+    }
+    const hadKey = hasOwn(target, key);
+    const result = Reflect.set(target, key, value, receiver);
+        {
+        const extraInfo = { oldValue, newValue: value };
+        if (!hadKey) {
+            trigger(target, "add" /* ADD */, key, extraInfo);
+        }
+        else if (hasChanged(value, oldValue)) {
+            trigger(target, "set" /* SET */, key, extraInfo);
+        }
+        }
+    }
+    return result;
+}
+```
+
+在源码 `3900` 行中，被 `mutableHandlers`、`readonlyHandlers` 等函数中被使用。
+
+还记得吗？ `mutableHandlers` 是什么？ 可以回到文章开头部分 `reactive` 源码讲解之初的 `createReactiveObject` 方法。在通过 `Proxy` 劫持数据的时候用的就是 `mutableHandlers`
+
+### reactive 总结
+
+所以，这里就成环了。
+
+1. 其实 `effect` 才是响应式的核心，在 `mountComponent`、`doWatch`、`reactive` 中被调用。
+2. 因为在 `reactive` 中 通过 `Proxy` 实现劫持。
+3. 在 `Proxy` 劫持`set`时调用 `trigger`。
+4. 然后在 `targger` 中清除收集并触发目标的所有 `effects`
+5. 最终触发 `patch` 游戏结束。

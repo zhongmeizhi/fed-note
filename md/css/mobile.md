@@ -164,3 +164,11 @@ viewport-fit 设置为cover可以网页内容完全覆盖可视窗口
   })
 ```
 
+### Safari 圆角无效BUG
+
+在 Safari 中当元素有背景时，会出现 `border-radius` 不能清理背景（圆角变直角）
+
+解决方法：
+
+1. `overflow: hidden;`
+2. 如果方法1无效，可以再添加 `border: none;`
