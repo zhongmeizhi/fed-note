@@ -1,6 +1,10 @@
 # 蘑菇碳的小书房
 
 * [目录](README.md)
+* 源码解析
+  * [Fiber 源码解析](md/resource-analysis/fiber.md)
+  * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
+  * [Vue 3.x 源码解析](md/resource-analysis/vue3.md)
 * 样式&&兼容性
   * [移动端-适配](md/css/mobile.md)
   * [PC端-布局](md/css/layout.md)
@@ -12,7 +16,7 @@
 * 前端基础
   * [Hybrid开发相关](md/javascript/hybrid.md)
   * [性能优化](md/sse/optimization.md)
-  * [async await](md/sse/async_await.md)
+  * [测试：async await](md/sse/async_await.md)
   * [模块化](md/sse/module.md)
   * [关于动画](md/javascript/animation.md)
   * [迭代器](md/javascript/iterator.md)
@@ -26,12 +30,9 @@
   * [Webpack篇](/md/review/webpack.md)
   * [各种手写代码实现](/md/review/js_code.md)
 * Vue + React 框架学习
-  * [React 入门](md/mvvm/react.md)
-  * [React useEffect详解](md/mvvm/useEffect.md)
-  * [React 函数式组件和类组件的区别](md/mvvm/react_function_or_class.md)
-  * [Fiber 源码解析](md/resource-analysis/fiber.md)
-  * [Vue 2.x 源码解析](md/resource-analysis/vue2.md)
-  * [Vue 3.x 源码解析](md/resource-analysis/vue3.md)
+  * [React 简况](md/mvvm/react.md)
+  * [翻译：React useEffect完全指南](md/mvvm/useEffect.md)
+  * [翻译：React 函数式组件和类组件的区别](md/mvvm/react_function_or_class.md)
   * [next.js 体验](md/mvvm/next_js.md)
   <!-- * [Vue 2.6.10 全代码解读](md/mvvm/vue_2.6.10.js) -->
 * Node学习篇
