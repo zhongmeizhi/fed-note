@@ -21,7 +21,7 @@ PS: PC端兼容不错，获取相对视口位置很方便
 
 left、top、right、bottom，单位为像素，位置都是**相对于视口的左上角**位置而言的
 
-![bounding](/md/img/bounding.png)
+![bounding](../img/bounding.png)
 
 [参考 MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)
 

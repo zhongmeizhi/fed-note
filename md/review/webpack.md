@@ -518,7 +518,7 @@ externals 配置选项提供了「从输出的 bundle 中排除依赖」的方�
 1. 热更新图
 2. 热更新步骤讲解
 
-![热更新](/md/img/hot_loader.jpg)
+![热更新](../img/hot_loader.jpg)
 
 ##### 第一步：webpack 对文件系统进行 watch 打包到内存中
 

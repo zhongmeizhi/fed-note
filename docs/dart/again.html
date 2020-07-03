@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dart-稍微抽象点 | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/27.3660d6f0.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/29.433035fe.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/44.fe406435.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/61.0bb8966f.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/64.a604d914.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/69.e8837289.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端日常回顾知识点</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue/React框架学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>RXJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Dart篇</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/dart/PRIMER.html" class="sidebar-link">dart（一）概述</a></li><li><a href="/FED-note/dart/base.html" class="sidebar-link">dart（二）基本操作</a></li><li><a href="/FED-note/dart/class.html" class="sidebar-link">dart（三）类</a></li><li><a href="/FED-note/dart/again.html" aria-current="page" class="active sidebar-link">dart（四）稍微抽象点</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="dart-稍微抽象点"><a href="#dart-稍微抽象点" class="header-anchor">#</a> Dart-稍微抽象点</h1> <h3 id="泛型"><a href="#泛型" class="header-anchor">#</a> 泛型</h3> <p>泛型：有些情况下你可能想使用类型来表明你的意图，不管是使用泛型还是 具体类型。</p> <p>在 Dart 中类型是可选的，你可以选择不用泛型。类、函数/方法中都可以使用泛型。</p> <p>泛型通过 <code>&lt;类型&gt;</code>来使用。</p> <div class="language- extra-class"><pre class="language-text"><code>  // 通过泛型就可以减少包含具体类型定义的重复代码
+  abstract class Cache&lt;T&gt; {
+    T getByKey(String key);
+    setByKey(String key, T value);
+  }
+
+  // 泛型还能 限制泛型类型
+  class Foo&lt;T extends SomeBaseClass&gt; {...}
+
+  // 可以在函数/方法中使用泛型
+  T first&lt;T&gt;(List&lt;T&gt; ts) {
+    T tmp ?= ts[0];
+    return tmp;
+  }
+</code></pre></div><p>这里的 first (<T>) 泛型可以在如下地方使用 参数 T ：</T></p> <ul><li>函数的返回值类型 (T).</li> <li>参数的类型 (List<T>).</T></li> <li>局部变量的类型 (T tmp).</li></ul> <h3 id="导入"><a href="#导入" class="header-anchor">#</a> 导入</h3> <p>普通导入</p> <div class="language- extra-class"><pre class="language-text"><code>  import 'dart:io';
+  import 'package:lib1/lib1.dart';
+</code></pre></div><p>指定库前缀 （如果你导入的两个库具有冲突的标识符）</p> <div class="language- extra-class"><pre class="language-text"><code>  import 'package:lib1/lib1.dart';
+  import 'package:lib2/lib2.dart' as lib2;
+  
+  Element element1 = new Element();           // 使用lib1.
+  lib2.Element element2 = new lib2.Element(); // 使用lib2.
+</code></pre></div><p>部分导入</p> <div class="language- extra-class"><pre class="language-text"><code>  // 只导入 foo
+  import 'package:lib1/lib1.dart' show foo;
+
+  // 导入 liab2 但排除 foo
+  import 'package:lib2/lib2.dart' hide foo;
+</code></pre></div><p>延迟载入库（）</p> <div class="language- extra-class"><pre class="language-text"><code>  // 延迟导入库
+  import 'package:deferred/hello.dart' deferred as hello;
+
+  // 使用库
+  greet() async {
+
+    // 库标识符调用 loadLibrary() 函数来加载库：
+    // loadLibrary 返回 Future
+    await hello.loadLibrary();
+
+    // 使用
+    hello.printGreeting();
+  }
+</code></pre></div><p>在一个库上你可以多次调用 loadLibrary() 函数。 但是该库只是载入一次。</p> <h3 id="异步支持"><a href="#异步支持" class="header-anchor">#</a> 异步支持</h3> <p>Dart 有一些语言特性来支持 异步编程。 最常见的特性是 <code>async</code> 方法和 <code>await</code> 表达式。</p> <p>简单地说，<code>Future</code>将返回一个值，而<code>Stream</code>将返回多次值。所以<code>Steam</code>使用<code>await for</code></p> <p>Future，基本上等于JS的Promise</p> <div class="language- extra-class"><pre class="language-text"><code>  checkVersion() async {
+    var version = await lookUpVersion();
+    if (version == expectedVersion) {
+      // ...
+    } else {
+      // ...
+    }
+  }
+</code></pre></div><p>当然，Future有类似于 Promise.all([])的方法，</p> <div class="language- extra-class"><pre class="language-text"><code>  //等待所有 Future 执行完成
+
+  Future.wait([deleteDone, copyDone, checksumDone])
+    .then((List values) {
+      print('Done with all the long steps');
+    });
+</code></pre></div><p>Stream。<code>await for</code>会在数据返回完毕后结束，所以别在无尽的数据流（比如DOM事件）中使用<code>await for</code></p> <div class="language- extra-class"><pre class="language-text"><code>  initData async {
+    await for (var request in requestServer) {
+      handleRequest(request);
+    }
+  }
+</code></pre></div><p>使用 <code>break</code> 或者 <code>return</code> 语句可以 停止接收 <code>stream</code> 的数据， 这样就跳出了 <code>for</code> 循环并且 从 <code>stream</code> 上取消注册了。</p> <h3 id="元数据"><a href="#元数据" class="header-anchor">#</a> 元数据</h3> <p>元数据，即注解，比如：<code>@override</code></p> <p>自定义元数据</p> <div class="language- extra-class"><pre class="language-text"><code>  library todo;
+
+  class todo {
+    final String who;
+    final String what;
+
+    const todo(this.who, this.what);
+  }
+
+  // 使用
+
+  import 'todo.dart';
+
+  @todo('seth', 'make this do something')
+  void doSomething() {
+    print('do something');
+  }
+</code></pre></div><p>不过，Flutter似乎<strong>不支持</strong><code>反射</code>。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/dart/class.html" class="prev">
+        dart（三）类
+      </a></span> <span class="next"><a href="/FED-note/flutter/BRIEF.html">
+        简介
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/27.3660d6f0.js" defer></script>
+  </body>
+</html>

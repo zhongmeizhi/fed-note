@@ -58,6 +58,6 @@ Dart 中所有的基础类型、类 等都继承 Object ，默认值是`null`，
 
 见下图：
 
-![Event_Loop](/md/img/dart_loop.png)
+![Event_Loop](../img/dart_loop.png)
 
 其中：`Future`是微任务（当然，Future几乎就是Promise）

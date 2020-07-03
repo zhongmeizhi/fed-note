@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React 基础 | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/44.fe406435.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/27.3660d6f0.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/29.433035fe.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/61.0bb8966f.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/64.a604d914.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/69.e8837289.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端日常回顾知识点</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Vue/React框架学习</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/mvvm/react.html" aria-current="page" class="active sidebar-link">React 简况</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FED-note/mvvm/react.html#生命周期" class="sidebar-link">生命周期</a></li><li class="sidebar-sub-header"><a href="/FED-note/mvvm/react.html#个性化配置" class="sidebar-link">个性化配置</a></li><li class="sidebar-sub-header"><a href="/FED-note/mvvm/react.html#在react中使用-typescript" class="sidebar-link">在React中使用 Typescript</a></li></ul></li><li><a href="/FED-note/mvvm/useEffect.html" class="sidebar-link">翻译：React useEffect完全指南</a></li><li><a href="/FED-note/mvvm/react_function_or_class.html" class="sidebar-link">翻译：React 函数式组件和类组件的区别</a></li><li><a href="/FED-note/mvvm/next_js.html" class="sidebar-link">next.js 体验</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>RXJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Dart篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-基础"><a href="#react-基础" class="header-anchor">#</a> React 基础</h1> <h2 id="生命周期"><a href="#生命周期" class="header-anchor">#</a> 生命周期</h2> <p>生命周期主要是：挂载、销毁、更新</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token comment">// 用于初始化 state</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// 组件挂载后调用</span>
+  <span class="token comment">// 可以在该函数中进行请求或者订阅</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// 组件销毁后调用</span>
+  <span class="token function">componentDidUnMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// 判断是否需要更新组件，多用于组件性能优化</span>
+  <span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token parameter">nextProps<span class="token punctuation">,</span> nextState</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// 组件更新后调用</span>
+  <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token comment">// 渲染组件函数</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="_16版本-新生命周期"><a href="#_16版本-新生命周期" class="header-anchor">#</a> 16版本 新生命周期</h3> <p>16版本后，取消与 <code>componentWill</code> 相关的生命周期</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token comment">/*
+    16版本 已取消的组件
+  */</span>
+  <span class="token operator">~</span><span class="token operator">~</span> componentWillReceiveProps <span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">// 将收到父组件的属性</span>
+  <span class="token operator">~</span><span class="token operator">~</span> componentWillUnmount <span class="token operator">~</span><span class="token operator">~</span>  <span class="token comment">// 将销毁</span>
+  <span class="token operator">~</span><span class="token operator">~</span> componentWillUpdate <span class="token operator">~</span><span class="token operator">~</span> <span class="token comment">// 将更新</span>
+</code></pre></div><p>删除这些生命周期的原因是：因为这些生命周期发生在渲染的 <code>reconciliation</code> 阶段，而这阶段是可以被打断的，所以执行的生命周期函数<strong>可能会出现调用多次</strong>的情况。</p> <p>通过新增组件来代替旧的生命周期</p> <div class="language-js extra-class"><pre class="language-js"><code>  <span class="token keyword">static</span> <span class="token function">getDerivedStateFromProps</span><span class="token punctuation">(</span><span class="token parameter">nextProps<span class="token punctuation">,</span> prevState</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> 
+
+  <span class="token function">getSnapshotBeforeUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+</code></pre></div><ol><li>getDerivedStateFromProps</li></ol> <p><code>getDerivedStateFromProps</code> 用于替换 <code>componentWillReceiveProps</code></p> <p>该函数会在<strong>初始化</strong>和<strong>update</strong>时被调用。（虚拟dom之后，实际dom挂载之前）。它应该返回一个对象来更新状态，或者返回null来表明新属性不需要更新任何状态。</p> <p>注意，如果父组件导致了组件的重新渲染，即使属性没有更新，这一方法也会被调用。如果你只想处理变化，你可能想去比较新旧值。</p> <p>调用this.setState() 通常不会触发 getDerivedStateFromProps()。</p> <p>因为该函数是静态函数，所以取不到 <code>this</code>，如果需要对比 <code>prevProps</code> 需要单独在 <code>state</code> 中维护</p> <ol start="2"><li>getSnapshotBeforeUpdate</li></ol> <p><code>getSnapshotBeforeUpdate</code> 用于替换 <code>componentWillUpdate</code> ，该函数会在最新的渲染输出提交给DOM前调用（update 后 DOM 更新前），用于读取最新的 DOM 数据。</p> <p>代替的原因：由于异步渲染，在“渲染”时期（如componentWillUpdate和render）和“提交”时期（如componentDidUpdate）间可能会存在延迟。如果一个用户在这期间做了像改变浏览器尺寸的事，<strong>从componentWillUpdate中读出的scrollHeight值将是滞后的</strong>。</p> <p>返回值作为 <code>componentDidUpdate</code> 的第三个参数使用</p> <h3 id="异步渲染"><a href="#异步渲染" class="header-anchor">#</a> 异步渲染</h3> <p><strong>异步渲染</strong>分两个阶段：<code>reconciliation</code>（可以打断） 和 <code>commit</code>（不能暂停，会一直更新界面直到完成）</p> <p>Reconciliation 阶段（可译：调和/协调）</p> <ul><li>shouldComponentUpdate</li> <li><s>componentWillMount</s></li> <li><s>componentWillReceiveProps</s></li> <li><s>componentWillUpdate</s></li></ul> <p>Commit 阶段</p> <ul><li>componentDidMount</li> <li>componentDidUpdate</li> <li><s>componentWillUnmount</s></li></ul> <p>因为 <code>reconciliation</code> 阶段是可以被打断的，所以执行的生命周期函数<strong>可能会出现调用多次</strong>的情况，从而引起 Bug。所以对于 reconciliation 阶段调用的几个函数，除了 shouldComponentUpdate 以外，其他都应该避免去使用。所以在 V16 中删除了shouldComponentUpdate 以外的生命周期，并且引入了新的 生命周期钩子 来解决这个问题。</p> <h3 id="setstate"><a href="#setstate" class="header-anchor">#</a> setState</h3> <p>setState：是异步的，并且多次调用会合并为一次，（类似于 <code>Object.assign({}, obj, obj)</code>）</p> <div class="language- extra-class"><pre class="language-text"><code>  // this.state.count 初始化为 0
+  this.setState({ count: this.state.count + 1 })
+  this.setState({ count: this.state.count + 1 }, console.log)
+
+  console.log(this.state.count === 0);
+
+  setTimeout(() =&gt; {
+    console.log(this.state.count === 1);
+  }, 1)
+
+  // 通过 prevState 参数可以正确的修改
+  this.setState((prevState) =&gt; ({ count: prevState.count + 1 }))
+</code></pre></div><h3 id="component-和-purecomponent"><a href="#component-和-purecomponent" class="header-anchor">#</a> Component 和 PureComponent</h3> <p><code>PureComponent</code> 和 <code>Component</code> 的区别：</p> <ul><li>当props或者state改变时：<code>PureComponent</code> 默认在 <code>shouldComponentUpdate</code> 中使用浅比较来判断是否需要重新渲染，</li> <li>当props或者state改变时：<code>Component</code>的组件会重新渲染。</li></ul> <p>PureComponent的缺点：一些深层数据的改变可能会产生<code>shouldComponentUpdate</code>为false，导致不能更新</p> <p>方法的不同绑定方式区别</p> <div class="language- extra-class"><pre class="language-text"><code>  &lt;CommentItem onClick={() =&gt; this.clickHandler(id)} /&gt;
+
+  // 综合上面的 Component 和 PureComponent 每当 父组件 render更新时，都会触发子组件获取到新的 onClick的 props，导致子组件重新渲染
+  // 解决方式：父组件之间传 this.clickHandler ，然后子组件调用 this.props.clickHandler(this.props.id)
+</code></pre></div><h3 id="react-切片机制-fiber"><a href="#react-切片机制-fiber" class="header-anchor">#</a> React 切片机制 fiber</h3> <p>时间切片实际上是将任务分成不同的优先级，计算任务的运行时间，从而将任务分隔为，能暂停的方法在16ms以内</p> <p>详情在 Fiber 源码解析 详细介绍</p> <h3 id="jsx"><a href="#jsx" class="header-anchor">#</a> JSX</h3> <p>只支持表达式</p> <p>JSX 代码会被 Babel 编译为 <code>React.createElement</code> (所以jsx文件必须要引入React，不管React是否有显式使用)</p> <h3 id="受控-不受控"><a href="#受控-不受控" class="header-anchor">#</a> 受控 &amp; 不受控</h3> <p>受控：通过 onchange 和value来控制</p> <p>不受控：通过ref来获取</p> <div class="language- extra-class"><pre class="language-text"><code>  // 正确的 ref使用
+    ref={(ele) =&gt; this.xxRef = ele};
+</code></pre></div><h3 id="router"><a href="#router" class="header-anchor">#</a> Router</h3> <blockquote><p><code>create-react-app</code>默认使用<code>react-router-dom</code></p></blockquote> <ul><li><code>BrowserRouter</code>需要服务器支持，否则会出现<code>404</code>，</li> <li><code>HashRouter</code>比较随意（虽然不太好看）</li></ul> <div class="language- extra-class"><pre class="language-text"><code>  import { HashRouter as Router, Route } from &quot;react-router-dom&quot;;
+
+  &lt;Router&gt;
+      &lt;Route exact path=&quot;/&quot; component={Home} /&gt;
+      &lt;Route path=&quot;/exception&quot; component={Exception} /&gt;
+      &lt;Route path=&quot;/trade-record&quot; component={TradeRecord} /&gt;
+      &lt;Route path=&quot;/trade-interval&quot; component={TradeInterval} /&gt;
+  &lt;/Router&gt;
+</code></pre></div><h3 id="redux"><a href="#redux" class="header-anchor">#</a> redux</h3> <p>redux是通过发布订阅者模式实现的：</p> <p>单向数据流</p> <ol><li>调用store.dispatch(action)提交<code>action</code>。</li> <li>中间件 处理</li> <li>redux store调用传入的<code>reducer</code>函数。把当前的state和action传进去。</li> <li>根 reducer 应该把多个子 reducer 输出合并成一个单一的 <code>state</code> 树。</li> <li>Redux store 保存了根 reducer 返回的完整 state 树。</li></ol> <p>容器组件就是使用 <code>store.subscribe()</code>从 <code>Redux state</code> 树中读取部分数据，并通过 <code>props</code> 来把这些数据提供给要渲染的组件。你可以手工来开发容器组件，但建议使用 React Redux 库的 <code>connect()</code> 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。</p> <p>connect接收两个参数，一个<code>mapStateToProps</code>,就是把redux的<code>state</code>，转为组件的<code>Props</code>，还有一个参数是<code>mapDispatchToprops</code>,就是把<code>actions</code>的方法，转为<code>Props</code>属性函数。</p> <h2 id="个性化配置"><a href="#个性化配置" class="header-anchor">#</a> 个性化配置</h2> <blockquote><p>react-create-app 个性化配置</p></blockquote> <p>可以修改<code>react-scripts\config</code>（很不妥哇）</p> <p>所以啊，可以使用 <a href="https://github.com/timarney/react-app-rewired" target="_blank" rel="noopener noreferrer">react-app-rewired<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 来解决</p> <h3 id="设置别名-alias"><a href="#设置别名-alias" class="header-anchor">#</a> 设置别名 alias</h3> <ol><li>安装 react-app-rewired</li> <li>配置启动项 <code>&quot;start&quot;: &quot;react-app-rewired start&quot;</code></li> <li>添加<code>config-overrides.js</code>文件</li> <li>添加代码</li></ol> <div class="language- extra-class"><pre class="language-text"><code>  const path = require('path');
+
+  function resolve(dir) {
+      return path.join(__dirname, '.', dir)
+  }
+  
+  module.exports = function override(config, env) {
+      config.resolve.alias = {
+          '@': resolve('src')
+      }
+      return config;
+  }
+</code></pre></div><h3 id="更改打包后静态文件路径"><a href="#更改打包后静态文件路径" class="header-anchor">#</a> 更改打包后静态文件路径</h3> <p>在<code>package.json</code>文件添加 <code>&quot;homepage&quot;: &quot;/路径&quot;</code></p> <h3 id="代理：http-proxy-middleware插件"><a href="#代理：http-proxy-middleware插件" class="header-anchor">#</a> 代理：<code>http-proxy-middleware</code>插件</h3> <div class="language- extra-class"><pre class="language-text"><code>  const proxy = require('http-proxy-middleware');
+
+  module.exports = function (app) {
+      app.use(
+          proxy(
+              '/xyz',
+              {
+                  target: 'http://www.zmz.com/xyz',
+                  changeOrigin: true,
+                  pathRewrite: {
+                      '^/xyz': '/'   //重写接口
+                  }
+              }
+          )
+      );
+  }
+</code></pre></div><h3 id="react-hook"><a href="#react-hook" class="header-anchor">#</a> React Hook</h3> <blockquote><p><code>Hook</code> 可以在不编写 <code>class</code> 的情况下使用 <code>state</code> 以及其他的 React 特性。</p></blockquote> <p>使用 Hook 的目的</p> <ol><li>解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题。</li> <li>功能的复用</li></ol> <p>注意点：</p> <ol><li><strong>Hook 在 class 内部是不起作用的。但可以用它取代 class</strong></li> <li><strong>只在最顶层使用 Hook。不要在循环，条件或嵌套函数中调用 Hook</strong></li> <li><strong>只在 React 函数中调用 Hook</strong></li> <li><strong>Hook 的调用顺序在每次渲染中都是相同的</strong> <ul><li>由于是顺序调用，如果Hook不放在顶层，比如放在if中，会导致顺序后面的hook被提前调用</li></ul></li></ol> <h5 id="状态相关：usestate"><a href="#状态相关：usestate" class="header-anchor">#</a> 状态相关：useState</h5> <p>懒惰的 state：useState传入一个函数，然后返回初始化的值。类似于cached</p> <div class="language- extra-class"><pre class="language-text"><code>  const [state, setState] = useState(() =&gt; {
+    const initialState = someExpensiveComputation(props);
+    return initialState;
+  });
+
+</code></pre></div><h5 id="副作用相关：useeffect"><a href="#副作用相关：useeffect" class="header-anchor">#</a> 副作用相关：useEffect</h5> <blockquote><p>数据获取、设置订阅以及手动更改组件的 DOM 都属于副作用</p></blockquote> <ul><li><code>useEffect</code>默认：第一次渲染之后和每次更新之后都会执行
+<ul><li>每次运行 effect 的同时，DOM 都已经更新完毕</li></ul></li> <li><code>effect</code>可以在一个组件中声明多个，将按照声明的顺序依次调用组件中的每一个 <code>effect</code></li> <li><code>useEffect</code>也可看做 <code>componentDidMount</code>、<code>componentDidUpdate</code>、<code>componentWillUnmount</code>的组合
+<ul><li>而class中副作用操作放到 <code>componentDidMount</code> 和 <code>componentDidUpdate</code> 函数中</li></ul></li> <li>可选<strong>清除机制</strong>：如果在 <code>useEffect</code> 返回函数，<code>React</code> 将会在执行清除操作时调用该函数</li> <li>可选<strong>跳过effect</strong>：<code>useEffect</code>的第二个参数可以传数组
+<ul><li>在组件重新渲染的时候会比较数组中的每个值是否和以前相等，（相等就会跳过）</li> <li>该参数对 清除机制 同样有效</li> <li>如果第二个参数为 空数组[]，那么该<code>effect</code>只会执行一次</li></ul></li> <li>不能在 <code>useEffect</code> 中做有副作用的事情</li></ul> <h5 id="自定义-hook"><a href="#自定义-hook" class="header-anchor">#</a> 自定义 Hook</h5> <p>定义：自定义的hook 其实就是以命名以 use开头的 function，里面正常使用 hook，然后返回state。</p> <p>使用：使用和正常的function一致。</p> <p>注意：<strong>两个相同的Hook状态是不共享的</strong></p> <p>其他Hook方法：</p> <ul><li><code>useContext</code>：接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。
+<ul><li>当前的 context 值由上层组件中距离当前组件最近的 <code>&lt;MyContext.Provider&gt;</code> 的 value prop 决定</li> <li>当组件上层最近的 <code>&lt;MyContext.Provider&gt;</code> 更新时，该 Hook 会触发重渲染</li></ul></li> <li><code>useReducer</code>：useState 的替代方案，用在逻辑较为复杂且多个子值的情况，类型于<code>redux</code></li> <li><code>useCallback</code>：依赖项改变时更新，类似于Vue的 计算属性，（useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)。）</li> <li><code>useMemo</code>：依赖项改变时更新，在渲染阶段执行，（可以把 useMemo 作为性能优化的手段）</li> <li><code>useRef</code>：对于一个可变的DOM元素，无论该节点如何改变 ref 会一直对应 useRef(null)的<code>.current</code>属性</li> <li><code>useImperativeHandle</code>：可以将使用ref时自定义暴露给父组件</li> <li><code>useLayoutEffect</code>：在浏览器执行绘制之前，useLayoutEffect 内部的更新计划将被同步刷新。</li> <li><code>useDebugValue</code>：在hook的debugger中使用</li></ul> <h2 id="在react中使用-typescript"><a href="#在react中使用-typescript" class="header-anchor">#</a> 在React中使用 Typescript</h2> <h3 id="在-ts-tsx-文件中引入-js-文件-库"><a href="#在-ts-tsx-文件中引入-js-文件-库" class="header-anchor">#</a> 在 <code>Ts/Tsx</code> 文件中引入 <code>js</code> 文件/库</h3> <p>需要在<code>.d.ts</code> 的声明文件中，然后用<code>三斜线指令引入</code></p> <p>以<code>create-react-app</code>为例：在<code>react-app-env.d.ts</code>文件中添加需要引入的 <code>.js</code>文件位置</p> <div class="language- extra-class"><pre class="language-text"><code>    /// &lt;reference types=&quot;react-scripts&quot; /&gt;
+    /// &lt;reference path=&quot;./utils/throttle.js&quot; /&gt;
+</code></pre></div><p>或引入 <code>.d.ts</code> 文件</p> <p>例如：</p> <div class="language- extra-class"><pre class="language-text"><code>    // jquery.d.ts 文件
+    declare let $: (selector: string) =&gt; any;
+
+    // main.ts 文件
+    /// &lt;reference path=&quot;./jquery.d.ts&quot; /&gt;
+
+    $('body').html('hello world');
+</code></pre></div><p>三斜线指令中需要注意的是 path 类型和 types 类型的区别：</p> <ul><li><code>types</code> 类型声明的是对 <code>node_modules/@types</code> 文件夹下的类型的依赖，不包含路径信息</li> <li><code>path</code> 类型声明的是对本地文件的依赖，包含路径信息</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/review/js_code.html" class="prev">
+        各种手写代码实现
+      </a></span> <span class="next"><a href="/FED-note/mvvm/useEffect.html">
+        翻译：React useEffect完全指南
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/44.fe406435.js" defer></script>
+  </body>
+</html>

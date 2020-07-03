@@ -31,7 +31,7 @@ Vue 主要模块：
 
 双向绑定实现原理图：
 
-![vue双向绑定](/md/img/vue_proxy.png)
+![vue双向绑定](../img/vue_proxy.png)
 
 实现一个简单的双向绑定：
 

@@ -17,7 +17,7 @@
 
 跨站请求伪造（Cross-site request forgery），利用用户的登录态发起恶意请求。
 
-![图片](/md/img/security.png)
+![图片](../img/security.png)
 
 如何预防：
 * **阻止第三方网站请求接口**（比如校验 Referer）

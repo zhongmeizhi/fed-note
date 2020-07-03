@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JS 函数 | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/61.0bb8966f.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/27.3660d6f0.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/29.433035fe.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/44.fe406435.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/64.a604d914.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/69.e8837289.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端日常回顾知识点</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/review/css_base.html" class="sidebar-link">CSS篇</a></li><li><a href="/FED-note/review/js_type.html" class="sidebar-link">JS数据类型篇</a></li><li><a href="/FED-note/review/js_function.html" aria-current="page" class="active sidebar-link">JS函数篇</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/FED-note/review/webpack.html" class="sidebar-link">Webpack篇</a></li><li><a href="/FED-note/review/js_code.html" class="sidebar-link">各种手写代码实现</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue/React框架学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>RXJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Dart篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="js-函数"><a href="#js-函数" class="header-anchor">#</a> JS 函数</h1> <blockquote><p>整篇文章都与JS的函数相关。</p></blockquote> <h3 id="从函数的定义开始"><a href="#从函数的定义开始" class="header-anchor">#</a> 从函数的定义开始</h3> <ol><li>每个函数实际上都是一个 <code>Function</code> 对象，即： <code>(function(){}).constructor === Function</code></li> <li>函数是 头等对象/一等公民
+<ol><li>函数可以像任何其他对象一样具有属性和方法</li> <li>可以赋值给变量（<code>函数表达式</code>）</li> <li>可以作为参数传递给函数（<code>高阶函数</code>）</li> <li>可以作为另一个函数的返回值（<code>闭包</code>）</li></ol></li></ol> <p>定义函数的方式有 4 种：</p> <ol><li><code>new Function(str)</code>;</li> <li>函数表达式 <code>var fn = function() {}</code></li> <li>函数声明 <code>function fn() {}</code></li> <li>箭头函数 <code>var fn = () =&gt; {}</code></li></ol> <p>PS：<code>new Function</code> 声明的对象是在<strong>函数创建时解析</strong>的，故比较低效</p> <h3 id="什么是闭包？"><a href="#什么是闭包？" class="header-anchor">#</a> 什么是闭包？</h3> <p>MDN的定义：<code>函数</code>与对其状态即<code>词法环境</code>的引用共同构成闭包（closure）。也就是说，闭包可以让你<strong>从内部函数访问外部函数作用域</strong></p> <p>在JavaScript，函数在每次创建时生成闭包。waht????（<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener noreferrer">MDN说的...<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>）</p> <p>小红书上的更好理解一点：<code>闭包是指有权访问另外一个函数作用域中的变量的函数</code></p> <p>也就是说，这就是闭包：</p> <div class="language- extra-class"><pre class="language-text"><code>    function saySomething(){
+        var name = 'mokou';
+        return function () {
+            console.log(name);
+        }
+    }
+
+    var say = saySomething()
+    say()
+</code></pre></div><h3 id="闭包产生的原因？"><a href="#闭包产生的原因？" class="header-anchor">#</a> 闭包产生的原因？</h3> <p>根据 JS 的垃圾回收机制（不提新生代和老生代），根据<code>可达性算法</code>：不可达就会被回收。</p> <p>什么是不可达？简单来说：<code>堆</code>内存中没有在<code>栈</code>内存中存放引用（即：没有指针指向堆）就视为不可达。（不懂堆栈的可以看下上一篇JS基础篇）</p> <p>上面案例代码中：<code>saySomething</code> 方法的返回值的引用存在了 <code>say</code> 变量中，所以可达，故：引用不会被销毁，从而产生闭包。</p> <h3 id="说一个闭包的使用场景？"><a href="#说一个闭包的使用场景？" class="header-anchor">#</a> 说一个闭包的使用场景？</h3> <p>案例一：请求出错的提示框（多个请求同时出错一般都只有一个提示框）</p> <p>实现思路：使用传说中的设计模式 <code>单例模式</code></p> <p>以下是单例模式的实现：</p> <div class="language- extra-class"><pre class="language-text"><code>    const Singleton = (function() {
+        var _instance;
+        return function(obj) {
+            return _instance || (_instance = obj);
+        }
+    })();
+
+    var a = new Singleton({x: 1});
+    var b = new Singleton({y: 2});
+
+    console.log(a === b);
+</code></pre></div><p>PS：上例还有一个优点：<code>_instance</code> 是私有的，外部不能更改（保证安全无污染/可信）</p> <p>案例二：解决 <code>var</code> 在 <code>for</code> + <code>setTimeout</code> 混合场景中的BUG</p> <p>BUG 展示：</p> <div class="language- extra-class"><pre class="language-text"><code>    for (var i=1; i&lt;=5; i++) {
+        setTimeout(function() {
+            console.log(i);
+        }, i*300 );
+    }
+</code></pre></div><p>上例会打印：<code>6 6 6 6 6</code></p> <p>因为 <code>var</code> 是函数作用域（原因1），而 <code>setTimeout</code> 是异步执行（原因2），所以：当 <code>console.log</code> 执行的时候 <code>i</code> 已经等于 <code>6</code> 了（BUG产生）</p> <p>在没有 <code>let</code> 和 <code>const</code> 的年代，常用的解决方式就是闭包</p> <div class="language- extra-class"><pre class="language-text"><code>    for (var i = 1; i &lt;= 5; i++) {
+        (function(j) {
+            setTimeout(function() {
+                console.log(j);
+            }, j*300);
+        })(i);
+    }
+</code></pre></div><h3 id="闭包的缺点？"><a href="#闭包的缺点？" class="header-anchor">#</a> 闭包的缺点？</h3> <p>缺点：</p> <ol><li>性能考量：闭包在处理速度和内存消耗方面对脚本性能具有负面影响（多执行了一个函数，多了一个内存指向）</li> <li>可能内存溢出。（比如：在闭包中的 <code>addEventListener</code> 没有被 <code>removeEventListener</code>）</li></ol> <h3 id="函数表达式和函数声明的区别？"><a href="#函数表达式和函数声明的区别？" class="header-anchor">#</a> 函数表达式和函数声明的区别？</h3> <p>主要区别在</p> <ol><li>函数声明被提升到了<code>函数定义</code>（可以在函数声明之前使用）</li> <li>函数表达式要根据定义的方式进行判断
+<ul><li>通过 <code>var</code> 定义：有变量声明提升</li> <li>通过 <code>let 和 const</code> 定义：没有变量提升</li></ul></li></ol> <h3 id="什么是变量提升？"><a href="#什么是变量提升？" class="header-anchor">#</a> 什么是变量提升？</h3> <p>JavaScript 中，函数及变量（通过<code>var</code>方式）的<code>声明</code>都将被提升到函数的最顶部。</p> <p>案例：以下会输出什么结果？</p> <div class="language- extra-class"><pre class="language-text"><code>    var name = 'zmz';
+
+    function say(){
+        var name;
+        console.log(name);
+
+        var name = 'mokou';
+        console.log(name);
+    }
+
+    say();
+</code></pre></div><p>答案是：先输出 <code>undefined</code> 再输出 <code>mokou</code></p> <p>因为在函数 <code>say</code> 内部也声明了一个 <code>name</code>（是通过 <code>var</code>）声明的，所以会声明提升，但是未赋值，所以首先输出的是 <code>undefined</code>，之后是正常流程，输出 <code>mokou</code></p> <p>PS：由于 <code>var</code> 的变量提升很不友好，所以在 ES6 中添加了 <code>let</code> 和 <code>const</code> （本章主要讲函数，暂略。）</p> <h3 id="函数定义和变量同名会怎么样？"><a href="#函数定义和变量同名会怎么样？" class="header-anchor">#</a> 函数定义和变量同名会怎么样？</h3> <p>在生成执行上下文时，会有两个阶段。</p> <ol><li>创建的阶段（具体步骤是创建 VO），JS 解释器会找出需要提升的变量和函数，并且给他们提前在内存中开辟好空间，<strong>函数的话会将整个函数存入内存中，变量只声明并且赋值为 undefined</strong></li> <li>代码执行阶段：我们可以直接提前使用。</li></ol> <p>在提升的过程中：函数定义优先于变量提升，变量在执行阶段才会被真正赋值。</p> <p>举例</p> <div class="language- extra-class"><pre class="language-text"><code>    console.log(typeof a === 'function')
+
+    var a = 1;
+    function a() {}
+
+    console.log(a == 1);
+</code></pre></div><p>上例会打印 <code>true true</code></p> <h3 id="说一下箭头函数？"><a href="#说一下箭头函数？" class="header-anchor">#</a> 说一下箭头函数？</h3> <p>箭头函数式 ES6 标准</p> <ol><li>箭头函数的的this，就是定义时所在的对象</li> <li><strong>一旦绑定了上下文，就不可改变</strong>（call、apply、bind 都不能改变箭头函数内部 this 的指向）</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    let obj = {
+        x () {
+            let y = () =&gt; {
+                console.log(this === obj);
+            }
+            y();    // true
+            // call、apply、bind 都不能改变箭头函数内部 this 的指向
+            y.call(window); // true
+            y.apply(window); // true
+            y.bind(window)(); // true
+            // 同时，被bind绑定过的方法，也是不可变的，（不会再次被 bind、call、apply改变this的指向）
+        }
+    }
+</code></pre></div><ol start="3"><li>由于this指向问题，所以：<strong>箭头函数不能当作构造函数</strong>，不能使用new命令</li> <li>箭头函数没有 <code>arguments</code>，需要手动使用 <code>...args</code> 参数代替</li> <li>箭头函数不能用作 Generator 函数</li></ol> <h3 id="那其他函数的-this-指向问题呢？"><a href="#那其他函数的-this-指向问题呢？" class="header-anchor">#</a> 那其他函数的 this 指向问题呢？</h3> <ol><li>以函数的形式调用（this指向 window）</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    function fn () {
+        console.log(this, 'fn');
+        function subFn () {
+            console.log(this, 'subFn');
+        }
+        subFn(); // window
+    }
+    fn(); // window
+</code></pre></div><ol start="2"><li>以方法的形式调用 （this指向 调用函数的对象）</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    var x = 'abc';
+    var obj = {
+        x: 123,
+        fn: function () {
+            console.log(this.x);
+        }
+    }
+    obj.fn(); //  123
+    var fn = obj.fn;
+    fn(); // abc
+</code></pre></div><ol start="3"><li>以<code>call</code>、<code>apply</code>、<code>bind</code> 的形式调用（更改指向，箭头函数除外）</li> <li>以构造函数调用，（指向实例）</li></ol> <ul><li><strong>new的实例是 构造函数中return的对象 || this</strong></li></ul> <div class="language- extra-class"><pre class="language-text"><code>    // 构造函数中有 return对象 的情况
+    function A() {
+        return {
+            a : 1
+        }
+    }
+    A.prototype.say = function () {
+        console.log(this, 'xx')
+    }
+    var a = new A();
+    // a = {a: 1}
+    // a.say === undefined
+    // 构造函数中 没有return对象 的情况
+    function A() {
+        // 可以手动 return this
+    }
+    A.prototype.say = function () {
+        console.log(this, 'xx')
+    }
+    var a = new A();
+    a.say();
+    // A {} &quot;xx&quot;
+</code></pre></div><h3 id="call-和-apply-的不同？"><a href="#call-和-apply-的不同？" class="header-anchor">#</a> call 和 apply 的不同？</h3> <ol><li>入参不同</li> <li>性能差异（call比apply快很多）</li></ol> <p>性能测试：以下测试环境为 chrome v73</p> <div class="language- extra-class"><pre class="language-text"><code>    function work(a, b, c) {}
+
+    for (var j = 0; j &lt; 5; j++) {
+        console.time('apply');
+        for (var i = 0; i &lt; 1000000; i++) {
+            work.apply(this, [1, 2, 3]);
+        }
+        console.timeEnd('apply');
+
+        console.time('call');
+        for (var i = 0; i &lt; 1000000; i++) {
+            work.call(this, 1, 2, 3);
+        }
+        console.timeEnd('call');
+    }
+    
+    /*
+        // apply: 69.355224609375ms
+        // call: 8.7431640625ms
+
+        // apply: 57.72119140625ms
+        // call: 4.146728515625ms
+
+        // apply: 50.552001953125ms
+        // call: 4.12890625ms
+
+        // apply: 50.242919921875ms
+        // call: 4.720947265625ms
+
+        // apply: 49.669921875ms
+        // call: 4.054931640625ms
+    */
+</code></pre></div><p>测试结果： call 比 apply快 10倍（大约是这样的）</p> <p>原因：<code>.apply</code> 在运行前要对作为参数的数组进行一系列检验和深拷贝，<code>.call</code> 则没有这些步骤</p> <h3 id="怎么实现-call-？"><a href="#怎么实现-call-？" class="header-anchor">#</a> 怎么实现 call ？</h3> <p>实现思路</p> <ol><li>前置知识点：
+<ol><li>当函数以方法的形式调用时，this指向被调用的对象</li> <li>函数的参数是值传递</li> <li>引用类型可写</li></ol></li> <li>以 <code>myCall</code> 的第一个参数(暂命名为<code>that</code>)作为 被调用的对象</li> <li><code>that</code>上添加一个方法（方法名随意，暂命名<code>fn</code>）</li> <li>通过 <code>that[fn](...args)</code> 调用方法（此时<code>this</code>指向为<code>that</code>）</li> <li>删除掉第3步添加的方法</li></ol> <p>具体代码</p> <div class="language- extra-class"><pre class="language-text"><code>    Function.prototype.myCall = function(that, ...args) {
+        let func = this;
+        let fn = Symbol(&quot;fn&quot;);
+
+        that[fn] = func;
+        let res = that[fn](...args);
+        delete that[fn];
+
+        return res;
+    }
+</code></pre></div><p>测试一下</p> <div class="language- extra-class"><pre class="language-text"><code>    function say(x,y,z) {
+        console.log(this.name, x, y, z)
+    }
+    
+    say.myCall({name: 'mokou'}, 1, 2, 3)
+
+    // 打印 mokou 1 2 3
+</code></pre></div><h3 id="怎么实现一个-bind-？"><a href="#怎么实现一个-bind-？" class="header-anchor">#</a> 怎么实现一个 bind ？</h3> <p>实现思路</p> <ol><li><code>bind</code> 只改变 <code>this</code> 指向，不执行函数，那么可以用闭包来实现</li> <li>具体更改 <code>this</code>指向的问题可以借用 <code>call</code> 实现</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    Function.prototype.myBind = function(that) {
+        if (typeof this !== 'function') {
+            throw new TypeError('Error')
+        }
+        const _fn = this;
+        return function(...args) {
+            _fn.call(that, ...args)
+        }
+    }
+</code></pre></div><p>测试一下：</p> <div class="language- extra-class"><pre class="language-text"><code>    function say(x,y,z) {
+        console.log(this.name, x, y, z)
+    }
+
+    const testFn = say.myBind({name: 'mokou'})
+    testFn(1, 2, 3);
+
+    // 打印 mokou 1 2 3
+</code></pre></div><h3 id="说一下尾递归？"><a href="#说一下尾递归？" class="header-anchor">#</a> 说一下尾递归？</h3> <p>PS: 这个小题是半搬运的 @阮一峰 老师的博客</p> <p>尾递归就是：函数最后<code>单纯return函数</code>，尾递归来说，由于只存在一个调用记录，所以永远不会发生&quot;栈溢出&quot;错误。</p> <p>ES6出现的尾递归，可以将复杂度O(n)的调用记录，换为复杂度O(1)的调用记录</p> <p>测试：不使用尾递归</p> <div class="language- extra-class"><pre class="language-text"><code>    function Fibonacci (n) {
+        if ( n &lt;= 1 ) {return 1};
+        // return 四则运算
+        return Fibonacci(n - 1) + Fibonacci(n - 2);
+    }
+    Fibonacci(10) // 89
+    Fibonacci(100) // 超时
+    Fibonacci(100) // 超时
+</code></pre></div><p>测试：使用尾递归</p> <div class="language- extra-class"><pre class="language-text"><code>    function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
+        if( n &lt;= 1 ) {return ac2};
+        return Fibonacci2 (n - 1, ac2, ac1 + ac2);
+    }
+    Fibonacci2(100) // 573147844013817200000
+    Fibonacci2(1000) // 7.0330367711422765e+208
+    Fibonacci2(10000) // Infinity
+</code></pre></div><p>蹦床函数（协程）：解决递归栈溢出问题，将函数变成循环</p> <div class="language- extra-class"><pre class="language-text"><code>    function trampoline(f) {
+        while (f &amp;&amp; f instanceof Function) {
+            f = f();
+        }
+        return f;
+    }
+</code></pre></div><p>尾递归的优化：</p> <div class="language- extra-class"><pre class="language-text"><code>    function tco(f) {
+        var value;
+        var active = false;
+        var accumulated = [];
+
+        return function accumulator() {
+            accumulated.push(arguments);
+            // 除了第一次执行，其他的执行都是为了传参
+            if (!active) { // 很重要，如果不使用 active关闭后续进入， sum函数超过会溢出
+                // 在第一次进入进入递归优化时激活，关闭后续进入
+                active = true;
+                // 有参数就执行
+                while (accumulated.length) {
+                    // 调用f，顺便清除参数
+                    value = f.apply(this, accumulated.shift());
+                    // 由于while中又调用 f，f调用sum，然后sum在执行时给accumulated塞了一个参数
+                    // 所以 while循环会在sum返回结果前一种执行，直到递归完成
+                }
+                active = false;
+                return value;
+            }
+        };
+    }
+
+    var sum = tco(function(x, y) {
+        if (y &gt; 0) {
+            // 此时的sum是accumulator
+            // 执行sum等于给accumulator传参
+            return sum(x + 1, y - 1)
+        }
+        else {
+            return x
+        }
+    });
+
+    sum(1, 100000)
+</code></pre></div><h3 id="for-in、-for-of、foreach-各自的特点是什么？"><a href="#for-in、-for-of、foreach-各自的特点是什么？" class="header-anchor">#</a> for in、 for of、forEach 各自的特点是什么？</h3> <ol><li><code>for in</code> 遍历的是对象的可枚举属性</li> <li><code>for of</code> 遍历的是对象的迭代器属性</li> <li><code>forEach</code> 只能遍历数组，且不能中断（break等无效）</li></ol> <h3 id="手写一个防抖函数？"><a href="#手写一个防抖函数？" class="header-anchor">#</a> 手写一个防抖函数？</h3> <p>防抖函数：</p> <div class="language- extra-class"><pre class="language-text"><code>    function debounce(fn, wait) {
+        let timer = null;
+        return (...args) =&gt; {
+            clearTimeout(timer);
+            timer = setTimeout(() =&gt; {
+                fn.apply(this, args);
+            }, wait);
+        }
+    }
+</code></pre></div><p>使用场景：输入框校验</p> <h3 id="手写一个节流函数"><a href="#手写一个节流函数" class="header-anchor">#</a> 手写一个节流函数</h3> <p>节流函数</p> <div class="language- extra-class"><pre class="language-text"><code>    function throttle(fn, wait = 300) {
+        let flag = true;
+        return (...args) =&gt; {
+            if (!flag) return;
+            flag = false;
+            setTimeout(() =&gt; {
+                fn.apply(this, args);
+                flag = true;
+            }, wait);
+        }
+    }
+</code></pre></div><p>使用场景：</p> <ol><li>延迟防抖函数：<code>onscroll</code> 时触发的事件</li> <li>立即执行防抖函数：按钮的点击事件（某种情况下 <code>once</code>函数 更合适）</li></ol> <h3 id="说一下-class-？"><a href="#说一下-class-？" class="header-anchor">#</a> 说一下 Class ？</h3> <p>ES6 的 <code>class</code> 可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。</p> <h3 id="class-和-function-有什么不同"><a href="#class-和-function-有什么不同" class="header-anchor">#</a> Class 和 function 有什么不同</h3> <ol><li>类没有变量提升，</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    new B();
+    class B {}
+    // Uncaught ReferenceError: B is not defined
+</code></pre></div><ol start="2"><li>类的所有方法，都不可枚举</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    class A {
+        constructor() {
+            this.x = 1;
+        }
+        static say() {
+            return 'zmz';
+        }
+        print() {
+            console.log(this.x);
+        }
+    }
+    Object.keys(A); // []
+    Object.keys(A.prototype); // []
+</code></pre></div><ol start="3"><li>类的的所有方法，没有原型对象<code>prototype</code></li></ol> <div class="language- extra-class"><pre class="language-text"><code>    接例2
+    console.log(A.say.prototype); // undefined
+    console.log(new A().print.prototype); // undefined
+</code></pre></div><ol start="4"><li>类不能直接使用，必须使用 new 调用。</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    接例2
+    A();
+    // Uncaught TypeError: Class constructor A cannot be invoked without 'new'
+</code></pre></div><ol start="5"><li>类内部启用严格模式</li></ol> <div class="language- extra-class"><pre class="language-text"><code>    class B {
+        x = 1
+    }
+    // Uncaught SyntaxError: Identifier 'B' has already been declared
+</code></pre></div><h3 id="es5-怎么实现继承？"><a href="#es5-怎么实现继承？" class="header-anchor">#</a> ES5 怎么实现继承？</h3> <p>需要完成功能</p> <ol><li>继承 构造属性</li> <li>继承 原型方法</li> <li>纠正构造器</li></ol> <p>主流继承方案</p> <div class="language- extra-class"><pre class="language-text"><code>    function Parent () {
+        this.name = 'mokou';
+    }
+    
+    function Child() {
+        Parent5.call(this);
+        this.age = '18';
+    }
+
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+</code></pre></div><p>继承优化（参考 <code>Babel</code> 的降级方案）</p> <div class="language- extra-class"><pre class="language-text"><code>    function inherits(subClass, superClass) {
+        subClass.prototype = Object.create(superClass &amp;&amp; superClass.prototype, {
+            constructor: {
+                value: subClass,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf(subClass, superClass);
+    }
+</code></pre></div><h3 id="说一下-new-的过程？"><a href="#说一下-new-的过程？" class="header-anchor">#</a> 说一下 new 的过程？</h3> <ol><li>创建一个空对象</li> <li>新对象的<code>__proto__</code>指向构造函数的 <code>prototype</code></li> <li>绑定 <code>this</code>，指向构造方法</li> <li>返回新对象</li></ol> <p>详细代码</p> <div class="language- extra-class"><pre class="language-text"><code>    function myNew() {
+        var obj = new Object()
+        var Con = [].shift.call(arguments)
+        obj.__proto__ = Con.prototype
+        var result = Con.apply(obj, arguments)
+        return typeof result === 'object' ? result : obj
+    }
+</code></pre></div><h3 id="说一下原型链吧？"><a href="#说一下原型链吧？" class="header-anchor">#</a> 说一下原型链吧？</h3> <ol><li>对象都有 <code>__proto__</code>， 它是一个访问器属性，指向了我们不能直接访问到的内部属性 <code>[[prototype]]</code></li> <li>函数都有 <code>prototype</code>，每个实例对象的 <code>__proto__</code> 指向它的构造函数的 <code>prototype</code> <ul><li><code>son.__proto__ === Son.prototype</code></li></ul></li> <li>属性查找会在原型链上一层一层的寻找属性
+<ul><li><code>Son.prototype.__proto__ === Parent.prototype</code></li></ul></li> <li>层层向上直到一个对象的原型对象为 <code>null</code>。<code>null</code> 没有原型，并作为这个原型链中的最后一个环节。
+<ul><li><code>son.__proto__.__proto__........ === null</code></li></ul></li></ol> <p>举例：</p> <div class="language- extra-class"><pre class="language-text"><code>    class Parent {}
+    class Son extends Parent{}
+    
+    const log = console.log;
+    
+    const son = new Son();
+    const parent = new Parent();
+    
+    log(son.constructor === Son)
+    log(son.__proto__ === son.constructor.prototype)
+    
+    log(son.__proto__ === Son.prototype)
+    log(Son.prototype.__proto__ === Parent.prototype)
+    log(Parent.prototype.__proto__ === Object.prototype)
+    log(Object.prototype.__proto__ === null)
+    
+    log(son.__proto__.__proto__.__proto__.__proto__ === null)
+
+    log(Son.constructor === Function)
+    log(Son.__proto__ === Parent)
+    
+    log(Parent.constructor === Function)
+    log(Parent.__proto__ === Object.__proto__)
+</code></pre></div><p>PS：由于 <code>__proto__</code> 的性能问题和兼容性问题，不推荐使用。</p> <p>推荐</p> <ul><li>使用 <code>Object.getPrototypeOf</code> 获取原型属性</li> <li>通过 <code>Object.setPrototypeOf</code> 修改原型属性</li> <li>通过 <code>Object.create()</code> 继承原型</li></ul> <p>PS： <code>for in</code> 和 <code>Object.keys</code> 会调用原型 属性</p> <ul><li>不调用不可枚举属性</li> <li>isPrototypeOf 和 hasOwnProperty</li></ul> <h3 id="说一下-静态属性-方法-？"><a href="#说一下-静态属性-方法-？" class="header-anchor">#</a> 说一下 静态属性/方法 ？</h3> <p>静态属性/方法：就是不需要实例化类，就能直接调用的 属性/方法。</p> <p>综合上面<code>Parent</code>和<code>Son</code>的例子</p> <p>不管是 <code>son</code>、<code>Son</code>还是<code>Parent</code>，它们都是对象，所以都可以直接赋值，也能在<code>__proto__</code>上赋值</p> <p>所以静态属性/方式直接赋值就可以了</p> <div class="language- extra-class"><pre class="language-text"><code>    Parent.x = 1
+    Parent.__proto__.x =2
+
+    console.log(Parent.x)  // 1
+    console.log(Parent.__proto__.x) // 2
+</code></pre></div><p>如果使用 ES6的 <code>Class</code> 定义一个类</p> <div class="language- extra-class"><pre class="language-text"><code>    class A {
+        constructor() {
+            this.x = 1;
+        }
+        static say() {
+            console.log('zmz');
+        }
+        print() {
+            console.log(this.x);
+        }
+    }
+
+    A.say()
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/review/js_type.html" class="prev">
+        JS数据类型篇
+      </a></span> <span class="next"><a href="/FED-note/review/webpack.html">
+        Webpack篇
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/61.0bb8966f.js" defer></script>
+  </body>
+</html>

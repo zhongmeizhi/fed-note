@@ -42,7 +42,7 @@ JavaScript是脚本语言：具有高层次运算符的解释型语言（JS、PH
 
 详细步骤：
 
-![编译器](/md/img/bianyiqi.png)
+![编译器](../img/bianyiqi.png)
 
 
 ### 编译过程划分
@@ -85,7 +85,7 @@ JavaScript是脚本语言：具有高层次运算符的解释型语言（JS、PH
 
 一个语句的两种可能翻译结果
 
-![语法分析](/md/img/yufafenxi.png)
+![语法分析](../img/yufafenxi.png)
 
 
 ### 词法分析
@@ -95,7 +95,7 @@ JavaScript是脚本语言：具有高层次运算符的解释型语言（JS、PH
 2. 模式：
 3. 词素：
 
-![语法分析3部分](/md/img/cisu.png)
+![语法分析3部分](../img/cisu.png)
 
 加快源程序读入速度的方法：
 1. 缓冲区对：两个交替读入的缓冲区
@@ -109,7 +109,7 @@ JavaScript是脚本语言：具有高层次运算符的解释型语言（JS、PH
 
 词法单元的状态转换图
 
-![词法单元的状态转换图](/md/img/cifadanyuan.png)
+![词法单元的状态转换图](../img/cifadanyuan.png)
 
 
 ### 自动机
@@ -126,7 +126,7 @@ JavaScript是脚本语言：具有高层次运算符的解释型语言（JS、PH
 
 作用域是非常重要的：因为在程序的不同部分，可能会出于不同的目的而多次声明相同的标识符。
 
-![作用域链](/md/img/zuoyongyulian.png)
+![作用域链](../img/zuoyongyulian.png)
    
 ### 第三章看完 （136页）
 

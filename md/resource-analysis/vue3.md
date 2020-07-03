@@ -8,13 +8,13 @@ ps: 可能大部分人都不清楚 `vue3` 的开发api，将源码之前先讲�
 
 ### 环境搭建
 
-[vue3_vite](/md/resource-analysis/vue3_vite.md)
+[vue3_vite](/resource-analysis/vue3_vite.md)
 
 ### effect
 
-[vue3_effect](/md/resource-analysis/vue3_effect.md)
+[vue3_effect](/resource-analysis/vue3_effect.md)
 
 ### reactive
 
-[vue3_reactive](/md/resource-analysis/vue3_reactive.md)
+[vue3_reactive](/resource-analysis/vue3_reactive.md)
 

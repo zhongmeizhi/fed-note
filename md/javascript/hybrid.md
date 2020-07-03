@@ -53,7 +53,7 @@ H5 通过某种方式触发一个url -> Native捕获到url,进行处理 -> Nativ
 
 附上JsBridge原理图
 
-![/img/JsBridge.png](/md/img/JsBridge.png)
+![../img/JsBridge.png](../img/JsBridge.png)
 
 
 ### 通过UA获取数据

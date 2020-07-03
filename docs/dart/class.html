@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dart-类 :/ | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/29.433035fe.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/27.3660d6f0.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/44.fe406435.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/61.0bb8966f.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/64.a604d914.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/69.e8837289.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端日常回顾知识点</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue/React框架学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>RXJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Dart篇</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/dart/PRIMER.html" class="sidebar-link">dart（一）概述</a></li><li><a href="/FED-note/dart/base.html" class="sidebar-link">dart（二）基本操作</a></li><li><a href="/FED-note/dart/class.html" aria-current="page" class="active sidebar-link">dart（三）类</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/FED-note/dart/again.html" class="sidebar-link">dart（四）稍微抽象点</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="dart-类"><a href="#dart-类" class="header-anchor">#</a> Dart-类 😕</h1> <p>参考：Dart官网</p> <h3 id="构造函数"><a href="#构造函数" class="header-anchor">#</a> 构造函数 😃</h3> <p>构造函数名字可以为 <code>ClassName</code> 或者 <code>ClassName.identifier</code></p> <div class="language- extra-class"><pre class="language-text"><code>  var jsonData = JSON.decode('{&quot;x&quot;:1, &quot;y&quot;:2}');
+    
+  class Point {
+    num x;
+    num y;
+
+    // 通过 ClassName定义构造函数
+    // Point(num x, num y) {
+    //   this.x = x;
+    //   this.y = y;
+    // }
+
+    // 或者 精简方法
+    Point(this.x, this.y);
+
+    // 通过ClassName.identifier定义构造函数
+    Point.fromJson(Map json) {
+      x = json['x'];
+      y = json['y'];
+    }
+  }
+  
+  // 直接创建Point类
+  var p1 = new Point(2, 2);
+
+  // 通过Json创建Point类
+  var p2 = new Point.fromJson(jsonData);
+</code></pre></div><h3 id="构造函数不能继承"><a href="#构造函数不能继承" class="header-anchor">#</a> 构造函数不能继承 😮</h3> <p>构造函数不能继承，所以超类的命名构造函数 也不会被继承。如果你希望 子类也有超类一样的命名构造函数， 你必须在子类中自己实现该构造函数。</p> <p>如果超类没有无名无参数构造函数， 则你需要手工的调用超类的其他构造函数。 在构造函数参数后使用冒号 : 可以调用 超类构造函数。</p> <div class="language- extra-class"><pre class="language-text"><code>  class Person {
+    String firstName;
+
+    Person.fromJson(Map data) {
+      print('in Person');
+    }
+  }
+
+  class Employee extends Person {
+    
+    // Person没有默认的构造函数;
+    // 必须 call super.fromJson(data).
+
+    Employee.fromJson(Map data) : super.fromJson(data) {
+      print('in Employee');
+    }
+  }
+
+  main() {
+    var emp = new Employee.fromJson({});
+
+    // emp 是 Person
+    // emp 是 Employee
+    if (emp is Person) {
+      emp.firstName = 'Bob';
+    }
+    (emp as Person).firstName = 'Bob';
+  }
+</code></pre></div><h3 id="构造函数执行顺序"><a href="#构造函数执行顺序" class="header-anchor">#</a> 构造函数执行顺序 😕</h3> <ol><li>初始化参数列表</li> <li>超类的无名构造函数</li> <li>主类的无名构造函数</li></ol> <h3 id="初始化列表"><a href="#初始化列表" class="header-anchor">#</a> 初始化列表 😃</h3> <div class="language- extra-class"><pre class="language-text"><code>  class Point {
+    num x;
+    num y;
+
+    Point(this.x, this.y);
+
+    Point.fromJson(Map jsonMap)
+        : x = jsonMap['x'],
+          y = jsonMap['y'] {
+      print('In Point.fromJson(): ($x, $y)');
+    }
+  }
+</code></pre></div><p>注意：初始化表达式等号右边的部分<code>不能访问 this</code>。</p> <p>初始化列表非常适合用来设置 <code>final</code> 变量的值。</p> <div class="language- extra-class"><pre class="language-text"><code>  import 'dart:math';
+
+  class Point {
+    final num x;
+    final num y;
+    final num distanceFromOrigin;
+
+    Point(x, y)
+        : x = x,
+          y = y,
+          distanceFromOrigin = sqrt(x * x + y * y);
+  }
+
+</code></pre></div><h3 id="重定向构造函数"><a href="#重定向构造函数" class="header-anchor">#</a> 重定向构造函数 😮</h3> <p>一个重定向构造函数是没有代码的，在构造函数声明后，使用<code>:</code>调用其他构造函数。</p> <div class="language- extra-class"><pre class="language-text"><code>  class Point {
+    num x;
+    num y;
+
+    Point(this.x, this.y);
+
+    // 重定向
+    Point.alongXAxis(num x) : this(x, 0);
+  }
+</code></pre></div><h3 id="编译时常量"><a href="#编译时常量" class="header-anchor">#</a> 编译时常量 😦</h3> <p>两个一样的编译时常量其实是 同一个对象：</p> <div class="language- extra-class"><pre class="language-text"><code>  var a = const ImmutablePoint(1, 1);
+  var b = const ImmutablePoint(1, 1);
+
+  assert(identical(a, b)); // They are the same instance!
+</code></pre></div><h3 id="常量构造函数"><a href="#常量构造函数" class="header-anchor">#</a> 常量构造函数 😐</h3> <p>如果你的类提供一个状态不变的对象，你可以把这些对象 定义为编译时常量。要实现这个功能，需要定义一个 <code>const</code> 构造函数， 并且声明所有类的变量为 <code>final</code>。</p> <div class="language- extra-class"><pre class="language-text"><code>  class ImmutablePoint {
+    final num x;
+    final num y;
+    const ImmutablePoint(this.x, this.y);
+    static final ImmutablePoint origin =
+        const ImmutablePoint(0, 0);
+  }
+</code></pre></div><h3 id="工厂方法构造函数"><a href="#工厂方法构造函数" class="header-anchor">#</a> 工厂方法构造函数 😃</h3> <p>如果一个构造函数并不总是返回一个新的对象，则使用 <code>factory</code> 来定义 这个构造函数。(<strong>工厂构造函数无法访问 this。</strong>)</p> <p>下面代码演示工厂构造函数 如何从缓存中返回对象。</p> <div class="language- extra-class"><pre class="language-text"><code>  class Logger {
+    final String name;
+    bool mute = false;
+
+    // 缓存池
+    static final Map&lt;String, Logger&gt; _cache =
+        &lt;String, Logger&gt;{};
+
+    // 工厂函数
+    factory Logger(String name) {
+      if (_cache.containsKey(name)) {
+        return _cache[name];
+      } else {
+        final logger = new Logger._internal(name);
+        _cache[name] = logger;
+        return logger;
+      }
+    }
+    
+    Logger._internal(this.name);
+
+    void log(String msg) {
+      if (!mute) {
+        print(msg);
+      }
+    }
+  }
+</code></pre></div><h3 id="抽象类"><a href="#抽象类" class="header-anchor">#</a> 抽象类 😐</h3> <p>抽象类：一个<strong>不能被实例化</strong>的类，使用 <code>abstract</code> 修饰符定义。（在Flutter中用的挺多的。）</p> <p>抽象类通常用来定义接口， 以及部分实现。如果你希望你的抽象类 是可示例化的，则定义一个 工厂 构造函数。</p> <div class="language- extra-class"><pre class="language-text"><code>  // 抽象类 - 不能被实例化
+  abstract class AbstractContainer {
+    // ...Define constructors, fields, methods...
+
+    void updateChildren(); // 抽象函数
+
+    void myPrint() {
+      print('一个普通函数');
+    }
+  }
+</code></pre></div><h3 id="隐式接口"><a href="#隐式接口" class="header-anchor">#</a> 隐式接口 😮</h3> <p>每个类都隐式的定义了一个包含所有实例成员的接口，并且这个类实现了这个接口。如果你想 创建类 A 来支持 类 B 的 api，而不想继承 B 的实现， 则类 A 应该实现 B 的接口。</p> <p>一个类可以通过 <code>implements</code> 关键字来实现一个或者多个接口， 并实现每个接口定义的 API。</p> <p>通俗的讲：使用<code>implements</code><strong>就意味着要重写接口的API</strong></p> <p>使用场景：比如Flutter的<code>Provider</code>以接口来实现<code>dispose</code>的重写操作</p> <p><code>-_-!</code> 比起抽象函数，接口重写的更多，但是提供接口方是可以被实例化的。</p> <div class="language- extra-class"><pre class="language-text"><code>  class Point implements Comparable, Location {
+    // ...
+  }
+</code></pre></div><h3 id="继承"><a href="#继承" class="header-anchor">#</a> 继承 😃</h3> <p>继承是最基础的啦（基本上大家都懂，就Mark一下）</p> <p>Dart的继承使用 <code>extends</code> 定义子类， <code>supper</code> 引用 超类。子类可以覆写父类的函数，（可加<code>@override</code>注解，来表示你的函数想覆盖父类函数）</p> <div class="language- extra-class"><pre class="language-text"><code>  class Television {
+    void turnOn() {
+      _illuminateDisplay();
+      _activateIrSensor();
+    }
+    // ...
+  }
+
+  class SmartTelevision extends Television {
+    void turnOn() {
+      super.turnOn();
+      _bootNetworkInterface();
+      _initializeMemory();
+      _upgradeApps();
+    }
+    // ...
+  }
+</code></pre></div><h3 id="mixin"><a href="#mixin" class="header-anchor">#</a> mixin</h3> <p>mixin：提供了一种多继承机制，使用和class类似，只不过没有构造方法。</p> <p>通过<code>on</code>关键字可以限定mixin允许被哪些类使用，除非希望mixin可以像普通类一样使用，否则使用<code>mixin</code>关键字而不是<code>class</code>。</p> <p>在mixin中，后<code>with</code>的函数会覆盖前面的函数。</p> <div class="language- extra-class"><pre class="language-text"><code>  mixin Dog on Animal{
+    bool isDog = true;
+
+    void eat() {
+      // ...
+    }
+  }
+
+  mixin Cat {
+    // ...
+  }
+
+  class A extends Animal with Dog, Cat {
+    // ...
+  }
+</code></pre></div><h3 id="函数"><a href="#函数" class="header-anchor">#</a> 函数 😐</h3> <p>类中可以定义函数，函数大部分用法和JS类似</p> <p>可以通过实行 <code>getter</code> 和 <code>setter</code> 来创建新的属性</p> <div class="language- extra-class"><pre class="language-text"><code>  class Rectangle {
+    num left;
+    num top;
+    num width;
+    num height;
+
+    Rectangle(this.left, this.top, this.width, this.height);
+
+    num get right             =&gt; left + width;
+        set right(num value)  =&gt; left = value - width;
+    num get bottom            =&gt; top + height;
+        set bottom(num value) =&gt; top = value - height;
+  }
+</code></pre></div><p>抽象函数：没有函数体的函数，抽象类和非抽象类都可以定义抽象函数。</p> <div class="language- extra-class"><pre class="language-text"><code>  abstract class Doer {
+    
+    // 抽象函数
+    void doSomething(); 
+  }
+
+  class EffectiveDoer extends Doer {
+
+    // 重写
+    void doSomething() {
+      // some...
+    }
+  }
+</code></pre></div><p>可以通过<code>operator</code>来复写操作符</p> <div class="language- extra-class"><pre class="language-text"><code>  class Vector {
+    final int x;
+    final int y;
+    const Vector(this.x, this.y);
+
+    // 重写 +
+    Vector operator +(Vector v) {
+      return new Vector(x + v.x, y + v.y);
+    }
+
+    // 重写 -
+    Vector operator -(Vector v) {
+      return new Vector(x - v.x, y - v.y);
+    }
+  }
+</code></pre></div><h3 id="静态变量-函数"><a href="#静态变量-函数" class="header-anchor">#</a> 静态变量/函数 😃</h3> <p>使用 static 关键字来实现类级别的 静态变量和函数。</p> <p>不同点</p> <ul><li>可以不用new，直接执行。<code>Point.distanceBetween(a, b)</code></li> <li>静态变量在第一次使用的时候才被初始化。</li> <li>静态函数不再类实例上执行，(所以无法访问 <code>this</code>)</li></ul> <h3 id="call"><a href="#call" class="header-anchor">#</a> call()</h3> <p>如果 Dart 类实现了 <code>call()</code> 函数则 可以当做方法来调用。</p> <div class="language- extra-class"><pre class="language-text"><code>  class ClassFunction {
+  call(String a, String b, String c) =&gt; '$a $b $c!';
+}
+
+main() {
+  var cf = new ClassFunction();
+    var out = cf(&quot;wangxiaojian&quot;,&quot;is&quot;,&quot;talent&quot;);
+    print('$out');
+    print(cf.runtimeType);
+    print(out.runtimeType);
+    print(cf is Function);
+  }
+  
+  // 运行结果：
+  // wangxiaojian is talent!
+  // ClassFunction
+  // String
+  // false
+</code></pre></div><h3 id="end"><a href="#end" class="header-anchor">#</a> End 😦</h3> <p>结束啦</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/dart/base.html" class="prev">
+        dart（二）基本操作
+      </a></span> <span class="next"><a href="/FED-note/dart/again.html">
+        dart（四）稍微抽象点
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/29.433035fe.js" defer></script>
+  </body>
+</html>

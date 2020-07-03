@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JS 设计模式 | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/69.e8837289.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/27.3660d6f0.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/29.433035fe.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/44.fe406435.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/61.0bb8966f.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/64.a604d914.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>计算机基础</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/browser/security_code.html" class="sidebar-link">前端安全性</a></li><li><a href="/FED-note/browser/page_load.html" class="sidebar-link">页面加载过程</a></li><li><a href="/FED-note/sse/design_model.html" aria-current="page" class="active sidebar-link">设计模式</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端日常回顾知识点</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue/React框架学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>RXJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Dart篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="js-设计模式"><a href="#js-设计模式" class="header-anchor">#</a> JS 设计模式</h1> <p>面向对象思想：封装、继承、多态</p> <h3 id="构造器模式"><a href="#构造器模式" class="header-anchor">#</a> 构造器模式</h3> <blockquote><p>无非就是继承来实现的啦 - -!</p></blockquote> <p>构造器模式案例省略...</p> <p>思考：为什么ES5的继承要写在 <code>prototype</code> 中，而不是直接写在构造方法里？</p> <p>答：写在构造器中，无法做到数据共享（会造成资源浪费）</p> <ul><li>所以 <code>prototype</code> 中会存放需要共享数据的方法和属性（基本上都是方法）</li> <li>而构造器中会存放不需要共享的属性和方法</li></ul> <h3 id="模块化模式"><a href="#模块化模式" class="header-anchor">#</a> 模块化模式</h3> <blockquote><p>模块化嘛：AUCommonJS/Module 都是模块化，对象、闭包也是模块化</p></blockquote> <p>在JS中，模块化模式其实是模拟了&quot;类&quot;的概念。好处是有私密空间，不会造成全局污染。</p> <p>虽然JS没有私有属性。但<strong>闭包能很好的实现私有属性的概念</strong></p> <p>简单的模块化模式：（闭包 - -.!）</p> <div class="language- extra-class"><pre class="language-text"><code>    var module = (function () {
+        var num = 0;
+
+        return {
+            getNum: function () {
+                return num;
+            },
+            addNum: function () {
+                return num++;
+            }
+        };
+
+    })();
+
+    console.log(module)
+    
+    module.addNum()
+
+    console.log(module.getNum())
+</code></pre></div><h3 id="单例模式"><a href="#单例模式" class="header-anchor">#</a> 单例模式</h3> <blockquote><p>单例：就是限制一个类只能有一个实例化对象</p></blockquote> <p>使用场景案例：“警告/确认/提示弹窗”（只能存在一个的情况）</p> <p>最简单的单例：：闭包 + Flag 来实现</p> <div class="language- extra-class"><pre class="language-text"><code>    const mySingleton = (function () {
+        let _instance;
+
+        return function () {
+            if (!_instance) {
+                _instance = {
+                    x: 1,
+                    setX: (arg) =&gt; {
+                        _instance.x = arg;
+                    }
+                };
+            }
+            return _instance;
+        }
+        
+    })()
+
+    const instanceA = mySingleton();
+    const instanceB = mySingleton();
+
+    console.log(instanceA === instanceB);
+</code></pre></div><p>封装一下：（PS: ES5的new如果有return使用return的值）</p> <div class="language- extra-class"><pre class="language-text"><code>    const Singleton = (function() {
+        var _instance;
+        return function(obj) {
+            return _instance || (_instance = obj);
+        }
+    })();
+
+    var a = new Singleton({x: 1});
+    var b = new Singleton({y: 2});
+
+    console.log(a === b);
+</code></pre></div><h3 id="观察者模式"><a href="#观察者模式" class="header-anchor">#</a> 观察者模式</h3> <blockquote><p>由观察者和观察者组成。通过观察者调用被观察者的实例。</p></blockquote> <p>观察者模式：观察者对象和被观察者对象 之间的订阅和触发事件</p> <p>使用场景案例：“Vue 双向绑定实现”</p> <p>简单的观察者模式: （仿 <code>Vue</code> 实现）</p> <div class="language- extra-class"><pre class="language-text"><code>    // 观察者
+    class Dep {
+        constructor() {
+            this.subs = []
+        }
+        
+        addSub(sub) {
+            this.subs.push(sub)
+        }
+        
+        depend() {
+            if (Dep.target) { 
+                Dep.target.addDep(this);
+            }
+        }
+        
+        notify() {
+            this.subs.forEach(sub =&gt; sub.update())
+        }
+    }
+    
+    // 被观察者
+    class Watcher {
+        constructor(vm, expOrFn) {
+            this.vm = vm;
+            this.getter = expOrFn;
+            this.value;
+        }
+
+        get() {
+            Dep.target = this;
+            
+            var vm = this.vm;
+            var value = this.getter.call(vm, vm);
+            return value;
+        }
+
+        evaluate() {
+            this.value = this.get();
+        }
+
+        addDep(dep) {
+            dep.addSub(this);
+        }
+        
+        update() {
+            console.log('更新, value:', this.value)
+        }
+    }
+    
+    // 观察者实例
+    var dep = new Dep();
+    
+    //  被观察者实例
+    var watcher = new Watcher({x: 1}, (val) =&gt; val);
+    watcher.evaluate();
+    
+    // 观察者监听被观察对象
+    dep.depend()
+    
+    dep.notify()
+</code></pre></div><h3 id="发布-订阅者模式"><a href="#发布-订阅者模式" class="header-anchor">#</a> 发布/订阅者模式</h3> <blockquote><p>由订阅者 Subscriber 和发布者 Publisher 组成。</p></blockquote> <p>发布/订阅者模式：是观察者模式的变体，比观察者模式多了一个调度中心</p> <ul><li>发布者发布信息到调度中心</li> <li>调度中心和订阅者直接完成订阅和触发事件事件</li></ul> <p>使用场景案例：“DOM 的 addEventListener 事件”</p> <p>一个简单的发布/订阅者模式实现：（仿 <code>EventBus</code> 实现）</p> <div class="language- extra-class"><pre class="language-text"><code>    // EventTarget 就是一个调度中心
+
+    class EventTarget {
+        constructor() {
+            this.dep = {}
+        }
+        
+        on(key, fn) {
+            this.dep[key] = fn;
+        }
+        
+        emit(key) {
+            typeof this.dep[key] === 'function' ? this.dep[key]() : ''
+        }
+    }
+    
+    let eventTarget = new EventTarget()
+    
+    eventTarget.on('click', function() {console.log(1)})
+    eventTarget.emit('click')
+</code></pre></div><h3 id="中介者模式"><a href="#中介者模式" class="header-anchor">#</a> 中介者模式</h3> <blockquote><p>中介：撮合多个卖家 和 多个买家</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>    class Saler {
+        constructor(name, cost) {
+            this.name = name;
+            this.cost = cost;
+        }
+            
+        send() {
+            console.log(`${cost}元出售${name}`)
+        }
+    }
+    
+    class Agency {
+        constructor() {
+            this.cargos = []
+        }
+        
+        register(saler) {
+            this.cargos.push(saler);
+        }
+        
+        query(name) {
+            const matchCargos = this.cargos.filter(cargo =&gt; cargo &amp;&amp; cargo.name === name);
+            if (matchCargos.length) {
+                console.log(`查询到正在出售的商品:${JSON.stringify(matchCargos)}`)
+            } else {
+                console.log(`没有${name}在出售`);
+            }
+        }
+    }
+    
+    let agency = new Agency();
+    
+    agency.query('cart');
+    
+    const cartA = new Saler('cart', '100');
+    const cartB = new Saler('cart', '300');
+    const house = new Saler('house', '500');
+
+    agency.register(cartA);
+    agency.register(cartB);
+    agency.register(house);
+    
+    agency.query('cart');
+    agency.query('house');
+    agency.query('ABC');
+</code></pre></div><h3 id="命令模式"><a href="#命令模式" class="header-anchor">#</a> 命令模式</h3> <blockquote><p>为方法的调用进行解耦</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>    const command = {
+        buy(name, cost) {
+            console.log(`购买${name}消费了${cost}元`)
+        },
+        sale(name, cost) {
+            console.log(`出售了${name}赚得${cost}元`)
+        },
+        say(name, cost) {
+            console.log(`这里${cost}元可以买到${name}`)
+        },
+        execute(fnName) {
+            const fn= this[fnName];
+            (typeof fn === 'function') &amp;&amp; fn.apply(this, [].slice.call(arguments, 1))
+        }
+    }
+    
+    command.execute('buy', 'VIP', '200');
+    command.execute('sale', '节操', '998');
+    command.execute('say', 'VIP', '123');
+</code></pre></div><h3 id="策略模式"><a href="#策略模式" class="header-anchor">#</a> 策略模式</h3> <blockquote><p>策略模式最大的好处是：减少if-else的使用，同时增加代码可读性</p></blockquote> <p>简单的年终奖计算。（策略模式放在必填项/规则验证会很便捷）</p> <div class="language- extra-class"><pre class="language-text"><code>    // 策略模式
+    const bonus = {
+        A: function(base) {
+            return base * 4;
+        },
+        B: function(base) {
+            return base * 3;
+        },
+        C: function(base) {
+            return base * 2;
+        },
+        D: function(base) {
+            return base;
+        }
+    }
+
+    const level = &quot;B&quot;;
+    const base = &quot;1008611&quot;;
+    const yearBouns = bonus[level](base);
+    console.log(yearBouns)
+</code></pre></div><h3 id="工厂模式"><a href="#工厂模式" class="header-anchor">#</a> 工厂模式</h3> <blockquote><p>一个工厂(类) 能生产各种零件(实例)</p></blockquote> <h5 id="简单的工厂模式"><a href="#简单的工厂模式" class="header-anchor">#</a> 简单的工厂模式</h5> <p>通过一个类获取不同类的实例</p> <div class="language- extra-class"><pre class="language-text"><code>    class Cat {}
+    class Dog {}
+    class Pig {}
+    
+    function Factory(type, args) {
+        switch (type){
+            case 'cat':
+                return new Cat(args);
+                break;
+            case 'dog':
+                return new Dog(args);
+                break;
+            default:
+                return new Pig(args);
+                break;
+        }
+    }
+    
+    const cat = new Factory('cat', {name: 'cat'});
+    const dog = new Factory('dog', {name: 'dog'});
+    const pig = new Factory('pig', {name: 'pig'});
+    
+    console.log(cat, dog, pig)
+</code></pre></div><h5 id="抽象工厂模式"><a href="#抽象工厂模式" class="header-anchor">#</a> 抽象工厂模式</h5> <p>通过继承抽象的类（含有未实现的方法）、结合简单工厂模式，生成抽象工厂</p> <p>抽象工厂的好处：通用方法写在工厂函数中，不需要重复实现，不同个性化代码在子类中实现</p> <p>实现：省略...</p> <h5 id="复杂工厂模式"><a href="#复杂工厂模式" class="header-anchor">#</a> 复杂工厂模式</h5> <p>允许工厂产生的不同零件一起工作：</p> <div class="language- extra-class"><pre class="language-text"><code>    class Wheel {
+        turn() {
+            console.log('轮子开始转动啦');
+        }
+    }
+    
+    class Oil {
+        warn() {
+            console.log('汽油不足')
+        }
+    }
+    
+    class Cart {
+        constructor() {
+            this.cart = {}
+        }
+        
+        getPart(name, args) {
+            return this.cart[name] ? new this.cart[name](args) : null;
+        }
+        
+        setPart(name, Part) {
+            this.cart[name] = Part;
+        }
+    }
+    
+    const cart = new Cart();
+    
+    cart.setPart('wheel', Wheel)
+    cart.setPart('oil', Oil)
+    
+    const wheel = cart.getPart('wheel', {name: '轮子A'});
+    const oil = cart.getPart('oil', {name: '汽油A'});
+    
+    wheel.turn();
+    oil.warn();
+</code></pre></div><h3 id="修饰器模式"><a href="#修饰器模式" class="header-anchor">#</a> 修饰器模式</h3> <blockquote><p>修饰：不改变原有对象，在其基础上进行拓展</p></blockquote> <p>基本上每天都在用的设计模式...</p> <p>简单的修饰模式实现：</p> <div class="language- extra-class"><pre class="language-text"><code>    const after = function(fn, afterFn) {
+        return function() {
+            fn.apply(this, arguments)
+            afterFn.apply(this, arguments)
+        }
+    }
+
+    const myAfter = after(after(fn1, fn2), fn3)
+    myAfter()
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/browser/page_load.html" class="prev">
+        页面加载过程
+      </a></span> <span class="next"><a href="/FED-note/javascript/hybrid.html">
+        Hybrid开发相关
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/69.e8837289.js" defer></script>
+  </body>
+</html>

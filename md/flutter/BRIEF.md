@@ -34,7 +34,7 @@ Flutter 中的根Widget 是`RenderObjectToWidgetAdapter`,根 Widget 的 child �
 
 <div align=center>
 
-![widget](/md/img/widget.png)
+![widget](../img/widget.png)
 
 </div>
 
@@ -55,11 +55,11 @@ State 中主要的生命周期：
 # Flutter 实现原理
 
 渲染
-![渲染](/md/img/flutter_render.png)
+![渲染](../img/flutter_render.png)
 
 状态
-![状态](/md/img/flutter_state.png)
+![状态](../img/flutter_state.png)
 
 GPU
-![GPU](/md/img/flutter_GPU.png)
+![GPU](../img/flutter_GPU.png)
 

@@ -43,7 +43,7 @@ JavaScript的主要用途是与用户交互，以及操作DOM。这决定了它�
 
 根据上述总结流程为：
 
-![流程图](/md/img/event_loop.jpg)
+![流程图](../img/event_loop.jpg)
 
 附（宏/微任务清单）：
 

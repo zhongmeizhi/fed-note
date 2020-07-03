@@ -1,0 +1,15 @@
+{
+  "name": "gitbookFED",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zhongmeizhi/gitbook-FED.git",
+  "author": "zhongmeizhi <330447171@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev md",
+    "build": "vuepress build md"
+  },
+  "devDependencies": {
+    "vuepress": "^1.5.2"
+  }
+}

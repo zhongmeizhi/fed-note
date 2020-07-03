@@ -44,7 +44,7 @@ PrerenderSPAPlugin 使用
 
 工作流程
 
-![prerender](/md/img/vue/prerender.png)
+![prerender](../img/vue/prerender.png)
 
 
 ### nuxt.js 搭建 ssr 或 预渲染

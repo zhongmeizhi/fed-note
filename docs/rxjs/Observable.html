@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RXJS学习 之 Observable | Mokou的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/FED-note/assets/css/0.styles.57d4bde2.css" as="style"><link rel="preload" href="/FED-note/assets/js/app.90c98750.js" as="script"><link rel="preload" href="/FED-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/FED-note/assets/js/64.a604d914.js" as="script"><link rel="prefetch" href="/FED-note/assets/js/10.f66bd7c1.js"><link rel="prefetch" href="/FED-note/assets/js/11.8166af5e.js"><link rel="prefetch" href="/FED-note/assets/js/12.61e1a549.js"><link rel="prefetch" href="/FED-note/assets/js/13.8f37c5fa.js"><link rel="prefetch" href="/FED-note/assets/js/14.66b21950.js"><link rel="prefetch" href="/FED-note/assets/js/15.d662f714.js"><link rel="prefetch" href="/FED-note/assets/js/16.b46c61f3.js"><link rel="prefetch" href="/FED-note/assets/js/17.e10b43f3.js"><link rel="prefetch" href="/FED-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/FED-note/assets/js/19.35b11ac1.js"><link rel="prefetch" href="/FED-note/assets/js/20.34609147.js"><link rel="prefetch" href="/FED-note/assets/js/21.a4952d6c.js"><link rel="prefetch" href="/FED-note/assets/js/22.530a3b1b.js"><link rel="prefetch" href="/FED-note/assets/js/23.647c8138.js"><link rel="prefetch" href="/FED-note/assets/js/24.0020aaea.js"><link rel="prefetch" href="/FED-note/assets/js/25.c566a35f.js"><link rel="prefetch" href="/FED-note/assets/js/26.e564cb2b.js"><link rel="prefetch" href="/FED-note/assets/js/27.3660d6f0.js"><link rel="prefetch" href="/FED-note/assets/js/28.e307e1f5.js"><link rel="prefetch" href="/FED-note/assets/js/29.433035fe.js"><link rel="prefetch" href="/FED-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/FED-note/assets/js/30.63ca8446.js"><link rel="prefetch" href="/FED-note/assets/js/31.23bf30a5.js"><link rel="prefetch" href="/FED-note/assets/js/32.5c84eef6.js"><link rel="prefetch" href="/FED-note/assets/js/33.48a006fc.js"><link rel="prefetch" href="/FED-note/assets/js/34.4e285923.js"><link rel="prefetch" href="/FED-note/assets/js/35.cb88a8d8.js"><link rel="prefetch" href="/FED-note/assets/js/36.5b189c79.js"><link rel="prefetch" href="/FED-note/assets/js/37.bf8d4e8e.js"><link rel="prefetch" href="/FED-note/assets/js/38.90beb772.js"><link rel="prefetch" href="/FED-note/assets/js/39.95ba376a.js"><link rel="prefetch" href="/FED-note/assets/js/4.c429f3bb.js"><link rel="prefetch" href="/FED-note/assets/js/40.15a0d86c.js"><link rel="prefetch" href="/FED-note/assets/js/41.81155f75.js"><link rel="prefetch" href="/FED-note/assets/js/42.3bb47ff5.js"><link rel="prefetch" href="/FED-note/assets/js/43.a5bed4c0.js"><link rel="prefetch" href="/FED-note/assets/js/44.fe406435.js"><link rel="prefetch" href="/FED-note/assets/js/45.f0333222.js"><link rel="prefetch" href="/FED-note/assets/js/46.b4797bbe.js"><link rel="prefetch" href="/FED-note/assets/js/47.dc2c4c65.js"><link rel="prefetch" href="/FED-note/assets/js/48.c5f0ebc8.js"><link rel="prefetch" href="/FED-note/assets/js/49.c2f65ae6.js"><link rel="prefetch" href="/FED-note/assets/js/5.e24a0e2b.js"><link rel="prefetch" href="/FED-note/assets/js/50.c78b6dbb.js"><link rel="prefetch" href="/FED-note/assets/js/51.c65aea58.js"><link rel="prefetch" href="/FED-note/assets/js/52.916e40e2.js"><link rel="prefetch" href="/FED-note/assets/js/53.2a188bb6.js"><link rel="prefetch" href="/FED-note/assets/js/54.e9e58b19.js"><link rel="prefetch" href="/FED-note/assets/js/55.4e40ce5a.js"><link rel="prefetch" href="/FED-note/assets/js/56.12d9b5fc.js"><link rel="prefetch" href="/FED-note/assets/js/57.ccc69819.js"><link rel="prefetch" href="/FED-note/assets/js/58.48096060.js"><link rel="prefetch" href="/FED-note/assets/js/59.cf4bf60a.js"><link rel="prefetch" href="/FED-note/assets/js/6.7cfb83e7.js"><link rel="prefetch" href="/FED-note/assets/js/60.d3d7aab7.js"><link rel="prefetch" href="/FED-note/assets/js/61.0bb8966f.js"><link rel="prefetch" href="/FED-note/assets/js/62.6fb275b7.js"><link rel="prefetch" href="/FED-note/assets/js/63.57669dbc.js"><link rel="prefetch" href="/FED-note/assets/js/65.3b4f1c6a.js"><link rel="prefetch" href="/FED-note/assets/js/66.9bc7e274.js"><link rel="prefetch" href="/FED-note/assets/js/67.055ccbb6.js"><link rel="prefetch" href="/FED-note/assets/js/68.c072fa4a.js"><link rel="prefetch" href="/FED-note/assets/js/69.e8837289.js"><link rel="prefetch" href="/FED-note/assets/js/7.7a68d147.js"><link rel="prefetch" href="/FED-note/assets/js/70.ae03cfbe.js"><link rel="prefetch" href="/FED-note/assets/js/71.48fcf21d.js"><link rel="prefetch" href="/FED-note/assets/js/72.2d3b182f.js"><link rel="prefetch" href="/FED-note/assets/js/73.fac483c5.js"><link rel="prefetch" href="/FED-note/assets/js/74.d56b4b75.js"><link rel="prefetch" href="/FED-note/assets/js/75.ae1b8f20.js"><link rel="prefetch" href="/FED-note/assets/js/8.3474945f.js"><link rel="prefetch" href="/FED-note/assets/js/9.6594a171.js">
+    <link rel="stylesheet" href="/FED-note/assets/css/0.styles.57d4bde2.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FED-note/" class="home-link router-link-active"><img src="/FED-note/mh.jpg" alt="Mokou的博客" class="logo"> <span class="site-name can-hide">Mokou的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FED-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>源码解析</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>样式&amp;&amp;兼容性</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端日常回顾知识点</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue/React框架学习</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Node</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>RXJS</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FED-note/sse/function_program.html" class="sidebar-link">RXJS学习（一）函数式编程</a></li><li><a href="/FED-note/rxjs/Observable.html" aria-current="page" class="active sidebar-link">RXJS学习（二）Observable</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/FED-note/rxjs/Operators.html" class="sidebar-link">RXJS学习（三）Operators</a></li><li><a href="/FED-note/rxjs/Subject.html" class="sidebar-link">RXJS学习（四）Subject</a></li><li><a href="/FED-note/rxjs/Scheduler.html" class="sidebar-link">RXJS学习（五）Scheduler</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Dart篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java篇</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="rxjs学习-之-observable"><a href="#rxjs学习-之-observable" class="header-anchor">#</a> RXJS学习 之 Observable</h1> <blockquote><p>Observable 是RXJS的核心</p></blockquote> <p>Observable顾名思义:可观察的,用来给Observer订阅.</p> <p>Observable必须要被订阅后才会进行运算</p> <p>最简单的例子: (一般不这么用)</p> <div class="language- extra-class"><pre class="language-text"><code>  // 创建可观察对象
+  Observable.create(subscriber =&gt; {
+    subscriber.next('abc');
+    subscriber.complete();
+  })
+  // .map(v =&gt; v)
+  // .filter(v =&gt; true)
+  .subscribe(
+      v =&gt; { console.log(v) },
+      e =&gt; { console.log(e) },
+      () =&gt; { console.log('complete') }
+  );
+</code></pre></div><p>观察者有3个方法：（上述例子已使用）</p> <ol><li>next</li> <li>error: 主动调用error方法会使用观察者的error方法,后续的观察者的方法会失效（原生JS可以执行）
+<ul><li>throw new Error 也能触发 error事件</li></ul></li> <li>complete： 使用后，后续的观察者的方法会失效（原生JS可以执行）</li></ol> <h3 id="转换为observer对象"><a href="#转换为observer对象" class="header-anchor">#</a> 转换为Observer对象</h3> <p>一般使用<code>from, of, fromEvent</code>将数组、事件、Promise转换为Observer对象</p> <div class="language- extra-class"><pre class="language-text"><code>  of('abc', '123') // 打印 abc -&gt; 123
+  // of([1, 2, 3]) // 打印 [1, 2, 3]
+  // from([1, 2, 3]) // 打印 1  -&gt;  2  -&gt;  3
+  // from(Promise.resolve('123')) // 类似于then
+  // fromEvent(document, 'click', true)
+  // fromEventPattern( // 同时具有注册监听及移除监听两种行为
+  //     (handler) =&gt; { // 监听
+  //         document.addEventListener('click', handler);
+  //     }, 
+  //     (handler) =&gt; { // 移除
+  //         document.removeEventListener('click', handler);
+  //     }
+  // )
+  .subscribe(
+      console.log,
+      console.log,
+      () =&gt; console.log('完成')
+  )
+</code></pre></div><h3 id="与时间有关的"><a href="#与时间有关的" class="header-anchor">#</a> 与时间有关的</h3> <p><code>interval</code> 和 <code>timer</code></p> <div class="language- extra-class"><pre class="language-text"><code>  interval(1000).subscribe(console.log);
+  // 0  1   2   3 .... 每秒加一
+
+  timer(3000, 1000).subscribe(console.log);
+  // 等待 3秒, 然后每秒加一
+
+  timer(3000).subscribe(console.log)
+  // 3秒后执行(仅一次)
+
+  // 都会返回 subscription
+  // 通过 subscription.unsubscribe释放
+
+  // 除了unsubscribe,也可以使用operators的takeUntil来完成操作
+</code></pre></div><h3 id="合并observer对象"><a href="#合并observer对象" class="header-anchor">#</a> 合并Observer对象</h3> <p><strong>concat</strong></p> <p>和原生JS数组的concat方法类似，<code>concat</code>可以把多个<code>observable</code>实例合并成一个</p> <p><strong>要等待前一个 observable 完成(complete)，才会继续下一个</strong></p> <div class="language- extra-class"><pre class="language-text"><code>  let source = of(0, 1);
+  let source2 = interval(1000).pipe(
+      skip(2),
+      take(2),
+    );
+  let source3 = from([4, 5]);
+  let example = concat(source, source2, source3)
+
+  example.subscribe(console.log)
+</code></pre></div><p><strong>merge</strong></p> <p>作用和concat类似。可以把多个<code>observable</code>实例合并成一个</p> <p>不同：<strong>执行下一个任务时，不需要等待前一个observable完成</strong></p> <div class="language- extra-class"><pre class="language-text"><code>  let source = of(0, 1);
+  let source2 = interval(1000).pipe(
+      skip(2),
+      take(2),
+    );
+  let source3 = from([4, 5]);
+
+  let mergeExample = merge(source, source2, source3)
+  mergeExample.subscribe(console.log)
+</code></pre></div><h3 id="合并元素"><a href="#合并元素" class="header-anchor">#</a> 合并元素</h3> <p>zip：取每个 observable 相对位的元素</p> <div class="language- extra-class"><pre class="language-text"><code>  let x = of(1, 2, 3);
+  let y = of('a', 'b', 'c');
+  
+  zip(x, y, (x,y) =&gt; {return [x, y]}).subscribe(console.log)
+
+  // [1, &quot;a&quot;]
+  // [2, &quot;b&quot;]
+  // [3, &quot;c&quot;]
+</code></pre></div><h3 id="组合-observable"><a href="#组合-observable" class="header-anchor">#</a> 组合 Observable</h3> <p>combineLatest： 组合最后一个元素，不匹配空的最后项。</p> <p>可以用在运算多个因子的结果</p> <div class="language- extra-class"><pre class="language-text"><code>  let ct1 = timer(0, 1000).pipe(take(3));
+  let ct2 = timer(500, 1000).pipe(take(5));
+  let ct3 = of('a', 'b');
+
+  combineLatest(ct1, ct2, ct3).subscribe(console.log)
+
+  // [0, 0, 'b']
+  // [1, 0, 'b']
+  // [1, 1, 'b']
+  // [2, 1, 'b']
+  // [2, 2, 'b']
+  // [2, 3, 'b']
+  // [2, 4, 'b']
+</code></pre></div><h3 id="其他"><a href="#其他" class="header-anchor">#</a> 其他</h3> <ul><li>race(a, b, c) 竞速，类似于Promise.race()</li> <li>range(num1, num2) 取范围num1-num2的值。</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FED-note/sse/function_program.html" class="prev">
+        RXJS学习（一）函数式编程
+      </a></span> <span class="next"><a href="/FED-note/rxjs/Operators.html">
+        RXJS学习（三）Operators
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/FED-note/assets/js/app.90c98750.js" defer></script><script src="/FED-note/assets/js/2.666d6ac5.js" defer></script><script src="/FED-note/assets/js/64.a604d914.js" defer></script>
+  </body>
+</html>
