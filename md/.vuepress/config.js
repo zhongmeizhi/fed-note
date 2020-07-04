@@ -1,5 +1,5 @@
 module.exports = {
-  base: "/FED-note/",
+  base: "/fed-note/",
   title: "Mokou的博客",
   description: "Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript",
   themeConfig: {
@@ -216,7 +216,7 @@ module.exports = {
           },
           {
             title: '屏幕适配',   // 必要的
-            path: '/flutter/PRIMER',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            path: '/flutter/SCENES',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
             title: '渲染策略',   // 必要的

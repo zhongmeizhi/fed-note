@@ -1,7 +1,7 @@
 # 《Mokou的小书房》 持续更新中
 
 
-![meihong](/FED-note/mh.jpg)
+![meihong](/fed-note/mh.jpg)
 
 
 ## 序言
