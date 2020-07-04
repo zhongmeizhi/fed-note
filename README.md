@@ -16,4 +16,4 @@
 
 ## 电子书快速阅读地址：
 
-[https://zhongmeizhi.github.io/FED-note/](https://zhongmeizhi.github.io/FED-note/)
+[https://zhongmeizhi.github.io/fed-note/](https://zhongmeizhi.github.io/fed-note/)
