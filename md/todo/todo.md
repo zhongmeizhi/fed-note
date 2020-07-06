@@ -1,5 +1,7 @@
 
-  
+[腾讯云静态托管](https://env-sursrwlb-1302583115.tcloudbaseapp.com)
+[码云gitee](http://zhongmeizhi.gitee.io/fed-note/)
+
   * [腾讯新闻前端周报](https://github.com/Tnfe/TNFE-Weekly)
   * [underscore](https://github.com/lessfish/underscore-analysis)
   * [领扣-解题](https://github.com/azl397985856/leetcode)

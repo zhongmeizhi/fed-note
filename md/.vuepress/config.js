@@ -21,26 +21,22 @@ module.exports = {
             title: 'Vue 2.x 源码解析',   // 必要的
             path: '/resource-analysis/vue2',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
-          {
-            title: 'Vue 3.x 源码解析',   // 必要的
-            path: '/resource-analysis/vue3',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
         ]
       },
       {
-        title: '样式&&兼容性',   // 必要的
+        title: '深入理解Vue3',   // 必要的
         children: [
           {
-            title: '移动端-适配',   // 必要的
-            path: '/css/mobile.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: 'vue3_vite',   // 必要的
+            path: '/resource-analysis/vue3_vite',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: 'PC端-布局',   // 必要的
-            path: '/css/layout.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: 'vue3_effect',   // 必要的
+            path: '/resource-analysis/vue3_effect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: '经验包',   // 必要的
-            path: '/css/EXPERIENCE.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: 'vue3_reactive',   // 必要的
+            path: '/resource-analysis/vue3_reactive',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -58,6 +54,23 @@ module.exports = {
           {
             title: '设计模式',   // 必要的
             path: '/sse/design_model',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+        ]
+      },
+      {
+        title: '样式&&兼容性',   // 必要的
+        children: [
+          {
+            title: '移动端-适配',   // 必要的
+            path: '/css/mobile.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'PC端-布局',   // 必要的
+            path: '/css/layout.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: '经验包',   // 必要的
+            path: '/css/EXPERIENCE.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -97,15 +110,6 @@ module.exports = {
             path: '/browser/garbage_collection',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: '经验包',   // 必要的
-            path: '/javascript/experience',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-        ]
-      },
-      {
-        title: '前端日常回顾知识点',   // 必要的
-        children: [
-          {
             title: 'CSS篇',   // 必要的
             path: '/review/css_base',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
@@ -124,6 +128,10 @@ module.exports = {
           {
             title: '各种手写代码实现',   // 必要的
             path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: '经验包',   // 必要的
+            path: '/javascript/experience',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -149,7 +157,7 @@ module.exports = {
         ]
       },
       {
-        title: 'Node',   // 必要的
+        title: 'Node实战',   // 必要的
         children: [
           {
             title: 'NPM机制',   // 必要的
@@ -162,7 +170,7 @@ module.exports = {
         ]
       },
       {
-        title: 'RXJS',   // 必要的
+        title: 'RXJS入门',   // 必要的
         children: [
           {
             title: 'RXJS学习（一）函数式编程',   // 必要的
@@ -187,7 +195,7 @@ module.exports = {
         ]
       },
       {
-        title: 'Dart篇',   // 必要的
+        title: 'Dart入门',   // 必要的
         children: [
           {
             title: 'dart（一）概述',   // 必要的
@@ -208,7 +216,7 @@ module.exports = {
         ]
       },
       {
-        title: 'Flutter篇',   // 必要的
+        title: 'Flutter实战',   // 必要的
         children: [
           {
             title: '简介',   // 必要的
@@ -249,7 +257,7 @@ module.exports = {
         ]
       },
       {
-        title: 'Java篇',   // 必要的
+        title: 'Java入门',   // 必要的
         children: [
           {
             title: 'Java常识',   // 必要的

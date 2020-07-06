@@ -1,6 +1,5 @@
 # 《Mokou的小书房》 持续更新中
 
-
 ![meihong](/md/img/meihong.jpg)
 
 ## 序言
@@ -17,3 +16,10 @@
 ## 电子书快速阅读地址：
 
 [https://zhongmeizhi.github.io/fed-note/](https://zhongmeizhi.github.io/fed-note/)
+
+
+## 最后
+
+* 更多精彩请关注微信公众号：**前端进阶课**
+
+![微信公众号-前端进阶课](/md/img/common/ewm.png)
