@@ -13,9 +13,10 @@
 如果看完本文后，有看不懂的地方请回复我，一定是我写的不够清楚，我改。。。
 
 
-## 电子书快速阅读地址：
+## 快速阅读地址：
 
-[https://zhongmeizhi.github.io/fed-note/](https://zhongmeizhi.github.io/fed-note/)
+* [https://zhongmeizhi.github.io/fed-note/](https://zhongmeizhi.github.io/fed-note/)
+* [备用链接](https://env-sursrwlb-1302583115.tcloudbaseapp.com/fed-note/)
 
 
 ## 最后
