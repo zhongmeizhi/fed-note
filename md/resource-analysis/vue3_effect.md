@@ -2,6 +2,15 @@
 
 > 其实 effect 才是 vue3 响应式的核心
 
+回顾上一篇文章：
+
+1. 响应式的核心是 `effect`，其会在 `mountComponent`、`doWatch`、`reactive`、`computed` 时被调用。
+2. `reactive` 通过实体 `Proxy` 劫持对象
+   1. 劫持 `getter` 执行 `track`
+   2. 劫持 `setter` 执行 `trigger`
+3. 
+
+
 源码逐行解析
 
 ```js
@@ -344,3 +353,24 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
 	effects.forEach(run);
 }
 ```
+
+测试一下：
+
+运行会得到以下结果：
+1. 在 `track` 时，会调用一次 `run` 方法
+2. 在 `trigger` 后，会再次调用 `run` 方法
+
+```js
+  var obj = {
+    x: 1
+  }
+
+  effect( () => {
+    track(obj, 'get', 'x');
+  })
+
+  setTimeout(() => {
+    trigger(obj, 'set', 'x', 2)
+  }, 1000)
+```
+
