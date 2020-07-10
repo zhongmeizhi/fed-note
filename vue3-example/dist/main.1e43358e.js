@@ -128,7 +128,7 @@ exports.reactive = reactive;
 exports.effect = effect;
 exports.track = track;
 exports.trigger = trigger;
-exports.createApp = void 0;
+exports.createApp = exports.targetMap = void 0;
 
 var _PatchFlagNames, _errorMessages, _helperNameMap, _registerRuntimeHelpe, _DOMErrorMessages, _ErrorTypeStrings;
 
@@ -5573,6 +5573,7 @@ function compile(template) {
 }
 
 var targetMap = new WeakMap();
+exports.targetMap = targetMap;
 var effectStack = [];
 var activeEffect;
 var ITERATE_KEY = Symbol('iterate');
@@ -15402,37 +15403,32 @@ registerRuntimeCompiler(compileToFunction); //   exports.BaseTransition = BaseTr
 //   exports.withKeys = withKeys;
 //   exports.withModifiers = withModifiers;
 //   exports.withScopeId = withScopeId;
-},{}],"src/main.js":[function(require,module,exports) {
+},{}],"src/demo/reactive.js":[function(require,module,exports) {
 "use strict";
 
-var _vue = require("./vue3.js");
+var _vue = require("../vue3.js");
 
 /* 
   场景 1
 */
-// const obj = reactive({ x: 1 })
-// effect(() => {
-//   document.body.innerText = obj.x
-// })
-// setTimeout(() => {
-//   obj.x = 2
-// }, 1000)
-
-/* 
-  场景 2
-*/
-var obj = {
+var obj = (0, _vue.reactive)({
   x: 1
-};
+});
 (0, _vue.effect)(function () {
-  document.body.innerText = obj.x;
-  (0, _vue.track)(obj, 'get', 'x');
+  patch();
 });
 setTimeout(function () {
   obj.x = 2;
-  (0, _vue.trigger)(obj, 'set', 'x');
 }, 1000);
-},{"./vue3.js":"src/vue3.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function patch() {
+  document.body.innerText = obj.x;
+}
+},{"../vue3.js":"src/vue3.js"}],"src/main.js":[function(require,module,exports) {
+"use strict";
+
+require("./demo/reactive");
+},{"./demo/reactive":"src/demo/reactive.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

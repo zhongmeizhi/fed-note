@@ -2,16 +2,83 @@
 
 > 其实 effect 才是 vue3 响应式的核心
 
-回顾上一篇文章：
+先回顾下上一篇关于`vite`的原理解析和`reactive`的文章（文章发布在公众号：`前端进阶课`）：
 
 1. 响应式的核心是 `effect`，其会在 `mountComponent`、`doWatch`、`reactive`、`computed` 时被调用。
-2. `reactive` 通过实体 `Proxy` 劫持对象
+2. 在调用 `effect` 时会触发 `track` 开启响应式追踪，将追踪数据放入 `targetMap`
+3. 执行 `reactive` 时，通过 `Proxy` 类劫持对象
    1. 劫持 `getter` 执行 `track`
    2. 劫持 `setter` 执行 `trigger`
-3. 
+4. 劫持的对象放在一个叫 `targetMap` 的 `WeakMap` 中
+   1. `targetMap` 的结构大概是这样的 `targetMap<WeakMap> -> target<Map> -> key<Set>`
+   2. `key<Set>` 会存放 `activeEffect` 也就是当前的 `effect`
+   3. 同时 `key<Set>` 也会塞入至 `effect.deps`
+
+ps：这一章虽然主要是 `effect` 相关，但是不会牵扯 `setupRenderEffect`，其他内容请看下一章
+
+以一个小栗子来测试上面的内容回顾 [demo链接](https://github.com/zhongmeizhi/fed-note/tree/master/vue3-example)
+
+```js
+import { reactive, effect } from '../vue3.js'
+
+/* 
+  场景 1
+*/
+const obj = reactive({ x: 1 })
+
+effect(() => {
+  patch()
+})
+
+setTimeout(() => {
+  obj.x = 2
+}, 1000)
+
+function patch() {
+  document.body.innerText = obj.x
+}
+```
+
+上面的栗子在一秒后会将浏览器内容从 `1` 替换为 `2`，哦，这就是传说中的 mvvm 吗？ 这验证了再 `reactive` 劫持 `setter` 方法的时候触发的 `trigger` 会执行 `effect`
+
+想不想看看 `targetMap`？想不想知道如果不用 `reactive` 能不能实现响应式？ 再举一个小李子，[demo链接](https://github.com/zhongmeizhi/fed-note/tree/master/vue3-example)
+
+```js
+import { effect, track, trigger, targetMap } from '../vue3.js'
+/* 
+  场景 2
+*/
+var obj = {
+  x: 1
+}
+
+var obj2 = {
+  y: 1
+}
+
+effect(() => {
+  patch();
+  track(obj, 'get', 'x');
+  track(obj2, 'get', 'y');
+  console.log(targetMap, 'targetMap')
+})
+
+setTimeout(() => {
+  obj.x = 2;
+  trigger(obj, 'set', 'x')
+}, 1000)
+
+function patch() {
+  document.body.innerText = obj.x
+}
+```
+
+上栗的结果和 `reactive` 案例的结果是一样的，浏览器的内容将会在一秒后替换为 `2`，不过... 你如果是正常搭建的 `vue3` 项目，`vue3` 可不会暴露 `effect, track, trigger, targetMap` 这些哦。只有我的 demo 暴露了这些方法，喜欢的请为我的笔记点个赞、项目star一下哦，[demo链接](https://github.com/zhongmeizhi/fed-note/tree/master/vue3-example)
 
 
-源码逐行解析
+### 源码逐行解析
+
+现在来到重头戏：`vue3` -> `effect` 源码解析！真逐行解析哦。
 
 ```js
 const EMPTY_OBJ = Object.freeze({})
@@ -27,7 +94,13 @@ var activeEffect;
 function isEffect(fn) {
 	return fn != null && fn._isEffect === true;
 }
+```
 
+首先是一些小方法和全局变量，这里是定义了 `var targetMap = new WeakMap();`
+
+开始进入正式场合：`effect` 方法，该方法会在 `watch、trigger、computed、mountComponent` 中被调用。
+
+```js
 /* 
 	在 watch、trigger、computed、mountComponent 中被调用
 */
@@ -74,7 +147,29 @@ function effect(fn, options = EMPTY_OBJ) {
 	}
 	return effect;
 }
+```
 
+上面的`effect`源码内部的变量有点...居然和函数名一个名称。对于基础不好的童鞋，可能不太理解这个语法，其实函数内部 effect 属于私有变量，并不会改变外部effect的实际属性- -。只是内部定义一个和函数名称一样的变量好奇怪啊
+
+举个栗子
+```js
+function effect () {
+  const effect = 1;
+}
+effect();
+console.log(effect);
+
+// 执行的结果effect依然是一个函数
+ƒ effect () {
+  const effect = 1;
+}
+```
+
+这里面还会涉及到一个小东西 `options.lazy`，后面会讲述（这是关于 `computed`的），那这个内部的 `effect` 从哪来呢？ - -。它来自 `createReactiveEffect`，
+
+执行 `createReactiveEffect` 后得到的是一个 function 即 reactiveEffect，
+
+```js
 /* 
 	执行createReactiveEffect后得到的是一个 function 即 reactiveEffect
 
@@ -119,8 +214,26 @@ function createReactiveEffect(fn, options) {
 	effect.options = options;
 	return effect;
 }
+```
 
+上面的源码又有一个小细节：`reactiveEffect`，执行后会返回一个将自身作为参数后调用 `run` 函数的执行结果，如何把自己作为参数？
 
+```js
+// 参考栗子：
+let effect = function() {
+  console.log(effect)
+}
+effect();
+
+// 执行结果为：
+// ƒ () {
+//    console.log(effect)
+// }
+```
+
+然后里面会调用 `run` 方法
+
+```js
 function run(effect, fn, args) {
 	console.log('run')
 	if (!effect.active) {
@@ -181,6 +294,31 @@ function cleanup(effect) {
 		deps.length = 0;
 	}
 }
+```
+
+run 源码就是执行在 effect 的时候用户塞入的回调函数。
+
+上面的源码又有一个小细节，try 在 return 后到底会不会执行 finally ？
+
+```js
+// 举个栗子：
+var x = function() {
+  try {
+    return 1111;
+  } finally {
+    console.log(2222222)
+  }
+}
+
+y = x();
+
+// 此时依旧会打印 2222222，
+// 而且 y 此时 === 1111
+```
+
+然后到了最关键的函数：`track`，track 的目的是追踪响应，如何追踪？可以通过Map的键可以是对象的特性，将需要被追踪的对象作为键塞入到全局的 `targetMap` 中即可
+
+```js
 
 /* 
 	追踪
@@ -249,10 +387,13 @@ function track(target, type, key) {
 		}
 	}
 }
+```
 
-/* 
+然后到了触发器，`trigger` 从 `targetMap` 中取值就可以了，然后执行已经对应的 `effect`。
 
-*/
+其实这里隐藏和一个非常非常细节的东西。先看看源码吧
+
+```js
 /* 
 	触发器
 
@@ -354,23 +495,7 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
 }
 ```
 
-测试一下：
+上面的 `trigger` 为什么会那么好使？虽然说 `track` 是把 `target` 塞入到了 `targetMap`，可如果始终执行一个方法是不可能做到数据更新的，除非又有一个全局变量。
 
-运行会得到以下结果：
-1. 在 `track` 时，会调用一次 `run` 方法
-2. 在 `trigger` 后，会再次调用 `run` 方法
-
-```js
-  var obj = {
-    x: 1
-  }
-
-  effect( () => {
-    track(obj, 'get', 'x');
-  })
-
-  setTimeout(() => {
-    trigger(obj, 'set', 'x', 2)
-  }, 1000)
-```
+那么 vue3 是如何实现的？？那就是将变量自己作为自己内部的参数传递 -> 不妨再看看上文的 `createReactiveEffect` 和上文的小栗子吧？ -
 

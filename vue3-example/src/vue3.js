@@ -12012,6 +12012,7 @@
   registerRuntimeCompiler(compileToFunction);
 
   export {
+    targetMap,
     reactive,
     effect,
     track,
