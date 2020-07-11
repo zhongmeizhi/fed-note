@@ -1,6 +1,7 @@
 module.exports = {
   base: "/fed-note/",
-  title: "Mokou的博客",
+  title: "Mokou的小书房",
+  keys: "Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript",
   description: "Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript",
   themeConfig: {
     logo: '/mh.jpg',
@@ -11,7 +12,24 @@ module.exports = {
     ],
     sidebar: [
       {
-        title: '源码解析',   // 必要的
+        title: '深入浅出 Vue3',   // 必要的
+        children: [
+          {
+            title: 'vue3_vite',   // 必要的
+            path: '/resource-analysis/vue3_vite',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'vue3_reactive',   // 必要的
+            path: '/resource-analysis/vue3_reactive',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'vue3_effect',   // 必要的
+            path: '/resource-analysis/vue3_effect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+        ]
+      },
+      {
+        title: 'Vue2 && React',   // 必要的
         children: [
           {
             title: 'Fiber 源码解析',   // 必要的
@@ -21,22 +39,17 @@ module.exports = {
             title: 'Vue 2.x 源码解析',   // 必要的
             path: '/resource-analysis/vue2',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
-        ]
-      },
-      {
-        title: '深入理解Vue3',   // 必要的
-        children: [
           {
-            title: 'vue3_vite',   // 必要的
-            path: '/resource-analysis/vue3_vite',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: 'React 简况',   // 必要的
+            path: '/mvvm/react',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: 'vue3_effect',   // 必要的
-            path: '/resource-analysis/vue3_effect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: '翻译：React useEffect完全指南',   // 必要的
+            path: '/mvvm/useEffect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: 'vue3_reactive',   // 必要的
-            path: '/resource-analysis/vue3_reactive',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: '翻译：React函数组件心智模型',   // 必要的
+            path: '/mvvm/react_function_or_class',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -58,7 +71,7 @@ module.exports = {
         ]
       },
       {
-        title: '样式&&兼容性',   // 必要的
+        title: '前端基础',   // 必要的
         children: [
           {
             title: '移动端-适配',   // 必要的
@@ -69,14 +82,9 @@ module.exports = {
             path: '/css/layout.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: '经验包',   // 必要的
+            title: 'CSS 经验包',   // 必要的
             path: '/css/EXPERIENCE.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
-        ]
-      },
-      {
-        title: '前端基础',   // 必要的
-        children: [
           {
             title: 'Hybrid开发相关',   // 必要的
             path: '/javascript/hybrid',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
@@ -130,88 +138,8 @@ module.exports = {
             path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: '经验包',   // 必要的
+            title: 'JS 经验包',   // 必要的
             path: '/javascript/experience',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-        ]
-      },
-      {
-        title: 'Vue/React框架学习',   // 必要的
-        children: [
-          {
-            title: 'React 简况',   // 必要的
-            path: '/mvvm/react',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: '翻译：React useEffect完全指南',   // 必要的
-            path: '/mvvm/useEffect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: '翻译：React 函数式组件和类组件的区别',   // 必要的
-            path: '/mvvm/react_function_or_class',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'next.js 体验',   // 必要的
-            path: '/mvvm/next_js',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          }
-        ]
-      },
-      {
-        title: 'Node实战',   // 必要的
-        children: [
-          {
-            title: 'NPM机制',   // 必要的
-            path: '/node/NPM',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: '用Koa2撸一个API Mock',   // 必要的
-            path: 'https://github.com/zhongmeizhi/z-mock',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-        ]
-      },
-      {
-        title: 'RXJS入门',   // 必要的
-        children: [
-          {
-            title: 'RXJS学习（一）函数式编程',   // 必要的
-            path: '/sse/function_program',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'RXJS学习（二）Observable',   // 必要的
-            path: '/rxjs/Observable',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'RXJS学习（三）Operators',   // 必要的
-            path: '/rxjs/Operators',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'RXJS学习（四）Subject',   // 必要的
-            path: '/rxjs/Subject',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'RXJS学习（五）Scheduler',   // 必要的
-            path: '/rxjs/Scheduler',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-        ]
-      },
-      {
-        title: 'Dart入门',   // 必要的
-        children: [
-          {
-            title: 'dart（一）概述',   // 必要的
-            path: '/dart/PRIMER',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'dart（二）基本操作',   // 必要的
-            path: '/dart/base',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'dart（三）类',   // 必要的
-            path: '/dart/class',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'dart（四）稍微抽象点',   // 必要的
-            path: '/dart/again',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -257,7 +185,7 @@ module.exports = {
         ]
       },
       {
-        title: 'Java入门',   // 必要的
+        title: '服务端相关',   // 必要的
         children: [
           {
             title: 'Java常识',   // 必要的
@@ -270,6 +198,55 @@ module.exports = {
           {
             title: 'SpringBoot',   // 必要的
             path: '/java/spring_boot',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'NPM机制',   // 必要的
+            path: '/node/NPM',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: '用Koa2撸一个API Mock',   // 必要的
+            path: 'https://github.com/zhongmeizhi/z-mock',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+        ]
+      },
+      {
+        title: '简单的API',   // 必要的
+        children: [
+          {
+            title: 'dart（一）概述',   // 必要的
+            path: '/dart/PRIMER',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'dart（二）基本操作',   // 必要的
+            path: '/dart/base',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'dart（三）类',   // 必要的
+            path: '/dart/class',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'dart（四）稍微抽象点',   // 必要的
+            path: '/dart/again',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'RXJS学习（一）函数式编程',   // 必要的
+            path: '/sse/function_program',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'RXJS学习（二）Observable',   // 必要的
+            path: '/rxjs/Observable',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'RXJS学习（三）Operators',   // 必要的
+            path: '/rxjs/Operators',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'RXJS学习（四）Subject',   // 必要的
+            path: '/rxjs/Subject',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'RXJS学习（五）Scheduler',   // 必要的
+            path: '/rxjs/Scheduler',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
