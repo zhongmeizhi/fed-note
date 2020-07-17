@@ -169,6 +169,8 @@ function update(el, instance) {
 }
 ```
 
+## 用 mini-vue3 写一个 demo
+
 测试一下。参照 vue3 的写法。定义个 `setup` 和 `render`。
 
 ```js
@@ -203,8 +205,3 @@ mount(App, document.body)
 2. `render` 函数 和 `h` 函数并正确（Vue3的h函数现在是2个不是以前的`createElement`了）
 3. 虚拟 dom 的递归
 4. 别再说了`- -!`，我不听。
-
-## 后续完善
-
-首先
-  

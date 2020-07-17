@@ -1,6 +1,8 @@
-# 《Mokou的小书房》 持续更新中
+<div align="center">
+  <img src="/md/img/meihong.jpg">
+</div>
 
-![meihong](/md/img/meihong.jpg)
+<h1 align="center">Mokou的小书房</h1>
 
 ## 序言
 
@@ -13,11 +15,16 @@
 如果看完本文后，有看不懂的地方请回复我，一定是我写的不够清楚，我改。。。
 
 
-## 快速阅读地址：
+## 个人博客链接：
 
 * [https://zhongmeizhi.github.io/fed-note/](https://zhongmeizhi.github.io/fed-note/)
 * [备用链接](https://env-sursrwlb-1302583115.tcloudbaseapp.com/fed-note/)
 
+
+### Vue3 源码深入浅出连载中...
+
+* 源码解析文章请去[个人博客](https://zhongmeizhi.github.io/fed-note/)
+* mini版vue3源码地址：[uuz](https://github.com/zhongmeizhi/uuz)
 
 ## 最后
 

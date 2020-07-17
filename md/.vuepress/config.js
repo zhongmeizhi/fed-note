@@ -30,6 +30,10 @@ module.exports = {
             title: '响应式小结',   // 必要的
             path: '/resource-analysis/vue3_reactive_summary',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
+          {
+            title: 'ref和computed',   // 必要的
+            path: '/resource-analysis/vue3_computed',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
         ]
       },
       {

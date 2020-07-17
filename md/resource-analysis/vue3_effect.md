@@ -73,7 +73,7 @@ function patch() {
 }
 ```
 
-上栗的结果和 `reactive` 案例的结果是一样的，浏览器的内容将会在一秒后替换为 `2`，不过... 你如果是正常搭建的 `vue3` 项目，`vue3` 可不会暴露 `effect, track, trigger, targetMap` 这些哦。只有我的 demo 暴露了这些方法，喜欢的请为我的笔记点个赞、项目star一下哦，[demo链接](https://github.com/zhongmeizhi/fed-note/tree/master/vue3-example)
+上栗的结果和 `reactive` 案例的结果是一样的，浏览器的内容将会在一秒后替换为 `2`，不过... 你如果是正常搭建的 `vue3` 项目，`vue3` 可不会暴露 `effect, track, trigger, targetMap` 这些哦。
 
 
 ### 源码逐行解析
