@@ -210,7 +210,6 @@ Webpack 加快代码运行速度方法
   // 还会通过 <link rel="preload"> 请求 charting-library-chunk
 ```
 
-
 ##### DllPlugin + DllReferencePlugin
 
 为了极大减少构建时间，进行分离打包。
@@ -241,6 +240,8 @@ webpack.app.config.js
   })
 ```
 
+ps：这个webpack自带的dll其实可以用 [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin) 来代替的。
+
 
 ##### CommonsChunkPlugin
 
@@ -248,89 +249,16 @@ webpack.app.config.js
 
 如果把公共文件提取出一个文件，那么当用户访问了一个网页，加载了这个公共文件，再访问其他依赖公共文件的网页时，就直接使用文件在浏览器的缓存，这样公共文件就只用被传输一次。
 
-```
-  entry: {
-    vendor: ["jquery", "other-lib"], // 明确第三方库
-    app: "./entry"
-  },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      // filename: "vendor.js"
-      // (给 chunk 一个不同的名字)
-
-      minChunks: Infinity,
-      // (随着 entry chunk 越来越多，
-      // 这个配置保证没其它的模块会打包进 vendor chunk)
-    })
-  ]
-
-  // 打包后的文件
-  <script src="vendor.js" charset="utf-8"></script>
-  <script src="app.js" charset="utf-8"></script>
-```
+ps： 在 webpack4.0 后删除了`CommonsChunkPlugin`，新增了优化后的`SplitChunksPlugin`，
 
 
 ##### UglifyJSPlugin
 
 基本上脚手架都包含了该插件,该插件会分析JS代码语法树，理解代码的含义，从而做到去掉无效代码、去掉日志输入代码、缩短变量名等优化。
 
-```
-  const UglifyJSPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-  //...
-  plugins: [
-      new UglifyJSPlugin({
-          compress: {
-              warnings: false,  //删除无用代码时不输出警告
-              drop_console: true,  //删除所有console语句，可以兼容IE
-              collapse_vars: true,  //内嵌已定义但只使用一次的变量
-              reduce_vars: true,  //提取使用多次但没定义的静态值到变量
-          },
-          output: {
-              beautify: false, //最紧凑的输出，不保留空格和制表符
-              comments: false, //删除所有注释
-          }
-      })
-  ]
-```
-
-
 ##### ExtractTextPlugin + PurifyCSSPlugin
 
 ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，PurifyCSSPlugin纯化CSS（其实用处没多大）
-
-```
-  module.exports = {
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  localIdentName: 'purify_[hash:base64:5]',
-                  modules: true
-                }
-              }
-            ]
-          })
-        }
-      ]
-    },
-    plugins: [
-      ...,
-      new PurifyCSSPlugin({
-        purifyOptions: {
-          whitelist: ['*purify*']
-        }
-      })
-    ]
-  };
-```
-
 
 ##### DefinePlugin
 
@@ -353,27 +281,6 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
         WP_CONF: JSON.stringify('dev'),
     }),
 ```
-
-测试`DefinePlugin`：编写
-
-```
-    if (WP_CONF === 'dev') {
-        console.log('This is dev');
-    } else {
-        console.log('This is prod');
-    }
-```
-
-打包后`WP_CONF === 'dev'`会编译为`false`
-
-```
-    if (false) {
-        console.log('This is dev');
-    } else {
-        console.log('This is prod');
-    }
-```
-
 
 ##### 清除不可达代码
 
@@ -399,7 +306,6 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
 附Uglify文档：https://github.com/mishoo/UglifyJS2
 
 使用DefinePlugin区分环境 + UglifyJsPlugin清除不可达代码，以减轻打包代码体积
-
 
 
 ##### HappyPack
@@ -435,31 +341,14 @@ ExtractTextPlugin 从 bundle 中提取文本（CSS）到单独的文件，Purify
   ]
 ```
 
+ps：webpack4官方提供了 thread-loader
+
 
 ##### ParallelUglifyPlugin
 
 [ParallelUglifyPlugin](https://github.com/gdborton/webpack-parallel-uglify-plugin)可以**开启多进程压缩JS文件**
 
-```
-  import ParallelUglifyPlugin from 'webpack-parallel-uglify-plugin';
-
-  module.exports = {
-    plugins: [
-      new ParallelUglifyPlugin({
-        test,
-        include,
-        exclude,
-        cacheDir,
-        workerCount,
-        sourceMap,
-        uglifyJS: {
-        },
-        uglifyES: {
-        }
-      }),
-    ],
-  };
-```
+ps： 其实有了上面的，这个也没啥用了。
 
 
 ##### BundleAnalyzerPlugin
@@ -509,6 +398,11 @@ externals 配置选项提供了「从输出的 bundle 中排除依赖」的方�
   }
 ```
 
+##### hard-source-webpack-plugin
+
+vue-cli 和 create-react-app 使用了 [hard-source-webpack-plugin](https://www.npmjs.com/package/hard-source-webpack-plugin) 来优化。
+
+该插件为模块提供中间缓存步骤。
 
 ### Webpack HMR 原理解析
 
@@ -517,6 +411,8 @@ externals 配置选项提供了「从输出的 bundle 中排除依赖」的方�
 包含以下内容：
 1. 热更新图
 2. 热更新步骤讲解
+
+热更新内容参考[饿了么专栏](https://zhuanlan.zhihu.com/ElemeFE)
 
 ![热更新](../img/hot_loader.jpg)
 
