@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue3 computed | Mokou的小书房</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Mokou,源码解析,前端,Vue,Vue3,Es6,Javascript">
+    <link rel="preload" href="/fed-note/assets/css/0.styles.35bbaf6d.css" as="style"><link rel="preload" href="/fed-note/assets/js/app.52597b60.js" as="script"><link rel="preload" href="/fed-note/assets/js/2.666d6ac5.js" as="script"><link rel="preload" href="/fed-note/assets/js/50.389d23ae.js" as="script"><link rel="prefetch" href="/fed-note/assets/js/10.bc70263e.js"><link rel="prefetch" href="/fed-note/assets/js/11.7159faba.js"><link rel="prefetch" href="/fed-note/assets/js/12.c19eadfb.js"><link rel="prefetch" href="/fed-note/assets/js/13.33237a86.js"><link rel="prefetch" href="/fed-note/assets/js/14.c394ef89.js"><link rel="prefetch" href="/fed-note/assets/js/15.3e7e993f.js"><link rel="prefetch" href="/fed-note/assets/js/16.7faac765.js"><link rel="prefetch" href="/fed-note/assets/js/17.e2b5eefc.js"><link rel="prefetch" href="/fed-note/assets/js/18.41427e8c.js"><link rel="prefetch" href="/fed-note/assets/js/19.003cae70.js"><link rel="prefetch" href="/fed-note/assets/js/20.34609147.js"><link rel="prefetch" href="/fed-note/assets/js/21.57c60584.js"><link rel="prefetch" href="/fed-note/assets/js/22.9e0c6173.js"><link rel="prefetch" href="/fed-note/assets/js/23.c0b67ad3.js"><link rel="prefetch" href="/fed-note/assets/js/24.cecd0759.js"><link rel="prefetch" href="/fed-note/assets/js/25.671d6a8e.js"><link rel="prefetch" href="/fed-note/assets/js/26.3d659a5d.js"><link rel="prefetch" href="/fed-note/assets/js/27.e06285ee.js"><link rel="prefetch" href="/fed-note/assets/js/28.6df8b992.js"><link rel="prefetch" href="/fed-note/assets/js/29.efb48b7f.js"><link rel="prefetch" href="/fed-note/assets/js/3.6b6bbf88.js"><link rel="prefetch" href="/fed-note/assets/js/30.7242dfaf.js"><link rel="prefetch" href="/fed-note/assets/js/31.05c59ce0.js"><link rel="prefetch" href="/fed-note/assets/js/32.2be0b486.js"><link rel="prefetch" href="/fed-note/assets/js/33.d07f197e.js"><link rel="prefetch" href="/fed-note/assets/js/34.79a63b7b.js"><link rel="prefetch" href="/fed-note/assets/js/35.f35eaefe.js"><link rel="prefetch" href="/fed-note/assets/js/36.b718a34b.js"><link rel="prefetch" href="/fed-note/assets/js/37.fbd1836a.js"><link rel="prefetch" href="/fed-note/assets/js/38.112e270d.js"><link rel="prefetch" href="/fed-note/assets/js/39.e2b199b9.js"><link rel="prefetch" href="/fed-note/assets/js/4.9c7f0bce.js"><link rel="prefetch" href="/fed-note/assets/js/40.4b21c256.js"><link rel="prefetch" href="/fed-note/assets/js/41.ec6f1a3e.js"><link rel="prefetch" href="/fed-note/assets/js/42.8252ebc0.js"><link rel="prefetch" href="/fed-note/assets/js/43.36fbd0b9.js"><link rel="prefetch" href="/fed-note/assets/js/44.6994e218.js"><link rel="prefetch" href="/fed-note/assets/js/45.b8c25cfc.js"><link rel="prefetch" href="/fed-note/assets/js/46.27a85c55.js"><link rel="prefetch" href="/fed-note/assets/js/47.6d68221a.js"><link rel="prefetch" href="/fed-note/assets/js/48.52486e12.js"><link rel="prefetch" href="/fed-note/assets/js/49.ae3206b3.js"><link rel="prefetch" href="/fed-note/assets/js/5.62355573.js"><link rel="prefetch" href="/fed-note/assets/js/51.de9fda8a.js"><link rel="prefetch" href="/fed-note/assets/js/52.72c80114.js"><link rel="prefetch" href="/fed-note/assets/js/53.7f951e3c.js"><link rel="prefetch" href="/fed-note/assets/js/54.1f85707a.js"><link rel="prefetch" href="/fed-note/assets/js/55.cd47e87e.js"><link rel="prefetch" href="/fed-note/assets/js/56.4a81535c.js"><link rel="prefetch" href="/fed-note/assets/js/57.2b60dbd3.js"><link rel="prefetch" href="/fed-note/assets/js/58.fb4c8819.js"><link rel="prefetch" href="/fed-note/assets/js/59.1a615610.js"><link rel="prefetch" href="/fed-note/assets/js/6.f60d1f00.js"><link rel="prefetch" href="/fed-note/assets/js/60.2decd119.js"><link rel="prefetch" href="/fed-note/assets/js/61.c96def20.js"><link rel="prefetch" href="/fed-note/assets/js/62.3ad40f6a.js"><link rel="prefetch" href="/fed-note/assets/js/63.e4fa9853.js"><link rel="prefetch" href="/fed-note/assets/js/64.7e8f1129.js"><link rel="prefetch" href="/fed-note/assets/js/65.cf8f4241.js"><link rel="prefetch" href="/fed-note/assets/js/66.9769ed7d.js"><link rel="prefetch" href="/fed-note/assets/js/67.de932d65.js"><link rel="prefetch" href="/fed-note/assets/js/68.417bccfc.js"><link rel="prefetch" href="/fed-note/assets/js/69.d04187f2.js"><link rel="prefetch" href="/fed-note/assets/js/7.c752f610.js"><link rel="prefetch" href="/fed-note/assets/js/70.ca39ad53.js"><link rel="prefetch" href="/fed-note/assets/js/71.8b7f0aea.js"><link rel="prefetch" href="/fed-note/assets/js/8.37518ed0.js"><link rel="prefetch" href="/fed-note/assets/js/9.745d67a5.js">
+    <link rel="stylesheet" href="/fed-note/assets/css/0.styles.35bbaf6d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/fed-note/" class="home-link router-link-active"><img src="/fed-note/mh.jpg" alt="Mokou的小书房" class="logo"> <span class="site-name can-hide">Mokou的小书房</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/fed-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/fed-note/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://github.com/zhongmeizhi" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>深入浅出 Vue3</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/fed-note/resource-analysis/vue3_vite.html" class="sidebar-link">vite篇</a></li><li><a href="/fed-note/resource-analysis/vue3_reactive.html" class="sidebar-link">reactive篇</a></li><li><a href="/fed-note/resource-analysis/vue3_effect.html" class="sidebar-link">effect篇</a></li><li><a href="/fed-note/resource-analysis/vue3_reactive_summary.html" class="sidebar-link">写一个简单的响应式vue</a></li><li><a href="/fed-note/resource-analysis/vue3_computed.html" aria-current="page" class="active sidebar-link">ref和computed</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/fed-note/resource-analysis/vue3_computed.html#ref" class="sidebar-link">ref</a></li><li class="sidebar-sub-header"><a href="/fed-note/resource-analysis/vue3_computed.html#computed" class="sidebar-link">computed</a></li><li class="sidebar-sub-header"><a href="/fed-note/resource-analysis/vue3_computed.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue2 &amp;&amp; React</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flutter实战</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>服务端相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>简单的API</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue3-computed"><a href="#vue3-computed" class="header-anchor">#</a> vue3 computed</h1> <p>前面几章已经把从 vite 到 reactive，然后再到手写一个响应式的 vue3。现在开始对上一章完成的 vue3 进行补充。</p> <h2 id="ref"><a href="#ref" class="header-anchor">#</a> ref</h2> <p>使用 reactive 会有一个缺点，那就是，Proxy 只能代理对象，但不能代理基础类型。</p> <p>如果你调用这段代码 <code>new Proxy(0, {})</code>，浏览器会反馈你 <code>Uncaught TypeError: Cannot create proxy with a non-object as target or handler</code></p> <p>所以，对于基础类型的代理。我们需要一个新的方式，而在 <code>vue3</code> 中，对于基础类型的新 api 是 <code>ref</code></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>button <span class="token operator">&gt;</span><span class="token punctuation">{</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>实现 ref 其实非常简单：利用 js 对象自带的 getter 就可以实现</p> <p>举个栗子：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> v <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ref <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'get'</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> v<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'set'</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+        v<span class="token operator">=</span> val<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+ref<span class="token punctuation">.</span>value<span class="token punctuation">;</span> <span class="token comment">// 打印 get</span>
+ref<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// 打印 set</span>
+</code></pre></div><p>那么通过前面几章实现的 <code>track</code> 和 <code>trigger</code> 可以轻松实现 <code>ref</code></p> <p>直接上完成的代码</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token parameter">target</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> value <span class="token operator">=</span> target
+
+  <span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">track</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">set</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token parameter">newVal</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>newVal <span class="token operator">!==</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> newVal<span class="token punctuation">;</span>
+        <span class="token function">trigger</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> obj<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="computed"><a href="#computed" class="header-anchor">#</a> computed</h2> <p>那么该怎么实现 <code>computed</code>？</p> <p>首先：参考 <code>vue3</code> 的 <code>computed</code> 使用方式</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> count<span class="token punctuation">.</span>num <span class="token operator">+</span> num<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token string">'!'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>盲猜可以得到一个想法，通过改造下 <code>effect</code> 可以实现，即在 <code>effect</code> 调用的那一刻不执行 <code>run</code> 方法。所以我们可以加一个 <code>lazy</code> 参数。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">effect</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">_effect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    activeEffect <span class="token operator">=</span> _effect<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 添加这段代码</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>options<span class="token punctuation">.</span>lazy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">_effect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> _effect<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>那么 <code>computed</code> 可以这么写</p> <ol><li>内部执行 <code>effect(fn, {lazy: true})</code> 保证 <code>computed</code> 执行的时候不触发回调。</li> <li>通过对象的 <code>getter</code> 属性，在 <code>computed</code> 被使用的时候执行回调。</li> <li>通过 <code>dirty</code> 防止出现内存溢出。</li></ol> <p>优秀的代码呼之欲出：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> dirty <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> value<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> _computed<span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> runner <span class="token operator">=</span> <span class="token function">effect</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    lazy<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  _computed <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>dirty<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> <span class="token function">runner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dirty <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> _computed<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>那么问题来了 <code>dirty</code> 在第一次执行后就被设置为 <code>false</code> 如何重置？</p> <p>此时 <code>vue3</code> 的解决方法是，给 <code>effect</code> 添加一个 <code>scheduler</code> 用来处理副作用。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">effect</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">_effect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    activeEffect <span class="token operator">=</span> _effect<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>options<span class="token punctuation">.</span>lazy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">_effect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 添加这行</span>
+  _effect<span class="token punctuation">.</span>options <span class="token operator">=</span> options<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> _effect<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>既然有了 <code>scheduler</code> 那就需要更改 <code>trigger</code> 来处理新的 <code>scheduler</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">trigger</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> depsMap <span class="token operator">=</span> targetMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>depsMap<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> effects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  depsMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> effects<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+  <span class="token comment">// 更改这一行</span>
+  effects<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token function">scheduleRun</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 添加一个方法</span>
+<span class="token keyword">function</span> <span class="token function">scheduleRun</span><span class="token punctuation">(</span><span class="token parameter">effect</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>effect<span class="token punctuation">.</span>options<span class="token punctuation">.</span>scheduler <span class="token operator">!==</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    effect<span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">scheduler</span><span class="token punctuation">(</span>effect<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">effect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>然后，把上面代码合并一下，<code>computed</code> 就完成了</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> dirty <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> value<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> _computed<span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> runner <span class="token operator">=</span> <span class="token function">effect</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    lazy<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">scheduler</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>dirty<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        dirty <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">trigger</span><span class="token punctuation">(</span>_computed<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  _computed <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>dirty<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> <span class="token function">runner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        dirty <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token function">track</span><span class="token punctuation">(</span>_computed<span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> _computed<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>源码请看 <a href="https://github.com/zhongmeizhi/uuz" target="_blank" rel="noopener noreferrer">uuz<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <ol><li>ref 是通过对象自有的 <code>getter</code> 和 <code>setter</code> 配合 <code>track</code> + <code>trigger</code> 实现的</li> <li>computed 其实是一个在 <code>effect</code> 基础上的改进</li></ol> <p>下章内容：<code>vue3</code> 该怎么结合 <code>jsx</code>？</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/fed-note/resource-analysis/vue3_reactive_summary.html" class="prev">
+        写一个简单的响应式vue
+      </a></span> <span class="next"><a href="/fed-note/resource-analysis/fiber.html">
+        Fiber 源码解析
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/fed-note/assets/js/app.52597b60.js" defer></script><script src="/fed-note/assets/js/2.666d6ac5.js" defer></script><script src="/fed-note/assets/js/50.389d23ae.js" defer></script>
+  </body>
+</html>

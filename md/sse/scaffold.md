@@ -83,5 +83,5 @@ qiankun 是基于 single-spa 的微服务框架。实现了几乎包含所有构
   $ yarn examples:start
 ```
 
-使用 qiankun 可以无缝兼容已有的项目，但兼容性有点问题（比如不兼容 Edge 浏览器）
+使用 qiankun 可以无缝兼容已有的项目...真棒呢
 
