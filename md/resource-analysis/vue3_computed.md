@@ -2,7 +2,7 @@
 
 前面几章已经把从 vite 到 reactive，然后再到手写一个响应式的 vue3。现在开始对上一章完成的 vue3 进行补充。
 
-## ref
+### ref
 
 使用 reactive 会有一个缺点，那就是，Proxy 只能代理对象，但不能代理基础类型。
 
@@ -67,7 +67,7 @@ function ref(target) {
 }
 ```
 
-## computed
+### computed
 
 那么该怎么实现 `computed`？
 
@@ -204,7 +204,7 @@ function computed(fn) {
 }
 ```
 
-## 总结
+### 总结
 
 源码请看 [uuz](https://github.com/zhongmeizhi/uuz)
 
