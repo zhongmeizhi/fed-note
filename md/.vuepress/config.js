@@ -69,6 +69,10 @@ module.exports = {
             path: '/browser/security_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
+            title: '关于Http',   // 必要的
+            path: '/browser/http',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
             title: '页面加载过程',   // 必要的
             path: '/browser/page_load',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
