@@ -215,6 +215,10 @@ module.exports = {
             title: '用Koa2撸一个API Mock',   // 必要的
             path: 'https://github.com/zhongmeizhi/z-mock',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
+          {
+            title: '用Koa2撸一个uuzpack',   // 必要的
+            path: 'https://github.com/zhongmeizhi/uuz',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
         ]
       },
       {
