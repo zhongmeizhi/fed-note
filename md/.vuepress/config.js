@@ -94,19 +94,11 @@ module.exports = {
             path: '/css/layout.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: 'CSS 经验包',   // 必要的
-            path: '/css/EXPERIENCE.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'Hybrid开发相关',   // 必要的
-            path: '/javascript/hybrid',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
             title: '性能优化',   // 必要的
             path: '/sse/optimization',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: '测试：async await',   // 必要的
+            title: 'async await',   // 必要的
             path: '/sse/async_await',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
@@ -130,7 +122,7 @@ module.exports = {
             path: '/browser/garbage_collection',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
-            title: 'CSS篇',   // 必要的
+            title: 'CSS基础篇',   // 必要的
             path: '/review/css_base',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
@@ -148,10 +140,6 @@ module.exports = {
           {
             title: '各种手写代码实现',   // 必要的
             path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
-          {
-            title: 'JS 经验包',   // 必要的
-            path: '/javascript/experience',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
@@ -267,7 +255,7 @@ module.exports = {
         ]
       },
       {
-        title: '其他',   // 必要的
+        title: '经验之谈',   // 必要的
         children: [
           {
             title: 'git命令',   // 必要的
@@ -276,6 +264,22 @@ module.exports = {
           {
             title: 'GitHub的Host和Key',   // 必要的
             path: '/other/GITHUB',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'Hybrid开发相关',   // 必要的
+            path: '/javascript/hybrid',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'CSS 经验包',   // 必要的
+            path: '/css/EXPERIENCE.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: 'JS 经验包',   // 必要的
+            path: '/javascript/experience',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
+            title: '好用的新API',   // 必要的
+            path: '/javascript/useful_features',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },

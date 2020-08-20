@@ -369,3 +369,22 @@ Node中多进程就是进程的复制（`child_process.fork`）开启多个`子�
 * `nvm use v10.3.0`：切换node的版本，这个是全局的
 * `nvm current`：当前node版本
 * `nvm ls`：列出所有已经安装的node版本
+
+
+### 关于 Illegal invocation
+
+js的源生全局对象在使用时某些属性和方法是强制绑定了上下文的。
+
+使用以下语法会报错 `Illegal invocation`
+
+```js
+// 案例 1
+let $qs = document.querySelector;
+$qs('div');
+```
+
+```js
+// 案例 2
+let nav = Object.getOwnPropertyDescriptor(window, 'navigator');
+nav.get();
+```

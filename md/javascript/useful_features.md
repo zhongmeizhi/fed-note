@@ -65,3 +65,32 @@ PS: 兼容性堪忧
 PS：PC端兼容性一般，移动端兼容性很差
 
 滚动的对齐方式，对做轮播图什么的很方便
+
+
+### MutationObserver
+
+监听DOM的变化，（是个微任务）
+
+ps: 大部分浏览器都能用，包括IE11。。。
+
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver)
+
+
+### shadow DOM
+
+> 一个可以隔离样式的 DOM 元素，可以配合 Web Components 使用
+
+原生 input 使用了该属性。
+
+ps: 兼容性就这样吧
+
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_shadow_DOM)
+
+
+### customElements
+
+> Web Components 标准非常重要的一个特性是，它使开发者能够将HTML页面的功能封装为 custom elements
+
+ps: 兼容性就这样吧
+
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
