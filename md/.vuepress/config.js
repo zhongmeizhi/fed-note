@@ -83,6 +83,15 @@ module.exports = {
         ]
       },
       {
+        title: '算法基础',   // 必要的
+        children: [
+          {
+            title: '基本概念',   // 必要的
+            path: '/algorithm/base',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+        ]
+      },
+      {
         title: '前端基础',   // 必要的
         children: [
           {
@@ -140,6 +149,15 @@ module.exports = {
           {
             title: '各种手写代码实现',   // 必要的
             path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+        ]
+      },
+      {
+        title: '前端进阶版',   // 必要的
+        children: [
+          {
+            title: '执行上下文',   // 必要的
+            path: '/advance/co_text.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
