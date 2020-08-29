@@ -21,7 +21,7 @@
     * 即不能强行修改：`Array.prototype.sort.call('abc');`(会报错)
 3. 基础类型上没有`__proto__`没有`属性`
 4. 基础类型可以通过 `基本包装类型` 访问的属性/方法
-    ```
+    ```js
         // 通过包装类型访问基础类型特性
         let str = 'abc';
         console.log(str.length)
@@ -35,7 +35,19 @@
         let len = _str.length;
         _str = null;
     ```
+5. 基础类型默认先访问 `Symbol.toPrimitive`（在ES6中有），否则调用 `valueOf` 和 `toString`（如果是 String(val) 先调用 toString），当隐式转换出错会提示`Cannot convert object to primitive value`
+    ```js
+        var o = {
+            valueOf : () => {console.log("valueOf"); return {}},
+            toString : () => {console.log("toString"); return {}}
+        }
 
+        o[Symbol.toPrimitive] = () => {console.log("toPrimitive"); return "hello"}
+
+        console.log(o + "")
+        // toPrimitive
+        // hello
+    ```
 
 ### 怎么检测基础类型？
 
@@ -69,6 +81,7 @@
 1. 基本类型转换时，首先会调用 `valueOf`，然后调用 `toString`。(这两个方法可以被重写)
 2. 在四则运算中，除了 `+` 其他操作都会以数字进行计算，如果是 `+` 运算，如果不是所有字面量**都是**`number`（都是number就是数字的加法咯），那么会转换为字符串(`toString`)进行拼接
 
+ps：类型转换要注意`undefined`、 `null`，具体需要遵循 ES3 的转换规律，比如 `null` 和 `0` 的关系
 
 ### 为什么 0.1 + 0.2 为什么不等于 0.3 ？
 
