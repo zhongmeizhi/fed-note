@@ -333,3 +333,20 @@ connect接收两个参数，一个`mapStateToProps`,就是把redux的`state`，�
 三斜线指令中需要注意的是 path 类型和 types 类型的区别：
 * `types` 类型声明的是对 `node_modules/@types` 文件夹下的类型的依赖，不包含路径信息
 * `path` 类型声明的是对本地文件的依赖，包含路径信息
+
+## 学习路上的小技巧
+
+### 为children注入样式/数据
+
+```jsx
+{
+  React.Children.map(children, (child) => {
+    const childTs = child as React.DetailedReactHTMLElement<any, HTMLElement>;
+    return React.cloneElement(childTs,
+        {
+            className:  `${childTs.props.className} self-style`,
+        },
+    )
+  })
+}
+```
