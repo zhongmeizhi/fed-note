@@ -52,6 +52,10 @@ module.exports = {
             path: '/mvvm/react',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
           {
+            title: 'React Ref',   // 必要的
+            path: '/mvvm/react-ref',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+          },
+          {
             title: '翻译：React useEffect完全指南',   // 必要的
             path: '/mvvm/useEffect',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
@@ -146,18 +150,23 @@ module.exports = {
             title: 'Webpack篇',   // 必要的
             path: '/review/webpack',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
-          {
-            title: '各种手写代码实现',   // 必要的
-            path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-          },
         ]
       },
+      // {
+      //   title: '前端进阶版',   // 必要的
+      //   children: [
+      //     {
+      //       title: '执行上下文',   // 必要的
+      //       path: '/advance/co_text.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+      //     },
+      //   ]
+      // },
       {
-        title: '前端进阶版',   // 必要的
+        title: '手写代码合集',   // 必要的
         children: [
           {
-            title: '执行上下文',   // 必要的
-            path: '/advance/co_text.md',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
+            title: '各种手写代码实现 ',   // 必要的
+            path: '/review/js_code',      // 可选的, 标题的跳转链接，应为绝对路径且必须存在
           },
         ]
       },
